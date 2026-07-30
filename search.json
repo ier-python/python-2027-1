@@ -1,0 +1,440 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Proyectos de ciencia de datos con Python",
+    "section": "",
+    "text": "Cómo está organizado\nEste libro es el registro vivo del curso Proyectos de ciencia de datos con Python, del Programa de Maestría y Doctorado en Ingeniería (campo de conocimiento: Energía) de la UNAM, en el semestre 2027-1.\nNo es un libro escrito de antemano: crece clase a clase. Cada sesión aporta una parte con su introducción y las libretas que se trabajaron en el aula, publicadas tal como quedaron —con sus salidas, sus figuras y, cuando toca, sus errores instructivos.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#cómo-está-organizado",
+    "href": "index.html#cómo-está-organizado",
+    "title": "Proyectos de ciencia de datos con Python",
+    "section": "",
+    "text": "El temario reproduce el programa oficial de la actividad académica.\nCada parte corresponde a una sesión: abre con una introducción a los temas y continúa con las libretas de esa clase.\nLas tareas aparecen al final de la parte que las genera.\nEl apéndice de instalación explica cómo poner a funcionar el entorno en tu propia computadora.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#cómo-trabajar-con-el-material",
+    "href": "index.html#cómo-trabajar-con-el-material",
+    "title": "Proyectos de ciencia de datos con Python",
+    "section": "Cómo trabajar con el material",
+    "text": "Cómo trabajar con el material\nTodo el curso vive en un repositorio público: https://github.com/ier-python/python-2027-1\nCada clase es una carpeta autocontenida, con su propio entorno de dependencias gestionado con uv. Para reproducir una sesión basta con clonar el repositorio, entrar a la carpeta de esa clase y sincronizar el entorno:\ngit clone https://github.com/ier-python/python-2027-1.git\ncd python-2027-1/clases/clase-01-introduccion\nuv sync\nuv run jupyter notebook\nEso instala exactamente las versiones con las que se produjeron los resultados que ves publicados —ni una más ni una menos— y abre Jupyter Notebook con ese entorno.\n\n\n\n\n\n\nNotaReproducibilidad\n\n\n\nCada clase versiona su archivo uv.lock, que fija las versiones exactas de todos los paquetes. Es lo que permite que una libreta de la primera semana siga corriendo igual al final del semestre.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#sobre-la-narrativa-computacional",
+    "href": "index.html#sobre-la-narrativa-computacional",
+    "title": "Proyectos de ciencia de datos con Python",
+    "section": "Sobre la narrativa computacional",
+    "text": "Sobre la narrativa computacional\nUna de las ideas que atraviesan el curso —y que este libro intenta encarnar— es que el análisis de datos no termina cuando el código corre: termina cuando alguien más puede leerlo, entenderlo y repetirlo. Por eso el material se publica como texto y código entrelazados, y no como una colección de archivos sueltos.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html",
+    "href": "temario.html",
+    "title": "Temario del curso",
+    "section": "",
+    "text": "Datos generales\nPrograma de la actividad académica aprobado por el Programa de Maestría y Doctorado en Ingeniería de la UNAM, con el desarrollo de cada unidad para el semestre 2027-1.\nDescargar el programa oficial (PDF)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html#datos-generales",
+    "href": "temario.html#datos-generales",
+    "title": "Temario del curso",
+    "section": "",
+    "text": "Denominación\nProyectos de ciencia de datos con Python\n\n\nCampo de conocimiento\nEnergía\n\n\nSemestre(s)\n1, 2 ó 3\n\n\nCarácter\nObligatoria de elección\n\n\nTipo\nTeórica y práctica\n\n\nModalidad\nCurso presencial\n\n\nDuración\nSemestral\n\n\nCréditos\n6\n\n\nHoras por semana\n3 (1 de teoría · 2 de práctica)\n\n\nHoras al semestre\n48\n\n\nSeriación\nSin seriación\n\n\nActividad antecedente\nNinguna",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html#objetivo-general",
+    "href": "temario.html#objetivo-general",
+    "title": "Temario del curso",
+    "section": "Objetivo general",
+    "text": "Objetivo general\n\nEn este curso el alumno aprenderá herramientas para el desarrollo de proyectos de ciencia de datos que incluya diversas fuentes de datos con Python y herramientas libres. Adquirirá habilidades para el buen manejo de proyectos que propicien la colaboración y la reproducibilidad del flujo de trabajo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html#calendario",
+    "href": "temario.html#calendario",
+    "title": "Temario del curso",
+    "section": "Calendario",
+    "text": "Calendario\n\n\n\nInicio\n10 de agosto de 2026\n\n\nFin\n27 de noviembre de 2026\n\n\nSesiones\n16, de 3 horas cada una\n\n\nTotal\n48 horas",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html#índice-temático",
+    "href": "temario.html#índice-temático",
+    "title": "Temario del curso",
+    "section": "Índice temático",
+    "text": "Índice temático\nLa columna programa corresponde a las horas del programa oficial; la columna curso al reparto efectivo del semestre 2027-1, que se ajusta conforme se desarrolla cada unidad.\n\n\n\n\n\n\n\n\n\n\nUnidad\nTema\nPrograma\nCurso\nSesiones\n\n\n\n\n1\nIntroducción a los proyectos de ciencia de datos con Python\n3 h\n6 h\n1–2\n\n\n2\nSintaxis, herramientas de control y métodos de Python\n6 h\n—\n\n\n\n3\nImportación y limpieza de datos\n10 h\n—\n\n\n\n4\nIntroducción a la visualización de datos\n8 h\n—\n\n\n\n5\nNumPy\n3 h\n—\n\n\n\n6\nPrácticas para el cómputo científico\n8 h\n—\n\n\n\n7\nConceptos avanzados de manipulación y visualización de datos\n10 h\n—\n\n\n\n\nTotal\n48 h\n6 h\n2 de 16\n\n\n\nQuedan 42 horas (14 sesiones) para las unidades 2 a 7, que en el programa oficial suman 45.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html#contenido-temático",
+    "href": "temario.html#contenido-temático",
+    "title": "Temario del curso",
+    "section": "Contenido temático",
+    "text": "Contenido temático\n\nUnidad 1 · Introducción a los proyectos de ciencia de datos con Python\n\nPor qué Python es un lenguaje de programación para ciencia de datos\nInstalación y actualización\nEspacio de trabajo\nNarrativa computacional\nEntornos virtuales\nRepositorios\n\n\n\nUnidad 2 · Sintaxis, herramientas de control y métodos de Python\n\nSintaxis, tipos de variables, iterables\nEstructuras de control\nCadenas en Python\nf-strings\nFunciones\n\n\n\nUnidad 3 · Importación y limpieza de datos\n\nPair wise data\nSeries temporales\nData cleaning\nImportación de múltiples archivos\n\n\n\nUnidad 4 · Introducción a la visualización\n\nAnatomía de una figura\nOOP en matplotlib\nEsquemas complejos con specgrid\nFormatos para figura\n\n\n\nUnidad 5 · NumPy\n\nArrays, size, shape\nEstadística de arreglos\nSlicing y fancy indexing\nCreación de mallas\n\n\n\nUnidad 6 · Prácticas para el cómputo científico\n\nPaquetes\nProfiling\nCython\nPruebas unitarias en datos\n\n\n\nUnidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos\n\nDatos faltantes\nCambio de frecuencia\nAgrupación de datos\nVisualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots\nTableros de datos con webapps",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html#bibliografía",
+    "href": "temario.html#bibliografía",
+    "title": "Temario del curso",
+    "section": "Bibliografía",
+    "text": "Bibliografía\n\nBásica\n\npandas\nMatplotlib\nNumPy\nCython\n\n\n\nComplementaria\n\nPython para usuario (Coursera)\nPython explorador (Coursera)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html#sugerencias-didácticas",
+    "href": "temario.html#sugerencias-didácticas",
+    "title": "Temario del curso",
+    "section": "Sugerencias didácticas",
+    "text": "Sugerencias didácticas\nExposición oral · Exposición audiovisual · Ejercicios dentro de clase · Ejercicios fuera del aula · Seminarios · Lecturas obligatorias · Trabajo de investigación · Prácticas de taller o laboratorio.\n(No contempladas: prácticas de campo.)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "temario.html#mecanismos-de-evaluación",
+    "href": "temario.html#mecanismos-de-evaluación",
+    "title": "Temario del curso",
+    "section": "Mecanismos de evaluación",
+    "text": "Mecanismos de evaluación\nExámenes parciales · Examen final escrito · Trabajos y tareas fuera del aula · Participación en clase · Asistencia.\n(No contempladas: exposición de seminarios por los alumnos, seminario.)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Temario del curso</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-01.html",
+    "href": "unidades/unidad-01.html",
+    "title": "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python",
+    "section": "",
+    "text": "Temas\n6 h en el curso · Unidad 1 del temario\n1.1 Qué es un proyecto de ciencia de datos\n1.2 Instalación y espacio de trabajo\n1.3 Entornos virtuales y la primera libreta\n1.4 Anatomía de un proyecto\n1.5 Nombres\n1.6 Narrativa computacional\n1.7 Reglas del curso y repositorios",
+    "crumbs": [
+      "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-01.html#temas",
+    "href": "unidades/unidad-01.html#temas",
+    "title": "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python",
+    "section": "",
+    "text": "Por qué Python es un lenguaje de programación para ciencia de datos; panorama del semestre.\nProyecto frente a script suelto: datos, código, entorno y resultados.\n\n\n\nInstalación: Miniconda en Windows (terminal y Python base); macOS y Linux sin instalación; uv de Astral; herramientas a la mano.\nTerminal: navegación, rutas, crear carpetas.\nVerificación común: python --version y uv --version.\n\n\n\nQué es un entorno virtual y por qué existe.\nuv init, uv add, uv run: el primer proyecto.\npyproject.toml, la receta; uv.lock, el registro exacto.\nBorrar el entorno y reconstruirlo con uv sync.\nJupyter Notebook dentro del proyecto: el kernel es el entorno.\n\n\n\nEstructura: data/raw, data/processed, notebooks/.\nRutas relativas frente a rutas absolutas.\nQué se versiona y qué no.\n\n\n\nArchivos y carpetas: minúsculas, sin espacios ni acentos.\nLibretas: numeradas por orden de lectura.\nVariables: snake_case, qué contienen y en qué unidades.\nFechas en formato ISO.\n\n\n\nLa libreta como documento, no como consola con historial.\nEl orden de ejecución; reiniciar y ejecutar todo antes de compartir.\nMarkdown: estructura del relato, qué explicar y qué se explica solo.\nUna libreta, una pregunta.\n\n\n\nLos datos crudos no se tocan.\nTodo proyecto declara su entorno.\nUna libreta corre de arriba abajo, desde cero.\nNingún nombre que no diga qué es.\nRutas relativas, siempre.\nSi no está en el repositorio, no existe.",
+    "crumbs": [
+      "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-01.html#ejercicios-sugeridos",
+    "href": "unidades/unidad-01.html#ejercicios-sugeridos",
+    "title": "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python",
+    "section": "Ejercicios sugeridos",
+    "text": "Ejercicios sugeridos\n\nInstalar Python y uv antes de la primera sesión, y llegar con la verificación hecha.\nCrear un proyecto con uv, agregarle una dependencia y ejecutar un script dentro de él.\nHacer correr un programa antiguo que hoy falla, sin modificar una sola línea de su código.\nTener dos proyectos con versiones incompatibles de la misma biblioteca, funcionando ambos en la misma computadora.\nBorrar por completo el entorno de un proyecto y reconstruirlo.\nDiagnosticar una libreta que no encuentra un paquete que sí está instalado en el proyecto.\nReorganizar un proyecto desordenado según la estructura de carpetas de la unidad.\nRenombrar los archivos y variables de una libreta ajena hasta que se entienda sin explicación.\nConvertir una libreta escrita como consola en una libreta que se lea como documento.\nIntercambiar proyectos por parejas y reproducir el resultado del compañero en la propia máquina.",
+    "crumbs": [
+      "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-01.html#al-terminar-la-unidad",
+    "href": "unidades/unidad-01.html#al-terminar-la-unidad",
+    "title": "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python",
+    "section": "Al terminar la unidad",
+    "text": "Al terminar la unidad\n\nExplicar por qué el mismo código puede dar resultados distintos en dos computadoras.\nAbrir una terminal y saber qué Python responde, y por qué.\nCrear un proyecto con uv, agregarle dependencias y ejecutarlo.\nDistinguir pyproject.toml de uv.lock, y saber cuál duele perder.\nAbrir una libreta con el kernel correcto y diagnosticar cuando no lo es.\nEstructurar y nombrar un proyecto de modo que otra persona lo entienda sin explicación.",
+    "crumbs": [
+      "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-02.html",
+    "href": "unidades/unidad-02.html",
+    "title": "Unidad 2 · Sintaxis, herramientas de control y métodos de Python",
+    "section": "",
+    "text": "Temas\n6 h en el programa oficial · Unidad 2 del temario\n2.1 Sintaxis, tipos de variables, iterables\n2.2 Estructuras de control\n2.3 Cadenas en Python\n2.4 f-strings\n2.5 Funciones",
+    "crumbs": [
+      "Unidad 2 · Sintaxis, herramientas de control y métodos de Python"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-02.html#ejercicios-sugeridos",
+    "href": "unidades/unidad-02.html#ejercicios-sugeridos",
+    "title": "Unidad 2 · Sintaxis, herramientas de control y métodos de Python",
+    "section": "Ejercicios sugeridos",
+    "text": "Ejercicios sugeridos\n(por definir)",
+    "crumbs": [
+      "Unidad 2 · Sintaxis, herramientas de control y métodos de Python"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-02.html#al-terminar-la-unidad",
+    "href": "unidades/unidad-02.html#al-terminar-la-unidad",
+    "title": "Unidad 2 · Sintaxis, herramientas de control y métodos de Python",
+    "section": "Al terminar la unidad",
+    "text": "Al terminar la unidad\n(por definir)",
+    "crumbs": [
+      "Unidad 2 · Sintaxis, herramientas de control y métodos de Python"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-03.html",
+    "href": "unidades/unidad-03.html",
+    "title": "Unidad 3 · Importación y limpieza de datos",
+    "section": "",
+    "text": "Temas\n10 h en el programa oficial · Unidad 3 del temario\n3.1 Pair wise data\n3.2 Series temporales\n3.3 Data cleaning\n3.4 Importación de múltiples archivos",
+    "crumbs": [
+      "Unidad 3 · Importación y limpieza de datos"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-03.html#ejercicios-sugeridos",
+    "href": "unidades/unidad-03.html#ejercicios-sugeridos",
+    "title": "Unidad 3 · Importación y limpieza de datos",
+    "section": "Ejercicios sugeridos",
+    "text": "Ejercicios sugeridos\n(por definir)",
+    "crumbs": [
+      "Unidad 3 · Importación y limpieza de datos"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-03.html#al-terminar-la-unidad",
+    "href": "unidades/unidad-03.html#al-terminar-la-unidad",
+    "title": "Unidad 3 · Importación y limpieza de datos",
+    "section": "Al terminar la unidad",
+    "text": "Al terminar la unidad\n(por definir)",
+    "crumbs": [
+      "Unidad 3 · Importación y limpieza de datos"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-04.html",
+    "href": "unidades/unidad-04.html",
+    "title": "Unidad 4 · Introducción a la visualización",
+    "section": "",
+    "text": "Temas\n8 h en el programa oficial · Unidad 4 del temario\n4.1 Anatomía de una figura\n4.2 OOP en matplotlib\n4.3 Esquemas complejos con specgrid\n4.4 Formatos para figura",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-04.html#ejercicios-sugeridos",
+    "href": "unidades/unidad-04.html#ejercicios-sugeridos",
+    "title": "Unidad 4 · Introducción a la visualización",
+    "section": "Ejercicios sugeridos",
+    "text": "Ejercicios sugeridos\n(por definir)",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-04.html#al-terminar-la-unidad",
+    "href": "unidades/unidad-04.html#al-terminar-la-unidad",
+    "title": "Unidad 4 · Introducción a la visualización",
+    "section": "Al terminar la unidad",
+    "text": "Al terminar la unidad\n(por definir)",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-05.html",
+    "href": "unidades/unidad-05.html",
+    "title": "Unidad 5 · NumPy",
+    "section": "",
+    "text": "Temas\n3 h en el programa oficial · Unidad 5 del temario\n5.1 Arrays, size, shape\n5.2 Estadística de arreglos\n5.3 Slicing y fancy indexing\n5.4 Creación de mallas",
+    "crumbs": [
+      "Unidad 5 · NumPy"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-05.html#ejercicios-sugeridos",
+    "href": "unidades/unidad-05.html#ejercicios-sugeridos",
+    "title": "Unidad 5 · NumPy",
+    "section": "Ejercicios sugeridos",
+    "text": "Ejercicios sugeridos\n(por definir)",
+    "crumbs": [
+      "Unidad 5 · NumPy"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-05.html#al-terminar-la-unidad",
+    "href": "unidades/unidad-05.html#al-terminar-la-unidad",
+    "title": "Unidad 5 · NumPy",
+    "section": "Al terminar la unidad",
+    "text": "Al terminar la unidad\n(por definir)",
+    "crumbs": [
+      "Unidad 5 · NumPy"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-06.html",
+    "href": "unidades/unidad-06.html",
+    "title": "Unidad 6 · Prácticas para el cómputo científico",
+    "section": "",
+    "text": "Temas\n8 h en el programa oficial · Unidad 6 del temario\n6.1 Paquetes\n6.2 Profiling\n6.3 Cython\n6.4 Pruebas unitarias en datos",
+    "crumbs": [
+      "Unidad 6 · Prácticas para el cómputo científico"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-06.html#ejercicios-sugeridos",
+    "href": "unidades/unidad-06.html#ejercicios-sugeridos",
+    "title": "Unidad 6 · Prácticas para el cómputo científico",
+    "section": "Ejercicios sugeridos",
+    "text": "Ejercicios sugeridos\n(por definir)",
+    "crumbs": [
+      "Unidad 6 · Prácticas para el cómputo científico"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-06.html#al-terminar-la-unidad",
+    "href": "unidades/unidad-06.html#al-terminar-la-unidad",
+    "title": "Unidad 6 · Prácticas para el cómputo científico",
+    "section": "Al terminar la unidad",
+    "text": "Al terminar la unidad\n(por definir)",
+    "crumbs": [
+      "Unidad 6 · Prácticas para el cómputo científico"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-07.html",
+    "href": "unidades/unidad-07.html",
+    "title": "Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos",
+    "section": "",
+    "text": "Temas\n10 h en el programa oficial · Unidad 7 del temario\n7.1 Datos faltantes\n7.2 Cambio de frecuencia\n7.3 Agrupación de datos\n7.4 Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots\n7.5 Tableros de datos con webapps",
+    "crumbs": [
+      "Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-07.html#ejercicios-sugeridos",
+    "href": "unidades/unidad-07.html#ejercicios-sugeridos",
+    "title": "Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos",
+    "section": "Ejercicios sugeridos",
+    "text": "Ejercicios sugeridos\n(por definir)",
+    "crumbs": [
+      "Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad-07.html#al-terminar-la-unidad",
+    "href": "unidades/unidad-07.html#al-terminar-la-unidad",
+    "title": "Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos",
+    "section": "Al terminar la unidad",
+    "text": "Al terminar la unidad\n(por definir)",
+    "crumbs": [
+      "Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos"
+    ]
+  },
+  {
+    "objectID": "apendices/instalacion.html",
+    "href": "apendices/instalacion.html",
+    "title": "Instalación del entorno",
+    "section": "",
+    "text": "1. Instalar uv\nEl curso usa tres herramientas. Ninguna requiere permisos de administrador.\nNo hace falta instalar Python por separado: uv se encarga de descargar la versión que cada clase declare.\nCierra y vuelve a abrir la terminal, y comprueba:",
+    "crumbs": [
+      "Apéndices",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación del entorno</span>"
+    ]
+  },
+  {
+    "objectID": "apendices/instalacion.html#instalar-uv",
+    "href": "apendices/instalacion.html#instalar-uv",
+    "title": "Instalación del entorno",
+    "section": "",
+    "text": "macOS / LinuxWindows\n\n\ncurl -LsSf https://astral.sh/uv/install.sh | sh\n\n\npowershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\"\n\n\n\n\nuv --version",
+    "crumbs": [
+      "Apéndices",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación del entorno</span>"
+    ]
+  },
+  {
+    "objectID": "apendices/instalacion.html#instalar-git",
+    "href": "apendices/instalacion.html#instalar-git",
+    "title": "Instalación del entorno",
+    "section": "2. Instalar Git",
+    "text": "2. Instalar Git\nEn macOS, git --version ofrece instalarlo si falta. En Windows, descárgalo de git-scm.com. En Linux, viene en el gestor de paquetes (apt install git, dnf install git).",
+    "crumbs": [
+      "Apéndices",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación del entorno</span>"
+    ]
+  },
+  {
+    "objectID": "apendices/instalacion.html#clonar-el-repositorio-del-curso",
+    "href": "apendices/instalacion.html#clonar-el-repositorio-del-curso",
+    "title": "Instalación del entorno",
+    "section": "3. Clonar el repositorio del curso",
+    "text": "3. Clonar el repositorio del curso\ngit clone https://github.com/ier-python/python-2027-1.git\ncd python-2027-1",
+    "crumbs": [
+      "Apéndices",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación del entorno</span>"
+    ]
+  },
+  {
+    "objectID": "apendices/instalacion.html#trabajar-en-una-clase",
+    "href": "apendices/instalacion.html#trabajar-en-una-clase",
+    "title": "Instalación del entorno",
+    "section": "4. Trabajar en una clase",
+    "text": "4. Trabajar en una clase\nCada clase es una carpeta independiente con su propio entorno. Entra a la que te interese y sincroniza:\ncd clases/clase-01-introduccion\nuv sync\nuv sync lee uv.lock e instala las versiones exactas con las que se produjeron los resultados publicados. Crea un entorno virtual en .venv/ dentro de esa misma carpeta.\nPara abrir las libretas:\nuv run jupyter notebook\n\n\n\n\n\n\nTipuv run evita activar el entorno a mano\n\n\n\nNo necesitas source .venv/bin/activate. Cualquier comando precedido de uv run se ejecuta dentro del entorno de la carpeta en la que estás.",
+    "crumbs": [
+      "Apéndices",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación del entorno</span>"
+    ]
+  },
+  {
+    "objectID": "apendices/instalacion.html#si-usas-vs-code-o-positron",
+    "href": "apendices/instalacion.html#si-usas-vs-code-o-positron",
+    "title": "Instalación del entorno",
+    "section": "5. Si usas VS Code o Positron",
+    "text": "5. Si usas VS Code o Positron\nAbre la carpeta de la clase y selecciona como intérprete el que está en .venv/ de esa carpeta (Python: Select Interpreter → la opción que apunta a ./.venv/bin/python). A partir de ahí, las libretas usarán el entorno correcto.\n\n\n\n\n\n\nImportanteUn entorno por clase, no uno para todo el curso\n\n\n\nCada clase tiene su propio .venv/. Si abres la libreta de la clase 5 con el intérprete de la clase 2, es probable que falten paquetes. Al cambiar de clase, cambia también el intérprete.",
+    "crumbs": [
+      "Apéndices",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación del entorno</span>"
+    ]
+  },
+  {
+    "objectID": "apendices/instalacion.html#construir-el-libro-localmente-opcional",
+    "href": "apendices/instalacion.html#construir-el-libro-localmente-opcional",
+    "title": "Instalación del entorno",
+    "section": "6. Construir el libro localmente (opcional)",
+    "text": "6. Construir el libro localmente (opcional)\nSólo si quieres generar este sitio en tu computadora. Instala Quarto y, desde la raíz del repositorio:\nquarto preview\nEl libro no ejecuta las libretas al construirse: publica las salidas que ya están guardadas en cada .ipynb. Por eso construirlo no requiere tener instalados los entornos de las clases —ni siquiera Python.",
+    "crumbs": [
+      "Apéndices",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación del entorno</span>"
+    ]
+  },
+  {
+    "objectID": "apendices/instalacion.html#problemas-frecuentes",
+    "href": "apendices/instalacion.html#problemas-frecuentes",
+    "title": "Instalación del entorno",
+    "section": "Problemas frecuentes",
+    "text": "Problemas frecuentes\nuv: command not found después de instalar. La terminal aún no ve el nuevo PATH. Ciérrala y ábrela de nuevo.\nEl kernel de Jupyter no encuentra un paquete que sí está en pyproject.toml. Casi siempre es el intérprete equivocado. Verifica desde una celda:\nimport sys; print(sys.executable)\nLa ruta debe apuntar al .venv de la carpeta de esa clase.\nuv sync falla por la versión de Python. Deja que uv la instale por su cuenta:\nuv python install\nuv sync",
+    "crumbs": [
+      "Apéndices",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación del entorno</span>"
+    ]
+  }
+]
