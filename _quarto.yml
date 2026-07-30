@@ -1,0 +1,67 @@
+project:
+  type: book
+  output-dir: _book
+  resources:
+    - recursos/pdfs/*.pdf
+
+book:
+  title: "Proyectos de ciencia de datos con Python"
+  subtitle: "Semestre 2027-1 · Posgrado en Ingeniería (Energía), UNAM"
+  author: "Guillermo Barrios del Valle"
+  date: today
+  date-format: "D [de] MMMM [de] YYYY"
+  repo-url: https://github.com/ier-python/python-2027-1
+  repo-actions: [source, issue]
+  search: true
+  page-navigation: true
+  sidebar:
+    style: docked
+    collapse-level: 1
+  page-footer:
+    left: "Instituto de Energías Renovables · UNAM"
+    right: "Hecho con [Quarto](https://quarto.org)"
+
+  chapters:
+    - index.qmd
+    - temario.qmd
+
+    # ── Una parte por unidad. Las libretas de cada clase se cuelgan
+    #    de la unidad a la que pertenecen, con `chapters:`. Ejemplo:
+    #
+    #    - part: unidades/unidad-01.qmd
+    #      chapters:
+    #        - clases/clase-01-introduccion/notebooks/01-entorno.ipynb
+    #        - clases/clase-01-introduccion/tareas/tarea-01.ipynb
+
+    - part: unidades/unidad-01.qmd
+    - part: unidades/unidad-02.qmd
+    - part: unidades/unidad-03.qmd
+    - part: unidades/unidad-04.qmd
+    - part: unidades/unidad-05.qmd
+    - part: unidades/unidad-06.qmd
+    - part: unidades/unidad-07.qmd
+
+    # Los apéndices van como una parte final —en vez de `appendices:`—
+    # para que no reciban la etiqueta "Apéndice A".
+    - part: "Apéndices"
+      chapters:
+        - apendices/instalacion.qmd
+
+format:
+  html:
+    theme: [cosmo, estilos.scss]
+    # Sin numeración: ni capítulos, ni secciones, ni apéndices.
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+    code-tools: false
+    toc: true
+    toc-depth: 3
+    toc-title: "En esta página"
+
+# Las libretas NO se ejecutan al renderizar: el libro publica las salidas
+# que quedaron guardadas en el .ipynb al trabajarlo en su propio entorno uv.
+execute:
+  enabled: false
+
+lang: es

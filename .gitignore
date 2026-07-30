@@ -1,0 +1,26 @@
+# ── Entornos de Python ────────────────────────────────────────────
+# Cada clase tiene su propio .venv/, reconstruible con `uv sync`.
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# ── Quarto ────────────────────────────────────────────────────────
+/_book/
+/.quarto/
+*_files/
+
+# ── Datos ─────────────────────────────────────────────────────────
+# Los datos crudos y derivados no se versionan por omisión.
+# Para versionar los de una clase concreta, añade su excepción, p. ej.:
+#   !clases/clase-03-importacion/data/raw/
+clases/*/data/raw/
+clases/*/data/processed/
+!clases/*/data/**/.gitkeep
+!clases/*/data/**/*.md
+
+# ── Sistema ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+**/*.quarto_ipynb

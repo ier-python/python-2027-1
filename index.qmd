@@ -1,0 +1,52 @@
+---
+title: "Presentación"
+---
+
+Este libro es el registro vivo del curso **Proyectos de ciencia de datos con Python**, del Programa
+de Maestría y Doctorado en Ingeniería (campo de conocimiento: Energía) de la UNAM, en el semestre
+2027-1.
+
+No es un libro escrito de antemano: crece clase a clase. Cada sesión aporta una parte con su
+introducción y las libretas que se trabajaron en el aula, publicadas tal como quedaron —con sus
+salidas, sus figuras y, cuando toca, sus errores instructivos.
+
+## Cómo está organizado
+
+- El [temario](temario.qmd) reproduce el programa oficial de la actividad académica.
+- Cada **parte** corresponde a una sesión: abre con una introducción a los temas y continúa con las
+  libretas de esa clase.
+- Las **tareas** aparecen al final de la parte que las genera.
+- El apéndice de [instalación](apendices/instalacion.qmd) explica cómo poner a funcionar el entorno
+  en tu propia computadora.
+
+## Cómo trabajar con el material
+
+Todo el curso vive en un repositorio público: <https://github.com/ier-python/python-2027-1>
+
+Cada clase es una carpeta autocontenida, con su propio entorno de dependencias gestionado con
+[uv](https://docs.astral.sh/uv/). Para reproducir una sesión basta con clonar el repositorio, entrar
+a la carpeta de esa clase y sincronizar el entorno:
+
+```bash
+git clone https://github.com/ier-python/python-2027-1.git
+cd python-2027-1/clases/clase-01-introduccion
+uv sync
+uv run jupyter notebook
+```
+
+Eso instala exactamente las versiones con las que se produjeron los resultados que ves publicados
+—ni una más ni una menos— y abre Jupyter Notebook con ese entorno.
+
+::: {.callout-note}
+## Reproducibilidad
+
+Cada clase versiona su archivo `uv.lock`, que fija las versiones exactas de todos los paquetes.
+Es lo que permite que una libreta de la primera semana siga corriendo igual al final del semestre.
+:::
+
+## Sobre la narrativa computacional
+
+Una de las ideas que atraviesan el curso —y que este libro intenta encarnar— es que el análisis de
+datos no termina cuando el código corre: termina cuando alguien más puede leerlo, entenderlo y
+repetirlo. Por eso el material se publica como texto y código entrelazados, y no como una colección
+de archivos sueltos.

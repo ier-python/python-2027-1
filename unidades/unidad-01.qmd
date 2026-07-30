@@ -1,0 +1,84 @@
+---
+title: "Unidad 1 · Introducción a los proyectos de ciencia de datos con Python"
+---
+
+> **Objetivo.** Que cada estudiante termine con Python y uv instalados y funcionando, y sea capaz de
+> crear un proyecto de ciencia de datos bien formado: con su entorno declarado, su estructura de
+> carpetas, y sus libretas y variables nombradas con criterio, bajo las reglas de narrativa
+> computacional que se reforzarán durante todo el semestre.
+
+**6 h en el curso** · [Unidad 1 del temario](../temario.qmd#unidad-1)
+
+## Temas
+
+**1.1 Qué es un proyecto de ciencia de datos**
+
+1. Por qué Python es un lenguaje de programación para ciencia de datos; panorama del semestre.
+2. Proyecto frente a script suelto: datos, código, entorno y resultados.
+
+**1.2 Instalación y espacio de trabajo**
+
+1. Instalación: Miniconda en Windows (terminal y Python base); macOS y Linux sin instalación; uv de
+   Astral; herramientas a la mano.
+2. Terminal: navegación, rutas, crear carpetas.
+3. Verificación común: `python --version` y `uv --version`.
+
+**1.3 Entornos virtuales y la primera libreta**
+
+1. Qué es un entorno virtual y por qué existe.
+2. `uv init`, `uv add`, `uv run`: el primer proyecto.
+3. `pyproject.toml`, la receta; `uv.lock`, el registro exacto.
+4. Borrar el entorno y reconstruirlo con `uv sync`.
+5. Jupyter Notebook dentro del proyecto: el kernel es el entorno.
+
+**1.4 Anatomía de un proyecto**
+
+1. Estructura: `data/raw`, `data/processed`, `notebooks/`.
+2. Rutas relativas frente a rutas absolutas.
+3. Qué se versiona y qué no.
+
+**1.5 Nombres**
+
+1. Archivos y carpetas: minúsculas, sin espacios ni acentos.
+2. Libretas: numeradas por orden de lectura.
+3. Variables: `snake_case`, qué contienen y en qué unidades.
+4. Fechas en formato ISO.
+
+**1.6 Narrativa computacional**
+
+1. La libreta como documento, no como consola con historial.
+2. El orden de ejecución; reiniciar y ejecutar todo antes de compartir.
+3. Markdown: estructura del relato, qué explicar y qué se explica solo.
+4. Una libreta, una pregunta.
+
+**1.7 Reglas del curso y repositorios**
+
+1. Los datos crudos no se tocan.
+2. Todo proyecto declara su entorno.
+3. Una libreta corre de arriba abajo, desde cero.
+4. Ningún nombre que no diga qué es.
+5. Rutas relativas, siempre.
+6. Si no está en el repositorio, no existe.
+
+## Ejercicios sugeridos
+
+1. Instalar Python y uv antes de la primera sesión, y llegar con la verificación hecha.
+2. Crear un proyecto con uv, agregarle una dependencia y ejecutar un script dentro de él.
+3. Hacer correr un programa antiguo que hoy falla, sin modificar una sola línea de su código.
+4. Tener dos proyectos con versiones incompatibles de la misma biblioteca, funcionando ambos en la
+   misma computadora.
+5. Borrar por completo el entorno de un proyecto y reconstruirlo.
+6. Diagnosticar una libreta que no encuentra un paquete que sí está instalado en el proyecto.
+7. Reorganizar un proyecto desordenado según la estructura de carpetas de la unidad.
+8. Renombrar los archivos y variables de una libreta ajena hasta que se entienda sin explicación.
+9. Convertir una libreta escrita como consola en una libreta que se lea como documento.
+10. Intercambiar proyectos por parejas y reproducir el resultado del compañero en la propia máquina.
+
+## Al terminar la unidad
+
+- Explicar por qué el mismo código puede dar resultados distintos en dos computadoras.
+- Abrir una terminal y saber qué Python responde, y por qué.
+- Crear un proyecto con uv, agregarle dependencias y ejecutarlo.
+- Distinguir `pyproject.toml` de `uv.lock`, y saber cuál duele perder.
+- Abrir una libreta con el kernel correcto y diagnosticar cuando no lo es.
+- Estructurar y nombrar un proyecto de modo que otra persona lo entienda sin explicación.

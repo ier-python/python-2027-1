@@ -1,0 +1,29 @@
+---
+title: "Unidad 6 · Prácticas para el cómputo científico"
+---
+
+::: {.callout-note appearance="simple"}
+Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+:::
+
+> **Objetivo.** *(por definir)*
+
+**8 h en el programa oficial** · [Unidad 6 del temario](../temario.qmd#unidad-6)
+
+## Temas
+
+**6.1 Paquetes**
+
+**6.2 Profiling**
+
+**6.3 Cython**
+
+**6.4 Pruebas unitarias en datos**
+
+## Ejercicios sugeridos
+
+*(por definir)*
+
+## Al terminar la unidad
+
+*(por definir)*

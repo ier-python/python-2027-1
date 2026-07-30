@@ -1,0 +1,31 @@
+---
+title: "Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos"
+---
+
+::: {.callout-note appearance="simple"}
+Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+:::
+
+> **Objetivo.** *(por definir)*
+
+**10 h en el programa oficial** · [Unidad 7 del temario](../temario.qmd#unidad-7)
+
+## Temas
+
+**7.1 Datos faltantes**
+
+**7.2 Cambio de frecuencia**
+
+**7.3 Agrupación de datos**
+
+**7.4 Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots**
+
+**7.5 Tableros de datos con webapps**
+
+## Ejercicios sugeridos
+
+*(por definir)*
+
+## Al terminar la unidad
+
+*(por definir)*

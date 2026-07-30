@@ -1,0 +1,125 @@
+---
+title: "Instalación del entorno"
+---
+
+El curso usa tres herramientas. Ninguna requiere permisos de administrador.
+
+| Herramienta | Para qué |
+|:---|:---|
+| [uv](https://docs.astral.sh/uv/) | Instalar Python y gestionar el entorno de cada clase |
+| [Git](https://git-scm.com/) | Clonar y seguir el repositorio del curso |
+| [Quarto](https://quarto.org/) | Sólo si quieres construir este libro localmente |
+
+No hace falta instalar Python por separado: `uv` se encarga de descargar la versión que cada clase
+declare.
+
+## 1. Instalar uv
+
+::: {.panel-tabset}
+
+## macOS / Linux
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+## Windows
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+:::
+
+Cierra y vuelve a abrir la terminal, y comprueba:
+
+```bash
+uv --version
+```
+
+## 2. Instalar Git
+
+En macOS, `git --version` ofrece instalarlo si falta. En Windows, descárgalo de
+[git-scm.com](https://git-scm.com/downloads). En Linux, viene en el gestor de paquetes
+(`apt install git`, `dnf install git`).
+
+## 3. Clonar el repositorio del curso
+
+```bash
+git clone https://github.com/ier-python/python-2027-1.git
+cd python-2027-1
+```
+
+## 4. Trabajar en una clase
+
+Cada clase es una carpeta independiente con su propio entorno. Entra a la que te interese y
+sincroniza:
+
+```bash
+cd clases/clase-01-introduccion
+uv sync
+```
+
+`uv sync` lee `uv.lock` e instala las versiones exactas con las que se produjeron los resultados
+publicados. Crea un entorno virtual en `.venv/` dentro de esa misma carpeta.
+
+Para abrir las libretas:
+
+```bash
+uv run jupyter notebook
+```
+
+::: {.callout-tip}
+## `uv run` evita activar el entorno a mano
+
+No necesitas `source .venv/bin/activate`. Cualquier comando precedido de `uv run` se ejecuta dentro
+del entorno de la carpeta en la que estás.
+:::
+
+## 5. Si usas VS Code o Positron
+
+Abre la carpeta de la clase y selecciona como intérprete el que está en `.venv/` de esa carpeta
+(`Python: Select Interpreter` → la opción que apunta a `./.venv/bin/python`). A partir de ahí, las
+libretas usarán el entorno correcto.
+
+::: {.callout-important}
+## Un entorno por clase, no uno para todo el curso
+
+Cada clase tiene su propio `.venv/`. Si abres la libreta de la clase 5 con el intérprete de la clase
+2, es probable que falten paquetes. Al cambiar de clase, cambia también el intérprete.
+:::
+
+## 6. Construir el libro localmente (opcional)
+
+Sólo si quieres generar este sitio en tu computadora. Instala
+[Quarto](https://quarto.org/docs/get-started/) y, desde la raíz del repositorio:
+
+```bash
+quarto preview
+```
+
+El libro **no ejecuta** las libretas al construirse: publica las salidas que ya están guardadas en
+cada `.ipynb`. Por eso construirlo no requiere tener instalados los entornos de las clases —ni
+siquiera Python.
+
+## Problemas frecuentes
+
+**`uv: command not found` después de instalar.**
+La terminal aún no ve el nuevo `PATH`. Ciérrala y ábrela de nuevo.
+
+**El kernel de Jupyter no encuentra un paquete que sí está en `pyproject.toml`.**
+Casi siempre es el intérprete equivocado. Verifica desde una celda:
+
+```python
+import sys; print(sys.executable)
+```
+
+La ruta debe apuntar al `.venv` de la carpeta de esa clase.
+
+**`uv sync` falla por la versión de Python.**
+Deja que uv la instale por su cuenta:
+
+```bash
+uv python install
+uv sync
+```

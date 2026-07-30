@@ -1,0 +1,29 @@
+---
+title: "Unidad 3 · Importación y limpieza de datos"
+---
+
+::: {.callout-note appearance="simple"}
+Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+:::
+
+> **Objetivo.** *(por definir)*
+
+**10 h en el programa oficial** · [Unidad 3 del temario](../temario.qmd#unidad-3)
+
+## Temas
+
+**3.1 Pair wise data**
+
+**3.2 Series temporales**
+
+**3.3 Data cleaning**
+
+**3.4 Importación de múltiples archivos**
+
+## Ejercicios sugeridos
+
+*(por definir)*
+
+## Al terminar la unidad
+
+*(por definir)*

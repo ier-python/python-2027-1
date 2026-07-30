@@ -1,0 +1,31 @@
+---
+title: "Unidad 2 · Sintaxis, herramientas de control y métodos de Python"
+---
+
+::: {.callout-note appearance="simple"}
+Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+:::
+
+> **Objetivo.** *(por definir)*
+
+**6 h en el programa oficial** · [Unidad 2 del temario](../temario.qmd#unidad-2)
+
+## Temas
+
+**2.1 Sintaxis, tipos de variables, iterables**
+
+**2.2 Estructuras de control**
+
+**2.3 Cadenas en Python**
+
+**2.4 f-strings**
+
+**2.5 Funciones**
+
+## Ejercicios sugeridos
+
+*(por definir)*
+
+## Al terminar la unidad
+
+*(por definir)*

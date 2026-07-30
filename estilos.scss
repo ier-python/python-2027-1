@@ -1,0 +1,54 @@
+/*-- scss:defaults --*/
+
+// Paleta sobria, con acento institucional UNAM
+$azul-unam:  #12395b;
+$oro-unam:   #a6883f;
+
+$primary:    $azul-unam;
+$link-color: $azul-unam;
+
+$font-size-root: 17px;
+$body-color: #23282d;
+
+// Bloques de código con más aire y menos contraste agresivo
+$code-block-bg: #f7f8fa;
+$code-color:    #a3364a;
+
+/*-- scss:rules --*/
+
+h1, h2, h3, h4 {
+  letter-spacing: -0.01em;
+}
+
+// Las salidas de las libretas pueden ser anchas: que hagan scroll
+// dentro de su propio bloque en vez de romper el ancho de la página.
+.cell-output,
+.cell-output-stdout,
+.cell-output-display {
+  overflow-x: auto;
+}
+
+// Tablas de pandas legibles y contenidas
+.cell-output table {
+  font-size: 0.85em;
+}
+
+// Acento sutil en los títulos de parte del índice lateral
+.sidebar-item-section > .sidebar-item .sidebar-item-text {
+  font-weight: 600;
+}
+
+// Callouts un poco menos estridentes
+div.callout {
+  border-left-width: 4px;
+}
+
+// Enlace de descarga del programa oficial
+a.descarga {
+  display: inline-block;
+  padding: 0.35em 0.9em;
+  border: 1px solid $oro-unam;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+}
