@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Prácticas para el cómputo científico – Proyectos de ciencia de datos con Python</title>
+<title>8&nbsp; Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis – Proyectos de ciencia de datos con Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unidades/unidad-07.html" rel="next">
-<link href="../unidades/unidad-05.html" rel="prev">
+<link href="../apendices/instalacion.html" rel="next">
+<link href="../unidades/unidad-07.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-06.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-08.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-06.html" class="sidebar-item-text sidebar-link active">
+  <a href="../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
   </div>
 </li>
@@ -167,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../unidades/unidad-08.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
   </div>
 </li>
@@ -198,22 +198,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#git-el-repositorio-ahora-de-verdad" id="toc-git-el-repositorio-ahora-de-verdad" class="nav-link active" data-scroll-target="#git-el-repositorio-ahora-de-verdad"><span class="header-section-number">6.1</span> Git: el repositorio, ahora de verdad</a></li>
-  <li><a href="#paquetes" id="toc-paquetes" class="nav-link" data-scroll-target="#paquetes"><span class="header-section-number">6.2</span> Paquetes</a></li>
-  <li><a href="#profiling" id="toc-profiling" class="nav-link" data-scroll-target="#profiling"><span class="header-section-number">6.3</span> Profiling</a></li>
-  <li><a href="#numba-y-cython-la-anécdota" id="toc-numba-y-cython-la-anécdota" class="nav-link" data-scroll-target="#numba-y-cython-la-anécdota"><span class="header-section-number">6.4</span> Numba (y Cython, la anécdota)</a></li>
-  <li><a href="#pruebas-unitarias-en-datos" id="toc-pruebas-unitarias-en-datos" class="nav-link" data-scroll-target="#pruebas-unitarias-en-datos"><span class="header-section-number">6.5</span> Pruebas unitarias en datos</a></li>
+  <li><a href="#qué-es-vibe-coding" id="toc-qué-es-vibe-coding" class="nav-link active" data-scroll-target="#qué-es-vibe-coding"><span class="header-section-number">8.1</span> Qué es vibe coding</a></li>
+  <li><a href="#analiza-el-asistente-dentro-del-proyecto" id="toc-analiza-el-asistente-dentro-del-proyecto" class="nav-link" data-scroll-target="#analiza-el-asistente-dentro-del-proyecto"><span class="header-section-number">8.2</span> Analiza: el asistente dentro del proyecto</a></li>
+  <li><a href="#documenta-e-itera" id="toc-documenta-e-itera" class="nav-link" data-scroll-target="#documenta-e-itera"><span class="header-section-number">8.3</span> Documenta e itera</a></li>
+  <li><a href="#escribe-tu-tesis-con-quarto" id="toc-escribe-tu-tesis-con-quarto" class="nav-link" data-scroll-target="#escribe-tu-tesis-con-quarto"><span class="header-section-number">8.4</span> Escribe tu tesis con Quarto</a></li>
   <li><a href="#ejercicios-sugeridos" id="toc-ejercicios-sugeridos" class="nav-link" data-scroll-target="#ejercicios-sugeridos">Ejercicios sugeridos</a></li>
   <li><a href="#al-terminar-la-unidad" id="toc-al-terminar-la-unidad" class="nav-link" data-scroll-target="#al-terminar-la-unidad">Al terminar la unidad</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/unidades/unidad-06.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/unidades/unidad-08.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></h1>
 </div>
 
 
@@ -236,90 +235,71 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Propuesta de desarrollo, pendiente de revisión. Agrega git como tema inicial, que la Unidad 1 dejó prometido, y el tema oficial de Cython se imparte con numba como herramienta principal.</p>
+<p>Propuesta de desarrollo, pendiente de revisión. Unidad adicional al programa oficial: el cierre del curso, donde todas las unidades anteriores se juntan en una sola práctica.</p>
 </div>
 </div>
 </div>
 <blockquote class="blockquote">
-<p><strong>Objetivo.</strong> Que cada estudiante convierta su proyecto en un proyecto de cómputo científico serio: versionado con git, con sus funciones graduadas de la libreta a un paquete local, optimizado solo donde el perfil lo señala, y con pruebas que vigilan tanto el código como los datos.</p>
+<p><strong>Objetivo.</strong> Que cada estudiante use asistentes de IA como acelerador sin ceder el criterio: analizar datos conversando con Claude, verificar lo generado con las herramientas del curso — reproducibilidad, pruebas, figuras honestas —, iterar con historia en git, y montar su tesis como proyecto de Quarto donde el texto, el análisis y las figuras viven y se regeneran juntos.</p>
 </blockquote>
-<p><strong>8 h en el programa oficial</strong> · <a href="../temario.html#unidad-6">Unidad 6 del temario</a></p>
-<section id="git-el-repositorio-ahora-de-verdad" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="git-el-repositorio-ahora-de-verdad"><span class="header-section-number">6.1</span> Git: el repositorio, ahora de verdad</h2>
+<p><strong>Adicional al programa oficial</strong></p>
+<section id="qué-es-vibe-coding" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="qué-es-vibe-coding"><span class="header-section-number">8.1</span> Qué es vibe coding</h2>
 <ol type="1">
-<li>La promesa de la Unidad 1 se cumple: el repositorio deja de ser una definición.</li>
-<li><code>git init</code>, <code>git status</code>, <code>git add</code>, <code>git commit</code>: la foto del proyecto, cuándo tomarla y cómo describirla.</li>
-<li><code>git log</code>: la historia del proyecto como narrativa — mensajes que dicen qué cambió y por qué.</li>
-<li><code>.gitignore</code>: la regla “qué se versiona y qué no” de la Unidad 1, por fin ejecutada — fuera el entorno, fuera los datos pesados.</li>
-<li>GitHub: <code>push</code>, <code>clone</code>; el respaldo y la carta de presentación.</li>
-<li>La regla del curso, ahora literal: si no está en el repositorio, no existe.</li>
+<li>Programar conversando: describir la intención, leer lo propuesto, decidir — el código se negocia, no se dicta.</li>
+<li>Por qué esta unidad va al final: el criterio se entrenó quince semanas; sin él, el asistente maneja y tú vas de pasajero.</li>
+<li>El panorama: Claude en el chat, Claude Code en la terminal, asistentes dentro del editor — la misma conversación en tres lugares.</li>
 </ol>
 </section>
-<section id="paquetes" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="paquetes"><span class="header-section-number">6.2</span> Paquetes</h2>
+<section id="analiza-el-asistente-dentro-del-proyecto" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="analiza-el-asistente-dentro-del-proyecto"><span class="header-section-number">8.2</span> Analiza: el asistente dentro del proyecto</h2>
 <ol type="1">
-<li>La función que se repite entre libretas pide graduarse: de la celda al archivo <code>.py</code>.</li>
-<li>Un paquete local junto a <code>notebooks/</code>: la carpeta, el <code>__init__.py</code>, y el proyecto que ahora tiene código propio importable.</li>
-<li><code>from mipaquete import mi_funcion</code>: las libretas se adelgazan, el conocimiento se comparte.</li>
-<li><code>%load_ext autoreload</code>: editar el módulo sin reiniciar el kernel — el magic que faltaba.</li>
-<li>Los docstrings de la Unidad 2 pagan: el paquete se explora con <code>?</code> como cualquier biblioteca.</li>
+<li>El contexto lo es todo: el proyecto bien formado de la Unidad 1 — estructura, nombres, entorno declarado — es exactamente lo que un asistente necesita leer para ayudar de verdad.</li>
+<li>Pedir bien: la pregunta con sus datos, sus unidades y el resultado esperado; el mismo rigor que un docstring.</li>
+<li>Verificar siempre: lo generado corre desde cero, pasa las pruebas de la Unidad 6, y la figura dice lo que dicen los datos.</li>
+<li>La regla nueva del curso: ningún código que no puedas explicar línea por línea — quien firma eres tú, no el asistente.</li>
 </ol>
 </section>
-<section id="profiling" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="profiling"><span class="header-section-number">6.3</span> Profiling</h2>
+<section id="documenta-e-itera" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="documenta-e-itera"><span class="header-section-number">8.3</span> Documenta e itera</h2>
 <ol type="1">
-<li>La regla de oro: medir antes de optimizar — la intuición sobre qué es lento casi siempre falla.</li>
-<li><code>%%time</code> y <code>%timeit</code> (de la Unidad 5), ahora sobre funciones propias.</li>
-<li><code>%prun</code>: el perfil completo — qué función se lleva el tiempo y cuántas veces se llama.</li>
-<li>Leer un perfil: el cuello de botella casi siempre es una línea, no el programa.</li>
+<li>La libreta sigue siendo el documento: lo que el asistente aporta se integra a la narrativa computacional, no se pega como vino.</li>
+<li>Los errores como conversación: el traceback se entrega completo, la explicación se lee con escepticismo, la corrección se verifica.</li>
+<li>Iterar con historia: cada vuelta con el asistente termina en commit — git registra qué cambió, y el <code>diff</code> cuenta qué hizo realmente la “ayuda”.</li>
 </ol>
 </section>
-<section id="numba-y-cython-la-anécdota" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="numba-y-cython-la-anécdota"><span class="header-section-number">6.4</span> Numba (y Cython, la anécdota)</h2>
+<section id="escribe-tu-tesis-con-quarto" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="escribe-tu-tesis-con-quarto"><span class="header-section-number">8.4</span> Escribe tu tesis con Quarto</h2>
 <ol type="1">
-<li>Acelerar Python compilando — pero solo lo que el perfil del tema anterior señaló.</li>
-<li>numba: <code>uv add numba</code> y el decorador <code>@njit</code> sobre la función numérica; la primera llamada compila, las demás vuelan.</li>
-<li>El antes y el después, medidos con <code>%timeit</code>: la aceleración es un dato, no una promesa.</li>
-<li>Los límites de numba: habla NumPy y números, no pandas ni cadenas — por eso se compila la función, no la libreta.</li>
-<li>Cython, la anécdota: el pariente anticipado que traduce a C y necesita compilador; así están construidos pedazos de pandas y scikit-learn. Se usa al escribir bibliotecas, no al analizar datos.</li>
-</ol>
-</section>
-<section id="pruebas-unitarias-en-datos" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="pruebas-unitarias-en-datos"><span class="header-section-number">6.5</span> Pruebas unitarias en datos</h2>
-<ol type="1">
-<li>Por qué probar: la función que hoy funciona, mañana alguien la edita.</li>
-<li>pytest sobre el paquete local: archivos <code>test_*.py</code>, funciones <code>assert</code>, y el punto verde que da permiso de confiar.</li>
-<li>Casos frontera: la lista vacía, el <code>NaN</code>, el valor negativo que no debería existir.</li>
-<li>Pruebas sobre los datos: rangos físicos, huecos inesperados, columnas que deben existir — la validación manual de la Unidad 3, ahora automática y repetible.</li>
-<li>El ciclo completo: cambiar el paquete, correr las pruebas, hacer commit.</li>
+<li>La tesis como proyecto de Quarto: capítulos <code>.qmd</code>, el <code>format: book</code> — el dashboard de la Unidad 7 tiene un hermano mayor.</li>
+<li>Figuras vivas: las figuras del proyecto entran solas y se regeneran si cambian los datos — nadie vuelve a pegar una imagen desactualizada.</li>
+<li>Citas y referencias: BibTeX, referencias cruzadas, números de figura y de tabla que se cuidan solos.</li>
+<li>Congelar capítulos: <code>freeze: auto</code> — el capítulo con cómputo pesado no se re-ejecuta en cada render, solo cuando cambia; si los datos cambiaron, se descongela tocando el capítulo o borrando <code>_freeze/</code>. La tesis entera renderiza en segundos.</li>
+<li><code>quarto render</code> a PDF: el LaTeX de la Unidad 4 paga completo — la tesis sale tipografiada.</li>
+<li>El cierre del curso: la tesis reproducible — quien la lea puede clonarla, reconstruir el entorno y regenerar cada número y cada figura.</li>
 </ol>
 </section>
 <section id="ejercicios-sugeridos" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="ejercicios-sugeridos">Ejercicios sugeridos</h2>
 <ol type="1">
-<li>Poner el proyecto del curso bajo git: <code>init</code>, <code>.gitignore</code> razonado en Markdown, y el primer commit con mensaje digno.</li>
-<li>Reconstruir la historia: hacer cinco cambios pequeños con cinco commits, y leer el <code>git log</code> como narrativa del proyecto.</li>
-<li>Subir el proyecto a GitHub, clonarlo en otra carpeta, y reconstruir el entorno con <code>uv sync</code> — la reproducibilidad completa: código versionado más entorno declarado.</li>
-<li>Extraer a un paquete local las tres funciones más repetidas en las libretas propias, con docstrings, e importarlas desde una libreta limpia.</li>
-<li>Activar <code>autoreload</code>, editar una función del paquete con la libreta abierta, y verificar el cambio sin reiniciar el kernel.</li>
-<li>Perfilar con <code>%prun</code> una libreta de limpieza de la Unidad 3 completa, y reportar en Markdown dónde vive el cuello de botella.</li>
-<li>Escribir dos versiones de un cálculo sobre un millón de puntos — ciclo puro y NumPy — y perfilar ambas: ¿cuánto explica la vectorización?</li>
-<li>Acelerar con <code>@njit</code> una función numérica que NumPy solo no resuelve (un ciclo con dependencia del paso anterior), y medir el antes y el después con <code>%timeit</code>.</li>
-<li>Intentar <code>@njit</code> sobre una función con pandas adentro, leer el error con calma, y explicar en Markdown por qué numba la rechaza.</li>
-<li>Escribir pruebas pytest para una función propia: el caso normal, la lista vacía, el <code>NaN</code>.</li>
-<li>Escribir la prueba de los datos: un <code>test_datos.py</code> que valide rangos físicos, columnas esperadas y continuidad temporal del <code>data/processed</code> del proyecto.</li>
-<li>Romper una función del paquete a propósito, ver las pruebas fallar, arreglarla, y hacer el commit — el ciclo de trabajo completo, vivido una vez.</li>
+<li>Pedirle al asistente una función que ya escribiste en el curso, comparar ambas versiones, y quedarte con lo mejor de cada una — explicando por qué.</li>
+<li>Analizar un dataset nunca visto conversando con Claude, aplicando en cada paso las reglas del curso: diagnóstico antes de cirugía, decisiones declaradas, figura honesta.</li>
+<li>Recibir del asistente una solución con un error sutil (sembrado por el profesor) y cazarlo con las pruebas de la Unidad 6 — la moraleja se escribe en Markdown.</li>
+<li>Entregar un traceback completo al asistente, verificar su corrección propuesta, y documentar qué entendió bien y qué no.</li>
+<li>Iterar una figura con el asistente hasta calidad de tesis: un commit por vuelta, y el <code>git log</code> como bitácora de la conversación.</li>
+<li>Montar el esqueleto de la tesis en Quarto: capítulos, bibliografía en BibTeX, y una figura viva que se regenera desde <code>data/processed</code>.</li>
+<li>Escribir un capítulo de avance real de la tesis propia, con sus citas y sus referencias cruzadas, y renderizarlo a PDF.</li>
+<li>El examen final silencioso: intercambiar tesis por parejas, clonar la del compañero, reconstruir el entorno y regenerar el PDF completo — si compila con sus figuras, el curso cumplió.</li>
 </ol>
 </section>
 <section id="al-terminar-la-unidad" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="al-terminar-la-unidad">Al terminar la unidad</h2>
 <ul>
-<li>Versionar un proyecto con git: commits con mensajes que narran, <code>.gitignore</code> con criterio, y respaldo en GitHub.</li>
-<li>Clonar un proyecto ajeno y dejarlo corriendo con <code>uv sync</code> — y explicar por qué eso es reproducibilidad.</li>
-<li>Graduar funciones de la libreta a un paquete local importable, y trabajar con <code>autoreload</code>.</li>
-<li>Encontrar el cuello de botella con un perfil antes de tocar una sola línea.</li>
-<li>Acelerar una función numérica con numba, saber cuándo no aplica, y decir qué es Cython.</li>
-<li>Proteger el proyecto con pruebas: las del código con pytest, y las de los datos con validaciones automáticas.</li>
+<li>Conversar con un asistente de IA describiendo intención, contexto y resultado esperado — y leer críticamente lo que proponga.</li>
+<li>Verificar código generado con las armas del curso: corre desde cero, pasa las pruebas, la figura es honesta.</li>
+<li>Iterar con historia: cada colaboración con el asistente registrada en commits que narran.</li>
+<li>Montar una tesis en Quarto con figuras vivas, citas en BibTeX y referencias cruzadas, y renderizarla a PDF.</li>
+<li>Entregar el paquete completo — proyecto y tesis reproducibles — y explicar por qué eso vale más que cualquier archivo suelto.</li>
 </ul>
 
 
@@ -728,13 +708,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/unidad-05.html" class="pagination-link" aria-label="NumPy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NumPy</span></span>
+      <a href="../unidades/unidad-07.html" class="pagination-link" aria-label="Conceptos avanzados de manipulación de datos y visualización de datos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidades/unidad-07.html" class="pagination-link" aria-label="Conceptos avanzados de manipulación de datos y visualización de datos">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../apendices/instalacion.html" class="pagination-link" aria-label="Instalación del entorno">
+        <span class="nav-page-text">Instalación del entorno</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -746,7 +726,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/unidades/unidad-06.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/unidades/unidad-08.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Hecho con <a href="https://quarto.org">Quarto</a></p>
 </div>

@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Unidad 5 · NumPy – Proyectos de ciencia de datos con Python</title>
+<title>5&nbsp; NumPy – Proyectos de ciencia de datos con Python</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -37,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="../unidades/unidad-04.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cb22bf096726dec2f0f7f1a67750aa3f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d32db7fcdfa174c45d7ebcd38c1a41c8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-05.html">Unidad 5 · NumPy</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-05.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NumPy</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -115,54 +113,77 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Presentación</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../temario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Temario del curso</span></a>
+  <a href="../temario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temario del curso</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 1 · Introducción a los proyectos de ciencia de datos con Python</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 2 · Sintaxis, herramientas de control y métodos de Python</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 3 · Importación y limpieza de datos</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 4 · Introducción a la visualización</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 5 · NumPy</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 6 · Prácticas para el cómputo científico</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Apéndices</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../apendices/instalacion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Instalación del entorno</span></a>
+  <a href="../apendices/instalacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación del entorno</span></a>
   </div>
 </li>
       </ul>
@@ -177,7 +198,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#temas" id="toc-temas" class="nav-link active" data-scroll-target="#temas">Temas</a></li>
+  <li><a href="#qué-es-numpy" id="toc-qué-es-numpy" class="nav-link active" data-scroll-target="#qué-es-numpy"><span class="header-section-number">5.1</span> Qué es NumPy</a></li>
+  <li><a href="#arrays-size-shape" id="toc-arrays-size-shape" class="nav-link" data-scroll-target="#arrays-size-shape"><span class="header-section-number">5.2</span> Arrays, size, shape</a></li>
+  <li><a href="#estadística-de-arreglos" id="toc-estadística-de-arreglos" class="nav-link" data-scroll-target="#estadística-de-arreglos"><span class="header-section-number">5.3</span> Estadística de arreglos</a></li>
+  <li><a href="#slicing-y-fancy-indexing" id="toc-slicing-y-fancy-indexing" class="nav-link" data-scroll-target="#slicing-y-fancy-indexing"><span class="header-section-number">5.4</span> Slicing y fancy indexing</a></li>
+  <li><a href="#creación-de-mallas" id="toc-creación-de-mallas" class="nav-link" data-scroll-target="#creación-de-mallas"><span class="header-section-number">5.5</span> Creación de mallas</a></li>
+  <li><a href="#importar-guardar-y-el-puente-con-pandas" id="toc-importar-guardar-y-el-puente-con-pandas" class="nav-link" data-scroll-target="#importar-guardar-y-el-puente-con-pandas"><span class="header-section-number">5.6</span> Importar, guardar y el puente con pandas</a></li>
   <li><a href="#ejercicios-sugeridos" id="toc-ejercicios-sugeridos" class="nav-link" data-scroll-target="#ejercicios-sugeridos">Ejercicios sugeridos</a></li>
   <li><a href="#al-terminar-la-unidad" id="toc-al-terminar-la-unidad" class="nav-link" data-scroll-target="#al-terminar-la-unidad">Al terminar la unidad</a></li>
   </ul>
@@ -188,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Unidad 5 · NumPy</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NumPy</span></h1>
 </div>
 
 
@@ -211,28 +237,92 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.</p>
+<p>Propuesta de desarrollo, pendiente de revisión. Conserva los subtemas del programa oficial.</p>
 </div>
 </div>
 </div>
 <blockquote class="blockquote">
-<p><strong>Objetivo.</strong> <em>(por definir)</em></p>
+<p><strong>Objetivo.</strong> Que cada estudiante entienda NumPy como la capa numérica sobre la que viven pandas y matplotlib, y sea capaz de operar arreglos completos sin ciclos: estadística por ejes, selección con máscaras, mallas para evaluar funciones, y el criterio de cuándo trabajar en NumPy y cuándo en pandas.</p>
 </blockquote>
 <p><strong>3 h en el programa oficial</strong> · <a href="../temario.html#unidad-5">Unidad 5 del temario</a></p>
-<section id="temas" class="level2">
-<h2 class="anchored" data-anchor-id="temas">Temas</h2>
-<p><strong>5.1 Arrays, size, shape</strong></p>
-<p><strong>5.2 Estadística de arreglos</strong></p>
-<p><strong>5.3 Slicing y fancy indexing</strong></p>
-<p><strong>5.4 Creación de mallas</strong></p>
+<section id="qué-es-numpy" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="qué-es-numpy"><span class="header-section-number">5.1</span> Qué es NumPy</h2>
+<ol type="1">
+<li>La tercera revelación de capas: las columnas del DataFrame y las operaciones vectorizadas de la Unidad 3 eran arreglos de NumPy todo el tiempo.</li>
+<li>Qué es y para qué: arreglos n-dimensionales de números homogéneos; el idioma numérico común de pandas, matplotlib y el cómputo científico en Python.</li>
+<li>El arreglo frente al DataFrame: sin índice, sin nombres de columnas, un solo <code>dtype</code> — se pierden las etiquetas, se ganan la velocidad y las dimensiones (el DataFrame es tabla; el arreglo puede ser cubo).</li>
+<li><code>uv add numpy</code>, <code>import numpy as np</code>: el alias que ya es apellido.</li>
+<li>Su especialización, medida: <code>%timeit</code> — sumar un millón de números con un ciclo y con <code>np.sum</code>; la promesa de velocidad convertida en dato.</li>
+</ol>
 </section>
-<section id="ejercicios-sugeridos" class="level2">
-<h2 class="anchored" data-anchor-id="ejercicios-sugeridos">Ejercicios sugeridos</h2>
-<p><em>(por definir)</em></p>
+<section id="arrays-size-shape" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="arrays-size-shape"><span class="header-section-number">5.2</span> Arrays, size, shape</h2>
+<ol type="1">
+<li><code>np.array</code> desde las listas de la Unidad 2; <code>dtype</code>: la homogeneidad es el precio de la velocidad.</li>
+<li><code>size</code>, <code>shape</code>, <code>ndim</code>: el vector, la matriz, y saber siempre de qué tamaño es lo que se tiene.</li>
+<li>Crear desde cero: <code>zeros</code>, <code>ones</code>, <code>arange</code>, <code>linspace</code> — el eje x que matplotlib estaba esperando.</li>
+<li><code>reshape</code>: los mismos números, otra forma — un año de datos horarios como matriz de días por horas.</li>
+</ol>
 </section>
-<section id="al-terminar-la-unidad" class="level2">
-<h2 class="anchored" data-anchor-id="al-terminar-la-unidad">Al terminar la unidad</h2>
-<p><em>(por definir)</em></p>
+<section id="estadística-de-arreglos" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="estadística-de-arreglos"><span class="header-section-number">5.3</span> Estadística de arreglos</h2>
+<ol type="1">
+<li><code>mean</code>, <code>std</code>, <code>min</code>, <code>max</code>, <code>percentile</code> sobre el arreglo completo.</li>
+<li>El argumento <code>axis</code>: la misma matriz de días por horas responde dos preguntas — el promedio de cada día y el de cada hora.</li>
+<li>Los huecos otra vez: <code>np.nan</code> y las versiones que lo perdonan (<code>nanmean</code>, <code>nanstd</code>).</li>
+</ol>
+</section>
+<section id="slicing-y-fancy-indexing" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="slicing-y-fancy-indexing"><span class="header-section-number">5.4</span> Slicing y fancy indexing</h2>
+<ol type="1">
+<li>En una dimensión, las rebanadas de la Unidad 2 funcionan igual; en dos, <code>[fila, columna]</code>.</li>
+<li>Máscaras booleanas: los filtros de la Unidad 3, revelados — comparar produce un arreglo de <code>True</code>/<code>False</code> que selecciona.</li>
+<li>Fancy indexing: seleccionar con un arreglo de posiciones.</li>
+<li>Rebanada no es copia: modificar la vista modifica el original — el susto anunciado a tiempo.</li>
+</ol>
+</section>
+<section id="creación-de-mallas" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="creación-de-mallas"><span class="header-section-number">5.5</span> Creación de mallas</h2>
+<ol type="1">
+<li>El problema: evaluar <code>f(x, y)</code> en todo un plano sin escribir un doble ciclo.</li>
+<li><code>np.meshgrid</code> sobre dos <code>linspace</code>: la malla como par de matrices coordenadas.</li>
+<li>Evaluar la función sobre la malla y verla con <code>contourf</code> — el puente hacia los mapas y superficies de la Unidad 7.</li>
+</ol>
+</section>
+<section id="importar-guardar-y-el-puente-con-pandas" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="importar-guardar-y-el-puente-con-pandas"><span class="header-section-number">5.6</span> Importar, guardar y el puente con pandas</h2>
+<ol type="1">
+<li>Texto plano: <code>np.loadtxt</code> y <code>np.savetxt</code> para arreglos sin etiquetas.</li>
+<li>Binario: <code>np.save</code> y <code>np.load</code> (<code>.npy</code>, <code>.npz</code>) — la lección de parquet otra vez: el texto olvida los <code>dtype</code>, el binario los recuerda.</li>
+<li>El puente: <code>df.to_numpy()</code> de ida, <code>pd.DataFrame(arr)</code> de vuelta — las etiquetas se pierden y se recuperan en la frontera.</li>
+<li>El criterio: etiquetas, fechas y tablas → pandas; números puros, mallas y velocidad → NumPy.</li>
+</ol>
+</section>
+<section id="ejercicios-sugeridos" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="ejercicios-sugeridos">Ejercicios sugeridos</h2>
+<ol type="1">
+<li>Multiplicar por dos una lista y un arreglo, y explicar en Markdown la diferencia entre lo que hizo cada uno.</li>
+<li>Medir con <code>%timeit</code> la suma de un millón de números en ciclo, con <code>sum</code> y con <code>np.sum</code>; reportar los tiempos con f-strings.</li>
+<li>Convertir un año de datos horarios en una matriz de días por horas con <code>reshape</code>, y validar con <code>shape</code> antes de continuar.</li>
+<li>Sobre esa matriz, responder con <code>axis</code>: qué día acumuló más y qué hora promedia más — sin un solo ciclo.</li>
+<li>Repetir el cálculo con huecos en los datos: comparar <code>mean</code> contra <code>nanmean</code> y explicar la diferencia.</li>
+<li>Con una máscara booleana, contar y extraer los valores fuera del rango físico de un sensor — el ejercicio de la Unidad 3, ahora sin pandas.</li>
+<li>Demostrar el susto de la vista: rebanar un arreglo, modificar la rebanada, y descubrir el original cambiado; repetir con <code>.copy()</code>.</li>
+<li>Construir una malla con <code>meshgrid</code>, evaluar una función de dos variables y graficarla con <code>contourf</code>, con su barra de color etiquetada.</li>
+<li>El viaje redondo de NumPy: guardar el mismo arreglo con <code>savetxt</code> y con <code>save</code>, releer ambos, y comparar qué sobrevivió — <code>dtype</code>, forma, precisión.</li>
+<li>Tomar un DataFrame limpio de la Unidad 3, cruzar el puente con <code>to_numpy()</code>, calcular en NumPy, y regresar el resultado a un DataFrame con sus etiquetas.</li>
+</ol>
+</section>
+<section id="al-terminar-la-unidad" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="al-terminar-la-unidad">Al terminar la unidad</h2>
+<ul>
+<li>Explicar qué es NumPy, qué lugar ocupa debajo de pandas y matplotlib, y qué lo hace rápido.</li>
+<li>Crear arreglos desde listas, desde generadores (<code>arange</code>, <code>linspace</code>) y con <code>reshape</code>, sabiendo siempre su <code>shape</code>.</li>
+<li>Responder preguntas estadísticas por ejes sobre una matriz, con y sin huecos.</li>
+<li>Seleccionar con rebanadas, máscaras booleanas y fancy indexing — y distinguir vista de copia.</li>
+<li>Evaluar una función sobre una malla y visualizarla, sin escribir ciclos.</li>
+<li>Guardar y cargar arreglos eligiendo formato con criterio, y cruzar el puente entre pandas y NumPy en ambas direcciones.</li>
+</ul>
 
 
 </section>
@@ -640,13 +730,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/unidad-04.html" class="pagination-link" aria-label="Unidad 4 · Introducción a la visualización">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Unidad 4 · Introducción a la visualización</span>
+      <a href="../unidades/unidad-04.html" class="pagination-link" aria-label="Introducción a la visualización">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidades/unidad-06.html" class="pagination-link" aria-label="Unidad 6 · Prácticas para el cómputo científico">
-        <span class="nav-page-text">Unidad 6 · Prácticas para el cómputo científico</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../unidades/unidad-06.html" class="pagination-link" aria-label="Prácticas para el cómputo científico">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

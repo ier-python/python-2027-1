@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Unidad 3 · Importación y limpieza de datos – Proyectos de ciencia de datos con Python</title>
+<title>3&nbsp; Importación y limpieza de datos – Proyectos de ciencia de datos con Python</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -37,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="../unidades/unidad-02.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cb22bf096726dec2f0f7f1a67750aa3f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d32db7fcdfa174c45d7ebcd38c1a41c8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-03.html">Unidad 3 · Importación y limpieza de datos</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-03.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -115,54 +113,77 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Presentación</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../temario.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Temario del curso</span></a>
+  <a href="../temario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temario del curso</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 1 · Introducción a los proyectos de ciencia de datos con Python</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 2 · Sintaxis, herramientas de control y métodos de Python</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 3 · Importación y limpieza de datos</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 4 · Introducción a la visualización</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 5 · NumPy</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 6 · Prácticas para el cómputo científico</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Apéndices</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../apendices/instalacion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Instalación del entorno</span></a>
+  <a href="../apendices/instalacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación del entorno</span></a>
   </div>
 </li>
       </ul>
@@ -177,7 +198,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#temas" id="toc-temas" class="nav-link active" data-scroll-target="#temas">Temas</a></li>
+  <li><a href="#módulos-e-import" id="toc-módulos-e-import" class="nav-link active" data-scroll-target="#módulos-e-import"><span class="header-section-number">3.1</span> Módulos e <code>import</code></a></li>
+  <li><a href="#pair-wise-data" id="toc-pair-wise-data" class="nav-link" data-scroll-target="#pair-wise-data"><span class="header-section-number">3.2</span> Pair wise data</a></li>
+  <li><a href="#series-temporales" id="toc-series-temporales" class="nav-link" data-scroll-target="#series-temporales"><span class="header-section-number">3.3</span> Series temporales</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">3.4</span> Data cleaning</a></li>
+  <li><a href="#importación-de-múltiples-archivos" id="toc-importación-de-múltiples-archivos" class="nav-link" data-scroll-target="#importación-de-múltiples-archivos"><span class="header-section-number">3.5</span> Importación de múltiples archivos</a></li>
   <li><a href="#ejercicios-sugeridos" id="toc-ejercicios-sugeridos" class="nav-link" data-scroll-target="#ejercicios-sugeridos">Ejercicios sugeridos</a></li>
   <li><a href="#al-terminar-la-unidad" id="toc-al-terminar-la-unidad" class="nav-link" data-scroll-target="#al-terminar-la-unidad">Al terminar la unidad</a></li>
   </ul>
@@ -188,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Unidad 3 · Importación y limpieza de datos</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></h1>
 </div>
 
 
@@ -211,28 +236,103 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.</p>
+<p>Propuesta de desarrollo, pendiente de revisión. Conserva los subtemas del programa oficial.</p>
 </div>
 </div>
 </div>
 <blockquote class="blockquote">
-<p><strong>Objetivo.</strong> <em>(por definir)</em></p>
+<p><strong>Objetivo.</strong> Que cada estudiante domine el DataFrame como concepto central del curso: importar datos reales con pandas, diagnosticarlos antes de tocarlos, limpiarlos declarando cada decisión, y consolidar múltiples archivos crudos en un solo archivo limpio — el flujo completo de <code>data/raw</code> a <code>data/processed</code>.</p>
 </blockquote>
 <p><strong>10 h en el programa oficial</strong> · <a href="../temario.html#unidad-3">Unidad 3 del temario</a></p>
-<section id="temas" class="level2">
-<h2 class="anchored" data-anchor-id="temas">Temas</h2>
-<p><strong>3.1 Pair wise data</strong></p>
-<p><strong>3.2 Series temporales</strong></p>
-<p><strong>3.3 Data cleaning</strong></p>
-<p><strong>3.4 Importación de múltiples archivos</strong></p>
+<section id="módulos-e-import" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="módulos-e-import"><span class="header-section-number">3.1</span> Módulos e <code>import</code></h2>
+<ol type="1">
+<li>Recordatorio: los paquetes se instalan en el proyecto con <code>uv add</code>, nunca con <code>pip</code> desde la libreta — instalar no es importar.</li>
+<li><code>import</code> y su sintaxis: <code>import math</code>, <code>from math import sqrt</code>, el alias <code>as</code>. La biblioteca estándar: <code>math</code>, <code>datetime</code>, <code>glob</code> y compañía — instaladas desde siempre, importadas cuando hacen falta.</li>
+<li>La línea que abre la unidad: <code>import pandas as pd</code>.</li>
+</ol>
 </section>
-<section id="ejercicios-sugeridos" class="level2">
-<h2 class="anchored" data-anchor-id="ejercicios-sugeridos">Ejercicios sugeridos</h2>
-<p><em>(por definir)</em></p>
+<section id="pair-wise-data" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="pair-wise-data"><span class="header-section-number">3.2</span> Pair wise data</h2>
+<ol type="1">
+<li>Del diccionario de listas al DataFrame: la tabla del ejercicio integrador ya tenía nombre.</li>
+<li><code>pd.read_csv</code>: el primer archivo real; la ruta relativa hasta <code>data/raw</code>.</li>
+<li>Anatomía del DataFrame: índice, columnas, <code>dtypes</code>; <code>head</code>, <code>info</code>, <code>describe</code> — mirar antes de tocar.</li>
+<li>Cada columna es una Serie; seleccionar columnas, filas y celdas con <code>[]</code>, <code>loc</code>, <code>iloc</code>.</li>
+<li>Pair wise data: observaciones apareadas (x, y); filtros booleanos para quedarse con las filas que cumplen algo — y <code>.copy()</code> cuando el resultado va a modificarse, para que el <code>SettingWithCopyWarning</code> no sorprenda.</li>
+<li>Operaciones vectorizadas: columnas nuevas a partir de las existentes, sin escribir un solo <code>for</code>.</li>
+<li>Fontanería mínima: <code>rename</code>, <code>sort_values</code>, <code>set_index</code> / <code>reset_index</code>, <code>drop</code> — y <code>df.columns</code> a <code>snake_case</code>, el ejercicio de la Unidad 2 cobrado.</li>
+</ol>
 </section>
-<section id="al-terminar-la-unidad" class="level2">
-<h2 class="anchored" data-anchor-id="al-terminar-la-unidad">Al terminar la unidad</h2>
-<p><em>(por definir)</em></p>
+<section id="series-temporales" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="series-temporales"><span class="header-section-number">3.3</span> Series temporales</h2>
+<ol type="1">
+<li>La fecha como dato, no como texto: <code>pd.to_datetime</code>; las fechas ISO de la Unidad 1 pagan aquí.</li>
+<li>El módulo <code>datetime</code> por dentro: <code>strptime</code> / <code>strftime</code> y los códigos de formato (<code>%Y-%m-%d %H:%M</code>), <code>timedelta</code> — el idioma que <code>to_datetime</code> y su <code>format=</code> hablan.</li>
+<li>El índice temporal: leer con <code>parse_dates</code>, poner el tiempo como índice del DataFrame.</li>
+<li>Los accesores <code>.dt</code> y los atributos del <code>DatetimeIndex</code>: <code>.year</code>, <code>.month</code>, <code>.hour</code>, <code>.dayofweek</code> — cada estampa sabe contestar quién es; el insumo de los grupos de la Unidad 7.</li>
+<li>Seleccionar por fecha y por rango: el índice temporal como herramienta de rebanado.</li>
+<li><code>df.plot()</code>, la primera mirada gráfica: revisar rápido sin pelear con ejes — la visualización de verdad llega en la Unidad 4.</li>
+<li>Qué hace especial a una serie temporal: orden, frecuencia esperada, huecos — y cómo un <code>plot</code> los delata (el zigzag del índice desordenado; <code>sort_index</code>).</li>
+<li>Cambiar de frecuencia: <code>df.resample('D').mean()</code>, de minutos a días en una línea — primer contacto con una idea (agrupar y resumir) que la Unidad 7 desarrolla a fondo.</li>
+</ol>
+</section>
+<section id="data-cleaning" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">3.4</span> Data cleaning</h2>
+<ol type="1">
+<li>Archivos que no se dejan leer: encabezados corridos, líneas de más, separadores raros — la limpieza empieza en las opciones de <code>pd.read_csv</code> (<code>skiprows</code>, <code>header</code>, <code>sep</code>, <code>decimal</code>, <code>encoding</code>). CSV, TXT y EPW son el mismo animal: texto con separador, y <code>read_csv</code> los lee todos. Antes de pelear, mirar el crudo: abrirlo en el editor o <code>head</code> en la terminal.</li>
+<li>No todo es texto: <code>read_excel</code> para los <code>.xlsx</code> — <code>sheet_name</code> y <code>skiprows</code>, la misma gramática de opciones sobre otro formato.</li>
+<li>Cómo vienen los <code>NaN</code>: <code>-999</code>, <code>N/A</code>, <code>--</code>, celdas vacías; declararlos con <code>na_values</code> desde la importación. El <code>None</code> de la Unidad 2, con nombre nuevo.</li>
+<li>Diagnóstico antes de cirugía: <code>isna</code>, <code>value_counts</code>, <code>duplicated</code> y un <code>df.plot()</code> rápido — cuantificar y <em>ver</em> lo que la importación no resolvió.</li>
+<li>Números que llegaron como texto: los métodos de cadenas cosechan (<code>strip</code>, <code>replace</code>) y <code>astype</code> convierte.</li>
+<li>Fechas que no son fechas: <code>p. m.</code> en lugar de <code>PM</code>, formatos locales; arreglar el texto antes de <code>to_datetime</code>, o declararle el <code>format</code>.</li>
+<li>Duplicados y valores imposibles: filtros booleanos para descartar lo que ningún sensor pudo medir.</li>
+<li>La rejilla esperada: <code>pd.date_range</code> y <code>reindex</code> — comparar el tiempo que llegó contra el que debió llegar; <code>.diff()</code> sobre el índice censa los huecos.</li>
+<li>Huecos en el tiempo: detectarlos, y decidir — rellenar, interpolar o dejar el hueco (<code>fillna</code>, <code>interpolate</code>, <code>dropna</code>); cada opción es una decisión que se declara, no se esconde.</li>
+<li>Guardar en <code>data/processed</code>: <code>to_csv</code> para compartir, <code>to_parquet</code> para trabajar — el CSV olvida los tipos (las fechas vuelven como texto), parquet los recuerda; limpiar una vez, no cada vez. Requiere <code>uv add pyarrow</code>: la Unidad 1 en acción.</li>
+</ol>
+</section>
+<section id="importación-de-múltiples-archivos" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="importación-de-múltiples-archivos"><span class="header-section-number">3.5</span> Importación de múltiples archivos</h2>
+<ol type="1">
+<li>El escenario real: un archivo por día, por mes o por sensor — nadie te da la tabla completa.</li>
+<li><code>glob</code>: patrones para listar archivos desde Python.</li>
+<li>Leer en ciclo, acumular en una lista (<code>append</code>, otra vez) y unir con <code>pd.concat</code>; un <code>try</code> / <code>except</code> mínimo salva el ciclo del archivo corrupto.</li>
+<li>Unir a lo ancho: <code>concat(axis=1)</code> para sensores que comparten el tiempo, <code>merge</code> para pegar metadatos de estación — la unión vertical tiene hermanas.</li>
+<li>Verificar el consolidado: tamaño esperado, duplicados en las uniones, continuidad temporal.</li>
+<li>Los datos no siempre viven en tu disco: <code>read_csv</code> también acepta una URL — un archivo publicado en la red (Conagua) se lee con la misma línea.</li>
+<li>Cerrar el flujo: de muchos crudos a un solo archivo limpio en <code>data/processed</code>.</li>
+</ol>
+</section>
+<section id="ejercicios-sugeridos" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="ejercicios-sugeridos">Ejercicios sugeridos</h2>
+<ol type="1">
+<li>Convertir el diccionario de listas del ejercicio integrador de la Unidad 2 en un DataFrame, y responder las mismas preguntas — ahora en una línea cada una.</li>
+<li>Leer un CSV de <code>data/raw</code> y producir su ficha en Markdown: cuántas filas, qué columnas, qué tipos, cuántos huecos.</li>
+<li>Quedarse con las filas que cumplen dos condiciones a la vez, usando filtros booleanos.</li>
+<li>Crear una columna nueva a partir de otras (una conversión de unidades) sin escribir un ciclo.</li>
+<li>Leer un archivo cuyas fechas llegaron como texto, convertirlas, ponerlas como índice, rebanar una semana concreta y graficarla con <code>df.plot()</code>.</li>
+<li>Diagnosticar con <code>df.plot()</code> un archivo que “se ve bien” con <code>head()</code>: descubrir el índice desordenado por el zigzag de la gráfica, y corregirlo con <code>sort_index</code>.</li>
+<li>Importar un archivo hostil: el encabezado en la fila 5, <code>-999</code> como dato faltante y fechas con <code>p. m.</code>; resolver todo lo posible desde <code>read_csv</code> y el resto antes de <code>to_datetime</code>.</li>
+<li>Limpiar una columna numérica que llegó como texto: espacios, unidades pegadas al número, comas decimales; terminar con <code>astype</code>.</li>
+<li>Detectar los valores que ningún sensor pudo medir, descartarlos, y documentar en Markdown cuántos fueron y con qué criterio.</li>
+<li>Encontrar los huecos de una serie temporal y comparar tres tratamientos: rellenar, interpolar y dejar el hueco. Argumentar cuál conviene y por qué.</li>
+<li>El viaje redondo: guardar un DataFrame limpio en CSV y en parquet, releer ambos, y comparar qué sobrevivió — tipos, índice temporal, <code>NaN</code> — y qué hay que volver a arreglar.</li>
+<li>Consolidar con <code>glob</code> y <code>pd.concat</code> una carpeta con un archivo por mes, y verificar el resultado: tamaño esperado, sin duplicados, sin saltos de tiempo.</li>
+<li>Flujo completo por parejas: entregar al compañero una carpeta de crudos sucios y recibir de vuelta un <code>data/processed</code> con la libreta que lo produce, corriendo de arriba abajo.</li>
+</ol>
+</section>
+<section id="al-terminar-la-unidad" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="al-terminar-la-unidad">Al terminar la unidad</h2>
+<ul>
+<li>Explicar qué es un DataFrame y qué relación tiene con el diccionario de listas y con la Serie.</li>
+<li>Importar archivos que no vienen fáciles — encabezados corridos, <code>NaN</code> disfrazados, fechas en formato local — resolviendo desde las opciones de <code>read_csv</code> lo que se pueda.</li>
+<li>Diagnosticar un archivo real — filas, tipos, huecos, duplicados — antes de tocarlo.</li>
+<li>Seleccionar filas y columnas con <code>[]</code>, <code>loc</code>, <code>iloc</code> y filtros booleanos, y crear columnas nuevas sin ciclos.</li>
+<li>Poner el tiempo como índice, rebanar un DataFrame por fechas y rangos, y darle la primera mirada con <code>df.plot()</code>.</li>
+<li>Limpiar un dataset declarando cada decisión: qué se descartó, qué se rellenó y con qué criterio.</li>
+<li>Consolidar una carpeta de archivos crudos en un solo archivo limpio en <code>data/processed</code>, con una libreta reproducible, y elegir el formato con criterio: CSV para compartir, parquet para trabajar.</li>
+</ul>
 
 
 </section>
@@ -640,13 +740,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/unidad-02.html" class="pagination-link" aria-label="Unidad 2 · Sintaxis, herramientas de control y métodos de Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Unidad 2 · Sintaxis, herramientas de control y métodos de Python</span>
+      <a href="../unidades/unidad-02.html" class="pagination-link" aria-label="Sintaxis, herramientas de control y métodos de Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidades/unidad-04.html" class="pagination-link" aria-label="Unidad 4 · Introducción a la visualización">
-        <span class="nav-page-text">Unidad 4 · Introducción a la visualización</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../unidades/unidad-04.html" class="pagination-link" aria-label="Introducción a la visualización">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
