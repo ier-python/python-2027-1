@@ -1,29 +1,103 @@
 ---
-title: "Unidad 5 · NumPy"
+title: "NumPy"
 ---
 
 ::: {.callout-note appearance="simple"}
-Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+Propuesta de desarrollo, pendiente de revisión. Conserva los subtemas del programa oficial.
 :::
 
-> **Objetivo.** *(por definir)*
+> **Objetivo.** Que cada estudiante entienda NumPy como la capa numérica sobre la que viven
+> pandas y matplotlib, y sea capaz de operar arreglos completos sin ciclos: estadística por
+> ejes, selección con máscaras, mallas para evaluar funciones, y el criterio de cuándo trabajar
+> en NumPy y cuándo en pandas.
 
 **3 h en el programa oficial** · [Unidad 5 del temario](../temario.qmd#unidad-5)
 
-## Temas
+## Qué es NumPy
 
-**5.1 Arrays, size, shape**
+1. La tercera revelación de capas: las columnas del DataFrame y las operaciones vectorizadas de
+   la Unidad 3 eran arreglos de NumPy todo el tiempo.
+2. Qué es y para qué: arreglos n-dimensionales de números homogéneos; el idioma numérico común
+   de pandas, matplotlib y el cómputo científico en Python.
+3. El arreglo frente al DataFrame: sin índice, sin nombres de columnas, un solo `dtype` — se
+   pierden las etiquetas, se ganan la velocidad y las dimensiones (el DataFrame es tabla; el
+   arreglo puede ser cubo).
+4. `uv add numpy`, `import numpy as np`: el alias que ya es apellido.
+5. Su especialización, medida: `%timeit` — sumar un millón de números con un ciclo y con
+   `np.sum`; la promesa de velocidad convertida en dato.
 
-**5.2 Estadística de arreglos**
+## Arrays, size, shape
 
-**5.3 Slicing y fancy indexing**
+1. `np.array` desde las listas de la Unidad 2; `dtype`: la homogeneidad es el precio de la
+   velocidad.
+2. `size`, `shape`, `ndim`: el vector, la matriz, y saber siempre de qué tamaño es lo que se
+   tiene.
+3. Crear desde cero: `zeros`, `ones`, `arange`, `linspace` — el eje x que matplotlib estaba
+   esperando.
+4. `reshape`: los mismos números, otra forma — un año de datos horarios como matriz de días por
+   horas.
 
-**5.4 Creación de mallas**
+## Estadística de arreglos
 
-## Ejercicios sugeridos
+1. `mean`, `std`, `min`, `max`, `percentile` sobre el arreglo completo.
+2. El argumento `axis`: la misma matriz de días por horas responde dos preguntas — el promedio
+   de cada día y el de cada hora.
+3. Los huecos otra vez: `np.nan` y las versiones que lo perdonan (`nanmean`, `nanstd`).
 
-*(por definir)*
+## Slicing y fancy indexing
 
-## Al terminar la unidad
+1. En una dimensión, las rebanadas de la Unidad 2 funcionan igual; en dos, `[fila, columna]`.
+2. Máscaras booleanas: los filtros de la Unidad 3, revelados — comparar produce un arreglo de
+   `True`/`False` que selecciona.
+3. Fancy indexing: seleccionar con un arreglo de posiciones.
+4. Rebanada no es copia: modificar la vista modifica el original — el susto anunciado a tiempo.
 
-*(por definir)*
+## Creación de mallas
+
+1. El problema: evaluar `f(x, y)` en todo un plano sin escribir un doble ciclo.
+2. `np.meshgrid` sobre dos `linspace`: la malla como par de matrices coordenadas.
+3. Evaluar la función sobre la malla y verla con `contourf` — el puente hacia los mapas y
+   superficies de la Unidad 7.
+
+## Importar, guardar y el puente con pandas
+
+1. Texto plano: `np.loadtxt` y `np.savetxt` para arreglos sin etiquetas.
+2. Binario: `np.save` y `np.load` (`.npy`, `.npz`) — la lección de parquet otra vez: el texto
+   olvida los `dtype`, el binario los recuerda.
+3. El puente: `df.to_numpy()` de ida, `pd.DataFrame(arr)` de vuelta — las etiquetas se pierden
+   y se recuperan en la frontera.
+4. El criterio: etiquetas, fechas y tablas → pandas; números puros, mallas y velocidad → NumPy.
+
+## Ejercicios sugeridos {.unnumbered}
+
+1. Multiplicar por dos una lista y un arreglo, y explicar en Markdown la diferencia entre lo
+   que hizo cada uno.
+2. Medir con `%timeit` la suma de un millón de números en ciclo, con `sum` y con `np.sum`;
+   reportar los tiempos con f-strings.
+3. Convertir un año de datos horarios en una matriz de días por horas con `reshape`, y validar
+   con `shape` antes de continuar.
+4. Sobre esa matriz, responder con `axis`: qué día acumuló más y qué hora promedia más — sin un
+   solo ciclo.
+5. Repetir el cálculo con huecos en los datos: comparar `mean` contra `nanmean` y explicar la
+   diferencia.
+6. Con una máscara booleana, contar y extraer los valores fuera del rango físico de un sensor —
+   el ejercicio de la Unidad 3, ahora sin pandas.
+7. Demostrar el susto de la vista: rebanar un arreglo, modificar la rebanada, y descubrir el
+   original cambiado; repetir con `.copy()`.
+8. Construir una malla con `meshgrid`, evaluar una función de dos variables y graficarla con
+   `contourf`, con su barra de color etiquetada.
+9. El viaje redondo de NumPy: guardar el mismo arreglo con `savetxt` y con `save`, releer
+   ambos, y comparar qué sobrevivió — `dtype`, forma, precisión.
+10. Tomar un DataFrame limpio de la Unidad 3, cruzar el puente con `to_numpy()`, calcular en
+    NumPy, y regresar el resultado a un DataFrame con sus etiquetas.
+
+## Al terminar la unidad {.unnumbered}
+
+- Explicar qué es NumPy, qué lugar ocupa debajo de pandas y matplotlib, y qué lo hace rápido.
+- Crear arreglos desde listas, desde generadores (`arange`, `linspace`) y con `reshape`, sabiendo
+  siempre su `shape`.
+- Responder preguntas estadísticas por ejes sobre una matriz, con y sin huecos.
+- Seleccionar con rebanadas, máscaras booleanas y fancy indexing — y distinguir vista de copia.
+- Evaluar una función sobre una malla y visualizarla, sin escribir ciclos.
+- Guardar y cargar arreglos eligiendo formato con criterio, y cruzar el puente entre pandas y
+  NumPy en ambas direcciones.

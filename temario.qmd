@@ -1,6 +1,4 @@
----
-title: "Temario del curso"
----
+# Temario del curso {.unnumbered}
 
 Programa de la actividad académica aprobado por el Programa de Maestría y Doctorado en Ingeniería de
 la UNAM, con el desarrollo de cada unidad para el semestre 2027-1.
@@ -42,77 +40,140 @@ la UNAM, con el desarrollo de cada unidad para el semestre 2027-1.
 
 ## Índice temático
 
-La columna *programa* corresponde a las horas del programa oficial; la columna *curso* al reparto
-efectivo del semestre 2027-1, que se ajusta conforme se desarrolla cada unidad.
+Esta tabla se regenera automáticamente desde los encabezados de las unidades
+(`scripts/genera_indice.py`, registrado como *pre-render*): no editarla a mano.
 
-| Unidad | Tema | Programa | Curso | Sesiones |
-|:---:|:---|---:|---:|:---:|
-| 1 | Introducción a los proyectos de ciencia de datos con Python | 3 h | **6 h** | 1–2 |
-| 2 | Sintaxis, herramientas de control y métodos de Python | 6 h | — | |
-| 3 | Importación y limpieza de datos | 10 h | — | |
-| 4 | Introducción a la visualización de datos | 8 h | — | |
-| 5 | NumPy | 3 h | — | |
-| 6 | Prácticas para el cómputo científico | 8 h | — | |
-| 7 | Conceptos avanzados de manipulación y visualización de datos | 10 h | — | |
-| | **Total** | **48 h** | **6 h** | 2 de 16 |
+<!-- indice:inicio -->
+| Tema | |
+|:---|:---|
+| | **Unidad 1 · Introducción a los proyectos de ciencia de datos con Python** |
+| 1.1 | Qué es un proyecto de ciencia de datos |
+| 1.2 | Instalación y espacio de trabajo |
+| 1.3 | Entornos virtuales y la primera libreta |
+| 1.4 | Paseo por la libreta de Jupyter |
+| 1.5 | Anatomía de un proyecto |
+| 1.6 | Nombres |
+| 1.7 | Narrativa computacional |
+| 1.8 | Reglas del curso y repositorios |
+| | **Unidad 2 · Sintaxis, herramientas de control y métodos de Python** |
+| 2.1 | Sintaxis, tipos de variables, iterables |
+| 2.2 | Estructuras de control |
+| 2.3 | Cadenas en Python |
+| 2.4 | f-strings |
+| 2.5 | Funciones |
+| | **Unidad 3 · Importación y limpieza de datos** |
+| 3.1 | Módulos e `import` |
+| 3.2 | Pair wise data |
+| 3.3 | Series temporales |
+| 3.4 | Data cleaning |
+| 3.5 | Importación de múltiples archivos |
+| | **Unidad 4 · Introducción a la visualización** |
+| 4.1 | El paisaje de las bibliotecas de visualización |
+| 4.2 | Anatomía de una figura |
+| 4.3 | OOP en matplotlib |
+| 4.4 | Esquemas complejos con specgrid |
+| 4.5 | Formatos para figura |
+| 4.6 | [La misma figura, en plotly]{.sacrificable} |
+| | **Unidad 5 · NumPy** |
+| 5.1 | Qué es NumPy |
+| 5.2 | Arrays, size, shape |
+| 5.3 | Estadística de arreglos |
+| 5.4 | Slicing y fancy indexing |
+| 5.5 | [Creación de mallas]{.sacrificable} |
+| 5.6 | [Importar, guardar y el puente con pandas]{.sacrificable} |
+| | **Unidad 6 · Prácticas para el cómputo científico** |
+| 6.1 | Git: el repositorio, ahora de verdad |
+| 6.2 | Paquetes |
+| 6.3 | [Profiling]{.sacrificable} |
+| 6.4 | [Numba (y Cython, la anécdota)]{.sacrificable} |
+| 6.5 | Pruebas unitarias en datos |
+| | **Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos** |
+| 7.1 | Datos faltantes |
+| 7.2 | Cambio de frecuencia |
+| 7.3 | Agrupación de datos |
+| 7.4 | Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots |
+| 7.5 | Dashboards con Quarto |
+| | **Unidad 8 · Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis** |
+| 8.1 | Qué es vibe coding |
+| 8.2 | Analiza: el asistente dentro del proyecto |
+| 8.3 | Documenta e itera |
+| 8.4 | Escribe tu tesis con Quarto |
+<!-- indice:fin -->
 
-Quedan **42 horas** (14 sesiones) para las unidades 2 a 7, que en el programa oficial suman 45.
+Los temas [sombreados]{.sacrificable} son los candidatos a sacrificio (unos 4.5 h) para ajustar
+las unidades 1–7 a las 48 horas del calendario; la lista vive en `scripts/genera_indice.py`.
 
-## Contenido temático
+A las siete unidades oficiales se suma una octava, adicional al programa: *vibe coding con
+Quarto y Claude* — el cierre donde el curso completo se convierte en la práctica de analizar,
+documentar, iterar y escribir la tesis. Se ejerce en las últimas semanas, dentro de las
+sesiones de las unidades 6 y 7 y el trabajo final.
 
-### Unidad 1 · Introducción a los proyectos de ciencia de datos con Python {#unidad-1}
+<!-- ## Estimación de tiempos por tema
 
-- Por qué Python es un lenguaje de programación para ciencia de datos
-- Instalación y actualización
-- Espacio de trabajo
-- Narrativa computacional
-- Entornos virtuales
-- Repositorios
+Estimación de tiempo de aula por tema, con los temarios desarrollados completos (sin recorte).
+Sirve para contrastar contra las 48 horas del calendario y decidir el reparto por sesiones.
 
-### Unidad 2 · Sintaxis, herramientas de control y métodos de Python {#unidad-2}
+| Tema | | Estimado |
+|:---|:---|---:|
+| 1.1 | Qué es un proyecto de ciencia de datos | 0.5 h |
+| 1.2 | Instalación y espacio de trabajo | 1.0 h |
+| 1.3 | Entornos virtuales y la primera libreta | 1.5 h |
+| 1.4 | Paseo por la libreta de Jupyter | 0.75 h |
+| 1.5 | Anatomía de un proyecto | 0.5 h |
+| 1.6 | Nombres | 0.5 h |
+| 1.7 | Narrativa computacional | 0.75 h |
+| 1.8 | Reglas del curso y repositorios | 0.5 h |
+| | **Unidad 1** | **6.0 h** |
+| 2.1 | Sintaxis, tipos de variables, iterables | 2.5 h |
+| 2.2 | Estructuras de control | 1.5 h |
+| 2.3 | Cadenas en Python | 1.0 h |
+| 2.4 | f-strings | 0.75 h |
+| 2.5 | Funciones | 1.25 h |
+| | **Unidad 2** | **7.0 h** |
+| 3.0 | Módulos e `import` | 0.5 h |
+| 3.1 | Pair wise data | 2.5 h |
+| 3.2 | Series temporales | 2.25 h |
+| 3.3 | Data cleaning | 3.5 h |
+| 3.4 | Importación de múltiples archivos | 2.0 h |
+| | **Unidad 3** | **10.75 h** |
+| 4.0 | El paisaje de las bibliotecas de visualización | 0.5 h |
+| 4.1 | Anatomía de una figura | 1.0 h |
+| 4.2 | OOP en matplotlib | 2.0 h |
+| 4.3 | Esquemas complejos con specgrid | 1.5 h |
+| 4.4 | Formatos para figura | 1.5 h |
+| 4.5 | La misma figura, en plotly | 1.0 h |
+| | **Unidad 4** | **7.5 h** |
+| 5.0 | Qué es NumPy | 0.5 h |
+| 5.1 | Arrays, size, shape | 0.75 h |
+| 5.2 | Estadística de arreglos | 0.5 h |
+| 5.3 | Slicing y fancy indexing | 0.75 h |
+| 5.4 | Creación de mallas | 0.5 h |
+| 5.5 | Importar, guardar y el puente con pandas | 0.5 h |
+| | **Unidad 5** | **3.5 h** |
+| 6.0 | Git: el repositorio, ahora de verdad | 2.0 h |
+| 6.1 | Paquetes | 1.5 h |
+| 6.2 | Profiling | 1.0 h |
+| 6.3 | Numba (y Cython, la anécdota) | 1.5 h |
+| 6.4 | Pruebas unitarias en datos | 2.0 h |
+| | **Unidad 6** | **8.0 h** |
+| 7.1 | Datos faltantes | 1.5 h |
+| 7.2 | Cambio de frecuencia | 1.5 h |
+| 7.3 | Agrupación de datos | 2.0 h |
+| 7.4 | Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots | 2.5 h |
+| 7.5 | Dashboards con Quarto | 2.0 h |
+| | **Unidad 7** | **9.5 h** |
+| 8.1 | Qué es vibe coding | 0.5 h |
+| 8.2 | Analiza: el asistente dentro del proyecto | 1.5 h |
+| 8.3 | Documenta e itera | 1.0 h |
+| 8.4 | Escribe tu tesis con Quarto | 2.5 h |
+| | **Unidad 8** | **5.5 h** |
+| | **Total unidades 1–7** | **52.25 h** |
+| | **Total con la unidad 8** | **57.75 h** |
 
-- Sintaxis, tipos de variables, iterables
-- Estructuras de control
-- Cadenas en Python
-- f-strings
-- Funciones
-
-### Unidad 3 · Importación y limpieza de datos {#unidad-3}
-
-- Pair wise data
-- Series temporales
-- Data cleaning
-- Importación de múltiples archivos
-
-### Unidad 4 · Introducción a la visualización {#unidad-4}
-
-- Anatomía de una figura
-- OOP en matplotlib
-- Esquemas complejos con specgrid
-- Formatos para figura
-
-### Unidad 5 · NumPy {#unidad-5}
-
-- Arrays, size, shape
-- Estadística de arreglos
-- Slicing y fancy indexing
-- Creación de mallas
-
-### Unidad 6 · Prácticas para el cómputo científico {#unidad-6}
-
-- Paquetes
-- Profiling
-- Cython
-- Pruebas unitarias en datos
-
-### Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos {#unidad-7}
-
-- Datos faltantes
-- Cambio de frecuencia
-- Agrupación de datos
-- Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots
-- Tableros de datos con webapps
-
+La estimación de las unidades 1–7 excede en poco más de 4 horas las 48 disponibles, y la
+unidad 8 suma 5.5 más. El ajuste — qué se comprime, qué se vuelve tarea, qué comparte sesión —
+queda pendiente de revisión. -->
+ 
 ## Bibliografía
 
 ### Básica

@@ -1,6 +1,4 @@
----
-title: "Presentación"
----
+# Presentación {.unnumbered}
 
 Este libro es el registro vivo del curso **Proyectos de ciencia de datos con Python**, del Programa
 de Maestría y Doctorado en Ingeniería (campo de conocimiento: Energía) de la UNAM, en el semestre

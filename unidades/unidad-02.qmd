@@ -1,31 +1,107 @@
 ---
-title: "Unidad 2 · Sintaxis, herramientas de control y métodos de Python"
+title: "Sintaxis, herramientas de control y métodos de Python"
 ---
 
 ::: {.callout-note appearance="simple"}
-Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+Propuesta de desarrollo, pendiente de revisión. Conserva los subtemas del programa oficial.
 :::
 
-> **Objetivo.** *(por definir)*
+> **Objetivo.** Que cada estudiante domine el vocabulario básico de Python —tipos, colecciones,
+> estructuras de control, cadenas y funciones— y lo use con criterio: primero los datos, luego el
+> código que los recorre, siempre dentro de libretas que respeten la narrativa computacional de la
+> Unidad 1.
 
 **6 h en el programa oficial** · [Unidad 2 del temario](../temario.qmd#unidad-2)
 
-## Temas
+## Sintaxis, tipos de variables, iterables
 
-**2.1 Sintaxis, tipos de variables, iterables**
+1. La celda como unidad de ejecución: expresiones, asignación, comentarios.
+2. Anatomía del error: el traceback se lee de abajo hacia arriba y la última línea dice el tipo;
+   los cinco sospechosos habituales (`NameError`, `TypeError`, `KeyError`, `FileNotFoundError`,
+   `ModuleNotFoundError`).
+3. El eco de la celda y `print()`: la libreta muestra la última expresión sin pedirlo; `print` es
+   para todo lo demás.
+4. Tipos básicos: `int`, `float`, `complex`, `str`, `bool`, `None`; `type()` y conversiones entre
+   tipos.
+5. Colecciones: listas, tuplas, diccionarios y conjuntos — qué dato pide cuál.
+6. Desempaquetado de tuplas: `a, b = pareja` — el gesto que el curso repetirá en `fig, ax` y en
+   `enumerate`.
+7. Iterables sin escribir ciclos: indexado, rebanadas, `len`, `in`, `sum`, `min`, `max`, `sorted`.
+8. Mutabilidad y el patrón `objeto.método()`: `lista.append()` como primer método; atributo sin
+   paréntesis (un dato que se consulta) frente a método con paréntesis (una acción que se
+   ejecuta); qué se modifica en el lugar y qué se reemplaza.
+9. Asignar no copia: `b = a` no crea una lista nueva — dos nombres, un solo objeto; el susto que
+   volverá en NumPy y en pandas, anunciado desde ahora.
 
-**2.2 Estructuras de control**
+## Estructuras de control
 
-**2.3 Cadenas en Python**
+1. La sangría como sintaxis: el bloque es lo que está indentado.
+2. `if` / `elif` / `else`: comparaciones, operadores lógicos, decisiones sobre datos.
+3. `for` sobre un iterable: recorrer listas y diccionarios (`.items()`); `range`, `enumerate` y
+   `zip`.
+4. `while`: repetir hasta que algo cambie; por qué en datos casi siempre gana `for`.
+5. *List comprehensions*: el ciclo que produce una colección nueva.
 
-**2.4 f-strings**
+## Cadenas en Python
 
-**2.5 Funciones**
+1. La cadena de 2.1, ahora de cerca: no es un escalar, es un iterable de caracteres; indexado y
+   rebanadas, otra vez.
+2. Comillas simples y dobles: son equivalentes; elegir una por consistencia, la otra queda para
+   anidar (`"it's"`).
+3. Inmutabilidad: los métodos devuelven cadenas nuevas.
+4. Métodos de limpieza: `lower`, `strip`, `replace`, `split`, `join` — antesala de la limpieza de
+   datos de la Unidad 3.
+5. Cadenas que son datos: encabezados de columnas, categorías, rutas de archivos.
 
-## Ejercicios sugeridos
+## f-strings
 
-*(por definir)*
+1. *String interpolation*: `f'El valor es: {variable}'` — variables y expresiones dentro del
+   texto.
+2. Formato de números: decimales, separadores de miles, notación científica.
+3. Resultados que se explican solos: cifras con sus unidades y fechas en formato ISO.
+4. Construir nombres de archivos y rutas con f-strings.
 
-## Al terminar la unidad
+## Funciones
 
-*(por definir)*
+1. `def`, parámetros y `return`: de la celda repetida a la función.
+2. Argumentos con nombre y valores por defecto.
+3. Docstrings: qué recibe, qué devuelve, en qué unidades.
+4. Ámbito de las variables: lo que vive dentro de la función se queda dentro.
+5. Funciones en la libreta: definir arriba, usar abajo, sin romper la lectura.
+
+## Ejercicios sugeridos {.unnumbered}
+
+1. Dado un conjunto de mediciones en una lista, responder preguntas (máximo, mínimo, promedio,
+   cuántas superan un umbral) usando solo funciones integradas, sin escribir un solo ciclo.
+2. Provocar a propósito los cinco errores clásicos, y escribir en Markdown qué dice la última
+   línea de cada traceback y qué lo causó.
+3. Elegir la colección correcta —lista, tupla, diccionario o conjunto— para cinco datos reales del
+   área de cada estudiante, y defender la elección.
+4. Repetir el ejercicio 1 con un `for`, y comparar ambas versiones: cuándo bastan las funciones
+   integradas y cuándo hace falta el ciclo.
+5. Clasificar una serie de valores en categorías con `if` / `elif` / `else` dentro de un ciclo.
+6. Reescribir un ciclo `for` de tres líneas como *list comprehension*, y una *list comprehension*
+   ilegible como ciclo de tres líneas.
+7. Limpiar una lista de encabezados de columna sucios (mayúsculas, espacios, acentos) usando
+   métodos de cadenas, hasta dejarlos en `snake_case`.
+8. Producir un reporte de resultados con f-strings: cifras con dos decimales, unidades explícitas
+   y fecha en formato ISO.
+9. Generar nombres de archivos de salida con f-strings a partir de una fecha y una variable.
+10. Extraer una función a partir de dos celdas casi idénticas de una libreta, con docstring y
+    valores por defecto.
+11. Intercambiar funciones por parejas: usar la función del compañero leyendo solo su docstring,
+    sin mirar el código.
+12. Ejercicio integrador: representar un conjunto pequeño de mediciones (fecha, valor, sensor)
+    como diccionario de listas, y responder preguntas usando toda la unidad — ciclos,
+    condicionales, funciones y f-strings. El dolor que quede es exactamente el que la Unidad 3
+    viene a quitar.
+
+## Al terminar la unidad {.unnumbered}
+
+- Elegir la colección adecuada para un dato y explicar por qué.
+- Interrogar un iterable con funciones integradas antes de escribir un ciclo.
+- Recorrer listas y diccionarios con `for`, y decidir cuándo un `while` se justifica.
+- Limpiar texto con métodos de cadenas y reconocer que las cadenas son datos.
+- Reportar resultados con f-strings: números formateados, unidades y fechas ISO.
+- Convertir código repetido en una función con docstring que otra persona pueda usar sin leerla
+  por dentro.

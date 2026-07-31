@@ -1,31 +1,118 @@
 ---
-title: "Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos"
+title: "Conceptos avanzados de manipulación de datos y visualización de datos"
 ---
 
 ::: {.callout-note appearance="simple"}
-Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+Propuesta de desarrollo, pendiente de revisión. El tema oficial de tableros con webapps se
+imparte como dashboards con Quarto.
 :::
 
-> **Objetivo.** *(por definir)*
+> **Objetivo.** Que cada estudiante cierre el curso dominando las tres operaciones que el
+> análisis serio de series de medición exige — tratar huecos con criterio, cambiar de frecuencia
+> respetando la física de la variable, y responder preguntas por grupos — y sea capaz de
+> publicar sus resultados en un dashboard de Quarto que se regenera desde los datos.
 
 **10 h en el programa oficial** · [Unidad 7 del temario](../temario.qmd#unidad-7)
 
-## Temas
+## Datos faltantes
 
-**7.1 Datos faltantes**
+1. El censo de huecos antes de tratarlos: cuántos, dónde, de qué tamaño — el hueco de cinco
+   minutos y el de una semana no se tratan igual.
+2. Rellenos con memoria: `ffill` y `bfill`, y su freno (`limit`) — cuándo copiar el pasado es
+   razonable y cuándo es inventar.
+3. `interpolate` a fondo: lineal, temporal, y el argumento `limit`; la Unidad 3 eligió entre
+   tres opciones, ahora se domina cada una.
+4. Honestidad gráfica: el dato interpolado se señala en la figura — lo inventado se declara,
+   como toda decisión de limpieza en este curso.
 
-**7.2 Cambio de frecuencia**
+## Cambio de frecuencia
 
-**7.3 Agrupación de datos**
+1. `resample`, la promesa de la Unidad 3 cumplida: la gramática completa — la regla (`'h'`,
+   `'D'`, `'ME'`) y la función que resume.
+2. La física decide la agregación: la irradiancia se promedia, la energía se suma, la ráfaga
+   es un máximo — la misma variable, tres preguntas distintas.
+3. Subir la frecuencia: `asfreq` y el reindexado temporal; los `NaN` que aparecen son huecos
+   nuevos, y 7.1 ya sabe qué hacer con ellos.
+4. Ventanas móviles: `rolling` — suavizar el ruido sin cambiar la frecuencia.
 
-**7.4 Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots**
+## Agrupación de datos
 
-**7.5 Tableros de datos con webapps**
+1. `groupby`: la idea anunciada desde la Unidad 3, por fin completa — separar, aplicar,
+   combinar.
+2. `resample` era un `groupby` con reloj: ahora se agrupa por lo que sea — el mes, el día de
+   la semana, el sensor.
+3. `agg`: varias estadísticas de un golpe, con columnas resultantes bien nombradas.
+4. Ancho y largo: `pivot_table` y `melt` — el heatmap quiere la tabla ancha, seaborn la quiere
+   larga; cambiar de forma es cambiar de pregunta.
+5. El patrón mental: toda pregunta que empieza con "¿qué mes…?, ¿qué sensor…?" es un `groupby`
+   esperando a ser escrito.
 
-## Ejercicios sugeridos
+## Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots
 
-*(por definir)*
+1. Distribuciones: el histograma revisitado, el boxplot, el violin — qué muestra y qué esconde
+   cada uno; el bigote tiene definición: cuartiles e IQR.
+2. seaborn cosecha su lugar en el mapa de la Unidad 4: las figuras de distribución por
+   categoría en una línea, sobre los `Axes` de siempre.
+3. El heatmap: la matriz de días por horas de la Unidad 5, ahora como mapa de calor — el año
+   entero de un sensor en una sola figura.
+4. El calendario anual (calplot): el heatmap que se lee como agenda — el año de un vistazo, en
+   el idioma de todo el mundo.
+5. La rosa de vientos: el eje polar — cuando la variable es una dirección, el eje recto miente.
+6. El joyplot (joypy): las distribuciones mes a mes apiladas como paisaje — lo que el violin
+   cuenta, contado como serie.
+7. Elegir con criterio, otra vez: cuándo una distribución, cuándo un mapa, cuándo un ángulo —
+   y la figura avanzada también se explica sola.
 
-## Al terminar la unidad
+## Dashboards con Quarto
 
-*(por definir)*
+1. Qué es Quarto: Markdown y celdas de código que se ejecutan al renderizar — la libreta y el
+   `.qmd` son parientes. La revelación final del curso: este sitio está hecho con Quarto.
+2. De libreta a documento: `quarto render`, y el análisis se vuelve HTML o PDF que viaja solo.
+3. `format: dashboard`: los encabezados se vuelven layout — filas, columnas, tarjetas y *value
+   boxes*.
+4. Las figuras del curso entran todas: matplotlib para lo que se imprime, plotly donde el
+   tablero pide zoom y *hover* — el criterio de la Unidad 4, revisitado.
+5. El tablero reproducible: se regenera desde `data/processed` con un comando, como todo lo
+   demás en este curso.
+
+## Ejercicios sugeridos {.unnumbered}
+
+1. Hacer el censo de huecos de un año de datos: cuántos, dónde, de qué duración; reportarlo en
+   una tabla con el hueco más largo señalado.
+2. Sobre el mismo dataset, tratar un hueco de minutos y uno de días con `ffill`, `interpolate`
+   y nada: argumentar en Markdown qué merece cada uno.
+3. Producir la figura honesta: la serie con sus tramos interpolados marcados visualmente
+   distinto.
+4. Bajar la frecuencia de un año de irradiancia de minutos a horas y a días, eligiendo entre
+   promedio y suma según la pregunta — y explicar por qué la agregación cambia.
+5. Suavizar una serie ruidosa con `rolling` y graficar cruda y suavizada en el mismo `Axes`,
+   con la leyenda obligada.
+6. Responder tres preguntas con `groupby` y `agg`: el mes más ventoso, el día de la semana con
+   más demanda, el sensor con más huecos.
+7. El perfil diario promedio de cada mes: un `groupby` doble, pivotado a tabla de meses por
+   horas.
+8. Convertir esa tabla en heatmap con barra de color etiquetada — el año entero en una figura.
+9. Comparar la distribución mensual de una variable con boxplot y con violin: qué enseña el
+   violin que el boxplot esconde.
+10. Las figuras de la casa: la rosa de vientos del año y el calendario anual de una variable;
+    una línea de Markdown por figura diciendo qué pregunta responde.
+11. Convertir una libreta de análisis propia en un `.qmd` y renderizarla a HTML con Quarto.
+12. Construir el dashboard del proyecto: *value boxes* con las cifras clave, el heatmap anual,
+    los perfiles por mes — regenerable con `quarto render`.
+13. El cierre del curso: entregar el repositorio completo — crudos intactos, paquete probado,
+    `data/processed`, figuras y dashboard — clonable y reproducible de punta a punta por
+    cualquiera.
+
+## Al terminar la unidad {.unnumbered}
+
+- Censar los huecos de una serie y tratarlos con criterio declarado — y señalar en la figura lo
+  interpolado.
+- Cambiar de frecuencia eligiendo la agregación por la física de la variable, y suavizar con
+  ventanas móviles.
+- Traducir preguntas por categorías a `groupby` y `agg`, incluyendo agrupaciones dobles.
+- Elegir y construir la figura de distribución correcta, y condensar un año de datos en un
+  heatmap.
+- Explicar qué es Quarto y convertir una libreta en un documento que se renderiza.
+- Publicar un dashboard reproducible que se regenera desde `data/processed` con un comando.
+- Entregar un proyecto de ciencia de datos completo — versionado, probado, documentado y
+  reproducible — que funcione como carta de presentación.

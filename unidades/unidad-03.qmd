@@ -1,29 +1,136 @@
 ---
-title: "Unidad 3 · Importación y limpieza de datos"
+title: "Importación y limpieza de datos"
 ---
 
 ::: {.callout-note appearance="simple"}
-Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+Propuesta de desarrollo, pendiente de revisión. Conserva los subtemas del programa oficial.
 :::
 
-> **Objetivo.** *(por definir)*
+> **Objetivo.** Que cada estudiante domine el DataFrame como concepto central del curso: importar
+> datos reales con pandas, diagnosticarlos antes de tocarlos, limpiarlos declarando cada decisión,
+> y consolidar múltiples archivos crudos en un solo archivo limpio — el flujo completo de
+> `data/raw` a `data/processed`.
 
 **10 h en el programa oficial** · [Unidad 3 del temario](../temario.qmd#unidad-3)
 
-## Temas
+## Módulos e `import`
 
-**3.1 Pair wise data**
+1. Recordatorio: los paquetes se instalan en el proyecto con `uv add`, nunca con `pip` desde la
+   libreta — instalar no es importar.
+2. `import` y su sintaxis: `import math`, `from math import sqrt`, el alias `as`. La biblioteca
+   estándar: `math`, `datetime`, `glob` y compañía — instaladas desde siempre, importadas cuando
+   hacen falta.
+3. La línea que abre la unidad: `import pandas as pd`.
 
-**3.2 Series temporales**
+## Pair wise data
 
-**3.3 Data cleaning**
+1. Del diccionario de listas al DataFrame: la tabla del ejercicio integrador ya tenía nombre.
+2. `pd.read_csv`: el primer archivo real; la ruta relativa hasta `data/raw`.
+3. Anatomía del DataFrame: índice, columnas, `dtypes`; `head`, `info`, `describe` — mirar antes
+   de tocar.
+4. Cada columna es una Serie; seleccionar columnas, filas y celdas con `[]`, `loc`, `iloc`.
+5. Pair wise data: observaciones apareadas (x, y); filtros booleanos para quedarse con las filas
+   que cumplen algo — y `.copy()` cuando el resultado va a modificarse, para que el
+   `SettingWithCopyWarning` no sorprenda.
+6. Operaciones vectorizadas: columnas nuevas a partir de las existentes, sin escribir un solo
+   `for`.
+7. Fontanería mínima: `rename`, `sort_values`, `set_index` / `reset_index`, `drop` — y
+   `df.columns` a `snake_case`, el ejercicio de la Unidad 2 cobrado.
 
-**3.4 Importación de múltiples archivos**
+## Series temporales
 
-## Ejercicios sugeridos
+1. La fecha como dato, no como texto: `pd.to_datetime`; las fechas ISO de la Unidad 1 pagan aquí.
+2. El módulo `datetime` por dentro: `strptime` / `strftime` y los códigos de formato
+   (`%Y-%m-%d %H:%M`), `timedelta` — el idioma que `to_datetime` y su `format=` hablan.
+3. El índice temporal: leer con `parse_dates`, poner el tiempo como índice del DataFrame.
+4. Los accesores `.dt` y los atributos del `DatetimeIndex`: `.year`, `.month`, `.hour`,
+   `.dayofweek` — cada estampa sabe contestar quién es; el insumo de los grupos de la Unidad 7.
+5. Seleccionar por fecha y por rango: el índice temporal como herramienta de rebanado.
+6. `df.plot()`, la primera mirada gráfica: revisar rápido sin pelear con ejes — la visualización
+   de verdad llega en la Unidad 4.
+7. Qué hace especial a una serie temporal: orden, frecuencia esperada, huecos — y cómo un
+   `plot` los delata (el zigzag del índice desordenado; `sort_index`).
+8. Cambiar de frecuencia: `df.resample('D').mean()`, de minutos a días en una línea — primer
+   contacto con una idea (agrupar y resumir) que la Unidad 7 desarrolla a fondo.
 
-*(por definir)*
+## Data cleaning
 
-## Al terminar la unidad
+1. Archivos que no se dejan leer: encabezados corridos, líneas de más, separadores raros — la
+   limpieza empieza en las opciones de `pd.read_csv` (`skiprows`, `header`, `sep`, `decimal`,
+   `encoding`). CSV, TXT y EPW son el mismo animal: texto con separador, y `read_csv` los lee
+   todos. Antes de pelear, mirar el crudo: abrirlo en el editor o `head` en la terminal.
+2. No todo es texto: `read_excel` para los `.xlsx` — `sheet_name` y `skiprows`, la misma
+   gramática de opciones sobre otro formato.
+3. Cómo vienen los `NaN`: `-999`, `N/A`, `--`, celdas vacías; declararlos con `na_values` desde
+   la importación. El `None` de la Unidad 2, con nombre nuevo.
+4. Diagnóstico antes de cirugía: `isna`, `value_counts`, `duplicated` y un `df.plot()` rápido —
+   cuantificar y *ver* lo que la importación no resolvió.
+5. Números que llegaron como texto: los métodos de cadenas cosechan (`strip`, `replace`) y
+   `astype` convierte.
+6. Fechas que no son fechas: `p. m.` en lugar de `PM`, formatos locales; arreglar el texto antes
+   de `to_datetime`, o declararle el `format`.
+7. Duplicados y valores imposibles: filtros booleanos para descartar lo que ningún sensor pudo
+   medir.
+8. La rejilla esperada: `pd.date_range` y `reindex` — comparar el tiempo que llegó contra el que
+   debió llegar; `.diff()` sobre el índice censa los huecos.
+9. Huecos en el tiempo: detectarlos, y decidir — rellenar, interpolar o dejar el hueco (`fillna`,
+   `interpolate`, `dropna`); cada opción es una decisión que se declara, no se esconde.
+10. Guardar en `data/processed`: `to_csv` para compartir, `to_parquet` para trabajar — el CSV
+   olvida los tipos (las fechas vuelven como texto), parquet los recuerda; limpiar una vez, no
+   cada vez. Requiere `uv add pyarrow`: la Unidad 1 en acción.
 
-*(por definir)*
+## Importación de múltiples archivos
+
+1. El escenario real: un archivo por día, por mes o por sensor — nadie te da la tabla completa.
+2. `glob`: patrones para listar archivos desde Python.
+3. Leer en ciclo, acumular en una lista (`append`, otra vez) y unir con `pd.concat`; un `try` /
+   `except` mínimo salva el ciclo del archivo corrupto.
+4. Unir a lo ancho: `concat(axis=1)` para sensores que comparten el tiempo, `merge` para pegar
+   metadatos de estación — la unión vertical tiene hermanas.
+5. Verificar el consolidado: tamaño esperado, duplicados en las uniones, continuidad temporal.
+6. Los datos no siempre viven en tu disco: `read_csv` también acepta una URL — un archivo
+   publicado en la red (Conagua) se lee con la misma línea.
+7. Cerrar el flujo: de muchos crudos a un solo archivo limpio en `data/processed`.
+
+## Ejercicios sugeridos {.unnumbered}
+
+1. Convertir el diccionario de listas del ejercicio integrador de la Unidad 2 en un DataFrame, y
+   responder las mismas preguntas — ahora en una línea cada una.
+2. Leer un CSV de `data/raw` y producir su ficha en Markdown: cuántas filas, qué columnas, qué
+   tipos, cuántos huecos.
+3. Quedarse con las filas que cumplen dos condiciones a la vez, usando filtros booleanos.
+4. Crear una columna nueva a partir de otras (una conversión de unidades) sin escribir un ciclo.
+5. Leer un archivo cuyas fechas llegaron como texto, convertirlas, ponerlas como índice, rebanar
+   una semana concreta y graficarla con `df.plot()`.
+6. Diagnosticar con `df.plot()` un archivo que "se ve bien" con `head()`: descubrir el índice
+   desordenado por el zigzag de la gráfica, y corregirlo con `sort_index`.
+7. Importar un archivo hostil: el encabezado en la fila 5, `-999` como dato faltante y fechas
+   con `p. m.`; resolver todo lo posible desde `read_csv` y el resto antes de `to_datetime`.
+8. Limpiar una columna numérica que llegó como texto: espacios, unidades pegadas al número,
+   comas decimales; terminar con `astype`.
+9. Detectar los valores que ningún sensor pudo medir, descartarlos, y documentar en Markdown
+   cuántos fueron y con qué criterio.
+10. Encontrar los huecos de una serie temporal y comparar tres tratamientos: rellenar,
+    interpolar y dejar el hueco. Argumentar cuál conviene y por qué.
+11. El viaje redondo: guardar un DataFrame limpio en CSV y en parquet, releer ambos, y comparar
+    qué sobrevivió — tipos, índice temporal, `NaN` — y qué hay que volver a arreglar.
+12. Consolidar con `glob` y `pd.concat` una carpeta con un archivo por mes, y verificar el
+    resultado: tamaño esperado, sin duplicados, sin saltos de tiempo.
+13. Flujo completo por parejas: entregar al compañero una carpeta de crudos sucios y recibir de
+    vuelta un `data/processed` con la libreta que lo produce, corriendo de arriba abajo.
+
+## Al terminar la unidad {.unnumbered}
+
+- Explicar qué es un DataFrame y qué relación tiene con el diccionario de listas y con la Serie.
+- Importar archivos que no vienen fáciles — encabezados corridos, `NaN` disfrazados, fechas en
+  formato local — resolviendo desde las opciones de `read_csv` lo que se pueda.
+- Diagnosticar un archivo real — filas, tipos, huecos, duplicados — antes de tocarlo.
+- Seleccionar filas y columnas con `[]`, `loc`, `iloc` y filtros booleanos, y crear columnas
+  nuevas sin ciclos.
+- Poner el tiempo como índice, rebanar un DataFrame por fechas y rangos, y darle la primera
+  mirada con `df.plot()`.
+- Limpiar un dataset declarando cada decisión: qué se descartó, qué se rellenó y con qué
+  criterio.
+- Consolidar una carpeta de archivos crudos en un solo archivo limpio en `data/processed`, con
+  una libreta reproducible, y elegir el formato con criterio: CSV para compartir, parquet para
+  trabajar.

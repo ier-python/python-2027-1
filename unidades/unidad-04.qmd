@@ -1,29 +1,124 @@
 ---
-title: "Unidad 4 · Introducción a la visualización"
+title: "Introducción a la visualización"
 ---
 
 ::: {.callout-note appearance="simple"}
-Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+Propuesta de desarrollo, pendiente de revisión. Conserva los subtemas del programa oficial.
 :::
 
-> **Objetivo.** *(por definir)*
+> **Objetivo.** Que cada estudiante produzca figuras con calidad de tesis: elegir el tipo de
+> gráfica según la pregunta, construirla con la API de objetos de matplotlib, componer paneles,
+> y exportarla lista para LaTeX sin retoques posteriores — sabiendo además cuándo conviene
+> explorar con plotly y por qué se publica con matplotlib.
 
 **8 h en el programa oficial** · [Unidad 4 del temario](../temario.qmd#unidad-4)
 
-## Temas
+## El paisaje de las bibliotecas de visualización
 
-**4.1 Anatomía de una figura**
+1. El ecosistema de graficadores de Python: matplotlib, seaborn, plotly, altair, bokeh y más —
+   muchos nombres, un mapa para no perderse.
+2. El mapa son capas: `df.plot()` y seaborn le hablan a matplotlib por ti — por eso nunca lo
+   importamos en la Unidad 3.
+3. Los paradigmas distintos: plotly (interactivo), altair (declarativo) — saber que existen y
+   cuándo buscarlos.
+4. Por qué el curso se enfoca en matplotlib: es el fondo común de casi todo, y el control fino
+   que una tesis exige.
+5. La revelación: `df.plot()` devuelve un `Axes` de matplotlib — personalizar la figura de
+   pandas es empezar a usar matplotlib.
 
-**4.2 OOP en matplotlib**
+## Anatomía de una figura
 
-**4.3 Esquemas complejos con specgrid**
+1. `Figure`, `Axes`, `Axis`: el lienzo, la gráfica y los ejes — cada elemento con su nombre.
+2. Los elementos con los que se habla: título, etiquetas de ejes, leyenda, *ticks*, rejilla,
+   colores y estilos de línea.
+3. La figura que se explica sola: ejes con unidades, título que dice el hallazgo, leyenda cuando
+   hay más de una serie, fechas legibles — las reglas de nombres de la Unidad 1, ahora en tinta.
 
-**4.4 Formatos para figura**
+## OOP en matplotlib
 
-## Ejercicios sugeridos
+1. Las dos APIs: `plt.plot()` (la máquina de estados de los tutoriales y de ChatGPT) frente a
+   `fig, ax = plt.subplots()` (la de objetos, el estándar del curso) — nombrarlas para no
+   mezclarlas.
+2. El patrón del curso: `fig, ax = plt.subplots()`; el `Axes` como el objeto al que se le pide
+   todo — `objeto.método()`, otra vez.
+3. Los tipos básicos y su pregunta: línea (`ax.plot`, serie temporal), dispersión (`ax.scatter`,
+   pair wise data), barras (`ax.bar`, categorías), histograma (`ax.hist`, distribución).
+4. Cuándo una figura miente: el eje recortado, los *bins* mal elegidos, la línea que une puntos
+   que no son continuos.
+5. Varias series en un mismo `Axes`: la leyenda se vuelve obligatoria.
+6. La ventana de tiempo configurable: `ax.set_xlim(fecha, fecha + pd.Timedelta("1D"))` — la
+   serie larga se grafica una vez y la ventana decide qué se mira.
+7. Series densas: miles de puntos minutales piden `alpha` para que la nube respire y
+   `markevery` para no sembrar marcadores.
 
-*(por definir)*
+## Esquemas complejos con specgrid
 
-## Al terminar la unidad
+1. Varios `Axes` en una `Figure` con el mismo `plt.subplots(nrows, ncols)` de siempre; `sharex`
+   para series que comparten el tiempo, `sharey` para paneles que se comparan en la misma
+   escala.
+2. `GridSpec`: paneles de tamaños distintos — la serie principal con su histograma marginal.
+3. Dos unidades en el mismo panel: `twinx` — irradiancia y temperatura sobre el mismo tiempo.
+4. Composición con criterio: cuándo superponer, cuándo separar paneles, cuándo hacer dos
+   figuras.
 
-*(por definir)*
+## Formatos para figura
+
+1. `figures/` se une al proyecto: las figuras se regeneran desde la libreta, nunca se editan a
+   mano; nombres que dicen qué muestran.
+2. `savefig`: PNG (píxeles y `dpi`) frente a PDF/SVG (vectores) — cuál para la tesis, cuál para
+   la presentación, cuál para la web.
+3. La figura pensada para LaTeX: el tamaño en pulgadas se decide desde matplotlib para el
+   `\textwidth` del documento, con la tipografía al tamaño final — la figura no se escala
+   después, se produce a la medida.
+4. Matemáticas en las etiquetas: *mathtext* para `$W/m^2$` en cualquier máquina; `usetex`
+   cuando la tesis exige la tipografía de LaTeX.
+
+## La misma figura, en plotly
+
+1. Rehacer la figura final de la unidad en plotly: zoom, *hover*, exploración sin costo.
+2. El precio: cada punto viaja dentro del archivo — HTML y libretas que engordan con datos de
+   alta frecuencia; y nada de mathtext ni PDF a la medida para la tesis.
+3. El criterio que cierra la unidad: explorar con plotly, publicar con matplotlib.
+
+## Ejercicios sugeridos {.unnumbered}
+
+1. Capturar el `Axes` que devuelve `df.plot()` y personalizarlo: título, unidades en los ejes,
+   leyenda.
+2. La misma figura dos veces: con `plt.plot()` a secas y con `fig, ax = plt.subplots()`;
+   explicar cuál sobrevive cuando la libreta tiene diez figuras.
+3. Cuatro preguntas sobre un mismo dataset, cuatro figuras — línea, dispersión, barras,
+   histograma — y defender cada elección en una línea de Markdown.
+4. Recibir una figura sin etiquetas ni unidades y arreglarla hasta que se entienda sin leer el
+   código que la produjo.
+5. Construir una figura que miente — eje recortado, *bins* tramposos — y luego corregirla;
+   documentar qué cambió.
+6. Graficar un mes de datos minutales una sola vez, y recorrer tres días distintos moviendo la
+   ventana con `set_xlim` y `pd.Timedelta`; `alpha` y `markevery` para que la nube se deje
+   leer.
+7. Panel de series apiladas con `sharex`: tres variables del mismo día compartiendo el eje del
+   tiempo.
+8. Con `GridSpec`, la serie temporal principal acompañada de su histograma marginal.
+9. Dos variables con unidades distintas en el mismo panel usando `twinx`, sin que la leyenda se
+   pierda.
+10. Exportar una figura en PDF a la medida del `\textwidth`, con unidades en mathtext, e
+    insertarla en un documento LaTeX sin escalarla.
+11. Guardar la misma figura en PNG a varios `dpi` y en PDF; hacer zoom hasta que cada PNG se
+    pixele y el PDF no.
+12. Rehacer la figura final en plotly con un año de datos minutales, y comparar el tamaño en
+    disco y de la libreta contra la versión matplotlib.
+13. Borrar la carpeta `figures/` completa y regenerarla ejecutando las libretas de arriba
+    abajo.
+
+## Al terminar la unidad {.unnumbered}
+
+- Explicar qué biblioteca de visualización es capa de cuál, y por qué el curso publica con
+  matplotlib.
+- Elegir el tipo de figura según la pregunta — y detectar cuándo una figura miente.
+- Construir figuras con `fig, ax = plt.subplots()` y distinguir las dos APIs al leer código
+  ajeno.
+- Producir figuras que se explican solas: unidades, título con hallazgo, leyenda.
+- Componer paneles con `subplots`, `GridSpec` y `twinx`, eligiendo la composición con criterio.
+- Exportar una figura lista para la tesis — PDF a la medida, tipografía y matemáticas correctas
+  — que se regenera desde la libreta.
+- Decidir entre matplotlib y plotly con argumentos: explorar frente a publicar, y el costo en
+  disco de la interactividad.

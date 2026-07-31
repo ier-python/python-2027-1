@@ -1,6 +1,7 @@
 project:
   type: book
   output-dir: _book
+  pre-render: scripts/genera_indice.py
   resources:
     - recursos/pdfs/*.pdf
 
@@ -25,21 +26,25 @@ book:
     - index.qmd
     - temario.qmd
 
-    # ── Una parte por unidad. Las libretas de cada clase se cuelgan
-    #    de la unidad a la que pertenecen, con `chapters:`. Ejemplo:
+    # ── Numeración automática: cada unidad es un capítulo numerado (1–8).
+    #    Las libretas de clase se cuelgan con un part de título de texto que
+    #    agrupa a la unidad y sus libretas; cada libreta declara {.unnumbered}
+    #    en su título (primera celda Markdown) para NO consumir número de
+    #    capítulo. Ejemplo:
     #
-    #    - part: unidades/unidad-01.qmd
+    #    - part: "Unidad 1"
     #      chapters:
-    #        - clases/clase-01-introduccion/notebooks/01-entorno.ipynb
-    #        - clases/clase-01-introduccion/tareas/tarea-01.ipynb
+    #        - unidades/unidad-01.qmd                             # capítulo 1
+    #        - clases/clase-01-introduccion/notebooks/01-entorno.ipynb   # {.unnumbered}
 
-    - part: unidades/unidad-01.qmd
-    - part: unidades/unidad-02.qmd
-    - part: unidades/unidad-03.qmd
-    - part: unidades/unidad-04.qmd
-    - part: unidades/unidad-05.qmd
-    - part: unidades/unidad-06.qmd
-    - part: unidades/unidad-07.qmd
+    - unidades/unidad-01.qmd
+    - unidades/unidad-02.qmd
+    - unidades/unidad-03.qmd
+    - unidades/unidad-04.qmd
+    - unidades/unidad-05.qmd
+    - unidades/unidad-06.qmd
+    - unidades/unidad-07.qmd
+    - unidades/unidad-08.qmd
 
     # Los apéndices van como una parte final —en vez de `appendices:`—
     # para que no reciban la etiqueta "Apéndice A".
@@ -50,8 +55,10 @@ book:
 format:
   html:
     theme: [cosmo, estilos.scss]
-    # Sin numeración: ni capítulos, ni secciones, ni apéndices.
-    number-sections: false
+    # Numeración automática: unidades como capítulos 1–8, temas como N.M.
+    # index, temario y apéndices van {.unnumbered} en su título.
+    number-sections: true
+    number-depth: 2
     code-copy: true
     code-overflow: wrap
     code-tools: false

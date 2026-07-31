@@ -1,6 +1,4 @@
----
-title: "Instalación del entorno"
----
+# Instalación del entorno {.unnumbered}
 
 El curso usa tres herramientas. Ninguna requiere permisos de administrador.
 

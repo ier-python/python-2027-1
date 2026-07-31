@@ -1,29 +1,104 @@
 ---
-title: "Unidad 6 · Prácticas para el cómputo científico"
+title: "Prácticas para el cómputo científico"
 ---
 
 ::: {.callout-note appearance="simple"}
-Unidad pendiente de desarrollo. Por ahora reproduce los subtemas del programa oficial.
+Propuesta de desarrollo, pendiente de revisión. Agrega git como tema inicial, que la Unidad 1 dejó
+prometido, y el tema oficial de Cython se imparte con numba como herramienta principal.
 :::
 
-> **Objetivo.** *(por definir)*
+> **Objetivo.** Que cada estudiante convierta su proyecto en un proyecto de cómputo científico
+> serio: versionado con git, con sus funciones graduadas de la libreta a un paquete local,
+> optimizado solo donde el perfil lo señala, y con pruebas que vigilan tanto el código como los
+> datos.
 
 **8 h en el programa oficial** · [Unidad 6 del temario](../temario.qmd#unidad-6)
 
-## Temas
+## Git: el repositorio, ahora de verdad
 
-**6.1 Paquetes**
+1. La promesa de la Unidad 1 se cumple: el repositorio deja de ser una definición.
+2. `git init`, `git status`, `git add`, `git commit`: la foto del proyecto, cuándo tomarla y
+   cómo describirla.
+3. `git log`: la historia del proyecto como narrativa — mensajes que dicen qué cambió y por qué.
+4. `.gitignore`: la regla "qué se versiona y qué no" de la Unidad 1, por fin ejecutada — fuera
+   el entorno, fuera los datos pesados.
+5. GitHub: `push`, `clone`; el respaldo y la carta de presentación.
+6. La regla del curso, ahora literal: si no está en el repositorio, no existe.
 
-**6.2 Profiling**
+## Paquetes
 
-**6.3 Cython**
+1. La función que se repite entre libretas pide graduarse: de la celda al archivo `.py`.
+2. Un paquete local junto a `notebooks/`: la carpeta, el `__init__.py`, y el proyecto que ahora
+   tiene código propio importable.
+3. `from mipaquete import mi_funcion`: las libretas se adelgazan, el conocimiento se comparte.
+4. `%load_ext autoreload`: editar el módulo sin reiniciar el kernel — el magic que faltaba.
+5. Los docstrings de la Unidad 2 pagan: el paquete se explora con `?` como cualquier
+   biblioteca.
 
-**6.4 Pruebas unitarias en datos**
+## Profiling
 
-## Ejercicios sugeridos
+1. La regla de oro: medir antes de optimizar — la intuición sobre qué es lento casi siempre
+   falla.
+2. `%%time` y `%timeit` (de la Unidad 5), ahora sobre funciones propias.
+3. `%prun`: el perfil completo — qué función se lleva el tiempo y cuántas veces se llama.
+4. Leer un perfil: el cuello de botella casi siempre es una línea, no el programa.
 
-*(por definir)*
+## Numba (y Cython, la anécdota)
 
-## Al terminar la unidad
+1. Acelerar Python compilando — pero solo lo que el perfil del tema anterior señaló.
+2. numba: `uv add numba` y el decorador `@njit` sobre la función numérica; la primera llamada
+   compila, las demás vuelan.
+3. El antes y el después, medidos con `%timeit`: la aceleración es un dato, no una promesa.
+4. Los límites de numba: habla NumPy y números, no pandas ni cadenas — por eso se compila la
+   función, no la libreta.
+5. Cython, la anécdota: el pariente anticipado que traduce a C y necesita compilador; así están
+   construidos pedazos de pandas y scikit-learn. Se usa al escribir bibliotecas, no al analizar
+   datos.
 
-*(por definir)*
+## Pruebas unitarias en datos
+
+1. Por qué probar: la función que hoy funciona, mañana alguien la edita.
+2. pytest sobre el paquete local: archivos `test_*.py`, funciones `assert`, y el punto verde
+   que da permiso de confiar.
+3. Casos frontera: la lista vacía, el `NaN`, el valor negativo que no debería existir.
+4. Pruebas sobre los datos: rangos físicos, huecos inesperados, columnas que deben existir —
+   la validación manual de la Unidad 3, ahora automática y repetible.
+5. El ciclo completo: cambiar el paquete, correr las pruebas, hacer commit.
+
+## Ejercicios sugeridos {.unnumbered}
+
+1. Poner el proyecto del curso bajo git: `init`, `.gitignore` razonado en Markdown, y el primer
+   commit con mensaje digno.
+2. Reconstruir la historia: hacer cinco cambios pequeños con cinco commits, y leer el `git log`
+   como narrativa del proyecto.
+3. Subir el proyecto a GitHub, clonarlo en otra carpeta, y reconstruir el entorno con `uv sync`
+   — la reproducibilidad completa: código versionado más entorno declarado.
+4. Extraer a un paquete local las tres funciones más repetidas en las libretas propias, con
+   docstrings, e importarlas desde una libreta limpia.
+5. Activar `autoreload`, editar una función del paquete con la libreta abierta, y verificar el
+   cambio sin reiniciar el kernel.
+6. Perfilar con `%prun` una libreta de limpieza de la Unidad 3 completa, y reportar en Markdown
+   dónde vive el cuello de botella.
+7. Escribir dos versiones de un cálculo sobre un millón de puntos — ciclo puro y NumPy — y
+   perfilar ambas: ¿cuánto explica la vectorización?
+8. Acelerar con `@njit` una función numérica que NumPy solo no resuelve (un ciclo con
+   dependencia del paso anterior), y medir el antes y el después con `%timeit`.
+9. Intentar `@njit` sobre una función con pandas adentro, leer el error con calma, y explicar
+   en Markdown por qué numba la rechaza.
+10. Escribir pruebas pytest para una función propia: el caso normal, la lista vacía, el `NaN`.
+11. Escribir la prueba de los datos: un `test_datos.py` que valide rangos físicos, columnas
+    esperadas y continuidad temporal del `data/processed` del proyecto.
+12. Romper una función del paquete a propósito, ver las pruebas fallar, arreglarla, y hacer el
+    commit — el ciclo de trabajo completo, vivido una vez.
+
+## Al terminar la unidad {.unnumbered}
+
+- Versionar un proyecto con git: commits con mensajes que narran, `.gitignore` con criterio, y
+  respaldo en GitHub.
+- Clonar un proyecto ajeno y dejarlo corriendo con `uv sync` — y explicar por qué eso es
+  reproducibilidad.
+- Graduar funciones de la libreta a un paquete local importable, y trabajar con `autoreload`.
+- Encontrar el cuello de botella con un perfil antes de tocar una sola línea.
+- Acelerar una función numérica con numba, saber cuándo no aplica, y decir qué es Cython.
+- Proteger el proyecto con pruebas: las del código con pytest, y las de los datos con
+  validaciones automáticas.

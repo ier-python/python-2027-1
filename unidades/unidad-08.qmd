@@ -1,0 +1,91 @@
+---
+title: "Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis"
+---
+
+::: {.callout-note appearance="simple"}
+Propuesta de desarrollo, pendiente de revisión. Unidad adicional al programa oficial: el cierre
+del curso, donde todas las unidades anteriores se juntan en una sola práctica.
+:::
+
+> **Objetivo.** Que cada estudiante use asistentes de IA como acelerador sin ceder el criterio:
+> analizar datos conversando con Claude, verificar lo generado con las herramientas del curso —
+> reproducibilidad, pruebas, figuras honestas —, iterar con historia en git, y montar su tesis
+> como proyecto de Quarto donde el texto, el análisis y las figuras viven y se regeneran juntos.
+
+**Adicional al programa oficial**
+
+## Qué es vibe coding
+
+1. Programar conversando: describir la intención, leer lo propuesto, decidir — el código se
+   negocia, no se dicta.
+2. Por qué esta unidad va al final: el criterio se entrenó quince semanas; sin él, el asistente
+   maneja y tú vas de pasajero.
+3. El panorama: Claude en el chat, Claude Code en la terminal, asistentes dentro del editor —
+   la misma conversación en tres lugares.
+
+## Analiza: el asistente dentro del proyecto
+
+1. El contexto lo es todo: el proyecto bien formado de la Unidad 1 — estructura, nombres,
+   entorno declarado — es exactamente lo que un asistente necesita leer para ayudar de verdad.
+2. Pedir bien: la pregunta con sus datos, sus unidades y el resultado esperado; el mismo rigor
+   que un docstring.
+3. Verificar siempre: lo generado corre desde cero, pasa las pruebas de la Unidad 6, y la
+   figura dice lo que dicen los datos.
+4. La regla nueva del curso: ningún código que no puedas explicar línea por línea — quien firma
+   eres tú, no el asistente.
+
+## Documenta e itera
+
+1. La libreta sigue siendo el documento: lo que el asistente aporta se integra a la narrativa
+   computacional, no se pega como vino.
+2. Los errores como conversación: el traceback se entrega completo, la explicación se lee con
+   escepticismo, la corrección se verifica.
+3. Iterar con historia: cada vuelta con el asistente termina en commit — git registra qué
+   cambió, y el `diff` cuenta qué hizo realmente la "ayuda".
+
+## Escribe tu tesis con Quarto
+
+1. La tesis como proyecto de Quarto: capítulos `.qmd`, el `format: book` — el dashboard de la
+   Unidad 7 tiene un hermano mayor.
+2. Figuras vivas: las figuras del proyecto entran solas y se regeneran si cambian los datos —
+   nadie vuelve a pegar una imagen desactualizada.
+3. Citas y referencias: BibTeX, referencias cruzadas, números de figura y de tabla que se
+   cuidan solos.
+4. Congelar capítulos: `freeze: auto` — el capítulo con cómputo pesado no se re-ejecuta en
+   cada render, solo cuando cambia; si los datos cambiaron, se descongela tocando el capítulo
+   o borrando `_freeze/`. La tesis entera renderiza en segundos.
+5. `quarto render` a PDF: el LaTeX de la Unidad 4 paga completo — la tesis sale tipografiada.
+6. El cierre del curso: la tesis reproducible — quien la lea puede clonarla, reconstruir el
+   entorno y regenerar cada número y cada figura.
+
+## Ejercicios sugeridos {.unnumbered}
+
+1. Pedirle al asistente una función que ya escribiste en el curso, comparar ambas versiones, y
+   quedarte con lo mejor de cada una — explicando por qué.
+2. Analizar un dataset nunca visto conversando con Claude, aplicando en cada paso las reglas
+   del curso: diagnóstico antes de cirugía, decisiones declaradas, figura honesta.
+3. Recibir del asistente una solución con un error sutil (sembrado por el profesor) y cazarlo
+   con las pruebas de la Unidad 6 — la moraleja se escribe en Markdown.
+4. Entregar un traceback completo al asistente, verificar su corrección propuesta, y
+   documentar qué entendió bien y qué no.
+5. Iterar una figura con el asistente hasta calidad de tesis: un commit por vuelta, y el
+   `git log` como bitácora de la conversación.
+6. Montar el esqueleto de la tesis en Quarto: capítulos, bibliografía en BibTeX, y una figura
+   viva que se regenera desde `data/processed`.
+7. Escribir un capítulo de avance real de la tesis propia, con sus citas y sus referencias
+   cruzadas, y renderizarlo a PDF.
+8. El examen final silencioso: intercambiar tesis por parejas, clonar la del compañero,
+   reconstruir el entorno y regenerar el PDF completo — si compila con sus figuras, el curso
+   cumplió.
+
+## Al terminar la unidad {.unnumbered}
+
+- Conversar con un asistente de IA describiendo intención, contexto y resultado esperado — y
+  leer críticamente lo que proponga.
+- Verificar código generado con las armas del curso: corre desde cero, pasa las pruebas, la
+  figura es honesta.
+- Iterar con historia: cada colaboración con el asistente registrada en commits que narran.
+- Montar una tesis en Quarto con figuras vivas, citas en BibTeX y referencias cruzadas, y
+  renderizarla a PDF.
+- Entregar el paquete completo — proyecto y tesis reproducibles — y explicar por qué eso vale
+  más que cualquier archivo suelto.

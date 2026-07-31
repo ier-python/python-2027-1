@@ -43,6 +43,14 @@ div.callout {
   border-left-width: 4px;
 }
 
+// Temas candidatos a sacrificio en el índice temático, para ajustar
+// el temario a las 48 horas del calendario
+.sacrificable {
+  background-color: #fff3cd;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
 // Enlace de descarga del programa oficial
 a.descarga {
   display: inline-block;
