@@ -14,7 +14,7 @@
     "href": "index.html#cómo-está-organizado",
     "title": "Proyectos de ciencia de datos con Python",
     "section": "Cómo está organizado",
-    "text": "Cómo está organizado\n\nEl temario reproduce el programa oficial de la actividad académica.\nCada parte corresponde a una sesión: abre con una introducción a los temas y continúa con las libretas de esa clase.\nLas tareas aparecen al final de la parte que las genera.\nEl apéndice de instalación explica cómo poner a funcionar el entorno en tu propia computadora.",
+    "text": "Cómo está organizado\n\nEl temario reproduce el programa oficial de la actividad académica.\nLas reglas del curso resumen los principios de trabajo, reproducibilidad y evaluación.\nCada parte corresponde a una sesión: abre con una introducción a los temas y continúa con las libretas de esa clase.\nLas tareas aparecen al final de la parte que las genera.\nEl apéndice de instalación explica cómo poner a funcionar el entorno en tu propia computadora.",
     "crumbs": [
       "Presentación"
     ]
@@ -117,6 +117,56 @@
     "text": "Mecanismos de evaluación\nExámenes parciales · Examen final escrito · Trabajos y tareas fuera del aula · Participación en clase · Asistencia.\n(No contempladas: exposición de seminarios por los alumnos, seminario.)",
     "crumbs": [
       "Temario del curso"
+    ]
+  },
+  {
+    "objectID": "reglas.html",
+    "href": "reglas.html",
+    "title": "Reglas y acuerdos del curso",
+    "section": "",
+    "text": "Convivencia y espacio libre de violencia\nPrincipios de convivencia, comunicación, uso de Inteligencia Artificial y evaluación para el curso Proyectos de ciencia de datos con Python (UNAM).",
+    "crumbs": [
+      "Reglas y acuerdos del curso"
+    ]
+  },
+  {
+    "objectID": "reglas.html#convivencia-y-espacio-libre-de-violencia",
+    "href": "reglas.html#convivencia-y-espacio-libre-de-violencia",
+    "title": "Reglas y acuerdos del curso",
+    "section": "",
+    "text": "Tolerancia cero a la violencia de género, acoso, hostigamiento y cualquier forma de discriminación.\nRespeto mutuo y colaboración en clase presencial, repositorios de GitHub y espacios digitales.\nPOCs y Atención institucional disponible mediante la Defensoría UNAM.",
+    "crumbs": [
+      "Reglas y acuerdos del curso"
+    ]
+  },
+  {
+    "objectID": "reglas.html#comunicación",
+    "href": "reglas.html#comunicación",
+    "title": "Reglas y acuerdos del curso",
+    "section": "Comunicación",
+    "text": "Comunicación\n\nSin mensajes privados por ningún medio, incluidos los mensajes privados en Google Classroom.\nToda la comunicación, dudas y anuncios se realizan públicamente en el Chat de Google (Gmail) del curso.",
+    "crumbs": [
+      "Reglas y acuerdos del curso"
+    ]
+  },
+  {
+    "objectID": "reglas.html#acuerdos-sobre-iagen-del-ier-unam",
+    "href": "reglas.html#acuerdos-sobre-iagen-del-ier-unam",
+    "title": "Reglas y acuerdos del curso",
+    "section": "Acuerdos sobre IAGen del IER-UNAM",
+    "text": "Acuerdos sobre IAGen del IER-UNAM\n\nNingún detector de IA es prueba única de deshonestidad académica; se requiere evidencia adicional y diálogo previo.\nModalidad por carril: carril abierto para apoyo en desarrollo o carril seguro sin IA para consolidar conceptos.\nActividades de proceso sin IA: resolución de problemas en clase presentando o explicando el código elaborado.\nAlfabetización en IA.\nReconsideración de estos acuerdos si se considera necesario.",
+    "crumbs": [
+      "Reglas y acuerdos del curso"
+    ]
+  },
+  {
+    "objectID": "reglas.html#evaluación-y-entregas",
+    "href": "reglas.html#evaluación-y-entregas",
+    "title": "Reglas y acuerdos del curso",
+    "section": "Evaluación y entregas",
+    "text": "Evaluación y entregas\n\nPonderación: 40% tareas y 60% proyecto final.\nRequisito de acreditación: calificación aprobatoria obligatoria en ambos rubros.\nEspecificaciones de tareas: puntaje declarado e indicación de carril (uso o no de IA).\nMedios de entrega: únicamente por Google Classroom o GitHub, según se indique.",
+    "crumbs": [
+      "Reglas y acuerdos del curso"
     ]
   },
   {
