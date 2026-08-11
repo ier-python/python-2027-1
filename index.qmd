@@ -11,6 +11,7 @@ salidas, sus figuras y, cuando toca, sus errores instructivos.
 ## Cómo está organizado
 
 - El [temario](temario.qmd) reproduce el programa oficial de la actividad académica.
+- Las [reglas del curso](reglas.qmd) resumen los principios de trabajo, reproducibilidad y evaluación.
 - Cada **parte** corresponde a una sesión: abre con una introducción a los temas y continúa con las
   libretas de esa clase.
 - Las **tareas** aparecen al final de la parte que las genera.

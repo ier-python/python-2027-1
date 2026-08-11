@@ -1,0 +1,39 @@
+# Reglas y acuerdos del curso {.unnumbered}
+
+Principios de convivencia, comunicación, uso de Inteligencia Artificial y evaluación para el curso Proyectos de ciencia de datos con Python (UNAM).
+
+---
+
+## Convivencia y espacio libre de violencia
+
+- Tolerancia cero a la violencia de género, acoso, hostigamiento y cualquier forma de discriminación.
+- Respeto mutuo y colaboración en clase presencial, repositorios de GitHub y espacios digitales.
+- POCs y Atención institucional disponible mediante la [Defensoría UNAM](https://www.defensoria.unam.mx/).
+
+---
+
+## Comunicación 
+
+- Sin mensajes privados por ningún medio, incluidos los mensajes privados en Google Classroom.
+- Toda la comunicación, dudas y anuncios se realizan públicamente en el Chat de Google (Gmail) del curso.
+
+---
+
+## Acuerdos sobre IAGen del IER-UNAM
+
+
+
+- Ningún detector de IA es prueba única de deshonestidad académica; se requiere evidencia adicional y diálogo previo.
+- Modalidad por carril: carril abierto para apoyo en desarrollo o carril seguro sin IA para consolidar conceptos.
+- Actividades de proceso sin IA: resolución de problemas en clase presentando o explicando el código elaborado.
+- Alfabetización en IA.
+- Reconsideración de estos acuerdos si se considera necesario.
+
+---
+
+## Evaluación y entregas
+
+- Ponderación: 40% tareas y 60% proyecto final.
+- Requisito de acreditación: calificación aprobatoria obligatoria en ambos rubros.
+- Especificaciones de tareas: puntaje declarado e indicación de carril (uso o no de IA).
+- Medios de entrega: únicamente por Google Classroom o GitHub, según se indique.

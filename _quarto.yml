@@ -25,6 +25,7 @@ book:
   chapters:
     - index.qmd
     - temario.qmd
+    - reglas.qmd
 
     # ── Numeración automática: cada unidad es un capítulo numerado (1–8).
     #    Las libretas de clase se cuelgan con un part de título de texto que
