@@ -39,7 +39,7 @@ book:
     #        - clases/clase-01-introduccion/notebooks/01-entorno.ipynb   # {.unnumbered}
 
     - unidades/unidad-01.qmd
-    - clases/001_instalacion/index.qmd
+    - clases/001_hola_mundo/notebooks/001_HolaMundo.ipynb
     - unidades/unidad-02.qmd
     - unidades/unidad-03.qmd
     - unidades/unidad-04.qmd

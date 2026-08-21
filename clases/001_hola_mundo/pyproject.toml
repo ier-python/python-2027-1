@@ -1,0 +1,16 @@
+[project]
+name = "001-hola-mundo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "altamarmx", email = "gbv@ier.unam.mx" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "jupyter>=1.1.1",
+    "notebook>=7.6.2",
+]
+
+[project.scripts]
+001-hola-mundo = "001_hola_mundo:main"
