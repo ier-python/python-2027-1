@@ -280,6 +280,36 @@
     ]
   },
   {
+    "objectID": "clases/001_hola_mundo/index.html",
+    "href": "clases/001_hola_mundo/index.html",
+    "title": "Instala Python",
+    "section": "",
+    "text": "Instala uv de Astral\nEn este curso se recomienda instalar Python con miniconda. Asegurate de descargar miniconda.\nComo manejador de ambientes virtuales recomiendo instalar uv de Astral.",
+    "crumbs": [
+      "Instala Python"
+    ]
+  },
+  {
+    "objectID": "clases/001_hola_mundo/index.html#buenas-practicas",
+    "href": "clases/001_hola_mundo/index.html#buenas-practicas",
+    "title": "Instala Python",
+    "section": "Buenas practicas",
+    "text": "Buenas practicas\n\nTrabaja SIEMPRE desde tu HOME o un subdirectorio tuyo. Evita C:\\ o / raíz.\nNombres sin espacios. machine_learning &gt; Machine Learning.\ncd ~ cuando te pierdas. No busques, vuelve a casa.\nUn proyecto = una carpeta.",
+    "crumbs": [
+      "Instala Python"
+    ]
+  },
+  {
+    "objectID": "clases/001_hola_mundo/index.html#ejercicio-en-clase",
+    "href": "clases/001_hola_mundo/index.html#ejercicio-en-clase",
+    "title": "Instala Python",
+    "section": "Ejercicio en clase",
+    "text": "Ejercicio en clase\nVamos a crear una carpeta en tu home (tu carpeta personal, donde vives) que se llama curso_python/. Todo lo que hagamos durante el curso va a vivir ahí. Dentro de esa carpeta vamos a ir creando proyectos con un número delante, como 001_hola_mundo, 002_variables, 003_funciones, y así. El número nos sirve para que, cuando tengas 15 proyectos, los ves ordenados y sabes cuál fue primero y cuál fue después.\nEmpezamos con el primero: 001_hola_mundo.\n\nDesde la terminal, ya en tu home, hacemos esto:\nmkdir curso_python\ncd curso_python\nCreamos la carpeta con mkdir por que no es un proyecto de python.\nAhora estamos dentro de curso_python/. Aquí van a nacer todos los proyectos.\nPara crear el primer proyecto usamos uv init nombre_proyecto. Ten cuidado que nombre_proyecto cambie de acuerdo a lo que necesitas. uv init nos crea la estructura base: un pyproject.toml, una carpeta src/, lo justo para que Python sepa que aquí hay un proyecto.\nuv init 001_hola_mundo\nEso nos crea la carpeta 001_hola_mundo/ con lo básico. Ahora entramos:\ncd 001_hola_mundo\nYa estamos dentro. Ahora le decimos a uv que queremos Jupyter Notebook como dependencia de este proyecto. uv add hace dos cosas a la vez: descarga el paquete y lo registra en el pyproject.toml. Así, si mañana borras la carpeta virtual y la recreas, Jupyter vuelve solo.\nuv add jupyter notebook\nListo. Ya tienes:\n~/curso_python/\n  └── 001_hola_mundo/\n        ├── pyproject.toml\n        └── .venv/          (virtualenv, invisible pero existe)\nY para probar que Jupyter arranca:\nuv run jupyter notebook\nRecuerda que debes estar adentro de curso_python/001_hola_mundo.\nuv run ejecuta el comando usando la virtualenv del proyecto, sin que tengas que hacer source .venv/bin/activate antes. Se abre el navegador, creas un notebook, escribes print(\"hola\") y ya tienes tu primer proyecto funcionando.\n\nResumen de lo que hicimos, en una línea:\nmkdir → cd → uv init → cd → uv add → uv run\nCinco comandos, y tienes un proyecto aislado, numerado, con sus dependencias registradas. Cuando hagamos el 002_variables, repetimos exactamente lo mismo desde curso_python/, y todo queda ordenado sin mezclarse.",
+    "crumbs": [
+      "Instala Python"
+    ]
+  },
+  {
     "objectID": "clases/001_hola_mundo/notebooks/001_HolaMundo.html",
     "href": "clases/001_hola_mundo/notebooks/001_HolaMundo.html",
     "title": "2  Recomendaciones para aprender a usar la libreta de Jupyter.",
