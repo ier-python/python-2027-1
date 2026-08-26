@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Introducción a la visualización – Proyectos de ciencia de datos con Python</title>
+<title>6&nbsp; Introducción a la visualización – Proyectos de ciencia de datos con Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -41,10 +44,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-53d494f822f2bb84dda3bff6ea10cae2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dbb2bd84711b80ae9c8cd46c7acce907.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-04.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-04.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -151,44 +154,50 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">001_intro_variables.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-04.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -218,12 +227,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#el-paisaje-de-las-bibliotecas-de-visualización" id="toc-el-paisaje-de-las-bibliotecas-de-visualización" class="nav-link active" data-scroll-target="#el-paisaje-de-las-bibliotecas-de-visualización"><span class="header-section-number">5.1</span> El paisaje de las bibliotecas de visualización</a></li>
-  <li><a href="#anatomía-de-una-figura" id="toc-anatomía-de-una-figura" class="nav-link" data-scroll-target="#anatomía-de-una-figura"><span class="header-section-number">5.2</span> Anatomía de una figura</a></li>
-  <li><a href="#oop-en-matplotlib" id="toc-oop-en-matplotlib" class="nav-link" data-scroll-target="#oop-en-matplotlib"><span class="header-section-number">5.3</span> OOP en matplotlib</a></li>
-  <li><a href="#esquemas-complejos-con-specgrid" id="toc-esquemas-complejos-con-specgrid" class="nav-link" data-scroll-target="#esquemas-complejos-con-specgrid"><span class="header-section-number">5.4</span> Esquemas complejos con specgrid</a></li>
-  <li><a href="#formatos-para-figura" id="toc-formatos-para-figura" class="nav-link" data-scroll-target="#formatos-para-figura"><span class="header-section-number">5.5</span> Formatos para figura</a></li>
-  <li><a href="#la-misma-figura-en-plotly" id="toc-la-misma-figura-en-plotly" class="nav-link" data-scroll-target="#la-misma-figura-en-plotly"><span class="header-section-number">5.6</span> La misma figura, en plotly</a></li>
+  <li><a href="#el-paisaje-de-las-bibliotecas-de-visualización" id="toc-el-paisaje-de-las-bibliotecas-de-visualización" class="nav-link active" data-scroll-target="#el-paisaje-de-las-bibliotecas-de-visualización"><span class="header-section-number">6.1</span> El paisaje de las bibliotecas de visualización</a></li>
+  <li><a href="#anatomía-de-una-figura" id="toc-anatomía-de-una-figura" class="nav-link" data-scroll-target="#anatomía-de-una-figura"><span class="header-section-number">6.2</span> Anatomía de una figura</a></li>
+  <li><a href="#oop-en-matplotlib" id="toc-oop-en-matplotlib" class="nav-link" data-scroll-target="#oop-en-matplotlib"><span class="header-section-number">6.3</span> OOP en matplotlib</a></li>
+  <li><a href="#esquemas-complejos-con-specgrid" id="toc-esquemas-complejos-con-specgrid" class="nav-link" data-scroll-target="#esquemas-complejos-con-specgrid"><span class="header-section-number">6.4</span> Esquemas complejos con specgrid</a></li>
+  <li><a href="#formatos-para-figura" id="toc-formatos-para-figura" class="nav-link" data-scroll-target="#formatos-para-figura"><span class="header-section-number">6.5</span> Formatos para figura</a></li>
+  <li><a href="#la-misma-figura-en-plotly" id="toc-la-misma-figura-en-plotly" class="nav-link" data-scroll-target="#la-misma-figura-en-plotly"><span class="header-section-number">6.6</span> La misma figura, en plotly</a></li>
   <li><a href="#ejercicios-sugeridos" id="toc-ejercicios-sugeridos" class="nav-link" data-scroll-target="#ejercicios-sugeridos">Ejercicios sugeridos</a></li>
   <li><a href="#al-terminar-la-unidad" id="toc-al-terminar-la-unidad" class="nav-link" data-scroll-target="#al-terminar-la-unidad">Al terminar la unidad</a></li>
   </ul>
@@ -234,7 +243,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></h1>
 </div>
 
 
@@ -265,8 +274,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Objetivo.</strong> Que cada estudiante produzca figuras con calidad de tesis: elegir el tipo de gráfica según la pregunta, construirla con la API de objetos de matplotlib, componer paneles, y exportarla lista para LaTeX sin retoques posteriores — sabiendo además cuándo conviene explorar con plotly y por qué se publica con matplotlib.</p>
 </blockquote>
 <p><strong>8 h en el programa oficial</strong> · <a href="../temario.html#unidad-4">Unidad 4 del temario</a></p>
-<section id="el-paisaje-de-las-bibliotecas-de-visualización" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="el-paisaje-de-las-bibliotecas-de-visualización"><span class="header-section-number">5.1</span> El paisaje de las bibliotecas de visualización</h2>
+<section id="el-paisaje-de-las-bibliotecas-de-visualización" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="el-paisaje-de-las-bibliotecas-de-visualización"><span class="header-section-number">6.1</span> El paisaje de las bibliotecas de visualización</h2>
 <ol type="1">
 <li>El ecosistema de graficadores de Python: matplotlib, seaborn, plotly, altair, bokeh y más — muchos nombres, un mapa para no perderse.</li>
 <li>El mapa son capas: <code>df.plot()</code> y seaborn le hablan a matplotlib por ti — por eso nunca lo importamos en la Unidad 3.</li>
@@ -275,16 +284,16 @@ ul.task-list li input[type="checkbox"] {
 <li>La revelación: <code>df.plot()</code> devuelve un <code>Axes</code> de matplotlib — personalizar la figura de pandas es empezar a usar matplotlib.</li>
 </ol>
 </section>
-<section id="anatomía-de-una-figura" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="anatomía-de-una-figura"><span class="header-section-number">5.2</span> Anatomía de una figura</h2>
+<section id="anatomía-de-una-figura" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="anatomía-de-una-figura"><span class="header-section-number">6.2</span> Anatomía de una figura</h2>
 <ol type="1">
 <li><code>Figure</code>, <code>Axes</code>, <code>Axis</code>: el lienzo, la gráfica y los ejes — cada elemento con su nombre.</li>
 <li>Los elementos con los que se habla: título, etiquetas de ejes, leyenda, <em>ticks</em>, rejilla, colores y estilos de línea.</li>
 <li>La figura que se explica sola: ejes con unidades, título que dice el hallazgo, leyenda cuando hay más de una serie, fechas legibles — las reglas de nombres de la Unidad 1, ahora en tinta.</li>
 </ol>
 </section>
-<section id="oop-en-matplotlib" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="oop-en-matplotlib"><span class="header-section-number">5.3</span> OOP en matplotlib</h2>
+<section id="oop-en-matplotlib" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="oop-en-matplotlib"><span class="header-section-number">6.3</span> OOP en matplotlib</h2>
 <ol type="1">
 <li>Las dos APIs: <code>plt.plot()</code> (la máquina de estados de los tutoriales y de ChatGPT) frente a <code>fig, ax = plt.subplots()</code> (la de objetos, el estándar del curso) — nombrarlas para no mezclarlas.</li>
 <li>El patrón del curso: <code>fig, ax = plt.subplots()</code>; el <code>Axes</code> como el objeto al que se le pide todo — <code>objeto.método()</code>, otra vez.</li>
@@ -295,8 +304,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Series densas: miles de puntos minutales piden <code>alpha</code> para que la nube respire y <code>markevery</code> para no sembrar marcadores.</li>
 </ol>
 </section>
-<section id="esquemas-complejos-con-specgrid" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="esquemas-complejos-con-specgrid"><span class="header-section-number">5.4</span> Esquemas complejos con specgrid</h2>
+<section id="esquemas-complejos-con-specgrid" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="esquemas-complejos-con-specgrid"><span class="header-section-number">6.4</span> Esquemas complejos con specgrid</h2>
 <ol type="1">
 <li>Varios <code>Axes</code> en una <code>Figure</code> con el mismo <code>plt.subplots(nrows, ncols)</code> de siempre; <code>sharex</code> para series que comparten el tiempo, <code>sharey</code> para paneles que se comparan en la misma escala.</li>
 <li><code>GridSpec</code>: paneles de tamaños distintos — la serie principal con su histograma marginal.</li>
@@ -304,8 +313,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Composición con criterio: cuándo superponer, cuándo separar paneles, cuándo hacer dos figuras.</li>
 </ol>
 </section>
-<section id="formatos-para-figura" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="formatos-para-figura"><span class="header-section-number">5.5</span> Formatos para figura</h2>
+<section id="formatos-para-figura" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="formatos-para-figura"><span class="header-section-number">6.5</span> Formatos para figura</h2>
 <ol type="1">
 <li><code>figures/</code> se une al proyecto: las figuras se regeneran desde la libreta, nunca se editan a mano; nombres que dicen qué muestran.</li>
 <li><code>savefig</code>: PNG (píxeles y <code>dpi</code>) frente a PDF/SVG (vectores) — cuál para la tesis, cuál para la presentación, cuál para la web.</li>
@@ -313,8 +322,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Matemáticas en las etiquetas: <em>mathtext</em> para <code>$W/m^2$</code> en cualquier máquina; <code>usetex</code> cuando la tesis exige la tipografía de LaTeX.</li>
 </ol>
 </section>
-<section id="la-misma-figura-en-plotly" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="la-misma-figura-en-plotly"><span class="header-section-number">5.6</span> La misma figura, en plotly</h2>
+<section id="la-misma-figura-en-plotly" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="la-misma-figura-en-plotly"><span class="header-section-number">6.6</span> La misma figura, en plotly</h2>
 <ol type="1">
 <li>Rehacer la figura final de la unidad en plotly: zoom, <em>hover</em>, exploración sin costo.</li>
 <li>El precio: cada punto viaja dentro del archivo — HTML y libretas que engordan con datos de alta frecuencia; y nada de mathtext ni PDF a la medida para la tesis.</li>
@@ -758,12 +767,12 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../unidades/unidad-03.html" class="pagination-link" aria-label="Importación y limpieza de datos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../unidades/unidad-05.html" class="pagination-link" aria-label="NumPy">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">NumPy</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">NumPy</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

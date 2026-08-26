@@ -320,573 +320,583 @@
     ]
   },
   {
+    "objectID": "clases/002_variables/001_intro_variables.html",
+    "href": "clases/002_variables/001_intro_variables.html",
+    "title": "Proyectos de ciencia de datos con Python",
+    "section": "",
+    "text": "entero = 1\nflotante = 1.01\ncomplejo =  3 + 5j\ncadena = \"nombre\"\ncadena_numero = \"1\"\ncadena_espacios = \"nombre1 nombre2\"\ncadena_separador = 'tambien es cadena'\ncadena_contraccion = \"it's true\"\ncadena_contraccion\nlista = [1, 2.3, 3.+4j, \"hola\",'hola otra vez', entero]\ntupla = (1,2,3.45,\"hola\")\ndiccionario = {\"llave\":\"valor\"}\nficha_diccionario = {\"nombre\":\"Memo\",\"materno\":\"del valle\",\"edad\":48}\n\n\nficha_diccionario[\"materno\"]\n\n'del valle'\n\n\n\nficha_diccionario.keys()\n\ndict_keys(['nombre', 'materno', 'edad'])\n\n\n\nficha_diccionario.values()\n\ndict_values(['Memo', 'del valle', 48])\n\n\n\ntype(ficha_diccionario)\n\ndict\n\n\n\nlista[2] = \"hola\"\nlista\n\n[1, 2.3, 'hola', 'hola', 'hola otra vez', 1]\n\n\n\ntupla[3] = \"adios\"\n\n\n---------------------------------------------------------------------------\nTypeError                                 Traceback (most recent call last)\nCell In[25], line 1\n----&gt; 1 tupla[3] = \"adios\"\n\nTypeError: 'tuple' object does not support item assignment\n\n\n\n\nfrase = \"hhhhhola mundo\"\n\n\nfrase.capitalize()\n\n'Hola mundo'\n\n\n\nfrase\n\n'hola mundo'\n\n\n\nfrase.count(\"ho\")\n\n1\n\n\n\nlen(frase)\n\n14\n\n\n\nlen(lista)\n\n6\n\n\n\nfrase\n\n'hhhhhola mundo'\n\n\n\nfrase.split(\" \")\n\n['hhhhhola', 'mundo']\n\n\n\nfrase\n\n'hhhhhola mundo'\n\n\n\nfrase.replace(\"hhhho\",\"hi\")\n\n'hhila mundo'\n\n\n\nfrase\n\n'hhhhhola mundo'",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>001_intro_variables.html</span>"
+    ]
+  },
+  {
     "objectID": "unidades/unidad-02.html",
     "href": "unidades/unidad-02.html",
-    "title": "3  Sintaxis, herramientas de control y métodos de Python",
+    "title": "4  Sintaxis, herramientas de control y métodos de Python",
     "section": "",
-    "text": "3.1 Sintaxis, tipos de variables, iterables\n6 h en el programa oficial · Unidad 2 del temario",
+    "text": "4.1 Sintaxis, tipos de variables, iterables\n6 h en el programa oficial · Unidad 2 del temario",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-02.html#sintaxis-tipos-de-variables-iterables",
     "href": "unidades/unidad-02.html#sintaxis-tipos-de-variables-iterables",
-    "title": "3  Sintaxis, herramientas de control y métodos de Python",
+    "title": "4  Sintaxis, herramientas de control y métodos de Python",
     "section": "",
     "text": "La celda como unidad de ejecución: expresiones, asignación, comentarios.\nAnatomía del error: el traceback se lee de abajo hacia arriba y la última línea dice el tipo; los cinco sospechosos habituales (NameError, TypeError, KeyError, FileNotFoundError, ModuleNotFoundError).\nEl eco de la celda y print(): la libreta muestra la última expresión sin pedirlo; print es para todo lo demás.\nTipos básicos: int, float, complex, str, bool, None; type() y conversiones entre tipos.\nColecciones: listas, tuplas, diccionarios y conjuntos — qué dato pide cuál.\nDesempaquetado de tuplas: a, b = pareja — el gesto que el curso repetirá en fig, ax y en enumerate.\nIterables sin escribir ciclos: indexado, rebanadas, len, in, sum, min, max, sorted.\nMutabilidad y el patrón objeto.método(): lista.append() como primer método; atributo sin paréntesis (un dato que se consulta) frente a método con paréntesis (una acción que se ejecuta); qué se modifica en el lugar y qué se reemplaza.\nAsignar no copia: b = a no crea una lista nueva — dos nombres, un solo objeto; el susto que volverá en NumPy y en pandas, anunciado desde ahora.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-02.html#estructuras-de-control",
     "href": "unidades/unidad-02.html#estructuras-de-control",
-    "title": "3  Sintaxis, herramientas de control y métodos de Python",
-    "section": "3.2 Estructuras de control",
-    "text": "3.2 Estructuras de control\n\nLa sangría como sintaxis: el bloque es lo que está indentado.\nif / elif / else: comparaciones, operadores lógicos, decisiones sobre datos.\nfor sobre un iterable: recorrer listas y diccionarios (.items()); range, enumerate y zip.\nwhile: repetir hasta que algo cambie; por qué en datos casi siempre gana for.\nList comprehensions: el ciclo que produce una colección nueva.",
+    "title": "4  Sintaxis, herramientas de control y métodos de Python",
+    "section": "4.2 Estructuras de control",
+    "text": "4.2 Estructuras de control\n\nLa sangría como sintaxis: el bloque es lo que está indentado.\nif / elif / else: comparaciones, operadores lógicos, decisiones sobre datos.\nfor sobre un iterable: recorrer listas y diccionarios (.items()); range, enumerate y zip.\nwhile: repetir hasta que algo cambie; por qué en datos casi siempre gana for.\nList comprehensions: el ciclo que produce una colección nueva.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-02.html#cadenas-en-python",
     "href": "unidades/unidad-02.html#cadenas-en-python",
-    "title": "3  Sintaxis, herramientas de control y métodos de Python",
-    "section": "3.3 Cadenas en Python",
-    "text": "3.3 Cadenas en Python\n\nLa cadena de 2.1, ahora de cerca: no es un escalar, es un iterable de caracteres; indexado y rebanadas, otra vez.\nComillas simples y dobles: son equivalentes; elegir una por consistencia, la otra queda para anidar (\"it's\").\nInmutabilidad: los métodos devuelven cadenas nuevas.\nMétodos de limpieza: lower, strip, replace, split, join — antesala de la limpieza de datos de la Unidad 3.\nCadenas que son datos: encabezados de columnas, categorías, rutas de archivos.",
+    "title": "4  Sintaxis, herramientas de control y métodos de Python",
+    "section": "4.3 Cadenas en Python",
+    "text": "4.3 Cadenas en Python\n\nLa cadena de 2.1, ahora de cerca: no es un escalar, es un iterable de caracteres; indexado y rebanadas, otra vez.\nComillas simples y dobles: son equivalentes; elegir una por consistencia, la otra queda para anidar (\"it's\").\nInmutabilidad: los métodos devuelven cadenas nuevas.\nMétodos de limpieza: lower, strip, replace, split, join — antesala de la limpieza de datos de la Unidad 3.\nCadenas que son datos: encabezados de columnas, categorías, rutas de archivos.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-02.html#f-strings",
     "href": "unidades/unidad-02.html#f-strings",
-    "title": "3  Sintaxis, herramientas de control y métodos de Python",
-    "section": "3.4 f-strings",
-    "text": "3.4 f-strings\n\nString interpolation: f'El valor es: {variable}' — variables y expresiones dentro del texto.\nFormato de números: decimales, separadores de miles, notación científica.\nResultados que se explican solos: cifras con sus unidades y fechas en formato ISO.\nConstruir nombres de archivos y rutas con f-strings.",
+    "title": "4  Sintaxis, herramientas de control y métodos de Python",
+    "section": "4.4 f-strings",
+    "text": "4.4 f-strings\n\nString interpolation: f'El valor es: {variable}' — variables y expresiones dentro del texto.\nFormato de números: decimales, separadores de miles, notación científica.\nResultados que se explican solos: cifras con sus unidades y fechas en formato ISO.\nConstruir nombres de archivos y rutas con f-strings.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-02.html#funciones",
     "href": "unidades/unidad-02.html#funciones",
-    "title": "3  Sintaxis, herramientas de control y métodos de Python",
-    "section": "3.5 Funciones",
-    "text": "3.5 Funciones\n\ndef, parámetros y return: de la celda repetida a la función.\nArgumentos con nombre y valores por defecto.\nDocstrings: qué recibe, qué devuelve, en qué unidades.\nÁmbito de las variables: lo que vive dentro de la función se queda dentro.\nFunciones en la libreta: definir arriba, usar abajo, sin romper la lectura.",
+    "title": "4  Sintaxis, herramientas de control y métodos de Python",
+    "section": "4.5 Funciones",
+    "text": "4.5 Funciones\n\ndef, parámetros y return: de la celda repetida a la función.\nArgumentos con nombre y valores por defecto.\nDocstrings: qué recibe, qué devuelve, en qué unidades.\nÁmbito de las variables: lo que vive dentro de la función se queda dentro.\nFunciones en la libreta: definir arriba, usar abajo, sin romper la lectura.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-02.html#ejercicios-sugeridos",
     "href": "unidades/unidad-02.html#ejercicios-sugeridos",
-    "title": "3  Sintaxis, herramientas de control y métodos de Python",
+    "title": "4  Sintaxis, herramientas de control y métodos de Python",
     "section": "Ejercicios sugeridos",
     "text": "Ejercicios sugeridos\n\nDado un conjunto de mediciones en una lista, responder preguntas (máximo, mínimo, promedio, cuántas superan un umbral) usando solo funciones integradas, sin escribir un solo ciclo.\nProvocar a propósito los cinco errores clásicos, y escribir en Markdown qué dice la última línea de cada traceback y qué lo causó.\nElegir la colección correcta —lista, tupla, diccionario o conjunto— para cinco datos reales del área de cada estudiante, y defender la elección.\nRepetir el ejercicio 1 con un for, y comparar ambas versiones: cuándo bastan las funciones integradas y cuándo hace falta el ciclo.\nClasificar una serie de valores en categorías con if / elif / else dentro de un ciclo.\nReescribir un ciclo for de tres líneas como list comprehension, y una list comprehension ilegible como ciclo de tres líneas.\nLimpiar una lista de encabezados de columna sucios (mayúsculas, espacios, acentos) usando métodos de cadenas, hasta dejarlos en snake_case.\nProducir un reporte de resultados con f-strings: cifras con dos decimales, unidades explícitas y fecha en formato ISO.\nGenerar nombres de archivos de salida con f-strings a partir de una fecha y una variable.\nExtraer una función a partir de dos celdas casi idénticas de una libreta, con docstring y valores por defecto.\nIntercambiar funciones por parejas: usar la función del compañero leyendo solo su docstring, sin mirar el código.\nEjercicio integrador: representar un conjunto pequeño de mediciones (fecha, valor, sensor) como diccionario de listas, y responder preguntas usando toda la unidad — ciclos, condicionales, funciones y f-strings. El dolor que quede es exactamente el que la Unidad 3 viene a quitar.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-02.html#al-terminar-la-unidad",
     "href": "unidades/unidad-02.html#al-terminar-la-unidad",
-    "title": "3  Sintaxis, herramientas de control y métodos de Python",
+    "title": "4  Sintaxis, herramientas de control y métodos de Python",
     "section": "Al terminar la unidad",
     "text": "Al terminar la unidad\n\nElegir la colección adecuada para un dato y explicar por qué.\nInterrogar un iterable con funciones integradas antes de escribir un ciclo.\nRecorrer listas y diccionarios con for, y decidir cuándo un while se justifica.\nLimpiar texto con métodos de cadenas y reconocer que las cadenas son datos.\nReportar resultados con f-strings: números formateados, unidades y fechas ISO.\nConvertir código repetido en una función con docstring que otra persona pueda usar sin leerla por dentro.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sintaxis, herramientas de control y métodos de Python</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-03.html",
     "href": "unidades/unidad-03.html",
-    "title": "4  Importación y limpieza de datos",
+    "title": "5  Importación y limpieza de datos",
     "section": "",
-    "text": "4.1 Módulos e import\n10 h en el programa oficial · Unidad 3 del temario",
+    "text": "5.1 Módulos e import\n10 h en el programa oficial · Unidad 3 del temario",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-03.html#módulos-e-import",
     "href": "unidades/unidad-03.html#módulos-e-import",
-    "title": "4  Importación y limpieza de datos",
+    "title": "5  Importación y limpieza de datos",
     "section": "",
     "text": "Recordatorio: los paquetes se instalan en el proyecto con uv add, nunca con pip desde la libreta — instalar no es importar.\nimport y su sintaxis: import math, from math import sqrt, el alias as. La biblioteca estándar: math, datetime, glob y compañía — instaladas desde siempre, importadas cuando hacen falta.\nLa línea que abre la unidad: import pandas as pd.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-03.html#pair-wise-data",
     "href": "unidades/unidad-03.html#pair-wise-data",
-    "title": "4  Importación y limpieza de datos",
-    "section": "4.2 Pair wise data",
-    "text": "4.2 Pair wise data\n\nDel diccionario de listas al DataFrame: la tabla del ejercicio integrador ya tenía nombre.\npd.read_csv: el primer archivo real; la ruta relativa hasta data/raw.\nAnatomía del DataFrame: índice, columnas, dtypes; head, info, describe — mirar antes de tocar.\nCada columna es una Serie; seleccionar columnas, filas y celdas con [], loc, iloc.\nPair wise data: observaciones apareadas (x, y); filtros booleanos para quedarse con las filas que cumplen algo — y .copy() cuando el resultado va a modificarse, para que el SettingWithCopyWarning no sorprenda.\nOperaciones vectorizadas: columnas nuevas a partir de las existentes, sin escribir un solo for.\nFontanería mínima: rename, sort_values, set_index / reset_index, drop — y df.columns a snake_case, el ejercicio de la Unidad 2 cobrado.",
+    "title": "5  Importación y limpieza de datos",
+    "section": "5.2 Pair wise data",
+    "text": "5.2 Pair wise data\n\nDel diccionario de listas al DataFrame: la tabla del ejercicio integrador ya tenía nombre.\npd.read_csv: el primer archivo real; la ruta relativa hasta data/raw.\nAnatomía del DataFrame: índice, columnas, dtypes; head, info, describe — mirar antes de tocar.\nCada columna es una Serie; seleccionar columnas, filas y celdas con [], loc, iloc.\nPair wise data: observaciones apareadas (x, y); filtros booleanos para quedarse con las filas que cumplen algo — y .copy() cuando el resultado va a modificarse, para que el SettingWithCopyWarning no sorprenda.\nOperaciones vectorizadas: columnas nuevas a partir de las existentes, sin escribir un solo for.\nFontanería mínima: rename, sort_values, set_index / reset_index, drop — y df.columns a snake_case, el ejercicio de la Unidad 2 cobrado.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-03.html#series-temporales",
     "href": "unidades/unidad-03.html#series-temporales",
-    "title": "4  Importación y limpieza de datos",
-    "section": "4.3 Series temporales",
-    "text": "4.3 Series temporales\n\nLa fecha como dato, no como texto: pd.to_datetime; las fechas ISO de la Unidad 1 pagan aquí.\nEl módulo datetime por dentro: strptime / strftime y los códigos de formato (%Y-%m-%d %H:%M), timedelta — el idioma que to_datetime y su format= hablan.\nEl índice temporal: leer con parse_dates, poner el tiempo como índice del DataFrame.\nLos accesores .dt y los atributos del DatetimeIndex: .year, .month, .hour, .dayofweek — cada estampa sabe contestar quién es; el insumo de los grupos de la Unidad 7.\nSeleccionar por fecha y por rango: el índice temporal como herramienta de rebanado.\ndf.plot(), la primera mirada gráfica: revisar rápido sin pelear con ejes — la visualización de verdad llega en la Unidad 4.\nQué hace especial a una serie temporal: orden, frecuencia esperada, huecos — y cómo un plot los delata (el zigzag del índice desordenado; sort_index).\nCambiar de frecuencia: df.resample('D').mean(), de minutos a días en una línea — primer contacto con una idea (agrupar y resumir) que la Unidad 7 desarrolla a fondo.",
+    "title": "5  Importación y limpieza de datos",
+    "section": "5.3 Series temporales",
+    "text": "5.3 Series temporales\n\nLa fecha como dato, no como texto: pd.to_datetime; las fechas ISO de la Unidad 1 pagan aquí.\nEl módulo datetime por dentro: strptime / strftime y los códigos de formato (%Y-%m-%d %H:%M), timedelta — el idioma que to_datetime y su format= hablan.\nEl índice temporal: leer con parse_dates, poner el tiempo como índice del DataFrame.\nLos accesores .dt y los atributos del DatetimeIndex: .year, .month, .hour, .dayofweek — cada estampa sabe contestar quién es; el insumo de los grupos de la Unidad 7.\nSeleccionar por fecha y por rango: el índice temporal como herramienta de rebanado.\ndf.plot(), la primera mirada gráfica: revisar rápido sin pelear con ejes — la visualización de verdad llega en la Unidad 4.\nQué hace especial a una serie temporal: orden, frecuencia esperada, huecos — y cómo un plot los delata (el zigzag del índice desordenado; sort_index).\nCambiar de frecuencia: df.resample('D').mean(), de minutos a días en una línea — primer contacto con una idea (agrupar y resumir) que la Unidad 7 desarrolla a fondo.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-03.html#data-cleaning",
     "href": "unidades/unidad-03.html#data-cleaning",
-    "title": "4  Importación y limpieza de datos",
-    "section": "4.4 Data cleaning",
-    "text": "4.4 Data cleaning\n\nArchivos que no se dejan leer: encabezados corridos, líneas de más, separadores raros — la limpieza empieza en las opciones de pd.read_csv (skiprows, header, sep, decimal, encoding). CSV, TXT y EPW son el mismo animal: texto con separador, y read_csv los lee todos. Antes de pelear, mirar el crudo: abrirlo en el editor o head en la terminal.\nNo todo es texto: read_excel para los .xlsx — sheet_name y skiprows, la misma gramática de opciones sobre otro formato.\nCómo vienen los NaN: -999, N/A, --, celdas vacías; declararlos con na_values desde la importación. El None de la Unidad 2, con nombre nuevo.\nDiagnóstico antes de cirugía: isna, value_counts, duplicated y un df.plot() rápido — cuantificar y ver lo que la importación no resolvió.\nNúmeros que llegaron como texto: los métodos de cadenas cosechan (strip, replace) y astype convierte.\nFechas que no son fechas: p. m. en lugar de PM, formatos locales; arreglar el texto antes de to_datetime, o declararle el format.\nDuplicados y valores imposibles: filtros booleanos para descartar lo que ningún sensor pudo medir.\nLa rejilla esperada: pd.date_range y reindex — comparar el tiempo que llegó contra el que debió llegar; .diff() sobre el índice censa los huecos.\nHuecos en el tiempo: detectarlos, y decidir — rellenar, interpolar o dejar el hueco (fillna, interpolate, dropna); cada opción es una decisión que se declara, no se esconde.\nGuardar en data/processed: to_csv para compartir, to_parquet para trabajar — el CSV olvida los tipos (las fechas vuelven como texto), parquet los recuerda; limpiar una vez, no cada vez. Requiere uv add pyarrow: la Unidad 1 en acción.",
+    "title": "5  Importación y limpieza de datos",
+    "section": "5.4 Data cleaning",
+    "text": "5.4 Data cleaning\n\nArchivos que no se dejan leer: encabezados corridos, líneas de más, separadores raros — la limpieza empieza en las opciones de pd.read_csv (skiprows, header, sep, decimal, encoding). CSV, TXT y EPW son el mismo animal: texto con separador, y read_csv los lee todos. Antes de pelear, mirar el crudo: abrirlo en el editor o head en la terminal.\nNo todo es texto: read_excel para los .xlsx — sheet_name y skiprows, la misma gramática de opciones sobre otro formato.\nCómo vienen los NaN: -999, N/A, --, celdas vacías; declararlos con na_values desde la importación. El None de la Unidad 2, con nombre nuevo.\nDiagnóstico antes de cirugía: isna, value_counts, duplicated y un df.plot() rápido — cuantificar y ver lo que la importación no resolvió.\nNúmeros que llegaron como texto: los métodos de cadenas cosechan (strip, replace) y astype convierte.\nFechas que no son fechas: p. m. en lugar de PM, formatos locales; arreglar el texto antes de to_datetime, o declararle el format.\nDuplicados y valores imposibles: filtros booleanos para descartar lo que ningún sensor pudo medir.\nLa rejilla esperada: pd.date_range y reindex — comparar el tiempo que llegó contra el que debió llegar; .diff() sobre el índice censa los huecos.\nHuecos en el tiempo: detectarlos, y decidir — rellenar, interpolar o dejar el hueco (fillna, interpolate, dropna); cada opción es una decisión que se declara, no se esconde.\nGuardar en data/processed: to_csv para compartir, to_parquet para trabajar — el CSV olvida los tipos (las fechas vuelven como texto), parquet los recuerda; limpiar una vez, no cada vez. Requiere uv add pyarrow: la Unidad 1 en acción.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-03.html#importación-de-múltiples-archivos",
     "href": "unidades/unidad-03.html#importación-de-múltiples-archivos",
-    "title": "4  Importación y limpieza de datos",
-    "section": "4.5 Importación de múltiples archivos",
-    "text": "4.5 Importación de múltiples archivos\n\nEl escenario real: un archivo por día, por mes o por sensor — nadie te da la tabla completa.\nglob: patrones para listar archivos desde Python.\nLeer en ciclo, acumular en una lista (append, otra vez) y unir con pd.concat; un try / except mínimo salva el ciclo del archivo corrupto.\nUnir a lo ancho: concat(axis=1) para sensores que comparten el tiempo, merge para pegar metadatos de estación — la unión vertical tiene hermanas.\nVerificar el consolidado: tamaño esperado, duplicados en las uniones, continuidad temporal.\nLos datos no siempre viven en tu disco: read_csv también acepta una URL — un archivo publicado en la red (Conagua) se lee con la misma línea.\nCerrar el flujo: de muchos crudos a un solo archivo limpio en data/processed.",
+    "title": "5  Importación y limpieza de datos",
+    "section": "5.5 Importación de múltiples archivos",
+    "text": "5.5 Importación de múltiples archivos\n\nEl escenario real: un archivo por día, por mes o por sensor — nadie te da la tabla completa.\nglob: patrones para listar archivos desde Python.\nLeer en ciclo, acumular en una lista (append, otra vez) y unir con pd.concat; un try / except mínimo salva el ciclo del archivo corrupto.\nUnir a lo ancho: concat(axis=1) para sensores que comparten el tiempo, merge para pegar metadatos de estación — la unión vertical tiene hermanas.\nVerificar el consolidado: tamaño esperado, duplicados en las uniones, continuidad temporal.\nLos datos no siempre viven en tu disco: read_csv también acepta una URL — un archivo publicado en la red (Conagua) se lee con la misma línea.\nCerrar el flujo: de muchos crudos a un solo archivo limpio en data/processed.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-03.html#ejercicios-sugeridos",
     "href": "unidades/unidad-03.html#ejercicios-sugeridos",
-    "title": "4  Importación y limpieza de datos",
+    "title": "5  Importación y limpieza de datos",
     "section": "Ejercicios sugeridos",
     "text": "Ejercicios sugeridos\n\nConvertir el diccionario de listas del ejercicio integrador de la Unidad 2 en un DataFrame, y responder las mismas preguntas — ahora en una línea cada una.\nLeer un CSV de data/raw y producir su ficha en Markdown: cuántas filas, qué columnas, qué tipos, cuántos huecos.\nQuedarse con las filas que cumplen dos condiciones a la vez, usando filtros booleanos.\nCrear una columna nueva a partir de otras (una conversión de unidades) sin escribir un ciclo.\nLeer un archivo cuyas fechas llegaron como texto, convertirlas, ponerlas como índice, rebanar una semana concreta y graficarla con df.plot().\nDiagnosticar con df.plot() un archivo que “se ve bien” con head(): descubrir el índice desordenado por el zigzag de la gráfica, y corregirlo con sort_index.\nImportar un archivo hostil: el encabezado en la fila 5, -999 como dato faltante y fechas con p. m.; resolver todo lo posible desde read_csv y el resto antes de to_datetime.\nLimpiar una columna numérica que llegó como texto: espacios, unidades pegadas al número, comas decimales; terminar con astype.\nDetectar los valores que ningún sensor pudo medir, descartarlos, y documentar en Markdown cuántos fueron y con qué criterio.\nEncontrar los huecos de una serie temporal y comparar tres tratamientos: rellenar, interpolar y dejar el hueco. Argumentar cuál conviene y por qué.\nEl viaje redondo: guardar un DataFrame limpio en CSV y en parquet, releer ambos, y comparar qué sobrevivió — tipos, índice temporal, NaN — y qué hay que volver a arreglar.\nConsolidar con glob y pd.concat una carpeta con un archivo por mes, y verificar el resultado: tamaño esperado, sin duplicados, sin saltos de tiempo.\nFlujo completo por parejas: entregar al compañero una carpeta de crudos sucios y recibir de vuelta un data/processed con la libreta que lo produce, corriendo de arriba abajo.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-03.html#al-terminar-la-unidad",
     "href": "unidades/unidad-03.html#al-terminar-la-unidad",
-    "title": "4  Importación y limpieza de datos",
+    "title": "5  Importación y limpieza de datos",
     "section": "Al terminar la unidad",
     "text": "Al terminar la unidad\n\nExplicar qué es un DataFrame y qué relación tiene con el diccionario de listas y con la Serie.\nImportar archivos que no vienen fáciles — encabezados corridos, NaN disfrazados, fechas en formato local — resolviendo desde las opciones de read_csv lo que se pueda.\nDiagnosticar un archivo real — filas, tipos, huecos, duplicados — antes de tocarlo.\nSeleccionar filas y columnas con [], loc, iloc y filtros booleanos, y crear columnas nuevas sin ciclos.\nPoner el tiempo como índice, rebanar un DataFrame por fechas y rangos, y darle la primera mirada con df.plot().\nLimpiar un dataset declarando cada decisión: qué se descartó, qué se rellenó y con qué criterio.\nConsolidar una carpeta de archivos crudos en un solo archivo limpio en data/processed, con una libreta reproducible, y elegir el formato con criterio: CSV para compartir, parquet para trabajar.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Importación y limpieza de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html",
     "href": "unidades/unidad-04.html",
-    "title": "5  Introducción a la visualización",
+    "title": "6  Introducción a la visualización",
     "section": "",
-    "text": "5.1 El paisaje de las bibliotecas de visualización\n8 h en el programa oficial · Unidad 4 del temario",
+    "text": "6.1 El paisaje de las bibliotecas de visualización\n8 h en el programa oficial · Unidad 4 del temario",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html#el-paisaje-de-las-bibliotecas-de-visualización",
     "href": "unidades/unidad-04.html#el-paisaje-de-las-bibliotecas-de-visualización",
-    "title": "5  Introducción a la visualización",
+    "title": "6  Introducción a la visualización",
     "section": "",
     "text": "El ecosistema de graficadores de Python: matplotlib, seaborn, plotly, altair, bokeh y más — muchos nombres, un mapa para no perderse.\nEl mapa son capas: df.plot() y seaborn le hablan a matplotlib por ti — por eso nunca lo importamos en la Unidad 3.\nLos paradigmas distintos: plotly (interactivo), altair (declarativo) — saber que existen y cuándo buscarlos.\nPor qué el curso se enfoca en matplotlib: es el fondo común de casi todo, y el control fino que una tesis exige.\nLa revelación: df.plot() devuelve un Axes de matplotlib — personalizar la figura de pandas es empezar a usar matplotlib.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html#anatomía-de-una-figura",
     "href": "unidades/unidad-04.html#anatomía-de-una-figura",
-    "title": "5  Introducción a la visualización",
-    "section": "5.2 Anatomía de una figura",
-    "text": "5.2 Anatomía de una figura\n\nFigure, Axes, Axis: el lienzo, la gráfica y los ejes — cada elemento con su nombre.\nLos elementos con los que se habla: título, etiquetas de ejes, leyenda, ticks, rejilla, colores y estilos de línea.\nLa figura que se explica sola: ejes con unidades, título que dice el hallazgo, leyenda cuando hay más de una serie, fechas legibles — las reglas de nombres de la Unidad 1, ahora en tinta.",
+    "title": "6  Introducción a la visualización",
+    "section": "6.2 Anatomía de una figura",
+    "text": "6.2 Anatomía de una figura\n\nFigure, Axes, Axis: el lienzo, la gráfica y los ejes — cada elemento con su nombre.\nLos elementos con los que se habla: título, etiquetas de ejes, leyenda, ticks, rejilla, colores y estilos de línea.\nLa figura que se explica sola: ejes con unidades, título que dice el hallazgo, leyenda cuando hay más de una serie, fechas legibles — las reglas de nombres de la Unidad 1, ahora en tinta.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html#oop-en-matplotlib",
     "href": "unidades/unidad-04.html#oop-en-matplotlib",
-    "title": "5  Introducción a la visualización",
-    "section": "5.3 OOP en matplotlib",
-    "text": "5.3 OOP en matplotlib\n\nLas dos APIs: plt.plot() (la máquina de estados de los tutoriales y de ChatGPT) frente a fig, ax = plt.subplots() (la de objetos, el estándar del curso) — nombrarlas para no mezclarlas.\nEl patrón del curso: fig, ax = plt.subplots(); el Axes como el objeto al que se le pide todo — objeto.método(), otra vez.\nLos tipos básicos y su pregunta: línea (ax.plot, serie temporal), dispersión (ax.scatter, pair wise data), barras (ax.bar, categorías), histograma (ax.hist, distribución).\nCuándo una figura miente: el eje recortado, los bins mal elegidos, la línea que une puntos que no son continuos.\nVarias series en un mismo Axes: la leyenda se vuelve obligatoria.\nLa ventana de tiempo configurable: ax.set_xlim(fecha, fecha + pd.Timedelta(\"1D\")) — la serie larga se grafica una vez y la ventana decide qué se mira.\nSeries densas: miles de puntos minutales piden alpha para que la nube respire y markevery para no sembrar marcadores.",
+    "title": "6  Introducción a la visualización",
+    "section": "6.3 OOP en matplotlib",
+    "text": "6.3 OOP en matplotlib\n\nLas dos APIs: plt.plot() (la máquina de estados de los tutoriales y de ChatGPT) frente a fig, ax = plt.subplots() (la de objetos, el estándar del curso) — nombrarlas para no mezclarlas.\nEl patrón del curso: fig, ax = plt.subplots(); el Axes como el objeto al que se le pide todo — objeto.método(), otra vez.\nLos tipos básicos y su pregunta: línea (ax.plot, serie temporal), dispersión (ax.scatter, pair wise data), barras (ax.bar, categorías), histograma (ax.hist, distribución).\nCuándo una figura miente: el eje recortado, los bins mal elegidos, la línea que une puntos que no son continuos.\nVarias series en un mismo Axes: la leyenda se vuelve obligatoria.\nLa ventana de tiempo configurable: ax.set_xlim(fecha, fecha + pd.Timedelta(\"1D\")) — la serie larga se grafica una vez y la ventana decide qué se mira.\nSeries densas: miles de puntos minutales piden alpha para que la nube respire y markevery para no sembrar marcadores.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html#esquemas-complejos-con-specgrid",
     "href": "unidades/unidad-04.html#esquemas-complejos-con-specgrid",
-    "title": "5  Introducción a la visualización",
-    "section": "5.4 Esquemas complejos con specgrid",
-    "text": "5.4 Esquemas complejos con specgrid\n\nVarios Axes en una Figure con el mismo plt.subplots(nrows, ncols) de siempre; sharex para series que comparten el tiempo, sharey para paneles que se comparan en la misma escala.\nGridSpec: paneles de tamaños distintos — la serie principal con su histograma marginal.\nDos unidades en el mismo panel: twinx — irradiancia y temperatura sobre el mismo tiempo.\nComposición con criterio: cuándo superponer, cuándo separar paneles, cuándo hacer dos figuras.",
+    "title": "6  Introducción a la visualización",
+    "section": "6.4 Esquemas complejos con specgrid",
+    "text": "6.4 Esquemas complejos con specgrid\n\nVarios Axes en una Figure con el mismo plt.subplots(nrows, ncols) de siempre; sharex para series que comparten el tiempo, sharey para paneles que se comparan en la misma escala.\nGridSpec: paneles de tamaños distintos — la serie principal con su histograma marginal.\nDos unidades en el mismo panel: twinx — irradiancia y temperatura sobre el mismo tiempo.\nComposición con criterio: cuándo superponer, cuándo separar paneles, cuándo hacer dos figuras.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html#formatos-para-figura",
     "href": "unidades/unidad-04.html#formatos-para-figura",
-    "title": "5  Introducción a la visualización",
-    "section": "5.5 Formatos para figura",
-    "text": "5.5 Formatos para figura\n\nfigures/ se une al proyecto: las figuras se regeneran desde la libreta, nunca se editan a mano; nombres que dicen qué muestran.\nsavefig: PNG (píxeles y dpi) frente a PDF/SVG (vectores) — cuál para la tesis, cuál para la presentación, cuál para la web.\nLa figura pensada para LaTeX: el tamaño en pulgadas se decide desde matplotlib para el \\textwidth del documento, con la tipografía al tamaño final — la figura no se escala después, se produce a la medida.\nMatemáticas en las etiquetas: mathtext para $W/m^2$ en cualquier máquina; usetex cuando la tesis exige la tipografía de LaTeX.",
+    "title": "6  Introducción a la visualización",
+    "section": "6.5 Formatos para figura",
+    "text": "6.5 Formatos para figura\n\nfigures/ se une al proyecto: las figuras se regeneran desde la libreta, nunca se editan a mano; nombres que dicen qué muestran.\nsavefig: PNG (píxeles y dpi) frente a PDF/SVG (vectores) — cuál para la tesis, cuál para la presentación, cuál para la web.\nLa figura pensada para LaTeX: el tamaño en pulgadas se decide desde matplotlib para el \\textwidth del documento, con la tipografía al tamaño final — la figura no se escala después, se produce a la medida.\nMatemáticas en las etiquetas: mathtext para $W/m^2$ en cualquier máquina; usetex cuando la tesis exige la tipografía de LaTeX.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html#la-misma-figura-en-plotly",
     "href": "unidades/unidad-04.html#la-misma-figura-en-plotly",
-    "title": "5  Introducción a la visualización",
-    "section": "5.6 La misma figura, en plotly",
-    "text": "5.6 La misma figura, en plotly\n\nRehacer la figura final de la unidad en plotly: zoom, hover, exploración sin costo.\nEl precio: cada punto viaja dentro del archivo — HTML y libretas que engordan con datos de alta frecuencia; y nada de mathtext ni PDF a la medida para la tesis.\nEl criterio que cierra la unidad: explorar con plotly, publicar con matplotlib.",
+    "title": "6  Introducción a la visualización",
+    "section": "6.6 La misma figura, en plotly",
+    "text": "6.6 La misma figura, en plotly\n\nRehacer la figura final de la unidad en plotly: zoom, hover, exploración sin costo.\nEl precio: cada punto viaja dentro del archivo — HTML y libretas que engordan con datos de alta frecuencia; y nada de mathtext ni PDF a la medida para la tesis.\nEl criterio que cierra la unidad: explorar con plotly, publicar con matplotlib.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html#ejercicios-sugeridos",
     "href": "unidades/unidad-04.html#ejercicios-sugeridos",
-    "title": "5  Introducción a la visualización",
+    "title": "6  Introducción a la visualización",
     "section": "Ejercicios sugeridos",
     "text": "Ejercicios sugeridos\n\nCapturar el Axes que devuelve df.plot() y personalizarlo: título, unidades en los ejes, leyenda.\nLa misma figura dos veces: con plt.plot() a secas y con fig, ax = plt.subplots(); explicar cuál sobrevive cuando la libreta tiene diez figuras.\nCuatro preguntas sobre un mismo dataset, cuatro figuras — línea, dispersión, barras, histograma — y defender cada elección en una línea de Markdown.\nRecibir una figura sin etiquetas ni unidades y arreglarla hasta que se entienda sin leer el código que la produjo.\nConstruir una figura que miente — eje recortado, bins tramposos — y luego corregirla; documentar qué cambió.\nGraficar un mes de datos minutales una sola vez, y recorrer tres días distintos moviendo la ventana con set_xlim y pd.Timedelta; alpha y markevery para que la nube se deje leer.\nPanel de series apiladas con sharex: tres variables del mismo día compartiendo el eje del tiempo.\nCon GridSpec, la serie temporal principal acompañada de su histograma marginal.\nDos variables con unidades distintas en el mismo panel usando twinx, sin que la leyenda se pierda.\nExportar una figura en PDF a la medida del \\textwidth, con unidades en mathtext, e insertarla en un documento LaTeX sin escalarla.\nGuardar la misma figura en PNG a varios dpi y en PDF; hacer zoom hasta que cada PNG se pixele y el PDF no.\nRehacer la figura final en plotly con un año de datos minutales, y comparar el tamaño en disco y de la libreta contra la versión matplotlib.\nBorrar la carpeta figures/ completa y regenerarla ejecutando las libretas de arriba abajo.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-04.html#al-terminar-la-unidad",
     "href": "unidades/unidad-04.html#al-terminar-la-unidad",
-    "title": "5  Introducción a la visualización",
+    "title": "6  Introducción a la visualización",
     "section": "Al terminar la unidad",
     "text": "Al terminar la unidad\n\nExplicar qué biblioteca de visualización es capa de cuál, y por qué el curso publica con matplotlib.\nElegir el tipo de figura según la pregunta — y detectar cuándo una figura miente.\nConstruir figuras con fig, ax = plt.subplots() y distinguir las dos APIs al leer código ajeno.\nProducir figuras que se explican solas: unidades, título con hallazgo, leyenda.\nComponer paneles con subplots, GridSpec y twinx, eligiendo la composición con criterio.\nExportar una figura lista para la tesis — PDF a la medida, tipografía y matemáticas correctas — que se regenera desde la libreta.\nDecidir entre matplotlib y plotly con argumentos: explorar frente a publicar, y el costo en disco de la interactividad.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html",
     "href": "unidades/unidad-05.html",
-    "title": "6  NumPy",
+    "title": "7  NumPy",
     "section": "",
-    "text": "6.1 Qué es NumPy\n3 h en el programa oficial · Unidad 5 del temario",
+    "text": "7.1 Qué es NumPy\n3 h en el programa oficial · Unidad 5 del temario",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html#qué-es-numpy",
     "href": "unidades/unidad-05.html#qué-es-numpy",
-    "title": "6  NumPy",
+    "title": "7  NumPy",
     "section": "",
     "text": "La tercera revelación de capas: las columnas del DataFrame y las operaciones vectorizadas de la Unidad 3 eran arreglos de NumPy todo el tiempo.\nQué es y para qué: arreglos n-dimensionales de números homogéneos; el idioma numérico común de pandas, matplotlib y el cómputo científico en Python.\nEl arreglo frente al DataFrame: sin índice, sin nombres de columnas, un solo dtype — se pierden las etiquetas, se ganan la velocidad y las dimensiones (el DataFrame es tabla; el arreglo puede ser cubo).\nuv add numpy, import numpy as np: el alias que ya es apellido.\nSu especialización, medida: %timeit — sumar un millón de números con un ciclo y con np.sum; la promesa de velocidad convertida en dato.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html#arrays-size-shape",
     "href": "unidades/unidad-05.html#arrays-size-shape",
-    "title": "6  NumPy",
-    "section": "6.2 Arrays, size, shape",
-    "text": "6.2 Arrays, size, shape\n\nnp.array desde las listas de la Unidad 2; dtype: la homogeneidad es el precio de la velocidad.\nsize, shape, ndim: el vector, la matriz, y saber siempre de qué tamaño es lo que se tiene.\nCrear desde cero: zeros, ones, arange, linspace — el eje x que matplotlib estaba esperando.\nreshape: los mismos números, otra forma — un año de datos horarios como matriz de días por horas.",
+    "title": "7  NumPy",
+    "section": "7.2 Arrays, size, shape",
+    "text": "7.2 Arrays, size, shape\n\nnp.array desde las listas de la Unidad 2; dtype: la homogeneidad es el precio de la velocidad.\nsize, shape, ndim: el vector, la matriz, y saber siempre de qué tamaño es lo que se tiene.\nCrear desde cero: zeros, ones, arange, linspace — el eje x que matplotlib estaba esperando.\nreshape: los mismos números, otra forma — un año de datos horarios como matriz de días por horas.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html#estadística-de-arreglos",
     "href": "unidades/unidad-05.html#estadística-de-arreglos",
-    "title": "6  NumPy",
-    "section": "6.3 Estadística de arreglos",
-    "text": "6.3 Estadística de arreglos\n\nmean, std, min, max, percentile sobre el arreglo completo.\nEl argumento axis: la misma matriz de días por horas responde dos preguntas — el promedio de cada día y el de cada hora.\nLos huecos otra vez: np.nan y las versiones que lo perdonan (nanmean, nanstd).",
+    "title": "7  NumPy",
+    "section": "7.3 Estadística de arreglos",
+    "text": "7.3 Estadística de arreglos\n\nmean, std, min, max, percentile sobre el arreglo completo.\nEl argumento axis: la misma matriz de días por horas responde dos preguntas — el promedio de cada día y el de cada hora.\nLos huecos otra vez: np.nan y las versiones que lo perdonan (nanmean, nanstd).",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html#slicing-y-fancy-indexing",
     "href": "unidades/unidad-05.html#slicing-y-fancy-indexing",
-    "title": "6  NumPy",
-    "section": "6.4 Slicing y fancy indexing",
-    "text": "6.4 Slicing y fancy indexing\n\nEn una dimensión, las rebanadas de la Unidad 2 funcionan igual; en dos, [fila, columna].\nMáscaras booleanas: los filtros de la Unidad 3, revelados — comparar produce un arreglo de True/False que selecciona.\nFancy indexing: seleccionar con un arreglo de posiciones.\nRebanada no es copia: modificar la vista modifica el original — el susto anunciado a tiempo.",
+    "title": "7  NumPy",
+    "section": "7.4 Slicing y fancy indexing",
+    "text": "7.4 Slicing y fancy indexing\n\nEn una dimensión, las rebanadas de la Unidad 2 funcionan igual; en dos, [fila, columna].\nMáscaras booleanas: los filtros de la Unidad 3, revelados — comparar produce un arreglo de True/False que selecciona.\nFancy indexing: seleccionar con un arreglo de posiciones.\nRebanada no es copia: modificar la vista modifica el original — el susto anunciado a tiempo.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html#creación-de-mallas",
     "href": "unidades/unidad-05.html#creación-de-mallas",
-    "title": "6  NumPy",
-    "section": "6.5 Creación de mallas",
-    "text": "6.5 Creación de mallas\n\nEl problema: evaluar f(x, y) en todo un plano sin escribir un doble ciclo.\nnp.meshgrid sobre dos linspace: la malla como par de matrices coordenadas.\nEvaluar la función sobre la malla y verla con contourf — el puente hacia los mapas y superficies de la Unidad 7.",
+    "title": "7  NumPy",
+    "section": "7.5 Creación de mallas",
+    "text": "7.5 Creación de mallas\n\nEl problema: evaluar f(x, y) en todo un plano sin escribir un doble ciclo.\nnp.meshgrid sobre dos linspace: la malla como par de matrices coordenadas.\nEvaluar la función sobre la malla y verla con contourf — el puente hacia los mapas y superficies de la Unidad 7.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html#importar-guardar-y-el-puente-con-pandas",
     "href": "unidades/unidad-05.html#importar-guardar-y-el-puente-con-pandas",
-    "title": "6  NumPy",
-    "section": "6.6 Importar, guardar y el puente con pandas",
-    "text": "6.6 Importar, guardar y el puente con pandas\n\nTexto plano: np.loadtxt y np.savetxt para arreglos sin etiquetas.\nBinario: np.save y np.load (.npy, .npz) — la lección de parquet otra vez: el texto olvida los dtype, el binario los recuerda.\nEl puente: df.to_numpy() de ida, pd.DataFrame(arr) de vuelta — las etiquetas se pierden y se recuperan en la frontera.\nEl criterio: etiquetas, fechas y tablas → pandas; números puros, mallas y velocidad → NumPy.",
+    "title": "7  NumPy",
+    "section": "7.6 Importar, guardar y el puente con pandas",
+    "text": "7.6 Importar, guardar y el puente con pandas\n\nTexto plano: np.loadtxt y np.savetxt para arreglos sin etiquetas.\nBinario: np.save y np.load (.npy, .npz) — la lección de parquet otra vez: el texto olvida los dtype, el binario los recuerda.\nEl puente: df.to_numpy() de ida, pd.DataFrame(arr) de vuelta — las etiquetas se pierden y se recuperan en la frontera.\nEl criterio: etiquetas, fechas y tablas → pandas; números puros, mallas y velocidad → NumPy.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html#ejercicios-sugeridos",
     "href": "unidades/unidad-05.html#ejercicios-sugeridos",
-    "title": "6  NumPy",
+    "title": "7  NumPy",
     "section": "Ejercicios sugeridos",
     "text": "Ejercicios sugeridos\n\nMultiplicar por dos una lista y un arreglo, y explicar en Markdown la diferencia entre lo que hizo cada uno.\nMedir con %timeit la suma de un millón de números en ciclo, con sum y con np.sum; reportar los tiempos con f-strings.\nConvertir un año de datos horarios en una matriz de días por horas con reshape, y validar con shape antes de continuar.\nSobre esa matriz, responder con axis: qué día acumuló más y qué hora promedia más — sin un solo ciclo.\nRepetir el cálculo con huecos en los datos: comparar mean contra nanmean y explicar la diferencia.\nCon una máscara booleana, contar y extraer los valores fuera del rango físico de un sensor — el ejercicio de la Unidad 3, ahora sin pandas.\nDemostrar el susto de la vista: rebanar un arreglo, modificar la rebanada, y descubrir el original cambiado; repetir con .copy().\nConstruir una malla con meshgrid, evaluar una función de dos variables y graficarla con contourf, con su barra de color etiquetada.\nEl viaje redondo de NumPy: guardar el mismo arreglo con savetxt y con save, releer ambos, y comparar qué sobrevivió — dtype, forma, precisión.\nTomar un DataFrame limpio de la Unidad 3, cruzar el puente con to_numpy(), calcular en NumPy, y regresar el resultado a un DataFrame con sus etiquetas.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-05.html#al-terminar-la-unidad",
     "href": "unidades/unidad-05.html#al-terminar-la-unidad",
-    "title": "6  NumPy",
+    "title": "7  NumPy",
     "section": "Al terminar la unidad",
     "text": "Al terminar la unidad\n\nExplicar qué es NumPy, qué lugar ocupa debajo de pandas y matplotlib, y qué lo hace rápido.\nCrear arreglos desde listas, desde generadores (arange, linspace) y con reshape, sabiendo siempre su shape.\nResponder preguntas estadísticas por ejes sobre una matriz, con y sin huecos.\nSeleccionar con rebanadas, máscaras booleanas y fancy indexing — y distinguir vista de copia.\nEvaluar una función sobre una malla y visualizarla, sin escribir ciclos.\nGuardar y cargar arreglos eligiendo formato con criterio, y cruzar el puente entre pandas y NumPy en ambas direcciones.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>NumPy</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>NumPy</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-06.html",
     "href": "unidades/unidad-06.html",
-    "title": "7  Prácticas para el cómputo científico",
+    "title": "8  Prácticas para el cómputo científico",
     "section": "",
-    "text": "7.1 Git: el repositorio, ahora de verdad\n8 h en el programa oficial · Unidad 6 del temario",
+    "text": "8.1 Git: el repositorio, ahora de verdad\n8 h en el programa oficial · Unidad 6 del temario",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-06.html#git-el-repositorio-ahora-de-verdad",
     "href": "unidades/unidad-06.html#git-el-repositorio-ahora-de-verdad",
-    "title": "7  Prácticas para el cómputo científico",
+    "title": "8  Prácticas para el cómputo científico",
     "section": "",
     "text": "La promesa de la Unidad 1 se cumple: el repositorio deja de ser una definición.\ngit init, git status, git add, git commit: la foto del proyecto, cuándo tomarla y cómo describirla.\ngit log: la historia del proyecto como narrativa — mensajes que dicen qué cambió y por qué.\n.gitignore: la regla “qué se versiona y qué no” de la Unidad 1, por fin ejecutada — fuera el entorno, fuera los datos pesados.\nGitHub: push, clone; el respaldo y la carta de presentación.\nLa regla del curso, ahora literal: si no está en el repositorio, no existe.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-06.html#paquetes",
     "href": "unidades/unidad-06.html#paquetes",
-    "title": "7  Prácticas para el cómputo científico",
-    "section": "7.2 Paquetes",
-    "text": "7.2 Paquetes\n\nLa función que se repite entre libretas pide graduarse: de la celda al archivo .py.\nUn paquete local junto a notebooks/: la carpeta, el __init__.py, y el proyecto que ahora tiene código propio importable.\nfrom mipaquete import mi_funcion: las libretas se adelgazan, el conocimiento se comparte.\n%load_ext autoreload: editar el módulo sin reiniciar el kernel — el magic que faltaba.\nLos docstrings de la Unidad 2 pagan: el paquete se explora con ? como cualquier biblioteca.",
+    "title": "8  Prácticas para el cómputo científico",
+    "section": "8.2 Paquetes",
+    "text": "8.2 Paquetes\n\nLa función que se repite entre libretas pide graduarse: de la celda al archivo .py.\nUn paquete local junto a notebooks/: la carpeta, el __init__.py, y el proyecto que ahora tiene código propio importable.\nfrom mipaquete import mi_funcion: las libretas se adelgazan, el conocimiento se comparte.\n%load_ext autoreload: editar el módulo sin reiniciar el kernel — el magic que faltaba.\nLos docstrings de la Unidad 2 pagan: el paquete se explora con ? como cualquier biblioteca.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-06.html#profiling",
     "href": "unidades/unidad-06.html#profiling",
-    "title": "7  Prácticas para el cómputo científico",
-    "section": "7.3 Profiling",
-    "text": "7.3 Profiling\n\nLa regla de oro: medir antes de optimizar — la intuición sobre qué es lento casi siempre falla.\n%%time y %timeit (de la Unidad 5), ahora sobre funciones propias.\n%prun: el perfil completo — qué función se lleva el tiempo y cuántas veces se llama.\nLeer un perfil: el cuello de botella casi siempre es una línea, no el programa.",
+    "title": "8  Prácticas para el cómputo científico",
+    "section": "8.3 Profiling",
+    "text": "8.3 Profiling\n\nLa regla de oro: medir antes de optimizar — la intuición sobre qué es lento casi siempre falla.\n%%time y %timeit (de la Unidad 5), ahora sobre funciones propias.\n%prun: el perfil completo — qué función se lleva el tiempo y cuántas veces se llama.\nLeer un perfil: el cuello de botella casi siempre es una línea, no el programa.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-06.html#numba-y-cython-la-anécdota",
     "href": "unidades/unidad-06.html#numba-y-cython-la-anécdota",
-    "title": "7  Prácticas para el cómputo científico",
-    "section": "7.4 Numba (y Cython, la anécdota)",
-    "text": "7.4 Numba (y Cython, la anécdota)\n\nAcelerar Python compilando — pero solo lo que el perfil del tema anterior señaló.\nnumba: uv add numba y el decorador @njit sobre la función numérica; la primera llamada compila, las demás vuelan.\nEl antes y el después, medidos con %timeit: la aceleración es un dato, no una promesa.\nLos límites de numba: habla NumPy y números, no pandas ni cadenas — por eso se compila la función, no la libreta.\nCython, la anécdota: el pariente anticipado que traduce a C y necesita compilador; así están construidos pedazos de pandas y scikit-learn. Se usa al escribir bibliotecas, no al analizar datos.",
+    "title": "8  Prácticas para el cómputo científico",
+    "section": "8.4 Numba (y Cython, la anécdota)",
+    "text": "8.4 Numba (y Cython, la anécdota)\n\nAcelerar Python compilando — pero solo lo que el perfil del tema anterior señaló.\nnumba: uv add numba y el decorador @njit sobre la función numérica; la primera llamada compila, las demás vuelan.\nEl antes y el después, medidos con %timeit: la aceleración es un dato, no una promesa.\nLos límites de numba: habla NumPy y números, no pandas ni cadenas — por eso se compila la función, no la libreta.\nCython, la anécdota: el pariente anticipado que traduce a C y necesita compilador; así están construidos pedazos de pandas y scikit-learn. Se usa al escribir bibliotecas, no al analizar datos.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-06.html#pruebas-unitarias-en-datos",
     "href": "unidades/unidad-06.html#pruebas-unitarias-en-datos",
-    "title": "7  Prácticas para el cómputo científico",
-    "section": "7.5 Pruebas unitarias en datos",
-    "text": "7.5 Pruebas unitarias en datos\n\nPor qué probar: la función que hoy funciona, mañana alguien la edita.\npytest sobre el paquete local: archivos test_*.py, funciones assert, y el punto verde que da permiso de confiar.\nCasos frontera: la lista vacía, el NaN, el valor negativo que no debería existir.\nPruebas sobre los datos: rangos físicos, huecos inesperados, columnas que deben existir — la validación manual de la Unidad 3, ahora automática y repetible.\nEl ciclo completo: cambiar el paquete, correr las pruebas, hacer commit.",
+    "title": "8  Prácticas para el cómputo científico",
+    "section": "8.5 Pruebas unitarias en datos",
+    "text": "8.5 Pruebas unitarias en datos\n\nPor qué probar: la función que hoy funciona, mañana alguien la edita.\npytest sobre el paquete local: archivos test_*.py, funciones assert, y el punto verde que da permiso de confiar.\nCasos frontera: la lista vacía, el NaN, el valor negativo que no debería existir.\nPruebas sobre los datos: rangos físicos, huecos inesperados, columnas que deben existir — la validación manual de la Unidad 3, ahora automática y repetible.\nEl ciclo completo: cambiar el paquete, correr las pruebas, hacer commit.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-06.html#ejercicios-sugeridos",
     "href": "unidades/unidad-06.html#ejercicios-sugeridos",
-    "title": "7  Prácticas para el cómputo científico",
+    "title": "8  Prácticas para el cómputo científico",
     "section": "Ejercicios sugeridos",
     "text": "Ejercicios sugeridos\n\nPoner el proyecto del curso bajo git: init, .gitignore razonado en Markdown, y el primer commit con mensaje digno.\nReconstruir la historia: hacer cinco cambios pequeños con cinco commits, y leer el git log como narrativa del proyecto.\nSubir el proyecto a GitHub, clonarlo en otra carpeta, y reconstruir el entorno con uv sync — la reproducibilidad completa: código versionado más entorno declarado.\nExtraer a un paquete local las tres funciones más repetidas en las libretas propias, con docstrings, e importarlas desde una libreta limpia.\nActivar autoreload, editar una función del paquete con la libreta abierta, y verificar el cambio sin reiniciar el kernel.\nPerfilar con %prun una libreta de limpieza de la Unidad 3 completa, y reportar en Markdown dónde vive el cuello de botella.\nEscribir dos versiones de un cálculo sobre un millón de puntos — ciclo puro y NumPy — y perfilar ambas: ¿cuánto explica la vectorización?\nAcelerar con @njit una función numérica que NumPy solo no resuelve (un ciclo con dependencia del paso anterior), y medir el antes y el después con %timeit.\nIntentar @njit sobre una función con pandas adentro, leer el error con calma, y explicar en Markdown por qué numba la rechaza.\nEscribir pruebas pytest para una función propia: el caso normal, la lista vacía, el NaN.\nEscribir la prueba de los datos: un test_datos.py que valide rangos físicos, columnas esperadas y continuidad temporal del data/processed del proyecto.\nRomper una función del paquete a propósito, ver las pruebas fallar, arreglarla, y hacer el commit — el ciclo de trabajo completo, vivido una vez.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-06.html#al-terminar-la-unidad",
     "href": "unidades/unidad-06.html#al-terminar-la-unidad",
-    "title": "7  Prácticas para el cómputo científico",
+    "title": "8  Prácticas para el cómputo científico",
     "section": "Al terminar la unidad",
     "text": "Al terminar la unidad\n\nVersionar un proyecto con git: commits con mensajes que narran, .gitignore con criterio, y respaldo en GitHub.\nClonar un proyecto ajeno y dejarlo corriendo con uv sync — y explicar por qué eso es reproducibilidad.\nGraduar funciones de la libreta a un paquete local importable, y trabajar con autoreload.\nEncontrar el cuello de botella con un perfil antes de tocar una sola línea.\nAcelerar una función numérica con numba, saber cuándo no aplica, y decir qué es Cython.\nProteger el proyecto con pruebas: las del código con pytest, y las de los datos con validaciones automáticas.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Prácticas para el cómputo científico</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-07.html",
     "href": "unidades/unidad-07.html",
-    "title": "8  Conceptos avanzados de manipulación de datos y visualización de datos",
+    "title": "9  Conceptos avanzados de manipulación de datos y visualización de datos",
     "section": "",
-    "text": "8.1 Datos faltantes\n10 h en el programa oficial · Unidad 7 del temario",
+    "text": "9.1 Datos faltantes\n10 h en el programa oficial · Unidad 7 del temario",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-07.html#datos-faltantes",
     "href": "unidades/unidad-07.html#datos-faltantes",
-    "title": "8  Conceptos avanzados de manipulación de datos y visualización de datos",
+    "title": "9  Conceptos avanzados de manipulación de datos y visualización de datos",
     "section": "",
     "text": "El censo de huecos antes de tratarlos: cuántos, dónde, de qué tamaño — el hueco de cinco minutos y el de una semana no se tratan igual.\nRellenos con memoria: ffill y bfill, y su freno (limit) — cuándo copiar el pasado es razonable y cuándo es inventar.\ninterpolate a fondo: lineal, temporal, y el argumento limit; la Unidad 3 eligió entre tres opciones, ahora se domina cada una.\nHonestidad gráfica: el dato interpolado se señala en la figura — lo inventado se declara, como toda decisión de limpieza en este curso.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-07.html#cambio-de-frecuencia",
     "href": "unidades/unidad-07.html#cambio-de-frecuencia",
-    "title": "8  Conceptos avanzados de manipulación de datos y visualización de datos",
-    "section": "8.2 Cambio de frecuencia",
-    "text": "8.2 Cambio de frecuencia\n\nresample, la promesa de la Unidad 3 cumplida: la gramática completa — la regla ('h', 'D', 'ME') y la función que resume.\nLa física decide la agregación: la irradiancia se promedia, la energía se suma, la ráfaga es un máximo — la misma variable, tres preguntas distintas.\nSubir la frecuencia: asfreq y el reindexado temporal; los NaN que aparecen son huecos nuevos, y 7.1 ya sabe qué hacer con ellos.\nVentanas móviles: rolling — suavizar el ruido sin cambiar la frecuencia.",
+    "title": "9  Conceptos avanzados de manipulación de datos y visualización de datos",
+    "section": "9.2 Cambio de frecuencia",
+    "text": "9.2 Cambio de frecuencia\n\nresample, la promesa de la Unidad 3 cumplida: la gramática completa — la regla ('h', 'D', 'ME') y la función que resume.\nLa física decide la agregación: la irradiancia se promedia, la energía se suma, la ráfaga es un máximo — la misma variable, tres preguntas distintas.\nSubir la frecuencia: asfreq y el reindexado temporal; los NaN que aparecen son huecos nuevos, y 7.1 ya sabe qué hacer con ellos.\nVentanas móviles: rolling — suavizar el ruido sin cambiar la frecuencia.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-07.html#agrupación-de-datos",
     "href": "unidades/unidad-07.html#agrupación-de-datos",
-    "title": "8  Conceptos avanzados de manipulación de datos y visualización de datos",
-    "section": "8.3 Agrupación de datos",
-    "text": "8.3 Agrupación de datos\n\ngroupby: la idea anunciada desde la Unidad 3, por fin completa — separar, aplicar, combinar.\nresample era un groupby con reloj: ahora se agrupa por lo que sea — el mes, el día de la semana, el sensor.\nagg: varias estadísticas de un golpe, con columnas resultantes bien nombradas.\nAncho y largo: pivot_table y melt — el heatmap quiere la tabla ancha, seaborn la quiere larga; cambiar de forma es cambiar de pregunta.\nEl patrón mental: toda pregunta que empieza con “¿qué mes…?, ¿qué sensor…?” es un groupby esperando a ser escrito.",
+    "title": "9  Conceptos avanzados de manipulación de datos y visualización de datos",
+    "section": "9.3 Agrupación de datos",
+    "text": "9.3 Agrupación de datos\n\ngroupby: la idea anunciada desde la Unidad 3, por fin completa — separar, aplicar, combinar.\nresample era un groupby con reloj: ahora se agrupa por lo que sea — el mes, el día de la semana, el sensor.\nagg: varias estadísticas de un golpe, con columnas resultantes bien nombradas.\nAncho y largo: pivot_table y melt — el heatmap quiere la tabla ancha, seaborn la quiere larga; cambiar de forma es cambiar de pregunta.\nEl patrón mental: toda pregunta que empieza con “¿qué mes…?, ¿qué sensor…?” es un groupby esperando a ser escrito.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-07.html#visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots",
     "href": "unidades/unidad-07.html#visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots",
-    "title": "8  Conceptos avanzados de manipulación de datos y visualización de datos",
-    "section": "8.4 Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots",
-    "text": "8.4 Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots\n\nDistribuciones: el histograma revisitado, el boxplot, el violin — qué muestra y qué esconde cada uno; el bigote tiene definición: cuartiles e IQR.\nseaborn cosecha su lugar en el mapa de la Unidad 4: las figuras de distribución por categoría en una línea, sobre los Axes de siempre.\nEl heatmap: la matriz de días por horas de la Unidad 5, ahora como mapa de calor — el año entero de un sensor en una sola figura.\nEl calendario anual (calplot): el heatmap que se lee como agenda — el año de un vistazo, en el idioma de todo el mundo.\nLa rosa de vientos: el eje polar — cuando la variable es una dirección, el eje recto miente.\nEl joyplot (joypy): las distribuciones mes a mes apiladas como paisaje — lo que el violin cuenta, contado como serie.\nElegir con criterio, otra vez: cuándo una distribución, cuándo un mapa, cuándo un ángulo — y la figura avanzada también se explica sola.",
+    "title": "9  Conceptos avanzados de manipulación de datos y visualización de datos",
+    "section": "9.4 Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots",
+    "text": "9.4 Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots\n\nDistribuciones: el histograma revisitado, el boxplot, el violin — qué muestra y qué esconde cada uno; el bigote tiene definición: cuartiles e IQR.\nseaborn cosecha su lugar en el mapa de la Unidad 4: las figuras de distribución por categoría en una línea, sobre los Axes de siempre.\nEl heatmap: la matriz de días por horas de la Unidad 5, ahora como mapa de calor — el año entero de un sensor en una sola figura.\nEl calendario anual (calplot): el heatmap que se lee como agenda — el año de un vistazo, en el idioma de todo el mundo.\nLa rosa de vientos: el eje polar — cuando la variable es una dirección, el eje recto miente.\nEl joyplot (joypy): las distribuciones mes a mes apiladas como paisaje — lo que el violin cuenta, contado como serie.\nElegir con criterio, otra vez: cuándo una distribución, cuándo un mapa, cuándo un ángulo — y la figura avanzada también se explica sola.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-07.html#dashboards-con-quarto",
     "href": "unidades/unidad-07.html#dashboards-con-quarto",
-    "title": "8  Conceptos avanzados de manipulación de datos y visualización de datos",
-    "section": "8.5 Dashboards con Quarto",
-    "text": "8.5 Dashboards con Quarto\n\nQué es Quarto: Markdown y celdas de código que se ejecutan al renderizar — la libreta y el .qmd son parientes. La revelación final del curso: este sitio está hecho con Quarto.\nDe libreta a documento: quarto render, y el análisis se vuelve HTML o PDF que viaja solo.\nformat: dashboard: los encabezados se vuelven layout — filas, columnas, tarjetas y value boxes.\nLas figuras del curso entran todas: matplotlib para lo que se imprime, plotly donde el tablero pide zoom y hover — el criterio de la Unidad 4, revisitado.\nEl tablero reproducible: se regenera desde data/processed con un comando, como todo lo demás en este curso.",
+    "title": "9  Conceptos avanzados de manipulación de datos y visualización de datos",
+    "section": "9.5 Dashboards con Quarto",
+    "text": "9.5 Dashboards con Quarto\n\nQué es Quarto: Markdown y celdas de código que se ejecutan al renderizar — la libreta y el .qmd son parientes. La revelación final del curso: este sitio está hecho con Quarto.\nDe libreta a documento: quarto render, y el análisis se vuelve HTML o PDF que viaja solo.\nformat: dashboard: los encabezados se vuelven layout — filas, columnas, tarjetas y value boxes.\nLas figuras del curso entran todas: matplotlib para lo que se imprime, plotly donde el tablero pide zoom y hover — el criterio de la Unidad 4, revisitado.\nEl tablero reproducible: se regenera desde data/processed con un comando, como todo lo demás en este curso.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-07.html#ejercicios-sugeridos",
     "href": "unidades/unidad-07.html#ejercicios-sugeridos",
-    "title": "8  Conceptos avanzados de manipulación de datos y visualización de datos",
+    "title": "9  Conceptos avanzados de manipulación de datos y visualización de datos",
     "section": "Ejercicios sugeridos",
     "text": "Ejercicios sugeridos\n\nHacer el censo de huecos de un año de datos: cuántos, dónde, de qué duración; reportarlo en una tabla con el hueco más largo señalado.\nSobre el mismo dataset, tratar un hueco de minutos y uno de días con ffill, interpolate y nada: argumentar en Markdown qué merece cada uno.\nProducir la figura honesta: la serie con sus tramos interpolados marcados visualmente distinto.\nBajar la frecuencia de un año de irradiancia de minutos a horas y a días, eligiendo entre promedio y suma según la pregunta — y explicar por qué la agregación cambia.\nSuavizar una serie ruidosa con rolling y graficar cruda y suavizada en el mismo Axes, con la leyenda obligada.\nResponder tres preguntas con groupby y agg: el mes más ventoso, el día de la semana con más demanda, el sensor con más huecos.\nEl perfil diario promedio de cada mes: un groupby doble, pivotado a tabla de meses por horas.\nConvertir esa tabla en heatmap con barra de color etiquetada — el año entero en una figura.\nComparar la distribución mensual de una variable con boxplot y con violin: qué enseña el violin que el boxplot esconde.\nLas figuras de la casa: la rosa de vientos del año y el calendario anual de una variable; una línea de Markdown por figura diciendo qué pregunta responde.\nConvertir una libreta de análisis propia en un .qmd y renderizarla a HTML con Quarto.\nConstruir el dashboard del proyecto: value boxes con las cifras clave, el heatmap anual, los perfiles por mes — regenerable con quarto render.\nEl cierre del curso: entregar el repositorio completo — crudos intactos, paquete probado, data/processed, figuras y dashboard — clonable y reproducible de punta a punta por cualquiera.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-07.html#al-terminar-la-unidad",
     "href": "unidades/unidad-07.html#al-terminar-la-unidad",
-    "title": "8  Conceptos avanzados de manipulación de datos y visualización de datos",
+    "title": "9  Conceptos avanzados de manipulación de datos y visualización de datos",
     "section": "Al terminar la unidad",
     "text": "Al terminar la unidad\n\nCensar los huecos de una serie y tratarlos con criterio declarado — y señalar en la figura lo interpolado.\nCambiar de frecuencia eligiendo la agregación por la física de la variable, y suavizar con ventanas móviles.\nTraducir preguntas por categorías a groupby y agg, incluyendo agrupaciones dobles.\nElegir y construir la figura de distribución correcta, y condensar un año de datos en un heatmap.\nExplicar qué es Quarto y convertir una libreta en un documento que se renderiza.\nPublicar un dashboard reproducible que se regenera desde data/processed con un comando.\nEntregar un proyecto de ciencia de datos completo — versionado, probado, documentado y reproducible — que funcione como carta de presentación.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Conceptos avanzados de manipulación de datos y visualización de datos</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-08.html",
     "href": "unidades/unidad-08.html",
-    "title": "9  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
+    "title": "10  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
     "section": "",
-    "text": "9.1 Qué es vibe coding\nAdicional al programa oficial",
+    "text": "10.1 Qué es vibe coding\nAdicional al programa oficial",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-08.html#qué-es-vibe-coding",
     "href": "unidades/unidad-08.html#qué-es-vibe-coding",
-    "title": "9  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
+    "title": "10  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
     "section": "",
     "text": "Programar conversando: describir la intención, leer lo propuesto, decidir — el código se negocia, no se dicta.\nPor qué esta unidad va al final: el criterio se entrenó quince semanas; sin él, el asistente maneja y tú vas de pasajero.\nEl panorama: Claude en el chat, Claude Code en la terminal, asistentes dentro del editor — la misma conversación en tres lugares.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-08.html#analiza-el-asistente-dentro-del-proyecto",
     "href": "unidades/unidad-08.html#analiza-el-asistente-dentro-del-proyecto",
-    "title": "9  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
-    "section": "9.2 Analiza: el asistente dentro del proyecto",
-    "text": "9.2 Analiza: el asistente dentro del proyecto\n\nEl contexto lo es todo: el proyecto bien formado de la Unidad 1 — estructura, nombres, entorno declarado — es exactamente lo que un asistente necesita leer para ayudar de verdad.\nPedir bien: la pregunta con sus datos, sus unidades y el resultado esperado; el mismo rigor que un docstring.\nVerificar siempre: lo generado corre desde cero, pasa las pruebas de la Unidad 6, y la figura dice lo que dicen los datos.\nLa regla nueva del curso: ningún código que no puedas explicar línea por línea — quien firma eres tú, no el asistente.",
+    "title": "10  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
+    "section": "10.2 Analiza: el asistente dentro del proyecto",
+    "text": "10.2 Analiza: el asistente dentro del proyecto\n\nEl contexto lo es todo: el proyecto bien formado de la Unidad 1 — estructura, nombres, entorno declarado — es exactamente lo que un asistente necesita leer para ayudar de verdad.\nPedir bien: la pregunta con sus datos, sus unidades y el resultado esperado; el mismo rigor que un docstring.\nVerificar siempre: lo generado corre desde cero, pasa las pruebas de la Unidad 6, y la figura dice lo que dicen los datos.\nLa regla nueva del curso: ningún código que no puedas explicar línea por línea — quien firma eres tú, no el asistente.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-08.html#documenta-e-itera",
     "href": "unidades/unidad-08.html#documenta-e-itera",
-    "title": "9  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
-    "section": "9.3 Documenta e itera",
-    "text": "9.3 Documenta e itera\n\nLa libreta sigue siendo el documento: lo que el asistente aporta se integra a la narrativa computacional, no se pega como vino.\nLos errores como conversación: el traceback se entrega completo, la explicación se lee con escepticismo, la corrección se verifica.\nIterar con historia: cada vuelta con el asistente termina en commit — git registra qué cambió, y el diff cuenta qué hizo realmente la “ayuda”.",
+    "title": "10  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
+    "section": "10.3 Documenta e itera",
+    "text": "10.3 Documenta e itera\n\nLa libreta sigue siendo el documento: lo que el asistente aporta se integra a la narrativa computacional, no se pega como vino.\nLos errores como conversación: el traceback se entrega completo, la explicación se lee con escepticismo, la corrección se verifica.\nIterar con historia: cada vuelta con el asistente termina en commit — git registra qué cambió, y el diff cuenta qué hizo realmente la “ayuda”.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-08.html#escribe-tu-tesis-con-quarto",
     "href": "unidades/unidad-08.html#escribe-tu-tesis-con-quarto",
-    "title": "9  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
-    "section": "9.4 Escribe tu tesis con Quarto",
-    "text": "9.4 Escribe tu tesis con Quarto\n\nLa tesis como proyecto de Quarto: capítulos .qmd, el format: book — el dashboard de la Unidad 7 tiene un hermano mayor.\nFiguras vivas: las figuras del proyecto entran solas y se regeneran si cambian los datos — nadie vuelve a pegar una imagen desactualizada.\nCitas y referencias: BibTeX, referencias cruzadas, números de figura y de tabla que se cuidan solos.\nCongelar capítulos: freeze: auto — el capítulo con cómputo pesado no se re-ejecuta en cada render, solo cuando cambia; si los datos cambiaron, se descongela tocando el capítulo o borrando _freeze/. La tesis entera renderiza en segundos.\nquarto render a PDF: el LaTeX de la Unidad 4 paga completo — la tesis sale tipografiada.\nEl cierre del curso: la tesis reproducible — quien la lea puede clonarla, reconstruir el entorno y regenerar cada número y cada figura.",
+    "title": "10  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
+    "section": "10.4 Escribe tu tesis con Quarto",
+    "text": "10.4 Escribe tu tesis con Quarto\n\nLa tesis como proyecto de Quarto: capítulos .qmd, el format: book — el dashboard de la Unidad 7 tiene un hermano mayor.\nFiguras vivas: las figuras del proyecto entran solas y se regeneran si cambian los datos — nadie vuelve a pegar una imagen desactualizada.\nCitas y referencias: BibTeX, referencias cruzadas, números de figura y de tabla que se cuidan solos.\nCongelar capítulos: freeze: auto — el capítulo con cómputo pesado no se re-ejecuta en cada render, solo cuando cambia; si los datos cambiaron, se descongela tocando el capítulo o borrando _freeze/. La tesis entera renderiza en segundos.\nquarto render a PDF: el LaTeX de la Unidad 4 paga completo — la tesis sale tipografiada.\nEl cierre del curso: la tesis reproducible — quien la lea puede clonarla, reconstruir el entorno y regenerar cada número y cada figura.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-08.html#ejercicios-sugeridos",
     "href": "unidades/unidad-08.html#ejercicios-sugeridos",
-    "title": "9  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
+    "title": "10  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
     "section": "Ejercicios sugeridos",
     "text": "Ejercicios sugeridos\n\nPedirle al asistente una función que ya escribiste en el curso, comparar ambas versiones, y quedarte con lo mejor de cada una — explicando por qué.\nAnalizar un dataset nunca visto conversando con Claude, aplicando en cada paso las reglas del curso: diagnóstico antes de cirugía, decisiones declaradas, figura honesta.\nRecibir del asistente una solución con un error sutil (sembrado por el profesor) y cazarlo con las pruebas de la Unidad 6 — la moraleja se escribe en Markdown.\nEntregar un traceback completo al asistente, verificar su corrección propuesta, y documentar qué entendió bien y qué no.\nIterar una figura con el asistente hasta calidad de tesis: un commit por vuelta, y el git log como bitácora de la conversación.\nMontar el esqueleto de la tesis en Quarto: capítulos, bibliografía en BibTeX, y una figura viva que se regenera desde data/processed.\nEscribir un capítulo de avance real de la tesis propia, con sus citas y sus referencias cruzadas, y renderizarlo a PDF.\nEl examen final silencioso: intercambiar tesis por parejas, clonar la del compañero, reconstruir el entorno y regenerar el PDF completo — si compila con sus figuras, el curso cumplió.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
     ]
   },
   {
     "objectID": "unidades/unidad-08.html#al-terminar-la-unidad",
     "href": "unidades/unidad-08.html#al-terminar-la-unidad",
-    "title": "9  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
+    "title": "10  Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis",
     "section": "Al terminar la unidad",
     "text": "Al terminar la unidad\n\nConversar con un asistente de IA describiendo intención, contexto y resultado esperado — y leer críticamente lo que proponga.\nVerificar código generado con las armas del curso: corre desde cero, pasa las pruebas, la figura es honesta.\nIterar con historia: cada colaboración con el asistente registrada en commits que narran.\nMontar una tesis en Quarto con figuras vivas, citas en BibTeX y referencias cruzadas, y renderizarla a PDF.\nEntregar el paquete completo — proyecto y tesis reproducibles — y explicar por qué eso vale más que cualquier archivo suelto.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span>"
     ]
   },
   {

@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Conceptos avanzados de manipulación de datos y visualización de datos – Proyectos de ciencia de datos con Python</title>
+<title>9&nbsp; Conceptos avanzados de manipulación de datos y visualización de datos – Proyectos de ciencia de datos con Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -41,10 +44,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-53d494f822f2bb84dda3bff6ea10cae2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dbb2bd84711b80ae9c8cd46c7acce907.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-07.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-07.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -151,44 +154,50 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">001_intro_variables.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-07.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -218,11 +227,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#datos-faltantes" id="toc-datos-faltantes" class="nav-link active" data-scroll-target="#datos-faltantes"><span class="header-section-number">8.1</span> Datos faltantes</a></li>
-  <li><a href="#cambio-de-frecuencia" id="toc-cambio-de-frecuencia" class="nav-link" data-scroll-target="#cambio-de-frecuencia"><span class="header-section-number">8.2</span> Cambio de frecuencia</a></li>
-  <li><a href="#agrupación-de-datos" id="toc-agrupación-de-datos" class="nav-link" data-scroll-target="#agrupación-de-datos"><span class="header-section-number">8.3</span> Agrupación de datos</a></li>
-  <li><a href="#visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots" id="toc-visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots" class="nav-link" data-scroll-target="#visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots"><span class="header-section-number">8.4</span> Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots</a></li>
-  <li><a href="#dashboards-con-quarto" id="toc-dashboards-con-quarto" class="nav-link" data-scroll-target="#dashboards-con-quarto"><span class="header-section-number">8.5</span> Dashboards con Quarto</a></li>
+  <li><a href="#datos-faltantes" id="toc-datos-faltantes" class="nav-link active" data-scroll-target="#datos-faltantes"><span class="header-section-number">9.1</span> Datos faltantes</a></li>
+  <li><a href="#cambio-de-frecuencia" id="toc-cambio-de-frecuencia" class="nav-link" data-scroll-target="#cambio-de-frecuencia"><span class="header-section-number">9.2</span> Cambio de frecuencia</a></li>
+  <li><a href="#agrupación-de-datos" id="toc-agrupación-de-datos" class="nav-link" data-scroll-target="#agrupación-de-datos"><span class="header-section-number">9.3</span> Agrupación de datos</a></li>
+  <li><a href="#visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots" id="toc-visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots" class="nav-link" data-scroll-target="#visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots"><span class="header-section-number">9.4</span> Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots</a></li>
+  <li><a href="#dashboards-con-quarto" id="toc-dashboards-con-quarto" class="nav-link" data-scroll-target="#dashboards-con-quarto"><span class="header-section-number">9.5</span> Dashboards con Quarto</a></li>
   <li><a href="#ejercicios-sugeridos" id="toc-ejercicios-sugeridos" class="nav-link" data-scroll-target="#ejercicios-sugeridos">Ejercicios sugeridos</a></li>
   <li><a href="#al-terminar-la-unidad" id="toc-al-terminar-la-unidad" class="nav-link" data-scroll-target="#al-terminar-la-unidad">Al terminar la unidad</a></li>
   </ul>
@@ -233,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></h1>
 </div>
 
 
@@ -264,8 +273,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Objetivo.</strong> Que cada estudiante cierre el curso dominando las tres operaciones que el análisis serio de series de medición exige — tratar huecos con criterio, cambiar de frecuencia respetando la física de la variable, y responder preguntas por grupos — y sea capaz de publicar sus resultados en un dashboard de Quarto que se regenera desde los datos.</p>
 </blockquote>
 <p><strong>10 h en el programa oficial</strong> · <a href="../temario.html#unidad-7">Unidad 7 del temario</a></p>
-<section id="datos-faltantes" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="datos-faltantes"><span class="header-section-number">8.1</span> Datos faltantes</h2>
+<section id="datos-faltantes" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="datos-faltantes"><span class="header-section-number">9.1</span> Datos faltantes</h2>
 <ol type="1">
 <li>El censo de huecos antes de tratarlos: cuántos, dónde, de qué tamaño — el hueco de cinco minutos y el de una semana no se tratan igual.</li>
 <li>Rellenos con memoria: <code>ffill</code> y <code>bfill</code>, y su freno (<code>limit</code>) — cuándo copiar el pasado es razonable y cuándo es inventar.</li>
@@ -273,8 +282,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Honestidad gráfica: el dato interpolado se señala en la figura — lo inventado se declara, como toda decisión de limpieza en este curso.</li>
 </ol>
 </section>
-<section id="cambio-de-frecuencia" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="cambio-de-frecuencia"><span class="header-section-number">8.2</span> Cambio de frecuencia</h2>
+<section id="cambio-de-frecuencia" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="cambio-de-frecuencia"><span class="header-section-number">9.2</span> Cambio de frecuencia</h2>
 <ol type="1">
 <li><code>resample</code>, la promesa de la Unidad 3 cumplida: la gramática completa — la regla (<code>'h'</code>, <code>'D'</code>, <code>'ME'</code>) y la función que resume.</li>
 <li>La física decide la agregación: la irradiancia se promedia, la energía se suma, la ráfaga es un máximo — la misma variable, tres preguntas distintas.</li>
@@ -282,8 +291,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Ventanas móviles: <code>rolling</code> — suavizar el ruido sin cambiar la frecuencia.</li>
 </ol>
 </section>
-<section id="agrupación-de-datos" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="agrupación-de-datos"><span class="header-section-number">8.3</span> Agrupación de datos</h2>
+<section id="agrupación-de-datos" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="agrupación-de-datos"><span class="header-section-number">9.3</span> Agrupación de datos</h2>
 <ol type="1">
 <li><code>groupby</code>: la idea anunciada desde la Unidad 3, por fin completa — separar, aplicar, combinar.</li>
 <li><code>resample</code> era un <code>groupby</code> con reloj: ahora se agrupa por lo que sea — el mes, el día de la semana, el sensor.</li>
@@ -292,8 +301,8 @@ ul.task-list li input[type="checkbox"] {
 <li>El patrón mental: toda pregunta que empieza con “¿qué mes…?, ¿qué sensor…?” es un <code>groupby</code> esperando a ser escrito.</li>
 </ol>
 </section>
-<section id="visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots"><span class="header-section-number">8.4</span> Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots</h2>
+<section id="visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="visualizaciones-avanzadas-heatmaps-boxplots-histogramas-violin-plots"><span class="header-section-number">9.4</span> Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots</h2>
 <ol type="1">
 <li>Distribuciones: el histograma revisitado, el boxplot, el violin — qué muestra y qué esconde cada uno; el bigote tiene definición: cuartiles e IQR.</li>
 <li>seaborn cosecha su lugar en el mapa de la Unidad 4: las figuras de distribución por categoría en una línea, sobre los <code>Axes</code> de siempre.</li>
@@ -304,8 +313,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Elegir con criterio, otra vez: cuándo una distribución, cuándo un mapa, cuándo un ángulo — y la figura avanzada también se explica sola.</li>
 </ol>
 </section>
-<section id="dashboards-con-quarto" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="dashboards-con-quarto"><span class="header-section-number">8.5</span> Dashboards con Quarto</h2>
+<section id="dashboards-con-quarto" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="dashboards-con-quarto"><span class="header-section-number">9.5</span> Dashboards con Quarto</h2>
 <ol type="1">
 <li>Qué es Quarto: Markdown y celdas de código que se ejecutan al renderizar — la libreta y el <code>.qmd</code> son parientes. La revelación final del curso: este sitio está hecho con Quarto.</li>
 <li>De libreta a documento: <code>quarto render</code>, y el análisis se vuelve HTML o PDF que viaja solo.</li>
@@ -751,12 +760,12 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../unidades/unidad-06.html" class="pagination-link" aria-label="Prácticas para el cómputo científico">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../unidades/unidad-08.html" class="pagination-link" aria-label="Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
