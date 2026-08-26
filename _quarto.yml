@@ -40,6 +40,7 @@ book:
 
     - unidades/unidad-01.qmd
     - clases/001_hola_mundo/notebooks/001_HolaMundo.ipynb
+    - clases/002_variables/001_intro_variables.ipynb
     - unidades/unidad-02.qmd
     - unidades/unidad-03.qmd
     - unidades/unidad-04.qmd
