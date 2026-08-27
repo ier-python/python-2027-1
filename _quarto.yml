@@ -42,6 +42,8 @@ book:
     - clases/001_hola_mundo/index.qmd
     - clases/001_hola_mundo/notebooks/001_HolaMundo.ipynb
     - clases/002_variables/001_intro_variables.ipynb
+    - clases/003_variables_operaciones/001_variables_operaciones.ipynb
+    - clases/003_variables_operaciones/002_strings.ipynb
     - unidades/unidad-02.qmd
     - unidades/unidad-03.qmd
     - unidades/unidad-04.qmd
