@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Sesión 2 — ListasProyectos de ciencia de datos con Python · Unidad 2 · 90 minutos—## Dónde nos quedamosLa sesión pasada dejamos el archivo limpio, pero los números se imprimían y se perdían. – Proyectos de ciencia de datos con Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../unidades/unidad-02.html" rel="next">
+<link href="../../clases/006_cadenas_listas/001_cadenas.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-dbb2bd84711b80ae9c8cd46c7acce907.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../clases/006_cadenas_listas/002_listas.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sesión 2 — Listas</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Proyectos de ciencia de datos con Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ier-python/python-2027-1" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentación</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../temario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temario del curso</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reglas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reglas y acuerdos del curso</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instala Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Recomendaciones para aprender a usar la libreta de Jupyter.</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">001_intro_variables.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/003_variables_operaciones/001_variables_operaciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">001_variables_operaciones.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/003_variables_operaciones/002_strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">002_strings.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">print en Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">002_manipulacion_cadenas.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">001_manipulacion_cadenas.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/006_cadenas_listas/001_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sesión 1 — Cadenas de texto</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/006_cadenas_listas/002_listas.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sesión 2 — Listas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../apendices/instalacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación del entorno</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#append-el-patrón-centraleste-es-el-patrón-de-la-ciencia-de-datos-empiezas-con-una-lista-vacía-y-la-vas-llenando-dentro-de-un-ciclo." id="toc-append-el-patrón-centraleste-es-el-patrón-de-la-ciencia-de-datos-empiezas-con-una-lista-vacía-y-la-vas-llenando-dentro-de-un-ciclo." class="nav-link active" data-scroll-target="#append-el-patrón-centraleste-es-el-patrón-de-la-ciencia-de-datos-empiezas-con-una-lista-vacía-y-la-vas-llenando-dentro-de-un-ciclo."><span class="header-section-number">10.2</span> 1.2 <code>append()</code> — el patrón centralEste es <strong>el</strong> patrón de la ciencia de datos: empiezas con una lista vacía y la vas llenando dentro de un ciclo.</a></li>
+  <li><a href="#acumular-con-condicióndescartar-mientras-acumulas-es-lo-más-común-en-datos-reales" id="toc-acumular-con-condicióndescartar-mientras-acumulas-es-lo-más-común-en-datos-reales" class="nav-link" data-scroll-target="#acumular-con-condicióndescartar-mientras-acumulas-es-lo-más-común-en-datos-reales"><span class="header-section-number">10.3</span> 1.3 Acumular con condiciónDescartar mientras acumulas es lo más común en datos reales:</a>
+  <ul class="collapse">
+  <li><a href="#tu-turno-3-mincon-montos-1234.50-987.00-2045.75-acumula-en-una-lista-los-valores-como-float-e-imprímela." id="toc-tu-turno-3-mincon-montos-1234.50-987.00-2045.75-acumula-en-una-lista-los-valores-como-float-e-imprímela." class="nav-link" data-scroll-target="#tu-turno-3-mincon-montos-1234.50-987.00-2045.75-acumula-en-una-lista-los-valores-como-float-e-imprímela.">TU TURNO ⏱ 3 minCon <code>montos = ["$1,234.50", "$987.00", "$2,045.75"]</code>, acumula en una lista los valores como <code>float</code> e imprímela.</a></li>
+  </ul></li>
+  <li><a href="#insert-index-count" id="toc-insert-index-count" class="nav-link" data-scroll-target="#insert-index-count"><span class="header-section-number">10.4</span> 2.2 <code>insert()</code>, <code>index()</code>, <code>count()</code></a></li>
+  <li><a href="#append-vs-extend-predice-cuánto-vale-lena-al-final" id="toc-append-vs-extend-predice-cuánto-vale-lena-al-final" class="nav-link" data-scroll-target="#append-vs-extend-predice-cuánto-vale-lena-al-final"><span class="header-section-number">10.5</span> 2.3 <code>append</code> vs <code>extend</code>### PREDICE ✍️¿Cuánto vale <code>len(a)</code> al final?</a>
+  <ul class="collapse">
+  <li><a href="#tu-turno-3-mincon-lecturas-23.5--999-25.1-28.4--999-22.81.-acumula-en-una-lista-limpia-solo-los-valores-distintos-de--999.2.-imprime-cuántos-había-cuántos-quedaron-y-el-promedio-con-dos-decimales." id="toc-tu-turno-3-mincon-lecturas-23.5--999-25.1-28.4--999-22.81.-acumula-en-una-lista-limpia-solo-los-valores-distintos-de--999.2.-imprime-cuántos-había-cuántos-quedaron-y-el-promedio-con-dos-decimales." class="nav-link" data-scroll-target="#tu-turno-3-mincon-lecturas-23.5--999-25.1-28.4--999-22.81.-acumula-en-una-lista-limpia-solo-los-valores-distintos-de--999.2.-imprime-cuántos-había-cuántos-quedaron-y-el-promedio-con-dos-decimales.">TU TURNO ⏱ 3 minCon <code>lecturas = [23.5, -999, 25.1, 28.4, -999, 22.8]</code>:1. Acumula en una lista limpia solo los valores distintos de <code>-999</code>.2. Imprime cuántos había, cuántos quedaron, y el promedio con dos decimales.</a></li>
+  </ul></li>
+  <li><a href="#rebanadasse-rebanan-igual-que-las-cadenas-y-siempre-devuelven-una-lista-nueva" id="toc-rebanadasse-rebanan-igual-que-las-cadenas-y-siempre-devuelven-una-lista-nueva" class="nav-link" data-scroll-target="#rebanadasse-rebanan-igual-que-las-cadenas-y-siempre-devuelven-una-lista-nueva"><span class="header-section-number">10.6</span> 5.3 RebanadasSe rebanan igual que las cadenas, y siempre devuelven una <strong>lista nueva</strong>:</a></li>
+  <li><a href="#copia-vs-referencia-predice-qué-imprime-printa-al-final" id="toc-copia-vs-referencia-predice-qué-imprime-printa-al-final" class="nav-link" data-scroll-target="#copia-vs-referencia-predice-qué-imprime-printa-al-final"><span class="header-section-number">10.7</span> 5.4 Copia vs referencia### PREDICE ✍️¿Qué imprime <code>print(a)</code> al final?</a>
+  <ul class="collapse">
+  <li><a href="#solución" id="toc-solución" class="nav-link" data-scroll-target="#solución">Solución</a></li>
+  </ul></li>
+  <li><a href="#apéndice-listas-anidadaslo-necesitas-para-el-ejercicio-b16.-una-lista-de-listas-es-una-tabla-el-primer-índice-es-el-renglón-el-segundo-la-columna." id="toc-apéndice-listas-anidadaslo-necesitas-para-el-ejercicio-b16.-una-lista-de-listas-es-una-tabla-el-primer-índice-es-el-renglón-el-segundo-la-columna." class="nav-link" data-scroll-target="#apéndice-listas-anidadaslo-necesitas-para-el-ejercicio-b16.-una-lista-de-listas-es-una-tabla-el-primer-índice-es-el-renglón-el-segundo-la-columna."><span class="header-section-number">10.8</span> Apéndice — Listas anidadasLo necesitas para el ejercicio <strong>B16</strong>. Una lista de listas es una tabla: el primer índice es el renglón, el segundo la columna.</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/006_cadenas_listas/002_listas.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sesión 2 — Listas<strong>Proyectos de ciencia de datos con Python</strong> · Unidad 2 · 90 minutos—## Dónde nos quedamosLa sesión pasada dejamos el archivo limpio, pero los números se imprimían y se perdían.</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>crudo <span class="op">=</span> <span class="st">"""# EMA Temixco - IER UNAM# temp en °C, hum en </span><span class="sc">%f</span><span class="st">echa  temp    hum14/3/2025    23,5    6115/3/2025 NA  5816/3/2025 22,8    6617/3/2025 24,9    60"""</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<h2 id="cuál-fue-la-temperatura-promedio-de-esos-días-para-sumar-hay-que-guardar.-ese-contenedor-es-la-lista.una-lista-es-una-secuencia-ordenada-y-mutable.-es-donde-acumulas-resultados-mientras-recorres-un-archivo-antes-de-pasarlos-a-numpy-o-pandas.-ruta-de-la-sesión-bloque-tiempo-qué-1-18-min-el-acumulador-append-2-15-min-quitar-pop-remove-del-insert-3-12-min-agregados-sum-min-max-len-4-12-min-ordenar-sort-vs-sorted-5-13-min-recorrer-zip-enumerate-rebanadas-6-15-min-reto-contestamos-la-pregunta-5-min-cierre-y-tarea-mismas-reglas-teclea-tú-predice-en-papel-antes-de-ejecutar-y-el-error-en-rojo-es-información." data-number="10.1" class="anchored"><span class="header-section-number">10.1</span> ¿Cuál fue la temperatura promedio de esos días?&gt;&gt; Para sumar hay que <strong>guardar</strong>. Ese contenedor es la <strong>lista</strong>.Una lista es una secuencia <strong>ordenada</strong> y <strong>mutable</strong>. Es donde acumulas resultados mientras recorres un archivo, antes de pasarlos a NumPy o pandas.### Ruta de la sesión| Bloque | Tiempo | Qué ||—|—|—|| 1 | 18 min | El acumulador: <code>append</code> || 2 | 15 min | Quitar: <code>pop</code>, <code>remove</code>, <code>del</code>, <code>insert</code> || 3 | 12 min | Agregados: <code>sum</code>, <code>min</code>, <code>max</code>, <code>len</code> || 4 | 12 min | Ordenar: <code>sort</code> vs <code>sorted</code> || 5 | 13 min | Recorrer: <code>zip</code>, <code>enumerate</code>, rebanadas || 6 | 15 min | Reto: contestamos la pregunta || — | 5 min | Cierre y tarea |Mismas reglas: teclea tú, <strong>PREDICE</strong> en papel antes de ejecutar, y el error en rojo es información.</h2>
+</blockquote>
+<p>***# Bloque 1 — El acumulador ⏱ 18 min## 1.1 Crear y recorrer</p>
+<div id="cell-4" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>temperaturas <span class="op">=</span> [<span class="fl">23.5</span>, <span class="fl">25.1</span>, <span class="fl">22.8</span>]<span class="bu">print</span>(temperaturas)<span class="bu">print</span>(<span class="bu">len</span>(temperaturas))<span class="bu">print</span>(temperaturas[<span class="dv">0</span>])     <span class="co"># el primeroprint(temperaturas[-1])    # el último</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Una lista puede guardar cualquier cosa, incluso mezclada:</p>
+<div id="cell-6" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mezcla <span class="op">=</span> [<span class="st">"2025-03-14"</span>, <span class="fl">23.5</span>, <span class="dv">61</span>, <span class="va">True</span>]<span class="bu">print</span>(mezcla)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="append-el-patrón-centraleste-es-el-patrón-de-la-ciencia-de-datos-empiezas-con-una-lista-vacía-y-la-vas-llenando-dentro-de-un-ciclo." class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="append-el-patrón-centraleste-es-el-patrón-de-la-ciencia-de-datos-empiezas-con-una-lista-vacía-y-la-vas-llenando-dentro-de-un-ciclo."><span class="header-section-number">10.2</span> 1.2 <code>append()</code> — el patrón centralEste es <strong>el</strong> patrón de la ciencia de datos: empiezas con una lista vacía y la vas llenando dentro de un ciclo.</h2>
+<div id="cell-8" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>crudas <span class="op">=</span> [<span class="st">"23,5"</span>, <span class="st">"25,1"</span>, <span class="st">"22,8"</span>, <span class="st">"24,9"</span>]temperaturas <span class="op">=</span> []                          <span class="co"># 1. lista vacíafor c in crudas:                           # 2. recorrer    valor = float(c.replace(",", "."))     # 3. procesar    temperaturas.append(valor)             # 4. acumularprint(temperaturas)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Compáralo con las cadenas de la sesión pasada:| | Cadenas | Listas ||—|—|—|| <code>s.replace(",", ".")</code> | devuelve una <strong>nueva</strong>, la original no cambia | — || <code>lista.append(x)</code> | — | <strong>modifica</strong> la lista, no devuelve nada |Las cadenas son inmutables. Las listas <strong>sí se modifican</strong>. Por eso <code>temperaturas = temperaturas.append(x)</code> es un error: <code>append</code> devuelve <code>None</code>.</p>
+</section>
+<section id="acumular-con-condicióndescartar-mientras-acumulas-es-lo-más-común-en-datos-reales" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="acumular-con-condicióndescartar-mientras-acumulas-es-lo-más-común-en-datos-reales"><span class="header-section-number">10.3</span> 1.3 Acumular con condiciónDescartar mientras acumulas es lo más común en datos reales:</h2>
+<div id="cell-11" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>crudas <span class="op">=</span> [<span class="st">"23,5"</span>, <span class="st">"NA"</span>, <span class="st">"22,8"</span>, <span class="st">"24,9"</span>, <span class="st">"NA"</span>]validas <span class="op">=</span> []descartadas <span class="op">=</span> []<span class="cf">for</span> c <span class="kw">in</span> crudas:    <span class="cf">if</span> c <span class="op">==</span> <span class="st">"NA"</span>:        descartadas.append(c)        <span class="cf">continue</span>    validas.append(<span class="bu">float</span>(c.replace(<span class="st">","</span>, <span class="st">"."</span>)))<span class="bu">print</span>(<span class="st">"válidas:    "</span>, validas)<span class="bu">print</span>(<span class="st">"descartadas:"</span>, <span class="bu">len</span>(descartadas))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="tu-turno-3-mincon-montos-1234.50-987.00-2045.75-acumula-en-una-lista-los-valores-como-float-e-imprímela." class="level3">
+<h3 class="anchored" data-anchor-id="tu-turno-3-mincon-montos-1234.50-987.00-2045.75-acumula-en-una-lista-los-valores-como-float-e-imprímela.">TU TURNO ⏱ 3 minCon <code>montos = ["$1,234.50", "$987.00", "$2,045.75"]</code>, acumula en una lista los valores como <code>float</code> e imprímela.</h3>
+<div id="cell-13" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>montos <span class="op">=</span> [<span class="st">"$1,234.50"</span>, <span class="st">"$987.00"</span>, <span class="st">"$2,045.75"</span>]valores <span class="op">=</span> []<span class="co"># Tu código aquí</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>***# Bloque 2 — Quitar y meter ⏱ 15 min## 2.1 <code>pop()</code>, <code>remove()</code>, <code>del</code></p>
+<div id="cell-15" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lecturas <span class="op">=</span> [<span class="fl">23.5</span>, <span class="op">-</span><span class="dv">999</span>, <span class="fl">25.1</span>, <span class="fl">22.8</span>]ultima <span class="op">=</span> lecturas.pop()        <span class="co"># quita el último Y te lo devuelveprint(ultima, lecturas)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-16" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lecturas.remove(<span class="op">-</span><span class="dv">999</span>)          <span class="co"># quita la primera aparición de ese VALORprint(lecturas)del lecturas[0]                # borra por POSICIÓN, no devuelve nadaprint(lecturas)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="line-block">Cuál | Cuándo ||—|—|| <code>.pop()</code> / <code>.pop(i)</code> | cuando <strong>necesitas</strong> el valor que sacas || <code>.remove(x)</code> | cuando sabes el <strong>valor</strong> pero no la posición || <code>del lista[i]</code> | cuando sabes la <strong>posición</strong> y no te interesa el valor |En instrumentos, <code>-999</code> suele significar “dato faltante”. Es el centinela más común.<code>.remove()</code> truena si el valor no existe. Compruébalo:</div>
+<div id="cell-18" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prueba <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]prueba.remove(<span class="dv">99</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="insert-index-count" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="insert-index-count"><span class="header-section-number">10.4</span> 2.2 <code>insert()</code>, <code>index()</code>, <code>count()</code></h2>
+<div id="cell-20" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dias <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>]dias.insert(<span class="dv">2</span>, <span class="dv">3</span>)          <span class="co"># mete el 3 en la posición 2print(dias)lecturas = [23.5, -999, 25.1, -999, 22.8]print(lecturas.count(-999))     # cuántas veces apareceprint(lecturas.index(-999))     # posición de la primera</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="append-vs-extend-predice-cuánto-vale-lena-al-final" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="append-vs-extend-predice-cuánto-vale-lena-al-final"><span class="header-section-number">10.5</span> 2.3 <code>append</code> vs <code>extend</code>### PREDICE ✍️¿Cuánto vale <code>len(a)</code> al final?</h2>
+<div id="cell-22" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]b <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">4</span>]a.append(b)<span class="bu">print</span>(a)<span class="bu">print</span>(<span class="bu">len</span>(a))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Son <strong>3</strong>, no 4. <code>.append()</code> mete la lista completa como <strong>un solo elemento</strong>: te queda una lista dentro de otra.Para juntar mediciones necesitas <code>.extend()</code>:</p>
+<div id="cell-24" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]b <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">4</span>]a.extend(b)<span class="bu">print</span>(a, <span class="bu">len</span>(a))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>*<strong># Bloque 3 — Agregados ⏱ 12 min<code>len</code>, <code>sum</code>, <code>min</code> y <code>max</code> no son métodos: son </strong>funciones** que reciben la lista.</p>
+<div id="cell-26" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> [<span class="fl">23.5</span>, <span class="fl">25.1</span>, <span class="fl">22.8</span>, <span class="fl">24.9</span>]<span class="bu">print</span>(<span class="st">"n:       "</span>, <span class="bu">len</span>(t))<span class="bu">print</span>(<span class="st">"suma:    "</span>, <span class="bu">sum</span>(t))<span class="bu">print</span>(<span class="st">"mínima:  "</span>, <span class="bu">min</span>(t))<span class="bu">print</span>(<span class="st">"máxima:  "</span>, <span class="bu">max</span>(t))<span class="bu">print</span>(<span class="st">"promedio:"</span>, <span class="bu">sum</span>(t) <span class="op">/</span> <span class="bu">len</span>(t))<span class="bu">print</span>(<span class="st">"rango:   "</span>, <span class="bu">max</span>(t) <span class="op">-</span> <span class="bu">min</span>(t))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Con formato legible:</p>
+<div id="cell-28" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"promedio: </span><span class="sc">{</span><span class="bu">sum</span>(t) <span class="op">/</span> <span class="bu">len</span>(t)<span class="sc">:.2f}</span><span class="ss"> °C"</span>)<span class="bu">print</span>(<span class="ss">f"rango:    </span><span class="sc">{</span><span class="bu">max</span>(t) <span class="op">-</span> <span class="bu">min</span>(t)<span class="sc">:.1f}</span><span class="ss"> °C"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>⚠️ <code>sum(t) / len(t)</code> truena con <code>ZeroDivisionError</code> si la lista quedó vacía. En datos reales pasa: todas las filas tenían <code>NA</code>. Protégelo:</p>
+<div id="cell-30" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>vacia <span class="op">=</span> []<span class="cf">if</span> <span class="bu">len</span>(vacia) <span class="op">&gt;</span> <span class="dv">0</span>:    <span class="bu">print</span>(<span class="bu">sum</span>(vacia) <span class="op">/</span> <span class="bu">len</span>(vacia))<span class="cf">else</span>:    <span class="bu">print</span>(<span class="st">"sin datos válidos"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="tu-turno-3-mincon-lecturas-23.5--999-25.1-28.4--999-22.81.-acumula-en-una-lista-limpia-solo-los-valores-distintos-de--999.2.-imprime-cuántos-había-cuántos-quedaron-y-el-promedio-con-dos-decimales." class="level3">
+<h3 class="anchored" data-anchor-id="tu-turno-3-mincon-lecturas-23.5--999-25.1-28.4--999-22.81.-acumula-en-una-lista-limpia-solo-los-valores-distintos-de--999.2.-imprime-cuántos-había-cuántos-quedaron-y-el-promedio-con-dos-decimales.">TU TURNO ⏱ 3 minCon <code>lecturas = [23.5, -999, 25.1, 28.4, -999, 22.8]</code>:1. Acumula en una lista limpia solo los valores distintos de <code>-999</code>.2. Imprime cuántos había, cuántos quedaron, y el promedio con dos decimales.</h3>
+<div id="cell-32" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lecturas <span class="op">=</span> [<span class="fl">23.5</span>, <span class="op">-</span><span class="dv">999</span>, <span class="fl">25.1</span>, <span class="fl">28.4</span>, <span class="op">-</span><span class="dv">999</span>, <span class="fl">22.8</span>]<span class="co"># Tu código aquí</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>***# Bloque 4 — Ordenar ⏱ 12 min### PREDICE ✍️¿Qué imprime esto?</p>
+<div id="cell-34" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> [<span class="fl">25.1</span>, <span class="fl">22.8</span>, <span class="fl">27.0</span>, <span class="fl">23.5</span>]<span class="bu">print</span>(t.sort())</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Imprime <code>None</code>.<code>.sort()</code> ordena <strong>en el lugar</strong> y no devuelve nada. <code>sorted()</code> deja la original intacta y devuelve una <strong>copia</strong> ordenada.</p>
+<div id="cell-36" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> [<span class="fl">25.1</span>, <span class="fl">22.8</span>, <span class="fl">27.0</span>, <span class="fl">23.5</span>]<span class="bu">print</span>(<span class="bu">sorted</span>(t))                  <span class="co"># copia ordenadaprint(sorted(t, reverse=True))    # de mayor a menorprint(t)                          # la original no se tocó</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-37" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>t.sort()                          <span class="co"># ahora sí, en el lugarprint(t)t.reverse()                       # invertir, también en el lugarprint(t)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Trampa clásica:</strong> <code>t = t.sort()</code> deja <code>t</code> valiendo <code>None</code>, y el error truena mucho después, en otra línea, con un mensaje que no menciona <code>sort</code>. Escribe <code>t.sort()</code> a secas, o <code>t = sorted(t)</code>.Aplica al resto: <code>.append()</code>, <code>.extend()</code>, <code>.insert()</code>, <code>.remove()</code> y <code>.reverse()</code> también devuelven <code>None</code>.</p>
+</blockquote>
+<p><code>sorted()</code> también funciona sobre cadenas, y por eso el formato ISO importa:</p>
+<div id="cell-40" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>([<span class="st">"2025-11-02"</span>, <span class="st">"2025-03-14"</span>, <span class="st">"2025-07-01"</span>]))   <span class="co"># ordena bienprint(sorted(["2/11/2025", "14/3/2025", "1/7/2025"]))       # ordena mal</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>***# Bloque 5 — Recorrer ⏱ 13 min## 5.1 <code>zip()</code> — dos listas en paralelo</p>
+<div id="cell-42" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fechas <span class="op">=</span> [<span class="st">"2025-03-14"</span>, <span class="st">"2025-03-15"</span>, <span class="st">"2025-03-16"</span>]temps  <span class="op">=</span> [<span class="fl">23.5</span>, <span class="fl">25.1</span>, <span class="fl">22.8</span>]<span class="cf">for</span> f, t <span class="kw">in</span> <span class="bu">zip</span>(fechas, temps):    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>f<span class="sc">}</span><span class="ch">\t</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Si las listas tienen distinta longitud, <code>zip</code> se detiene en la más corta, <strong>sin avisar</strong>. Es una fuente clásica de datos perdidos en silencio.## 5.2 <code>enumerate()</code> — con la posición</p>
+<div id="cell-44" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">enumerate</span>(temps):    <span class="bu">print</span>(i, t)<span class="bu">print</span>()<span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">enumerate</span>(temps, start<span class="op">=</span><span class="dv">1</span>):    <span class="co"># numerar desde 1    print(i, t)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Para encontrar dónde está el máximo:</p>
+<div id="cell-46" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> temps.index(<span class="bu">max</span>(temps))<span class="bu">print</span>(pos, fechas[pos], temps[pos])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="rebanadasse-rebanan-igual-que-las-cadenas-y-siempre-devuelven-una-lista-nueva" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="rebanadasse-rebanan-igual-que-las-cadenas-y-siempre-devuelven-una-lista-nueva"><span class="header-section-number">10.6</span> 5.3 RebanadasSe rebanan igual que las cadenas, y siempre devuelven una <strong>lista nueva</strong>:</h2>
+<div id="cell-48" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>serie <span class="op">=</span> [<span class="fl">23.5</span>, <span class="fl">25.1</span>, <span class="fl">22.8</span>, <span class="fl">24.9</span>, <span class="fl">26.3</span>, <span class="fl">22.1</span>]<span class="bu">print</span>(serie[:<span class="dv">3</span>])      <span class="co"># primeros tresprint(serie[-2:])     # últimos dosprint(serie[1:4])     # de la posición 1 a la 3print(serie[::2])     # uno sí, uno noprint(serie[::-1])    # invertida</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="copia-vs-referencia-predice-qué-imprime-printa-al-final" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="copia-vs-referencia-predice-qué-imprime-printa-al-final"><span class="header-section-number">10.7</span> 5.4 Copia vs referencia### PREDICE ✍️¿Qué imprime <code>print(a)</code> al final?</h2>
+<div id="cell-50" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]b <span class="op">=</span> ab.append(<span class="dv">99</span>)<span class="bu">print</span>(a)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Imprime <code>[1, 2, 3, 99]</code>.<code>b = a</code> <strong>no copia la lista</strong>: le pone un segundo nombre a la misma lista. Para copiar de verdad:</p>
+<div id="cell-52" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]c <span class="op">=</span> a.copy()c.append(<span class="dv">77</span>)<span class="bu">print</span>(a, c)<span class="bu">print</span>(a <span class="kw">is</span> c)      <span class="co"># ¿son la misma lista en memoria?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p>Este es el error más caro de las listas y aparece en proyectos reales todo el tiempo. Cuando dos listas “se modifican solas”, es esto. Ojo: <code>b = a</code> sí es lo que quieres cuando <strong>no</strong> vas a modificar nada.</p>
+</blockquote>
+<p>***# Bloque 6 — Reto: contestamos la pregunta ⏱ 15 minTodo junto: cadenas de la sesión 1 + listas de hoy.A partir del <code>crudo</code>, construye dos listas paralelas <code>fechas</code> y <code>temps</code>, y luego imprime:<code>omitido: 15/3/20252025-03-14      23.52025-03-16      22.82025-03-17      24.9n        = 3promedio = 23.73 °Cmáxima   = 24.9 °C el 2025-03-17</code>Pasos:1. Dos listas vacías antes del ciclo.2. <code>splitlines()</code>, <code>strip()</code>, descartar vacías / <code>#</code> / encabezado.3. <code>split("\t")</code>, descartar filas con <code>NA</code> avisando.4. Fecha a ISO, coma decimal a punto.5. <code>.append()</code> a cada lista.6. <code>zip</code> para la tabla, <code>sum</code>/<code>len</code>/<code>max</code>/<code>index</code> para el resumen.Trabaja en pares. Intenta 10 minutos antes de mirar la solución.</p>
+<div id="cell-55" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tu código aquí</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="solución" class="level3">
+<h3 class="anchored" data-anchor-id="solución">Solución</h3>
+<div id="cell-57" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fechas <span class="op">=</span> []temps <span class="op">=</span> []<span class="cf">for</span> linea <span class="kw">in</span> crudo.splitlines():    linea <span class="op">=</span> linea.strip()    <span class="cf">if</span> linea <span class="op">==</span> <span class="st">""</span>:        <span class="cf">continue</span>    <span class="cf">if</span> linea.startswith(<span class="st">"#"</span>):        <span class="cf">continue</span>    <span class="cf">if</span> linea.startswith(<span class="st">"fecha"</span>):        <span class="cf">continue</span>    campos <span class="op">=</span> linea.split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)    fecha_cruda <span class="op">=</span> campos[<span class="dv">0</span>]    temp_cruda <span class="op">=</span> campos[<span class="dv">1</span>]    <span class="cf">if</span> temp_cruda <span class="op">==</span> <span class="st">"NA"</span>:        <span class="bu">print</span>(<span class="ss">f"omitido: </span><span class="sc">{</span>fecha_cruda<span class="sc">}</span><span class="ss">"</span>)        <span class="cf">continue</span>    dia, mes, anio <span class="op">=</span> fecha_cruda.split(<span class="st">"/"</span>)    fechas.append(<span class="ss">f"</span><span class="sc">{</span>anio<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>mes<span class="sc">.</span>zfill(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>dia<span class="sc">.</span>zfill(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)    temps.append(<span class="bu">float</span>(temp_cruda.replace(<span class="st">","</span>, <span class="st">"."</span>)))<span class="bu">print</span>()<span class="cf">for</span> f, t <span class="kw">in</span> <span class="bu">zip</span>(fechas, temps):    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>f<span class="sc">:&lt;16}{</span>t<span class="sc">:.1f}</span><span class="ss">"</span>)<span class="bu">print</span>()<span class="bu">print</span>(<span class="ss">f"n        = </span><span class="sc">{</span><span class="bu">len</span>(temps)<span class="sc">}</span><span class="ss">"</span>)<span class="bu">print</span>(<span class="ss">f"promedio = </span><span class="sc">{</span><span class="bu">sum</span>(temps) <span class="op">/</span> <span class="bu">len</span>(temps)<span class="sc">:.2f}</span><span class="ss"> °C"</span>)<span class="bu">print</span>(<span class="ss">f"máxima   = </span><span class="sc">{</span><span class="bu">max</span>(temps)<span class="sc">:.1f}</span><span class="ss"> °C el </span><span class="sc">{</span>fechas[temps.index(<span class="bu">max</span>(temps))]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Compara ese resultado con el <code>crudo</code> de la primera celda.Ese texto pegajoso de la sesión pasada ahora es un número. <strong>Eso es limpieza de datos, y es la mitad del trabajo de cualquier proyecto real.</strong> El resto del curso son variantes más rápidas de este mismo ciclo.</p>
+<p><em><strong># Cierre ⏱ 5 min## Lo que hay que llevarse| Concepto | Por qué ||—|—|| Lista vacía + <code>for</code> + <code>.append()</code> | el patrón acumulador, el más usado del curso || Las listas </strong>sí<strong> se modifican | al revés que las cadenas || <code>.sort()</code> devuelve <code>None</code> | nunca <code>t = t.sort()</code> || <code>sorted()</code> no toca la original | úsalo cuando necesites las dos versiones || <code>b = a</code> no copia | usa <code>.copy()</code> || <code>zip</code> se detiene en la más corta | y no avisa |## Ticket de salida1. ¿Qué imprime <code>x = [3,1,2]; print(x.sort())</code>?2. Después de <code>a = [1,2]; b = a; b.append(3)</code>, ¿cuánto vale <code>len(a)</code>?3. Una cosa que todavía no te queda clara.</strong></em>## Tarea — entrega en una semanaLibreta <code>tarea_strings_listas.ipynb</code>.| Parte | Ejercicios | Nota ||—|—|—|| A — Cadenas | 1 a 5, 7 a 20 | <strong>salta el A6</strong> || B — Listas | 1 a 10, 12 a 16, 18 a 20 | <strong>salta el B11 y el B17</strong> |Los saltados piden funciones (<code>def</code>, <code>lambda</code>) y manejo de excepciones (<code>try</code>/<code>except</code>), que veremos más adelante.<strong>Sugerencias de trabajo:</strong>- Empieza por los que ya intentaste en clase; son los más rápidos.- El <strong>B18</strong> (media móvil) es el que más cuesta. Necesitas rebanadas dentro de un ciclo. Déjalo para cuando tengas tiempo seguido.- El <strong>A20</strong> y el <strong>B20</strong> son integradores y traen errores de captura deliberados. Úsales <code>repr()</code> antes de programar nada.- Si te atoras más de 20 minutos en un ejercicio, escríbelo en el canal del curso con tu código y el error completo. Atorarse es parte del método; atorarse en silencio no.*<strong>## Apéndice — Listas por comprensiónLo necesitas para el ejercicio </strong>B14**. Es el mismo <code>for</code> con <code>append</code> escrito en un renglón.</p>
+<div id="cell-60" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>crudas <span class="op">=</span> [<span class="st">"23,5"</span>, <span class="st">"25,1"</span>, <span class="st">"22,8"</span>]<span class="co"># la versión largat1 = []for c in crudas:    t1.append(float(c.replace(",", ".")))# la versión corta: exactamente lo mismot2 = [float(c.replace(",", ".")) for c in crudas]print(t1)print(t2)print(t1 == t2)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-61" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># con filtro: el if va al finalprint([x for x in t2 if x &gt; 23])# transformar: °C a °Fprint([x * 9 / 5 + 32 for x in t2])</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="apéndice-listas-anidadaslo-necesitas-para-el-ejercicio-b16.-una-lista-de-listas-es-una-tabla-el-primer-índice-es-el-renglón-el-segundo-la-columna." class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="apéndice-listas-anidadaslo-necesitas-para-el-ejercicio-b16.-una-lista-de-listas-es-una-tabla-el-primer-índice-es-el-renglón-el-segundo-la-columna."><span class="header-section-number">10.8</span> Apéndice — Listas anidadasLo necesitas para el ejercicio <strong>B16</strong>. Una lista de listas es una tabla: el primer índice es el renglón, el segundo la columna.</h2>
+<div id="cell-63" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>matriz <span class="op">=</span> [    [<span class="fl">23.5</span>, <span class="fl">25.1</span>, <span class="fl">22.8</span>],    [<span class="fl">26.8</span>, <span class="fl">27.4</span>, <span class="fl">26.1</span>],    [<span class="fl">21.3</span>, <span class="fl">22.0</span>, <span class="fl">20.8</span>],]<span class="bu">print</span>(matriz[<span class="dv">1</span>])        <span class="co"># renglón completoprint(matriz[1][2])     # renglón 1, columna 2# promedio por renglónfor renglon in matriz:    print(round(sum(renglon) / len(renglon), 2))</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-64" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zip(*matriz) transpone: convierte renglones en columnasfor columna in zip(*matriz):    print(columna, round(sum(columna) / len(columna), 2))</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../clases/006_cadenas_listas/001_cadenas.html" class="pagination-link" aria-label="Sesión 1 — Cadenas de texto">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sesión 1 — Cadenas de texto</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../unidades/unidad-02.html" class="pagination-link" aria-label="Sintaxis, herramientas de control y métodos de Python">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Instituto de Energías Renovables · UNAM</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/006_cadenas_listas/002_listas.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Hecho con <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

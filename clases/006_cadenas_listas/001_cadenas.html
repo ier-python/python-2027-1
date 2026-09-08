@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Sesión 1 — Cadenas de textoProyectos de ciencia de datos con Python · Unidad 2 · 90 minutos—## El archivo de hoyAsí llega un archivo real de una estación meteorológica: – Proyectos de ciencia de datos con Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../clases/006_cadenas_listas/002_listas.html" rel="next">
+<link href="../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-dbb2bd84711b80ae9c8cd46c7acce907.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../clases/006_cadenas_listas/001_cadenas.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sesión 1 — Cadenas de texto</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Proyectos de ciencia de datos con Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ier-python/python-2027-1" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentación</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../temario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temario del curso</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../reglas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reglas y acuerdos del curso</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instala Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Recomendaciones para aprender a usar la libreta de Jupyter.</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">001_intro_variables.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/003_variables_operaciones/001_variables_operaciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">001_variables_operaciones.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/003_variables_operaciones/002_strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">002_strings.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">print en Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">002_manipulacion_cadenas.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">001_manipulacion_cadenas.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/006_cadenas_listas/001_cadenas.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sesión 1 — Cadenas de texto</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../clases/006_cadenas_listas/002_listas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sesión 2 — Listas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../apendices/instalacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación del entorno</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#predice-cuántos-caracteres-tiene-la-cadena-23.5t61nescribe-tu-número-en-papel.-cuenta-hasta-diez.-después-ejecuta." id="toc-predice-cuántos-caracteres-tiene-la-cadena-23.5t61nescribe-tu-número-en-papel.-cuenta-hasta-diez.-después-ejecuta." class="nav-link active" data-scroll-target="#predice-cuántos-caracteres-tiene-la-cadena-23.5t61nescribe-tu-número-en-papel.-cuenta-hasta-diez.-después-ejecuta.">PREDICE ✍️¿Cuántos caracteres tiene la cadena <code>"23.5\t61\n"</code>?Escribe tu número en papel. Cuenta hasta diez. Después ejecuta.</a></li>
+  <li><a href="#tu-turno-2-minimprime-el-repr-del-crudo.-localiza-en-la-salida1.-los-n-que-separan-los-renglones.2.-los-t-que-separan-las-columnas.3.-el-renglón-vacío-después-de-los-comentarios." id="toc-tu-turno-2-minimprime-el-repr-del-crudo.-localiza-en-la-salida1.-los-n-que-separan-los-renglones.2.-los-t-que-separan-las-columnas.3.-el-renglón-vacío-después-de-los-comentarios." class="nav-link" data-scroll-target="#tu-turno-2-minimprime-el-repr-del-crudo.-localiza-en-la-salida1.-los-n-que-separan-los-renglones.2.-los-t-que-separan-las-columnas.3.-el-renglón-vacío-después-de-los-comentarios.">TU TURNO ⏱ 2 minImprime el <code>repr()</code> del <code>crudo</code>. Localiza en la salida:1. Los <code>\n</code> que separan los renglones.2. Los <code>\t</code> que separan las columnas.3. El renglón vacío después de los comentarios.</a></li>
+  <li><a href="#split-partir-en-pedazoslas-fechas-en-español-van-del-día-al-año.-los-sistemas-de-datos-las-quieren-al-revés." id="toc-split-partir-en-pedazoslas-fechas-en-español-van-del-día-al-año.-los-sistemas-de-datos-las-quieren-al-revés." class="nav-link" data-scroll-target="#split-partir-en-pedazoslas-fechas-en-español-van-del-día-al-año.-los-sistemas-de-datos-las-quieren-al-revés."><span class="header-section-number">9.2</span> 1.2 <code>split()</code> — partir en pedazosLas fechas en español van del día al año. Los sistemas de datos las quieren al revés.</a></li>
+  <li><a href="#zfill-los-ceros-que-nadie-escribenuestro-archivo-trae-1432025-no-14032025.-si-no-lo-arreglas-2025-3-14-se-ordena-mal-frente-a-2025-11-02." id="toc-zfill-los-ceros-que-nadie-escribenuestro-archivo-trae-1432025-no-14032025.-si-no-lo-arreglas-2025-3-14-se-ordena-mal-frente-a-2025-11-02." class="nav-link" data-scroll-target="#zfill-los-ceros-que-nadie-escribenuestro-archivo-trae-1432025-no-14032025.-si-no-lo-arreglas-2025-3-14-se-ordena-mal-frente-a-2025-11-02."><span class="header-section-number">9.3</span> 1.3 <code>zfill()</code> — los ceros que nadie escribeNuestro archivo trae <code>14/3/2025</code>, no <code>14/03/2025</code>. Si no lo arreglas, <code>"2025-3-14"</code> se ordena mal frente a <code>"2025-11-02"</code>.</a>
+  <ul class="collapse">
+  <li><a href="#tu-turno-3-minconvierte-592025-y-15112025-a-formato-iso.-el-mismo-código-debe-servir-para-las-dos.salida-esperada2025-09-052025-11-15" id="toc-tu-turno-3-minconvierte-592025-y-15112025-a-formato-iso.-el-mismo-código-debe-servir-para-las-dos.salida-esperada2025-09-052025-11-15" class="nav-link" data-scroll-target="#tu-turno-3-minconvierte-592025-y-15112025-a-formato-iso.-el-mismo-código-debe-servir-para-las-dos.salida-esperada2025-09-052025-11-15">TU TURNO ⏱ 3 minConvierte <code>"5/9/2025"</code> y <code>"15/11/2025"</code> a formato ISO. El mismo código debe servir para las dos.Salida esperada:<code>2025-09-052025-11-15</code></a></li>
+  </ul></li>
+  <li><a href="#inmutabilidad-predice-qué-imprime-esto-escríbelo-en-papel-antes-de-ejecutar." id="toc-inmutabilidad-predice-qué-imprime-esto-escríbelo-en-papel-antes-de-ejecutar." class="nav-link" data-scroll-target="#inmutabilidad-predice-qué-imprime-esto-escríbelo-en-papel-antes-de-ejecutar."><span class="header-section-number">9.4</span> 2.2 Inmutabilidad### PREDICE ✍️¿Qué imprime esto? Escríbelo en papel antes de ejecutar.</a>
+  <ul class="collapse">
+  <li><a href="#tu-turno-3-min1.-de-3450.90-mxn-obtén-el-número-3450.9-como-float.2.-de-1875-obtén-18.75." id="toc-tu-turno-3-min1.-de-3450.90-mxn-obtén-el-número-3450.9-como-float.2.-de-1875-obtén-18.75." class="nav-link" data-scroll-target="#tu-turno-3-min1.-de-3450.90-mxn-obtén-el-número-3450.9-como-float.2.-de-1875-obtén-18.75.">TU TURNO ⏱ 3 min1. De <code>"$ 3,450.90 MXN"</code> obtén el número <code>3450.9</code> como <code>float</code>.2. De <code>"18,75"</code> obtén <code>18.75</code>.</a></li>
+  </ul></li>
+  <li><a href="#splitt-y-split-a-secasnuestro-archivo-usa-tabuladores.-y-ojo-con-esta-diferencia" id="toc-splitt-y-split-a-secasnuestro-archivo-usa-tabuladores.-y-ojo-con-esta-diferencia" class="nav-link" data-scroll-target="#splitt-y-split-a-secasnuestro-archivo-usa-tabuladores.-y-ojo-con-esta-diferencia"><span class="header-section-number">9.5</span> 3.2 <code>split("\t")</code> y <code>split()</code> a secasNuestro archivo usa tabuladores. Y ojo con esta diferencia:</a></li>
+  <li><a href="#filtrar-líneasun-archivo-real-trae-comentarios-encabezados-y-renglones-vacíos.-se-descartan-al-inicio-del-ciclo-con-continue" id="toc-filtrar-líneasun-archivo-real-trae-comentarios-encabezados-y-renglones-vacíos.-se-descartan-al-inicio-del-ciclo-con-continue" class="nav-link" data-scroll-target="#filtrar-líneasun-archivo-real-trae-comentarios-encabezados-y-renglones-vacíos.-se-descartan-al-inicio-del-ciclo-con-continue"><span class="header-section-number">9.6</span> 3.3 Filtrar líneasUn archivo real trae comentarios, encabezados y renglones vacíos. Se descartan al inicio del ciclo con <code>continue</code>:</a>
+  <ul class="collapse">
+  <li><a href="#tu-turno-4-mindel-crudo-imprime-solo-las-líneas-de-datos-ya-partidas-en-sus-tres-campos.-salida-esperada1432025-235-611532025-na-581632025-228-661732025-249-60" id="toc-tu-turno-4-mindel-crudo-imprime-solo-las-líneas-de-datos-ya-partidas-en-sus-tres-campos.-salida-esperada1432025-235-611532025-na-581632025-228-661732025-249-60" class="nav-link" data-scroll-target="#tu-turno-4-mindel-crudo-imprime-solo-las-líneas-de-datos-ya-partidas-en-sus-tres-campos.-salida-esperada1432025-235-611532025-na-581632025-228-661732025-249-60">TU TURNO ⏱ 4 minDel <code>crudo</code>, imprime <strong>solo</strong> las líneas de datos, ya partidas en sus tres campos. Salida esperada:<code>['14/3/2025', '23,5', '61']['15/3/2025', 'NA', '58']['16/3/2025', '22,8', '66']['17/3/2025', '24,9', '60']</code></a></li>
+  </ul></li>
+  <li><a href="#otros-métodos-que-vas-a-necesitarejecuta-y-observa.-no-los-memorices-ten-a-la-mano-dónde-buscarlos." id="toc-otros-métodos-que-vas-a-necesitarejecuta-y-observa.-no-los-memorices-ten-a-la-mano-dónde-buscarlos." class="nav-link" data-scroll-target="#otros-métodos-que-vas-a-necesitarejecuta-y-observa.-no-los-memorices-ten-a-la-mano-dónde-buscarlos."><span class="header-section-number">9.7</span> 4.2 Otros métodos que vas a necesitarEjecuta y observa. No los memorices: ten a la mano dónde buscarlos.</a></li>
+  <li><a href="#tablas-alineadaslos-tabuladores-sirven-para-generar-archivos.-para-que-un-humano-lea-una-tabla-en-pantalla-usa-anchos-fijos" id="toc-tablas-alineadaslos-tabuladores-sirven-para-generar-archivos.-para-que-un-humano-lea-una-tabla-en-pantalla-usa-anchos-fijos" class="nav-link" data-scroll-target="#tablas-alineadaslos-tabuladores-sirven-para-generar-archivos.-para-que-un-humano-lea-una-tabla-en-pantalla-usa-anchos-fijos"><span class="header-section-number">9.8</span> 4.3 Tablas alineadasLos tabuladores sirven para <strong>generar archivos</strong>. Para que un humano lea una tabla en pantalla, usa anchos fijos:</a>
+  <ul class="collapse">
+  <li><a href="#solución" id="toc-solución" class="nav-link" data-scroll-target="#solución">Solución</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/006_cadenas_listas/001_cadenas.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sesión 1 — Cadenas de texto<strong>Proyectos de ciencia de datos con Python</strong> · Unidad 2 · 90 minutos—## El archivo de hoyAsí llega un archivo real de una estación meteorológica:</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>crudo <span class="op">=</span> <span class="st">"""# EMA Temixco - IER UNAM# temp en °C, hum en </span><span class="sc">%f</span><span class="st">echa  temp    hum14/3/2025    23,5    6115/3/2025 NA  5816/3/2025 22,8    6617/3/2025 24,9    60"""</span>print(crudo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<h2 id="cuál-fue-la-temperatura-promedio-de-esos-díastú-la-contestas-en-20-segundos.-la-computadora-no-puede-para-ella-eso-no-son-números-es-una-tira-de-letras.hoy-aprendemos-a-extraer-cada-dato-de-ese-texto.-la-semana-que-entra-aprendemos-a-guardarlos-y-contestar-la-pregunta.-ruta-de-la-sesión-bloque-tiempo-qué-0-10-min-lo-que-no-se-ve-n-t-repr-1-20-min-extremos-y-pedazos-strip-split-zfill-2-15-min-sustituir-replace-e-inmutabilidad-3-20-min-muchas-líneas-splitlines-filtros-4-10-min-volver-a-armar-join-y-más-métodos-5-13-min-reto-limpiar-el-archivo-completo-2-min-cierre-cómo-trabajamos--teclea-el-código-tú.-no-copies-y-pegues-teclear-es-parte-de-aprender.--cuando-veas-predice-escribe-tu-respuesta-en-papel-antes-de-ejecutar.--cuando-veas-tu-turno-tienes-2-o-3-minutos.-es-normal-no-terminar.--el-error-en-rojo-no-es-un-fracaso-es-información.-léelo-completo-antes-de-pedir-ayuda." data-number="9.1" class="anchored"><span class="header-section-number">9.1</span> ¿Cuál fue la temperatura promedio de esos días?Tú la contestas en 20 segundos. La computadora <strong>no puede</strong>: para ella eso no son números, es una tira de letras.Hoy aprendemos a <strong>extraer</strong> cada dato de ese texto. La semana que entra aprendemos a <strong>guardarlos</strong> y contestar la pregunta.### Ruta de la sesión| Bloque | Tiempo | Qué ||—|—|—|| 0 | 10 min | Lo que no se ve: <code>\n</code>, <code>\t</code>, <code>repr()</code> || 1 | 20 min | Extremos y pedazos: <code>strip</code>, <code>split</code>, <code>zfill</code> || 2 | 15 min | Sustituir: <code>replace</code> e inmutabilidad || 3 | 20 min | Muchas líneas: <code>splitlines</code>, filtros || 4 | 10 min | Volver a armar: <code>join</code> y más métodos || 5 | 13 min | Reto: limpiar el archivo completo || — | 2 min | Cierre |Cómo trabajamos:- <strong>Teclea el código tú.</strong> No copies y pegues: teclear es parte de aprender.- Cuando veas <strong>PREDICE</strong>, escribe tu respuesta en papel <em>antes</em> de ejecutar.- Cuando veas <strong>TU TURNO</strong>, tienes 2 o 3 minutos. Es normal no terminar.- El error en rojo no es un fracaso, es información. Léelo completo antes de pedir ayuda.</h2>
+</blockquote>
+<p>*<strong># Bloque 0 — Lo que no se ve ⏱ 10 minDos caracteres que sí están en el texto, pero no se ven:| Escape | Nombre | Qué hace ||—|—|—|| <code>\n</code> | salto de línea | termina el renglón y baja al siguiente || <code>\t</code> | tabulador | salta a la siguiente columna |Se escriben con dos símbolos, pero son </strong>un solo carácter** cada uno.</p>
+<div id="cell-4" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"temperatura</span><span class="ch">\t</span><span class="st">humedad</span><span class="ch">\n</span><span class="st">presion</span><span class="ch">\t</span><span class="st">viento"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="predice-cuántos-caracteres-tiene-la-cadena-23.5t61nescribe-tu-número-en-papel.-cuenta-hasta-diez.-después-ejecuta." class="level3">
+<h3 class="anchored" data-anchor-id="predice-cuántos-caracteres-tiene-la-cadena-23.5t61nescribe-tu-número-en-papel.-cuenta-hasta-diez.-después-ejecuta.">PREDICE ✍️¿Cuántos caracteres tiene la cadena <code>"23.5\t61\n"</code>?Escribe tu número en papel. Cuenta hasta diez. Después ejecuta.</h3>
+<div id="cell-6" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>texto <span class="op">=</span> <span class="st">"23.5</span><span class="ch">\t</span><span class="st">61</span><span class="ch">\n</span><span class="st">"</span>print(<span class="bu">len</span>(texto))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Son <strong>8</strong>, no 10: <code>2</code> <code>3</code> <code>.</code> <code>5</code> <code>TAB</code> <code>6</code> <code>1</code> <code>SALTO</code>.Y aquí está la herramienta más útil de la sesión: <code>repr()</code> te muestra la cadena <strong>tal cual</strong>, con lo invisible incluido.</p>
+<div id="cell-8" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(texto)          <span class="co"># interpretado: lo que ve el usuarioprint(repr(texto))    # crudo: lo que hay realmente</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Regla de oro:</strong> cuando algo no cuadre con una cadena, <code>repr()</code>. Siempre. Es la linterna.Un archivo de texto leído completo llega como <strong>una sola cadena larguísima</strong> con <code>\n</code> adentro. Por eso <code>\n</code> es el punto de partida de toda limpieza de datos.</p>
+</blockquote>
+</section>
+<section id="tu-turno-2-minimprime-el-repr-del-crudo.-localiza-en-la-salida1.-los-n-que-separan-los-renglones.2.-los-t-que-separan-las-columnas.3.-el-renglón-vacío-después-de-los-comentarios." class="level3">
+<h3 class="anchored" data-anchor-id="tu-turno-2-minimprime-el-repr-del-crudo.-localiza-en-la-salida1.-los-n-que-separan-los-renglones.2.-los-t-que-separan-las-columnas.3.-el-renglón-vacío-después-de-los-comentarios.">TU TURNO ⏱ 2 minImprime el <code>repr()</code> del <code>crudo</code>. Localiza en la salida:1. Los <code>\n</code> que separan los renglones.2. Los <code>\t</code> que separan las columnas.3. El renglón vacío después de los comentarios.</h3>
+<div id="cell-11" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tu código aquí</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>***# Bloque 1 — Extremos y pedazos ⏱ 20 min## 1.1 <code>strip()</code> — quitar la basura de los extremos</p>
+<div id="cell-13" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dato <span class="op">=</span> <span class="st">"   23.5 </span><span class="ch">\n</span><span class="st">"</span>print(<span class="bu">repr</span>(dato), <span class="bu">len</span>(dato))limpio <span class="op">=</span> dato.strip()<span class="bu">print</span>(<span class="bu">repr</span>(limpio), <span class="bu">len</span>(limpio))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>.strip()</code> quita espacios, tabuladores y saltos <strong>de ambos extremos</strong>, nunca de en medio.Variantes: <code>.lstrip()</code> solo por la izquierda, <code>.rstrip()</code> solo por la derecha, y <code>.strip("#")</code> quita los caracteres que le indiques.</p>
+<div id="cell-15" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(<span class="st">"  30.2  "</span>.lstrip()))<span class="bu">print</span>(<span class="bu">repr</span>(<span class="st">"  30.2  "</span>.rstrip()))<span class="bu">print</span>(<span class="bu">repr</span>(<span class="st">"###30.2###"</span>.strip(<span class="st">"#"</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Casi siempre va <strong>antes</strong> de convertir a número:</p>
+<div id="cell-17" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">float</span>(<span class="st">"  23.5  "</span>))    <span class="co"># float() tolera espaciosprint(float("23.5 °C"))     # pero no una unidad pegada -&gt; ValueError</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>☝️ <strong>Lee el error completo.</strong> La última línea dice el tipo (<code>ValueError</code>) y el motivo. Los errores de Python se leen <strong>de abajo hacia arriba</strong>.</p>
+</section>
+<section id="split-partir-en-pedazoslas-fechas-en-español-van-del-día-al-año.-los-sistemas-de-datos-las-quieren-al-revés." class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="split-partir-en-pedazoslas-fechas-en-español-van-del-día-al-año.-los-sistemas-de-datos-las-quieren-al-revés."><span class="header-section-number">9.2</span> 1.2 <code>split()</code> — partir en pedazosLas fechas en español van del día al año. Los sistemas de datos las quieren al revés.</h2>
+<div id="cell-20" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fecha <span class="op">=</span> <span class="st">"14/03/2025"</span>partes <span class="op">=</span> fecha.split(<span class="st">"/"</span>)<span class="bu">print</span>(partes)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>.split(separador)</code> corta cada vez que encuentra el separador y devuelve una <strong>lista</strong>. El separador desaparece.A cada pedazo se llega por su posición, empezando en <strong>0</strong>:</p>
+<div id="cell-22" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(partes[<span class="dv">0</span>], partes[<span class="dv">1</span>], partes[<span class="dv">2</span>])<span class="bu">print</span>(partes[<span class="op">-</span><span class="dv">1</span>])        <span class="co"># el último</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Pero como sabemos que son exactamente tres pedazos, conviene <strong>desempaquetar</strong>:</p>
+<div id="cell-24" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dia, mes, anio <span class="op">=</span> fecha.split(<span class="st">"/"</span>)<span class="bu">print</span>(dia, mes, anio)<span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>anio<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>mes<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>dia<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>El formato <code>aaaa-mm-dd</code> se llama <strong>ISO</strong>. Su ventaja: se ordena alfabéticamente igual que cronológicamente.</p>
+</section>
+<section id="zfill-los-ceros-que-nadie-escribenuestro-archivo-trae-1432025-no-14032025.-si-no-lo-arreglas-2025-3-14-se-ordena-mal-frente-a-2025-11-02." class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="zfill-los-ceros-que-nadie-escribenuestro-archivo-trae-1432025-no-14032025.-si-no-lo-arreglas-2025-3-14-se-ordena-mal-frente-a-2025-11-02."><span class="header-section-number">9.3</span> 1.3 <code>zfill()</code> — los ceros que nadie escribeNuestro archivo trae <code>14/3/2025</code>, no <code>14/03/2025</code>. Si no lo arreglas, <code>"2025-3-14"</code> se ordena mal frente a <code>"2025-11-02"</code>.</h2>
+<div id="cell-27" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"3"</span>.zfill(<span class="dv">2</span>))      <span class="co"># '03'print("03".zfill(2))     # '03'   ya lo tenía, no hace nadaprint("123".zfill(2))    # '123'  nunca recorta</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="tu-turno-3-minconvierte-592025-y-15112025-a-formato-iso.-el-mismo-código-debe-servir-para-las-dos.salida-esperada2025-09-052025-11-15" class="level3">
+<h3 class="anchored" data-anchor-id="tu-turno-3-minconvierte-592025-y-15112025-a-formato-iso.-el-mismo-código-debe-servir-para-las-dos.salida-esperada2025-09-052025-11-15">TU TURNO ⏱ 3 minConvierte <code>"5/9/2025"</code> y <code>"15/11/2025"</code> a formato ISO. El mismo código debe servir para las dos.Salida esperada:<code>2025-09-052025-11-15</code></h3>
+<div id="cell-29" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fechas <span class="op">=</span> [<span class="st">"5/9/2025"</span>, <span class="st">"15/11/2025"</span>]<span class="cf">for</span> f <span class="kw">in</span> fechas:    <span class="co"># Tu código aquí    pass</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>***# Bloque 2 — Sustituir ⏱ 15 min## 2.1 <code>replace()</code>Nuestro archivo trae <code>23,5</code> con coma decimal. <code>float()</code> no la entiende.</p>
+<div id="cell-31" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> <span class="st">"23,5"</span>print(<span class="bu">float</span>(temp.replace(<span class="st">","</span>, <span class="st">"."</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>.replace(viejo, nuevo)</code> sustituye <strong>todas</strong> las apariciones. Se pueden encadenar:</p>
+<div id="cell-33" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>monto <span class="op">=</span> <span class="st">"$1,234.50"</span>print(<span class="bu">float</span>(monto.replace(<span class="st">"$"</span>, <span class="st">""</span>).replace(<span class="st">","</span>, <span class="st">""</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Cuando hay separador de miles <strong>y</strong> coma decimal, el <strong>orden importa</strong>:</p>
+<div id="cell-35" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>consumo <span class="op">=</span> <span class="st">"1.845,30"</span>                  <span class="co"># mil ochocientos cuarenta y cincopaso1 = consumo.replace(".", "")      # '1845,30'  fuera el separador de milespaso2 = paso1.replace(",", ".")       # '1845.30'  la coma pasa a puntoprint(float(paso2))</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Con un tercer argumento limitas cuántas sustituciones hace:</p>
+<div id="cell-37" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1.234.567"</span>.replace(<span class="st">"."</span>, <span class="st">""</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="inmutabilidad-predice-qué-imprime-esto-escríbelo-en-papel-antes-de-ejecutar." class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="inmutabilidad-predice-qué-imprime-esto-escríbelo-en-papel-antes-de-ejecutar."><span class="header-section-number">9.4</span> 2.2 Inmutabilidad### PREDICE ✍️¿Qué imprime esto? Escríbelo en papel antes de ejecutar.</h2>
+<div id="cell-39" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"23,5"</span>s.replace(<span class="st">","</span>, <span class="st">"."</span>)<span class="bu">print</span>(s)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Sigue siendo <code>23,5</code>.Las cadenas son <strong>inmutables</strong>: <code>.replace()</code> no modifica nada, <strong>devuelve una cadena nueva</strong>. Si no la guardas, se pierde.</p>
+<div id="cell-41" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"23,5"</span>s <span class="op">=</span> s.replace(<span class="st">","</span>, <span class="st">"."</span>)   <span class="co"># así síprint(s)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p>Esto aplica a <strong>todos</strong> los métodos de cadenas: <code>strip</code>, <code>replace</code>, <code>upper</code>, <code>title</code>… ninguno modifica la original. Guarda siempre el resultado.</p>
+</blockquote>
+<section id="tu-turno-3-min1.-de-3450.90-mxn-obtén-el-número-3450.9-como-float.2.-de-1875-obtén-18.75." class="level3">
+<h3 class="anchored" data-anchor-id="tu-turno-3-min1.-de-3450.90-mxn-obtén-el-número-3450.9-como-float.2.-de-1875-obtén-18.75.">TU TURNO ⏱ 3 min1. De <code>"$ 3,450.90 MXN"</code> obtén el número <code>3450.9</code> como <code>float</code>.2. De <code>"18,75"</code> obtén <code>18.75</code>.</h3>
+<div id="cell-44" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>monto <span class="op">=</span> <span class="st">"$ 3,450.90 MXN"</span>valor <span class="op">=</span> <span class="st">"18,75"</span><span class="co"># Tu código aquí</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>***# Bloque 3 — Muchas líneas ⏱ 20 min## 3.1 <code>splitlines()</code></p>
+<div id="cell-46" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bloque <span class="op">=</span> <span class="st">"14/3/2025,23.5</span><span class="ch">\n</span><span class="st">15/3/2025,25.1</span><span class="ch">\n</span><span class="st">16/3/2025,22.8"</span>lineas <span class="op">=</span> bloque.splitlines()<span class="bu">print</span>(lineas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Es mejor que <code>.split("\n")</code>, porque este último deja un elemento vacío si el texto termina con salto de línea:</p>
+<div id="cell-48" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"a</span><span class="ch">\n</span><span class="st">b</span><span class="ch">\n</span><span class="st">"</span>.split(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>))     <span class="co"># ['a', 'b', '']  &lt;- sobraprint("a\nb\n".splitlines())    # ['a', 'b']      &lt;- correcto</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>El patrón base de todo lector de datos: <strong>partir en líneas → partir cada línea en campos</strong>.</p>
+<div id="cell-50" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> linea <span class="kw">in</span> lineas:    fecha, temp <span class="op">=</span> linea.split(<span class="st">","</span>)    <span class="bu">print</span>(fecha, <span class="st">"-&gt;"</span>, <span class="bu">float</span>(temp))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="splitt-y-split-a-secasnuestro-archivo-usa-tabuladores.-y-ojo-con-esta-diferencia" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="splitt-y-split-a-secasnuestro-archivo-usa-tabuladores.-y-ojo-con-esta-diferencia"><span class="header-section-number">9.5</span> 3.2 <code>split("\t")</code> y <code>split()</code> a secasNuestro archivo usa tabuladores. Y ojo con esta diferencia:</h2>
+<div id="cell-52" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>linea <span class="op">=</span> <span class="st">"TEMIXCO   2025-03-14    23.5"</span>print(linea.split())        <span class="co"># agrupa los espaciosprint(linea.split(" "))     # ¡uno por cada espacio!</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>.split()</code> <strong>sin argumento</strong> parte por cualquier cantidad de espacios, tabuladores o saltos, y descarta los vacíos.- Columnas exactas de una hoja de cálculo → <code>.split("\t")</code>- Columnas alineadas a ojo, con anchos irregulares → <code>.split()</code></p>
+</section>
+<section id="filtrar-líneasun-archivo-real-trae-comentarios-encabezados-y-renglones-vacíos.-se-descartan-al-inicio-del-ciclo-con-continue" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="filtrar-líneasun-archivo-real-trae-comentarios-encabezados-y-renglones-vacíos.-se-descartan-al-inicio-del-ciclo-con-continue"><span class="header-section-number">9.6</span> 3.3 Filtrar líneasUn archivo real trae comentarios, encabezados y renglones vacíos. Se descartan al inicio del ciclo con <code>continue</code>:</h2>
+<div id="cell-55" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> linea <span class="kw">in</span> crudo.splitlines():    linea <span class="op">=</span> linea.strip()    <span class="cf">if</span> linea <span class="op">==</span> <span class="st">""</span>:                  <span class="co"># renglón vacío        continue    if linea.startswith("#"):        # comentario        continue    if linea.startswith("fecha"):    # encabezado        continue    print(repr(linea))</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>startswith</code>, <code>endswith</code> e <code>in</code> devuelven <code>True</code> o <code>False</code>:</p>
+<div id="cell-57" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2025-03-14"</span>.startswith(<span class="st">"2025"</span>))<span class="bu">print</span>(<span class="st">"datos.csv"</span>.endswith(<span class="st">".csv"</span>))<span class="bu">print</span>(<span class="st">"NA"</span> <span class="kw">in</span> <span class="st">"15/3/2025,NA,58"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>startswith</code> también acepta varias opciones a la vez:</p>
+<div id="cell-59" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"// comentario"</span>.startswith((<span class="st">"#"</span>, <span class="st">"//"</span>, <span class="st">";"</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="tu-turno-4-mindel-crudo-imprime-solo-las-líneas-de-datos-ya-partidas-en-sus-tres-campos.-salida-esperada1432025-235-611532025-na-581632025-228-661732025-249-60" class="level3">
+<h3 class="anchored" data-anchor-id="tu-turno-4-mindel-crudo-imprime-solo-las-líneas-de-datos-ya-partidas-en-sus-tres-campos.-salida-esperada1432025-235-611532025-na-581632025-228-661732025-249-60">TU TURNO ⏱ 4 minDel <code>crudo</code>, imprime <strong>solo</strong> las líneas de datos, ya partidas en sus tres campos. Salida esperada:<code>['14/3/2025', '23,5', '61']['15/3/2025', 'NA', '58']['16/3/2025', '22,8', '66']['17/3/2025', '24,9', '60']</code></h3>
+<div id="cell-61" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tu código aquí</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>***# Bloque 4 — Volver a armar ⏱ 10 min## 4.1 <code>join()</code> — la operación inversa de <code>split()</code></p>
+<div id="cell-63" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>campos <span class="op">=</span> [<span class="st">"2025-03-14"</span>, <span class="st">"23.5"</span>, <span class="st">"61"</span>]<span class="bu">print</span>(<span class="st">","</span>.join(campos))<span class="bu">print</span>(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>.join(campos))<span class="bu">print</span>(<span class="st">" | "</span>.join(campos))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>La cadena que llama al método es el <strong>pegamento</strong>; el argumento es la lista. Solo acepta cadenas: <code>",".join([2025, 3])</code> truena.&gt; <code>split</code> → procesar → <code>join</code> es el ciclo completo de transformación de texto.</p>
+</section>
+</section>
+<section id="otros-métodos-que-vas-a-necesitarejecuta-y-observa.-no-los-memorices-ten-a-la-mano-dónde-buscarlos." class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="otros-métodos-que-vas-a-necesitarejecuta-y-observa.-no-los-memorices-ten-a-la-mano-dónde-buscarlos."><span class="header-section-number">9.7</span> 4.2 Otros métodos que vas a necesitarEjecuta y observa. No los memorices: ten a la mano dónde buscarlos.</h2>
+<div id="cell-66" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Buscar y contarprint("2025-03-14,23.5,61".count(","))     # cuántas comasprint("archivo.csv".find("."))             # posición, o -1 si no está# Mayúsculasprint("  temixco ".strip().title())print("Temixco".upper(), "TEMIXCO".lower())# Quitar prefijos y sufijos exactosprint("EMA_TEMIXCO".removeprefix("EMA_"))print("datos.csv".removesuffix(".csv"))</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-67" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># maxsplit: cuántos cortes hacer como máximoprint("TEMIXCO_2025-03_temp_ambiente".split("_", 2))# rsplit: cortar desde la derechaprint("archivo.datos.csv".rsplit(".", 1))</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="tablas-alineadaslos-tabuladores-sirven-para-generar-archivos.-para-que-un-humano-lea-una-tabla-en-pantalla-usa-anchos-fijos" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="tablas-alineadaslos-tabuladores-sirven-para-generar-archivos.-para-que-un-humano-lea-una-tabla-en-pantalla-usa-anchos-fijos"><span class="header-section-number">9.8</span> 4.3 Tablas alineadasLos tabuladores sirven para <strong>generar archivos</strong>. Para que un humano lea una tabla en pantalla, usa anchos fijos:</h2>
+<div id="cell-69" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temixco</span><span class="ch">\t</span><span class="st">23.5"</span>)<span class="bu">print</span>(<span class="st">"Cuernavaca</span><span class="ch">\t</span><span class="st">26.8"</span>)     <span class="co"># se desalinea: el nombre es más largoprint()print("Temixco".ljust(12) + "23.5".rjust(6))print("Cuernavaca".ljust(12) + "26.8".rjust(6))print()print(f"{'Jiutepec':&lt;12}{21.3:&gt;6.1f}")   # lo mismo, más corto</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>*<strong># Bloque 5 — Reto ⏱ 13 minLimpia el archivo completo. Para cada línea de datos, imprime una fila con:- la fecha en formato </strong>ISO<strong>,- la temperatura como número con un decimal,- la humedad como entero,alineadas en columnas. Las filas con <code>NA</code> se reportan como omitidas.Salida esperada:<code>2025-03-14      23.5    61omitido: 15/3/20252025-03-16      22.8    662025-03-17      24.9    60</code>Fíjate en el orden: el aviso sale </strong>intercalado**, porque cada línea se imprime en cuanto se procesa. En la sesión 2 veremos cómo separar el aviso de la tabla.Los pasos, en orden:1. <code>splitlines()</code> sobre el <code>crudo</code>.2. <code>strip()</code> a cada línea y descartar vacías, <code>#</code> y encabezado.3. <code>split("\t")</code> para separar los tres campos.4. Descartar (avisando) las filas cuyo campo de temperatura sea <code>"NA"</code>.5. Arreglar la fecha con <code>split("/")</code> y <code>zfill(2)</code>.6. Arreglar la coma decimal con <code>replace</code> y convertir con <code>float</code> / <code>int</code>.7. Imprimir con anchos fijos.Trabaja en pares. Es normal no terminar en 13 minutos.</p>
+<div id="cell-71" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tu código aquí</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="solución" class="level3">
+<h3 class="anchored" data-anchor-id="solución">Solución</h3>
+<div id="cell-73" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> linea <span class="kw">in</span> crudo.splitlines():    linea <span class="op">=</span> linea.strip()    <span class="cf">if</span> linea <span class="op">==</span> <span class="st">""</span>:        <span class="cf">continue</span>    <span class="cf">if</span> linea.startswith(<span class="st">"#"</span>):        <span class="cf">continue</span>    <span class="cf">if</span> linea.startswith(<span class="st">"fecha"</span>):        <span class="cf">continue</span>    campos <span class="op">=</span> linea.split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)    fecha_cruda <span class="op">=</span> campos[<span class="dv">0</span>]    temp_cruda <span class="op">=</span> campos[<span class="dv">1</span>]    hum_cruda <span class="op">=</span> campos[<span class="dv">2</span>]    <span class="cf">if</span> temp_cruda <span class="op">==</span> <span class="st">"NA"</span>:        <span class="bu">print</span>(<span class="ss">f"omitido: </span><span class="sc">{</span>fecha_cruda<span class="sc">}</span><span class="ss">"</span>)        <span class="cf">continue</span>    dia, mes, anio <span class="op">=</span> fecha_cruda.split(<span class="st">"/"</span>)    fecha <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>anio<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>mes<span class="sc">.</span>zfill(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>dia<span class="sc">.</span>zfill(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>    temp <span class="op">=</span> <span class="bu">float</span>(temp_cruda.replace(<span class="st">","</span>, <span class="st">"."</span>))    hum <span class="op">=</span> <span class="bu">int</span>(hum_cruda)    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>fecha<span class="sc">:&lt;14}{</span>temp<span class="sc">:&gt;6.1f}{</span>hum<span class="sc">:&gt;6d}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Compara esa salida con el <code>crudo</code> de la primera celda.<strong>Pero todavía no podemos contestar la pregunta de la sesión.</strong> Los números aparecen en pantalla y se pierden: no hay dónde guardarlos para sumarlos, ordenarlos o buscar el máximo.Eso es exactamente lo que resuelve la próxima sesión.</p>
+<p>*<strong># Cierre ⏱ 2 min## Lo que hay que llevarse| Concepto | Por qué ||—|—|| <code>repr()</code> | la linterna para ver lo invisible || <code>\n</code> y <code>\t</code> son </strong>un<strong> carácter | <code>len("a\tb")</code> es 3 || Las cadenas son </strong>inmutables<strong> | <code>s.replace(...)</code> hay que </strong>guardarlo<strong> || <code>.split()</code> con y sin argumento | no son lo mismo || <code>.splitlines()</code> sobre <code>.split("\n")</code> | no deja elementos vacíos || Filtrar con <code>continue</code> al inicio | mantiene el código plano |## Ticket de salida1. ¿Cuántos caracteres tiene <code>"a\tb\n"</code>?2. ¿Qué imprime <code>s = "a,b"; s.replace(",", "."); print(s)</code>?3. Una cosa que todavía no te queda clara.## Para avanzar antes de la próxima sesiónYa puedes resolver los ejercicios </strong>A1 a A5<strong> y </strong>A7 a A14** de la libreta de tarea.La tarea completa se asigna al terminar la sesión 2 y se entrega una semana después.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="pagination-link" aria-label="001_manipulacion_cadenas.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">001_manipulacion_cadenas.html</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../clases/006_cadenas_listas/002_listas.html" class="pagination-link" aria-label="Sesión 2 — Listas">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sesión 2 — Listas</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Instituto de Energías Renovables · UNAM</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/006_cadenas_listas/001_cadenas.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Hecho con <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
