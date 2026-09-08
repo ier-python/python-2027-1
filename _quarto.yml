@@ -44,6 +44,9 @@ book:
     - clases/002_variables/001_intro_variables.ipynb
     - clases/003_variables_operaciones/001_variables_operaciones.ipynb
     - clases/003_variables_operaciones/002_strings.ipynb
+    - clases/004_print_cadenas/001_print.ipynb
+    - clases/004_print_cadenas/002_manipulacion_cadenas.ipynb
+    - clases/005_manipulacion_cadenas/001_manipulacion_cadenas.ipynb
     - unidades/unidad-02.qmd
     - unidades/unidad-03.qmd
     - unidades/unidad-04.qmd
