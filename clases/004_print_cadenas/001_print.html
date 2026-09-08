@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Instala Python – Proyectos de ciencia de datos con Python</title>
+<title>6&nbsp; print en Python – Proyectos de ciencia de datos con Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" rel="next">
-<link href="../../unidades/unidad-01.html" rel="prev">
+<link href="../../clases/004_print_cadenas/002_manipulacion_cadenas.html" rel="next">
+<link href="../../clases/003_variables_operaciones/002_strings.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../clases/001_hola_mundo/index.html">Instala Python</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../clases/004_print_cadenas/001_print.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">print en Python</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -177,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instala Python</span></a>
   </div>
 </li>
@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link">
+  <a href="../../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">print en Python</span></span></a>
   </div>
 </li>
@@ -292,25 +292,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#instala-uv-de-astral" id="toc-instala-uv-de-astral" class="nav-link active" data-scroll-target="#instala-uv-de-astral">Instala uv de Astral</a></li>
-  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a></li>
-  <li><a href="#cheat-sheet-rápido" id="toc-cheat-sheet-rápido" class="nav-link" data-scroll-target="#cheat-sheet-rápido">Cheat sheet rápido</a>
-  <ul class="collapse">
-  <li><a href="#buenas-practicas" id="toc-buenas-practicas" class="nav-link" data-scroll-target="#buenas-practicas">Buenas practicas</a></li>
-  </ul></li>
-  <li><a href="#creacion-de-ambientes-virtuales-con-uv" id="toc-creacion-de-ambientes-virtuales-con-uv" class="nav-link" data-scroll-target="#creacion-de-ambientes-virtuales-con-uv">Creacion de ambientes virtuales con <code>uv</code></a>
-  <ul class="collapse">
-  <li><a href="#ejercicio-en-clase" id="toc-ejercicio-en-clase" class="nav-link" data-scroll-target="#ejercicio-en-clase">Ejercicio en clase</a></li>
-  </ul></li>
+  <li><a href="#estilo-c" id="toc-estilo-c" class="nav-link active" data-scroll-target="#estilo-c"><span class="header-section-number">6.1</span> Estilo C</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/001_hola_mundo/index.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/004_print_cadenas/001_print.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Instala Python</h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">print en Python</span></h1>
 </div>
 
 
@@ -327,88 +318,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>En este curso se recomienda instalar Python con <a href="https://www.anaconda.com/download">miniconda</a>. Asegurate de descargar miniconda.</p>
-<section id="instala-uv-de-astral" class="level1 unnumbered">
-<h1 class="unnumbered">Instala uv de Astral</h1>
-<p>Como manejador de ambientes virtuales recomiendo instalar <a href="https://docs.astral.sh/uv/">uv de Astral</a>.</p>
-</section>
-<section id="tips" class="level1 unnumbered">
-<h1 class="unnumbered">Tips</h1>
-<p>Te recomiendo buscar la <code>Anaconda PowerShell Prompt</code> y anclarla en tu barra de tareas y que se vea como en la siguiente imagen: <img src="barratareas.png" class="img-fluid"></p>
-</section>
-<section id="cheat-sheet-rápido" class="level1 unnumbered">
-<h1 class="unnumbered">Cheat sheet rápido</h1>
-<pre class="text"><code># ── HOME ──────────────────────────────────────
-cd ~              # Ir a tu carpeta personal (SIEMPRE funciona)
-
-# ── CREAR ─────────────────────────────────────
-mkdir  mi_proyecto   # Crear carpeta `mi_proyecto`
-# Nombre: sin espacios, sin acentos, minúsculas + guion_bajo
-
-# ── MOVERSE ───────────────────────────────────
-cd ..             # Subir o salir un nivel
-cd ~              # Volver a HOME
-cd mi_proyecto    # Entrar a carpeta con ese nombre
-
-# ── VER ───────────────────────────────────────
-ls                # Listar (Win: dir)
-pwd               # ¿Dónde estoy?
-
-# ── ABRIR EXPLORADOR ──────────────────────────
-ii .        # Windows
-open .            # macOS</code></pre>
-<hr>
-<section id="buenas-practicas" class="level2">
-<h2 class="anchored" data-anchor-id="buenas-practicas">Buenas practicas</h2>
+<p>En Python hay al menos tres maneras de imprimir:</p>
 <ol type="1">
-<li>Trabaja SIEMPRE desde tu HOME o un subdirectorio tuyo. Evita <code>C:\</code> o <code>/</code> raíz.</li>
-<li>Nombres sin espacios. <code>machine_learning</code> &gt; <code>Machine Learning</code>.</li>
-<li><code>cd ~</code> cuando te pierdas. No busques, vuelve a casa.</li>
-<li>Un proyecto = una carpeta.</li>
+<li>Estilo C</li>
+<li>str.format()</li>
+<li>f-strings</li>
 </ol>
-</section>
-</section>
-<section id="creacion-de-ambientes-virtuales-con-uv" class="level1 unnumbered">
-<h1 class="unnumbered">Creacion de ambientes virtuales con <code>uv</code></h1>
-<p>Para crear un ambiente virtual y su carpeta, al mismo tiempo:</p>
-<p><code>uv init nombre_proyecto</code></p>
-<p>Para agregar un paquete en ese proyecto, primero tienes que entrar a ese proyecto y luego agregar el paquete</p>
-<p><code>cd nombre_proyecto</code></p>
-<p><code>uv add jupyter notebook</code></p>
-<p>Para correr la libreta de jupyter, hay que estar en el espacio, que tenga instalado jupyter notebook, y ejecutar todo con:</p>
-<p><code>uv run jupyter notebook</code></p>
-<section id="ejercicio-en-clase" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="ejercicio-en-clase">Ejercicio en clase</h2>
-<p>Vamos a crear una carpeta en tu home (tu carpeta personal, donde vives) que se llama <code>curso_python/</code>. Todo lo que hagamos durante el curso va a vivir ahí. Dentro de esa carpeta vamos a ir creando proyectos con un número delante, como <code>001_hola_mundo</code>, <code>002_variables</code>, <code>003_funciones</code>, y así. El número nos sirve para que, cuando tengas 15 proyectos, los ves ordenados y sabes cuál fue primero y cuál fue después.</p>
-<p>Empezamos con el primero: <code>001_hola_mundo</code>.</p>
-<hr>
-<p>Desde la terminal, ya en tu home, hacemos esto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> curso_python</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> curso_python</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Creamos la carpeta con <code>mkdir</code> por que no es un proyecto de python.</p>
-<p>Ahora estamos dentro de <code>curso_python/</code>. Aquí van a nacer todos los proyectos.</p>
-<p>Para crear el primer proyecto usamos <code>uv init nombre_proyecto</code>. Ten cuidado que <code>nombre_proyecto</code> cambie de acuerdo a lo que necesitas. <code>uv init</code> nos crea la estructura base: un <code>pyproject.toml</code>, una carpeta <code>src/</code>, lo justo para que Python sepa que aquí hay un proyecto.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init 001_hola_mundo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Eso nos crea la carpeta <code>001_hola_mundo/</code> con lo básico. Ahora entramos:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 001_hola_mundo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Ya estamos dentro. Ahora le decimos a <code>uv</code> que queremos Jupyter Notebook como dependencia de este proyecto. <code>uv add</code> hace dos cosas a la vez: descarga el paquete y lo registra en el <code>pyproject.toml</code>. Así, si mañana borras la carpeta virtual y la recreas, Jupyter vuelve solo.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add jupyter notebook</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Listo. Ya tienes:</p>
-<pre><code>~/curso_python/
-  └── 001_hola_mundo/
-        ├── pyproject.toml
-        └── .venv/          (virtualenv, invisible pero existe)</code></pre>
-<p>Y para probar que Jupyter arranca:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run jupyter notebook</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Recuerda que debes estar adentro de <code>curso_python/001_hola_mundo</code>.</p>
-<p><code>uv run</code> ejecuta el comando usando la virtualenv del proyecto, sin que tengas que hacer <code>source .venv/bin/activate</code> antes. Se abre el navegador, creas un notebook, escribes <code>print("hola")</code> y ya tienes tu primer proyecto funcionando.</p>
-<hr>
-<p>Resumen de lo que hicimos, en una línea:</p>
-<p><code>mkdir</code> → <code>cd</code> → <code>uv init</code> → <code>cd</code> → <code>uv add</code> → <code>uv run</code></p>
-<p>Cinco comandos, y tienes un proyecto aislado, numerado, con sus dependencias registradas. Cuando hagamos el <code>002_variables</code>, repetimos exactamente lo mismo desde <code>curso_python/</code>, y todo queda ordenado sin mezclarse.</p>
+<section id="estilo-c" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="estilo-c"><span class="header-section-number">6.1</span> Estilo C</h2>
+<div id="3fdf9685-e90d-49e8-ab7c-12af99a0261e" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hola mundo cruel'</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hola mundo cruel</code></pre>
+</div>
+</div>
+<div id="26180849-9cb7-4e7f-ae9e-3f66a63618ce" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nombre <span class="op">=</span> <span class="st">'Memo'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">48</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>antiguedad <span class="op">=</span> <span class="fl">16.5</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="d60b5e3a-5751-4e68-87a6-8a18ba46fd81" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">%s</span><span class="st"> tiene </span><span class="sc">%d</span><span class="st"> años'</span> <span class="op">%</span> (nombre, edad))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">{}</span><span class="st"> tiene </span><span class="sc">{}</span><span class="st"> años'</span>.<span class="bu">format</span>(nombre, edad))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss"> tiene </span><span class="sc">{</span>edad<span class="sc">}</span><span class="ss"> años'</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Memo tiene 48 años
+Memo tiene 48 años
+Memo tiene 48 años</code></pre>
+</div>
+</div>
+<div id="4a1fb3f1-d720-4c36-9073-7b053170175f" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">%s</span><span class="st"> lleva </span><span class="sc">%.1f</span><span class="st"> años en el IER'</span> <span class="op">%</span> (nombre, antiguedad))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">{}</span><span class="st"> lleva </span><span class="sc">{:.1f}</span><span class="st"> años en el IER'</span>.<span class="bu">format</span>(nombre, antiguedad))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss"> lleva </span><span class="sc">{</span>antiguedad<span class="sc">:.2f}</span><span class="ss"> años en el IER'</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Memo lleva 16.5 años en el IER
+Memo lleva 16.5 años en el IER
+Memo lleva 16.50 años en el IER</code></pre>
+</div>
+</div>
+<div id="3c75a82f-ec07-4be6-a78a-c7a51eb3a7c9" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%d</span><span class="st"> años, </span><span class="sc">%.1f</span><span class="st"> de antigüedad'</span> <span class="op">%</span> (nombre, edad, antiguedad))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">{}</span><span class="st">, </span><span class="sc">{}</span><span class="st"> años, </span><span class="sc">{}</span><span class="st"> de antigüedad'</span>.<span class="bu">format</span>(nombre, edad, antiguedad))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>edad<span class="sc">}</span><span class="ss"> años, </span><span class="sc">{</span>antiguedad<span class="sc">}</span><span class="ss"> de antigüedad'</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Memo, 48 años, 16.5 de antigüedad
+Memo, 48 años, 16.5 de antigüedad
+Memo, 48 años, 16.5 de antigüedad</code></pre>
+</div>
+</div>
+<div id="80ac6ce9-219a-4246-9ec8-bb4f92a5f0f6" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">%s</span><span class="st"> ingresó en </span><span class="sc">%d</span><span class="st">'</span> <span class="op">%</span> (nombre, <span class="dv">2026</span> <span class="op">-</span> antiguedad))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">{}</span><span class="st"> ingresó en </span><span class="sc">{:.0f}</span><span class="st">'</span>.<span class="bu">format</span>(nombre, <span class="dv">2026</span> <span class="op">-</span> antiguedad))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss"> ingresó en </span><span class="sc">{</span><span class="dv">2026</span> <span class="op">-</span> antiguedad<span class="sc">:.1f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Memo ingresó en 2009
+Memo ingresó en 2010
+Memo ingresó en 2010</code></pre>
+</div>
+</div>
+<div id="37b5a918-f991-4ed6-84a3-acdd2410e75a" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">%s</span><span class="st"> trabajó el </span><span class="sc">%.1f%%</span><span class="st"> de su vida'</span> <span class="op">%</span> (nombre, <span class="dv">100</span><span class="op">*</span>antiguedad<span class="op">/</span>edad))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">{}</span><span class="st"> trabajó el </span><span class="sc">{:.1f}% d</span><span class="st">e su vida'</span>.<span class="bu">format</span>(nombre, <span class="dv">100</span><span class="op">*</span>antiguedad<span class="op">/</span>edad))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss"> trabajó el </span><span class="sc">{</span>antiguedad<span class="op">/</span>edad<span class="sc">:.1%}</span><span class="ss"> de su vida'</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Memo trabajó el 34.4% de su vida
+Memo trabajó el 34.4% de su vida
+Memo trabajó el 34.4% de su vida</code></pre>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -814,13 +794,13 @@ open .            # macOS</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../unidades/unidad-01.html" class="pagination-link" aria-label="Introducción a los proyectos de ciencia de datos con Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span>
+      <a href="../../clases/003_variables_operaciones/002_strings.html" class="pagination-link" aria-label="002_strings.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">002_strings.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="pagination-link" aria-label="Recomendaciones para aprender a usar la libreta de Jupyter.">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Recomendaciones para aprender a usar la libreta de Jupyter.</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="pagination-link" aria-label="002_manipulacion_cadenas.html">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">002_manipulacion_cadenas.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -832,7 +812,7 @@ open .            # macOS</code></pre>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/001_hola_mundo/index.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/004_print_cadenas/001_print.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Hecho con <a href="https://quarto.org">Quarto</a></p>
 </div>

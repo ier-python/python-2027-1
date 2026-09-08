@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Instala Python – Proyectos de ciencia de datos con Python</title>
+<title>manipulacion_cadenas – Proyectos de ciencia de datos con Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" rel="next">
-<link href="../../unidades/unidad-01.html" rel="prev">
+<link href="../../unidades/unidad-02.html" rel="next">
+<link href="../../clases/004_print_cadenas/002_manipulacion_cadenas.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../clases/001_hola_mundo/index.html">Instala Python</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">001_manipulacion_cadenas.html</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -177,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instala Python</span></a>
   </div>
 </li>
@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">001_manipulacion_cadenas.html</span></span></a>
   </div>
 </li>
@@ -287,129 +287,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">En esta página</h2>
-   
-  <ul>
-  <li><a href="#instala-uv-de-astral" id="toc-instala-uv-de-astral" class="nav-link active" data-scroll-target="#instala-uv-de-astral">Instala uv de Astral</a></li>
-  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a></li>
-  <li><a href="#cheat-sheet-rápido" id="toc-cheat-sheet-rápido" class="nav-link" data-scroll-target="#cheat-sheet-rápido">Cheat sheet rápido</a>
-  <ul class="collapse">
-  <li><a href="#buenas-practicas" id="toc-buenas-practicas" class="nav-link" data-scroll-target="#buenas-practicas">Buenas practicas</a></li>
-  </ul></li>
-  <li><a href="#creacion-de-ambientes-virtuales-con-uv" id="toc-creacion-de-ambientes-virtuales-con-uv" class="nav-link" data-scroll-target="#creacion-de-ambientes-virtuales-con-uv">Creacion de ambientes virtuales con <code>uv</code></a>
-  <ul class="collapse">
-  <li><a href="#ejercicio-en-clase" id="toc-ejercicio-en-clase" class="nav-link" data-scroll-target="#ejercicio-en-clase">Ejercicio en clase</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/001_hola_mundo/index.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Instala Python</h1>
+
+
+
+<div id="4c6bb2eb-9020-4cfa-98bb-b84094a0f73a" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cadena <span class="op">=</span> <span class="st">"tiempo,temperatura,</span><span class="ch">\t</span><span class="st">velocidad viento, direccion viento</span><span class="ch">\t</span><span class="st">"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cadena)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tiempo,temperatura, velocidad viento, direccion viento  </code></pre>
+</div>
+</div>
+<div id="22511218-ec1f-4f2e-9625-b9858e1bc5ce" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cadena.split(sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>['tiempo,temperatura,', 'velocidad viento, direccion viento', '']</code></pre>
+</div>
+</div>
+<div id="34e1b37f-969c-4283-af55-795c8c7e6ff3" class="cell" data-scrolled="true" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cadena.split(sep<span class="op">=</span><span class="st">","</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>['tiempo', 'temperatura', '\tvelocidad viento', ' direccion viento\t']</code></pre>
+</div>
+</div>
+<div id="527f49f7-ca34-480d-b075-ad63eed1aa5a" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>oracion <span class="op">=</span> <span class="st">"esta, es, una</span><span class="ch">\t</span><span class="st">lista,combinada#caracteres"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="0a5a9872-2966-4e91-b470-f0e0877bcdc0" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>oracion.split(sep<span class="op">=</span><span class="st">","</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>['esta', ' es', ' una\tlista', 'combinada#caracteres']</code></pre>
+</div>
+</div>
+<div id="66fabc24-ba56-46c5-873a-605be5bbb64e" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>oracion.split(sep<span class="op">=</span><span class="st">","</span>)[<span class="dv">2</span>].split(sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>[' una', 'lista']</code></pre>
+</div>
+</div>
+<div id="cb21945c-7627-4564-a141-5cf397b1fe70" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>oracion.split(sep<span class="op">=</span><span class="st">","</span>)[<span class="dv">2</span>].split(sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)[<span class="dv">0</span>]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>' una'</code></pre>
+</div>
+</div>
+<div id="273905c5-55c8-4d16-a639-f257c3c1c324" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>parrafo <span class="op">=</span> <span class="st">'''</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">Esta es una historia</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">de como se aprendio Python</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">en, el, IER, de, la, UNAM</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="1d0e3d53-94e7-4427-80e4-e1b64055f04a" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parrafo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Esta es una historia
+de como se aprendio Python
+en, el, IER, de, la, UNAM
+</code></pre>
+</div>
+</div>
+<div id="94ead4e0-558b-40d2-be6f-064693526cd1" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>parrafo.split(sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>:]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>['Esta es una historia',
+ 'de como se aprendio Python',
+ 'en, el, IER, de, la, UNAM']</code></pre>
+</div>
+</div>
+<div id="4688a716-d41c-4b3e-87f7-270aa220be3d" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>texto_raro <span class="op">=</span> <span class="st">" Este, es, un, texto, raro"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="06b00b5c-bf0a-4551-abdd-4091e1693e31" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>texto_raro.split(<span class="st">","</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>[' Este', ' es', ' un', ' texto', ' raro']</code></pre>
+</div>
+</div>
+<div id="793f61cc-acb7-46db-ba27-66d122632119" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>texto_raro</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>' Este, es, un, texto, raro'</code></pre>
+</div>
+</div>
+<div id="1ba5577f-fc94-4c99-a385-57f30b7c3274" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>texto_raro.lstrip()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>'Este, es, un, texto, raro'</code></pre>
+</div>
+</div>
+<div id="56fac64e-889f-47ac-9a3b-a92dcd26db04" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>texto_raro.rstrip()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>' Este, es, un, texto, raro'</code></pre>
+</div>
+</div>
+<div id="63c7879a-9e08-4c77-8ba2-1137fbe965c9" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>texto_raro.lstrip().rstrip()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>'Este, es, un, texto, raro'</code></pre>
+</div>
+</div>
+<div id="b5b4c9dc-97b5-4145-a283-9dce3d40a923" class="cell" data-scrolled="true" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>texto_raro.strip()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>'Este, es, un, texto, raro'</code></pre>
+</div>
+</div>
+<div id="8ac1c181-08a3-4e3a-b033-f3938e6aa198" class="cell" data-execution_count="35">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>parrafo <span class="op">=</span> <span class="st">'''</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="st">Esta es una historia</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="st">de como se aprendio Python</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="st">en, el, IER, de, la, UNAM</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="e041a626-ec31-406c-98d0-a782d4fab6ce" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>parrafo.replace(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,<span class="st">""</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>'Esta es una historiade como se aprendio Pythonen, el, IER, de, la, UNAM'</code></pre>
+</div>
+</div>
+<div id="86a3c3f6-7c3c-4d28-80e7-297daf95401a" class="cell" data-execution_count="37">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>parrafo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>'\nEsta es una historia\nde como se aprendio Python\nen, el, IER, de, la, UNAM\n'</code></pre>
+</div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>En este curso se recomienda instalar Python con <a href="https://www.anaconda.com/download">miniconda</a>. Asegurate de descargar miniconda.</p>
-<section id="instala-uv-de-astral" class="level1 unnumbered">
-<h1 class="unnumbered">Instala uv de Astral</h1>
-<p>Como manejador de ambientes virtuales recomiendo instalar <a href="https://docs.astral.sh/uv/">uv de Astral</a>.</p>
-</section>
-<section id="tips" class="level1 unnumbered">
-<h1 class="unnumbered">Tips</h1>
-<p>Te recomiendo buscar la <code>Anaconda PowerShell Prompt</code> y anclarla en tu barra de tareas y que se vea como en la siguiente imagen: <img src="barratareas.png" class="img-fluid"></p>
-</section>
-<section id="cheat-sheet-rápido" class="level1 unnumbered">
-<h1 class="unnumbered">Cheat sheet rápido</h1>
-<pre class="text"><code># ── HOME ──────────────────────────────────────
-cd ~              # Ir a tu carpeta personal (SIEMPRE funciona)
-
-# ── CREAR ─────────────────────────────────────
-mkdir  mi_proyecto   # Crear carpeta `mi_proyecto`
-# Nombre: sin espacios, sin acentos, minúsculas + guion_bajo
-
-# ── MOVERSE ───────────────────────────────────
-cd ..             # Subir o salir un nivel
-cd ~              # Volver a HOME
-cd mi_proyecto    # Entrar a carpeta con ese nombre
-
-# ── VER ───────────────────────────────────────
-ls                # Listar (Win: dir)
-pwd               # ¿Dónde estoy?
-
-# ── ABRIR EXPLORADOR ──────────────────────────
-ii .        # Windows
-open .            # macOS</code></pre>
-<hr>
-<section id="buenas-practicas" class="level2">
-<h2 class="anchored" data-anchor-id="buenas-practicas">Buenas practicas</h2>
-<ol type="1">
-<li>Trabaja SIEMPRE desde tu HOME o un subdirectorio tuyo. Evita <code>C:\</code> o <code>/</code> raíz.</li>
-<li>Nombres sin espacios. <code>machine_learning</code> &gt; <code>Machine Learning</code>.</li>
-<li><code>cd ~</code> cuando te pierdas. No busques, vuelve a casa.</li>
-<li>Un proyecto = una carpeta.</li>
-</ol>
-</section>
-</section>
-<section id="creacion-de-ambientes-virtuales-con-uv" class="level1 unnumbered">
-<h1 class="unnumbered">Creacion de ambientes virtuales con <code>uv</code></h1>
-<p>Para crear un ambiente virtual y su carpeta, al mismo tiempo:</p>
-<p><code>uv init nombre_proyecto</code></p>
-<p>Para agregar un paquete en ese proyecto, primero tienes que entrar a ese proyecto y luego agregar el paquete</p>
-<p><code>cd nombre_proyecto</code></p>
-<p><code>uv add jupyter notebook</code></p>
-<p>Para correr la libreta de jupyter, hay que estar en el espacio, que tenga instalado jupyter notebook, y ejecutar todo con:</p>
-<p><code>uv run jupyter notebook</code></p>
-<section id="ejercicio-en-clase" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="ejercicio-en-clase">Ejercicio en clase</h2>
-<p>Vamos a crear una carpeta en tu home (tu carpeta personal, donde vives) que se llama <code>curso_python/</code>. Todo lo que hagamos durante el curso va a vivir ahí. Dentro de esa carpeta vamos a ir creando proyectos con un número delante, como <code>001_hola_mundo</code>, <code>002_variables</code>, <code>003_funciones</code>, y así. El número nos sirve para que, cuando tengas 15 proyectos, los ves ordenados y sabes cuál fue primero y cuál fue después.</p>
-<p>Empezamos con el primero: <code>001_hola_mundo</code>.</p>
-<hr>
-<p>Desde la terminal, ya en tu home, hacemos esto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> curso_python</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> curso_python</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Creamos la carpeta con <code>mkdir</code> por que no es un proyecto de python.</p>
-<p>Ahora estamos dentro de <code>curso_python/</code>. Aquí van a nacer todos los proyectos.</p>
-<p>Para crear el primer proyecto usamos <code>uv init nombre_proyecto</code>. Ten cuidado que <code>nombre_proyecto</code> cambie de acuerdo a lo que necesitas. <code>uv init</code> nos crea la estructura base: un <code>pyproject.toml</code>, una carpeta <code>src/</code>, lo justo para que Python sepa que aquí hay un proyecto.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init 001_hola_mundo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Eso nos crea la carpeta <code>001_hola_mundo/</code> con lo básico. Ahora entramos:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 001_hola_mundo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Ya estamos dentro. Ahora le decimos a <code>uv</code> que queremos Jupyter Notebook como dependencia de este proyecto. <code>uv add</code> hace dos cosas a la vez: descarga el paquete y lo registra en el <code>pyproject.toml</code>. Así, si mañana borras la carpeta virtual y la recreas, Jupyter vuelve solo.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add jupyter notebook</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Listo. Ya tienes:</p>
-<pre><code>~/curso_python/
-  └── 001_hola_mundo/
-        ├── pyproject.toml
-        └── .venv/          (virtualenv, invisible pero existe)</code></pre>
-<p>Y para probar que Jupyter arranca:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run jupyter notebook</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Recuerda que debes estar adentro de <code>curso_python/001_hola_mundo</code>.</p>
-<p><code>uv run</code> ejecuta el comando usando la virtualenv del proyecto, sin que tengas que hacer <code>source .venv/bin/activate</code> antes. Se abre el navegador, creas un notebook, escribes <code>print("hola")</code> y ya tienes tu primer proyecto funcionando.</p>
-<hr>
-<p>Resumen de lo que hicimos, en una línea:</p>
-<p><code>mkdir</code> → <code>cd</code> → <code>uv init</code> → <code>cd</code> → <code>uv add</code> → <code>uv run</code></p>
-<p>Cinco comandos, y tienes un proyecto aislado, numerado, con sus dependencias registradas. Cuando hagamos el <code>002_variables</code>, repetimos exactamente lo mismo desde <code>curso_python/</code>, y todo queda ordenado sin mezclarse.</p>
-
-
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -814,13 +825,13 @@ open .            # macOS</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../unidades/unidad-01.html" class="pagination-link" aria-label="Introducción a los proyectos de ciencia de datos con Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span>
+      <a href="../../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="pagination-link" aria-label="002_manipulacion_cadenas.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">002_manipulacion_cadenas.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="pagination-link" aria-label="Recomendaciones para aprender a usar la libreta de Jupyter.">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Recomendaciones para aprender a usar la libreta de Jupyter.</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../unidades/unidad-02.html" class="pagination-link" aria-label="Sintaxis, herramientas de control y métodos de Python">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -832,7 +843,7 @@ open .            # macOS</code></pre>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/001_hola_mundo/index.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/005_manipulacion_cadenas/001_manipulacion_cadenas.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Hecho con <a href="https://quarto.org">Quarto</a></p>
 </div>
