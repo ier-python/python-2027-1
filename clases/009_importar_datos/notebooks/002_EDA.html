@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18&nbsp; Trabajo en clase – Proyectos de ciencia de datos con Python</title>
+<title>EDA: explorar y derivar columnas – Proyectos de ciencia de datos con Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,10 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-68d38cec3266310e959749aadc633645.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-5e26469761352d22ee7e73c8ee812601.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-68d38cec3266310e959749aadc633645.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-d32db7fcdfa174c45d7ebcd38c1a41c8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-a043ab474ef38afe2d3373ea87006828.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-2c846bde61cd56ce7ebab39b1c89cef0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-a043ab474ef38afe2d3373ea87006828.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -108,11 +112,176 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
 
 
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -121,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../clases/009_importar_datos/notebooks/002_EDA.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trabajo en clase</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../unidades/unidad-03.html">Unidad 3 · Importar y limpiar datos</a></li><li class="breadcrumb-item"><a href="../../../clases/009_importar_datos/notebooks/002_EDA.html">EDA: explorar y derivar columnas</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -139,6 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="../../../">Proyectos de ciencia de datos con Python</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ier-python/python-2027-1" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
 </div>
     </div>
       </div>
@@ -167,183 +337,216 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Reglas y acuerdos del curso</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Instala Python</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Recomendaciones para aprender a usar la libreta de Jupyter.</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">001_intro_variables.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/003_variables_operaciones/001_variables_operaciones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">001_variables_operaciones.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/003_variables_operaciones/002_strings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">002_strings.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">print en Python</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">002_manipulacion_cadenas.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">001_manipulacion_cadenas.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/006_cadenas_listas/001_cadenas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">001_cadenas.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/007_listas_estructuras/notebooks/001_listas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">001_listas.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/007_listas_estructuras/notebooks/002_estructuras_control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estructuras de control</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/008_funciones/notebooks/001_funciones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">paso 1</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/008_funciones/notebooks/002_uso_funciones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">002_uso_funciones.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/008_funciones/notebooks/003_funciones_variables_default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">003_funciones_variables_default.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/008_funciones/notebooks/004_uso_funciones_en_libreta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">004_uso_funciones_en_libreta.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/008_funciones/notebooks/005_uso_funciones_importando.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">005_uso_funciones_importando.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/009_importar_datos/notebooks/001_ETL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">001_ETL.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/009_importar_datos/notebooks/002_EDA.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trabajo en clase</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/009_importar_datos/notebooks/003_ETL_dhi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">003_ETL_dhi.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../clases/010_importar_formatos/notebooks/001_ETL_v1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">001_ETL_v1.html</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Apéndices</span></a>
+ <span class="menu-text">Unidad 1 · Introducción</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instala Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Primeros pasos con Jupyter</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unidad 2 · Sintaxis y métodos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables y tipos básicos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/003_variables_operaciones/001_variables_operaciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables y operaciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/003_variables_operaciones/002_strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índices, rebanadas y el primer <code>for</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>print</code> y f-strings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Práctica: manipulación de cadenas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de cadenas: <code>split</code>, <code>strip</code> y <code>replace</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/006_cadenas_listas/001_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cadenas a fondo: <code>split</code>, <code>join</code> y tipos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/007_listas_estructuras/notebooks/001_listas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Listas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/007_listas_estructuras/notebooks/002_estructuras_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Estructuras de control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/001_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funciones: de la receta al código</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/002_uso_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uso de funciones y variables globales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/003_funciones_variables_default.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Argumentos con valor por defecto</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/004_uso_funciones_en_libreta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Práctica: funciones definidas en la libreta</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/005_uso_funciones_importando.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importar funciones desde un módulo</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3 · Importar y limpiar datos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/009_importar_datos/notebooks/001_ETL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ETL: importar datos de ESOLMET</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/009_importar_datos/notebooks/002_EDA.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">EDA: explorar y derivar columnas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/009_importar_datos/notebooks/003_ETL_dhi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ETL compacto y primeras gráficas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/010_importar_formatos/notebooks/001_ETL_v1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datos faltantes con <code>missingno</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../apendices/instalacion.html" class="sidebar-item-text sidebar-link">
@@ -357,15 +560,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#conocer-el-dataframe" id="toc-conocer-el-dataframe" class="nav-link active" data-scroll-target="#conocer-el-dataframe">Conocer el DataFrame</a></li>
+  <li><a href="#seleccionar-columnas" id="toc-seleccionar-columnas" class="nav-link" data-scroll-target="#seleccionar-columnas">Seleccionar columnas</a></li>
+  <li><a href="#columna-derivada-la-radiación-directa" id="toc-columna-derivada-la-radiación-directa" class="nav-link" data-scroll-target="#columna-derivada-la-radiación-directa">Columna derivada: la radiación directa</a></li>
+  <li><a href="#describe" id="toc-describe" class="nav-link" data-scroll-target="#describe"><code>describe()</code></a></li>
+  <li><a href="#cambiar-tipos-astype" id="toc-cambiar-tipos-astype" class="nav-link" data-scroll-target="#cambiar-tipos-astype">Cambiar tipos: <code>astype</code></a></li>
+  <li><a href="#guardar-el-resultado-to_csv" id="toc-guardar-el-resultado-to_csv" class="nav-link" data-scroll-target="#guardar-el-resultado-to_csv">Guardar el resultado: <code>to_csv</code></a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/009_importar_datos/notebooks/002_EDA.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../unidades/unidad-03.html">Unidad 3 · Importar y limpiar datos</a></li><li class="breadcrumb-item"><a href="../../../clases/009_importar_datos/notebooks/002_EDA.html">EDA: explorar y derivar columnas</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trabajo en clase</span></h1>
+<h1 class="title">EDA: explorar y derivar columnas</h1>
 </div>
 
 
@@ -382,7 +597,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Importar el csv con la columna data como indice y hacerla datetime</p>
+<p>Clase 009 · <code>009_importar_datos</code> — Análisis exploratorio de los datos de ESOLMET: seleccionas columnas, calculas la radiación directa a partir de la global y la difusa, revisas tipos con <code>astype</code> y guardas el resultado intermedio.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Trabajo en clase">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Trabajo en clase
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Importa el csv con la columna <code>date</code> como índice y conviértela a <code>datetime</code>.</p>
+</div>
+</div>
 <div id="628c8c95-d242-4fbb-91e4-c730fde3ad9b" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -410,6 +638,9 @@ dtypes: float64(10)
 memory usage: 44.2 MB</code></pre>
 </div>
 </div>
+<section id="conocer-el-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="conocer-el-dataframe">Conocer el DataFrame</h2>
+<p><code>columns</code> e <code>index</code> te dicen con qué estás trabajando antes de tocar nada.</p>
 <div id="7a06e83c-8dd9-4c39-921a-26c7310b85ee" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>esolmet.columns</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -443,6 +674,10 @@ memory usage: 44.2 MB</code></pre>
       dtype='str')</code></pre>
 </div>
 </div>
+</section>
+<section id="seleccionar-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="seleccionar-columnas">Seleccionar columnas</h2>
+<p>Tres notaciones con resultados distintos: <code>esolmet.tdb</code> y <code>esolmet["tdb"]</code> regresan una <strong>Serie</strong>; el doble corchete <code>esolmet[["tdb", "ghi"]]</code> regresa un <strong>DataFrame</strong> (aunque lleve una sola columna).</p>
 <div id="d127a609-b857-483e-9a5e-d1372e4dd528" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>esolmet.tdb</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
@@ -648,6 +883,10 @@ Name: tdb, Length: 526671, dtype: float64</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="columna-derivada-la-radiación-directa" class="level2">
+<h2 class="anchored" data-anchor-id="columna-derivada-la-radiación-directa">Columna derivada: la radiación directa</h2>
+<p>Sobre un plano horizontal, la radiación global es la suma de la difusa y la directa: <code>bhi = ghi - dhi</code>. Asignar a <code>esolmet["bhi"]</code> crea la columna nueva en el DataFrame.</p>
 <div id="0a5cead9-1cb2-40c2-b921-7981414190b4" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bhi <span class="op">=</span> esolmet.ghi <span class="op">-</span> esolmet.dhi </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>bhi</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -890,6 +1129,10 @@ dtypes: float64(11)
 memory usage: 48.2 MB</code></pre>
 </div>
 </div>
+</section>
+<section id="describe" class="level2">
+<h2 class="anchored" data-anchor-id="describe"><code>describe()</code></h2>
+<p>Estadísticas de un jalón: conteo, media, desviación, mínimo, cuartiles y máximo de cada columna numérica.</p>
 <div id="b01b8652-8683-4b27-b0dc-b3815804d806" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>esolmet.describe()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -1032,6 +1275,10 @@ memory usage: 48.2 MB</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="cambiar-tipos-astype" class="level2">
+<h2 class="anchored" data-anchor-id="cambiar-tipos-astype">Cambiar tipos: <code>astype</code></h2>
+<p><code>astype(str)</code> convierte la columna a texto; en <code>info()</code> aparece como <code>object</code>. Aquí es solo para ver el efecto — en un ETL real harías lo contrario: llevar textos a números o fechas.</p>
 <div id="8bc17929-508f-45eb-ae91-347b2eab94d9" class="cell" data-scrolled="true" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>(esolmet.ghi)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
@@ -1295,6 +1542,10 @@ dtypes: float64(11), str(1)
 memory usage: 52.2 MB</code></pre>
 </div>
 </div>
+</section>
+<section id="guardar-el-resultado-to_csv" class="level2">
+<h2 class="anchored" data-anchor-id="guardar-el-resultado-to_csv">Guardar el resultado: <code>to_csv</code></h2>
+<p>El DataFrame enriquecido se guarda en <code>data/002_intermediate/</code>: la convención del curso separa los datos crudos (<code>001_raw</code>, intocables) de los intermedios que produce tu código.</p>
 <div id="9c184353-6859-40ee-bfdf-7f1def7499a3" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># esolmet.to_csv()</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -1370,10 +1621,24 @@ memory usage: 52.2 MB</code></pre>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1774,13 +2039,13 @@ memory usage: 52.2 MB</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../clases/009_importar_datos/notebooks/001_ETL.html" class="pagination-link" aria-label="001_ETL.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">001_ETL.html</span></span>
+      <a href="../../../clases/009_importar_datos/notebooks/001_ETL.html" class="pagination-link" aria-label="ETL: importar datos de ESOLMET">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ETL: importar datos de ESOLMET</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../clases/009_importar_datos/notebooks/003_ETL_dhi.html" class="pagination-link" aria-label="003_ETL_dhi.html">
-        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">003_ETL_dhi.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../clases/009_importar_datos/notebooks/003_ETL_dhi.html" class="pagination-link" aria-label="ETL compacto y primeras gráficas">
+        <span class="nav-page-text">ETL compacto y primeras gráficas</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1792,7 +2057,7 @@ memory usage: 52.2 MB</code></pre>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/009_importar_datos/notebooks/002_EDA.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/009_importar_datos/notebooks/002_EDA.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Hecho con <a href="https://quarto.org">Quarto</a></p>
 </div>
