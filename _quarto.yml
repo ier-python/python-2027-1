@@ -48,17 +48,17 @@ book:
     - clases/004_print_cadenas/002_manipulacion_cadenas.ipynb
     - clases/005_manipulacion_cadenas/001_manipulacion_cadenas.ipynb
     - clases/006_cadenas_listas/001_cadenas.ipynb
-    - clases/007_listas_estructuras/001_listas.ipynb
-    - clases/007_listas_estructuras/002_estructuras_control.ipynb
-    - clases/008_funciones/001_funciones.ipynb
-    - clases/008_funciones/002_uso_funciones.ipynb
-    - clases/008_funciones/003_funciones_variables_default.ipynb
-    - clases/008_funciones/004_uso_funciones_en_libreta.ipynb
-    - clases/008_funciones/005_uso_funciones_importando.ipynb
-    - clases/009_importar_datos/001_ETL.ipynb
-    - clases/009_importar_datos/002_EDA.ipynb
-    - clases/009_importar_datos/003_ETL_dhi.ipynb
-    - clases/010_importar_formatos/001_ETL_v1.ipynb
+    - clases/007_listas_estructuras/notebooks/001_listas.ipynb
+    - clases/007_listas_estructuras/notebooks/002_estructuras_control.ipynb
+    - clases/008_funciones/notebooks/001_funciones.ipynb
+    - clases/008_funciones/notebooks/002_uso_funciones.ipynb
+    - clases/008_funciones/notebooks/003_funciones_variables_default.ipynb
+    - clases/008_funciones/notebooks/004_uso_funciones_en_libreta.ipynb
+    - clases/008_funciones/notebooks/005_uso_funciones_importando.ipynb
+    - clases/009_importar_datos/notebooks/001_ETL.ipynb
+    - clases/009_importar_datos/notebooks/002_EDA.ipynb
+    - clases/009_importar_datos/notebooks/003_ETL_dhi.ipynb
+    - clases/010_importar_formatos/notebooks/001_ETL_v1.ipynb
     - unidades/unidad-02.qmd
     - unidades/unidad-03.qmd
     - unidades/unidad-04.qmd
