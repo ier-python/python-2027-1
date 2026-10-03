@@ -11,11 +11,12 @@ __pycache__/
 *_files/
 
 # ── Datos ─────────────────────────────────────────────────────────
-# Los datos crudos y derivados no se versionan por omisión.
-# Para versionar los de una clase concreta, añade su excepción, p. ej.:
-#   !clases/clase-03-importacion/data/raw/
-clases/*/data/raw/
-clases/*/data/processed/
+# Los datos crudos y derivados no se versionan por omisión. La convención
+# del curso es data/001_raw/, data/002_intermediate/, etc., así que se
+# ignora data/ completo. Para versionar los datos de una clase concreta,
+# añade su excepción, p. ej.:
+#   !clases/009_importar_datos/data/001_raw/
+clases/*/data/
 !clases/*/data/**/.gitkeep
 !clases/*/data/**/*.md
 

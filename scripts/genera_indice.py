@@ -29,7 +29,8 @@ SACRIFICABLES = {
 # ── Índice temático en temario.qmd ────────────────────────────────────────────
 filas = ["| Tema | |", "|:---|:---|"]
 for numero, titulo, temas, _ in unidades:
-    filas.append(f"| | **Unidad {numero} · {titulo}** |")
+    # El span con id da destino a los enlaces `temario.qmd#unidad-N`
+    filas.append(f"| | [**Unidad {numero} · {titulo}**]{{#unidad-{numero}}} |")
     for i, tema in enumerate(temas, 1):
         celda = f"[{tema}]{{.sacrificable}}" if tema in SACRIFICABLES else tema
         filas.append(f"| {numero}.{i} | {celda} |")

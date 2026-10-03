@@ -1,0 +1,62 @@
+/*-- scss:defaults --*/
+
+// Tema oscuro: se carga DESPUÉS de estilos.scss en la lista `dark`, así que
+// sus variables tienen precedencia. Valores literales a propósito (en el
+// orden de capas de Quarto este archivo se procesa antes de poder leer las
+// variables del tema claro).
+$body-bg:    #10161d;
+$body-color: #d7dee6;
+
+$primary:    #7fb3dc;
+$link-color: #8ec1e8;
+
+$code-block-bg: #161e27;
+$code-color:    #e58ba0;
+
+$border-color: #2b3542;
+$gris-borde:   #2b3542;
+$azul-suave: #1b2735;
+$azul-medio: #a8c6e0;
+$azul-unam:  #9ec4e4;   // en oscuro, el "azul institucional" es claro
+$oro-unam:   #c9a85e;
+
+/*-- scss:rules --*/
+
+h1, .quarto-title h1 {
+  color: #b8d4ec;
+}
+
+h2 {
+  color: #a8c6e0;
+  border-bottom-color: #2b3542;
+}
+
+.cell-output table {
+  thead th {
+    background-color: #1b2735;
+    border-bottom-color: #7fb3dc;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: rgba(127, 179, 220, 0.06);
+  }
+}
+
+div.sidebar-item-container .active,
+div.sidebar-item-container .show > .nav-link {
+  color: #b8d4ec;
+  border-left-color: #c9a85e;
+}
+
+.sacrificable {
+  background-color: #453a1b;
+  color: #f0e3bd;
+}
+
+a.descarga {
+  border-color: #c9a85e;
+
+  &:hover {
+    background-color: rgba(201, 168, 94, 0.15);
+  }
+}

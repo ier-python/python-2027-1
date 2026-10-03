@@ -15,6 +15,7 @@ book:
   repo-actions: [source, issue]
   search: true
   page-navigation: true
+  back-to-top-navigation: true
   sidebar:
     style: docked
     collapse-level: 1
@@ -22,45 +23,49 @@ book:
     left: "Instituto de Energías Renovables · UNAM"
     right: "Hecho con [Quarto](https://quarto.org)"
 
+  # ── Numeración: cada unidad es un capítulo numerado (1–8) y coincide con
+  #    la tabla del temario (temas N.M). Las libretas de clase cuelgan del
+  #    part de su unidad y declaran {.unnumbered} en su primera celda
+  #    markdown, así que no consumen número de capítulo.
   chapters:
     - index.qmd
     - temario.qmd
     - reglas.qmd
 
-    # ── Numeración automática: cada unidad es un capítulo numerado (1–8).
-    #    Las libretas de clase se cuelgan con un part de título de texto que
-    #    agrupa a la unidad y sus libretas; cada libreta declara {.unnumbered}
-    #    en su título (primera celda Markdown) para NO consumir número de
-    #    capítulo. Ejemplo:
-    #
-    #    - part: "Unidad 1"
-    #      chapters:
-    #        - unidades/unidad-01.qmd                             # capítulo 1
-    #        - clases/clase-01-introduccion/notebooks/01-entorno.ipynb   # {.unnumbered}
+    - part: "Unidad 1 · Introducción"
+      chapters:
+        - unidades/unidad-01.qmd
+        - clases/001_hola_mundo/index.qmd
+        - clases/001_hola_mundo/notebooks/001_HolaMundo.ipynb
 
-    - unidades/unidad-01.qmd
-    - clases/001_hola_mundo/index.qmd
-    - clases/001_hola_mundo/notebooks/001_HolaMundo.ipynb
-    - clases/002_variables/001_intro_variables.ipynb
-    - clases/003_variables_operaciones/001_variables_operaciones.ipynb
-    - clases/003_variables_operaciones/002_strings.ipynb
-    - clases/004_print_cadenas/001_print.ipynb
-    - clases/004_print_cadenas/002_manipulacion_cadenas.ipynb
-    - clases/005_manipulacion_cadenas/001_manipulacion_cadenas.ipynb
-    - clases/006_cadenas_listas/001_cadenas.ipynb
-    - clases/007_listas_estructuras/notebooks/001_listas.ipynb
-    - clases/007_listas_estructuras/notebooks/002_estructuras_control.ipynb
-    - clases/008_funciones/notebooks/001_funciones.ipynb
-    - clases/008_funciones/notebooks/002_uso_funciones.ipynb
-    - clases/008_funciones/notebooks/003_funciones_variables_default.ipynb
-    - clases/008_funciones/notebooks/004_uso_funciones_en_libreta.ipynb
-    - clases/008_funciones/notebooks/005_uso_funciones_importando.ipynb
-    - clases/009_importar_datos/notebooks/001_ETL.ipynb
-    - clases/009_importar_datos/notebooks/002_EDA.ipynb
-    - clases/009_importar_datos/notebooks/003_ETL_dhi.ipynb
-    - clases/010_importar_formatos/notebooks/001_ETL_v1.ipynb
-    - unidades/unidad-02.qmd
-    - unidades/unidad-03.qmd
+    - part: "Unidad 2 · Sintaxis y métodos"
+      chapters:
+        - unidades/unidad-02.qmd
+        - clases/002_variables/001_intro_variables.ipynb
+        - clases/003_variables_operaciones/001_variables_operaciones.ipynb
+        - clases/003_variables_operaciones/002_strings.ipynb
+        - clases/004_print_cadenas/001_print.ipynb
+        - clases/004_print_cadenas/002_manipulacion_cadenas.ipynb
+        - clases/005_manipulacion_cadenas/001_manipulacion_cadenas.ipynb
+        - clases/006_cadenas_listas/001_cadenas.ipynb
+        - clases/007_listas_estructuras/notebooks/001_listas.ipynb
+        - clases/007_listas_estructuras/notebooks/002_estructuras_control.ipynb
+        - clases/008_funciones/notebooks/001_funciones.ipynb
+        - clases/008_funciones/notebooks/002_uso_funciones.ipynb
+        - clases/008_funciones/notebooks/003_funciones_variables_default.ipynb
+        - clases/008_funciones/notebooks/004_uso_funciones_en_libreta.ipynb
+        - clases/008_funciones/notebooks/005_uso_funciones_importando.ipynb
+
+    - part: "Unidad 3 · Importar y limpiar datos"
+      chapters:
+        - unidades/unidad-03.qmd
+        - clases/009_importar_datos/notebooks/001_ETL.ipynb
+        - clases/009_importar_datos/notebooks/002_EDA.ipynb
+        - clases/009_importar_datos/notebooks/003_ETL_dhi.ipynb
+        - clases/010_importar_formatos/notebooks/001_ETL_v1.ipynb
+
+    # Unidades aún sin clases: capítulos 4–8. Cuando una unidad tenga
+    # libretas, se convierte en part como las de arriba.
     - unidades/unidad-04.qmd
     - unidades/unidad-05.qmd
     - unidades/unidad-06.qmd
@@ -75,17 +80,26 @@ book:
 
 format:
   html:
-    theme: [cosmo, estilos.scss]
+    theme:
+      light: [cosmo, estilos.scss]
+      dark: [cosmo, estilos.scss, estilos-oscuro.scss]
     # Numeración automática: unidades como capítulos 1–8, temas como N.M.
-    # index, temario y apéndices van {.unnumbered} en su título.
+    # index, temario, apéndices y libretas van {.unnumbered} en su título.
     number-sections: true
     number-depth: 2
     code-copy: true
     code-overflow: wrap
     code-tools: false
+    highlight-style: a11y
+    lightbox: true
     toc: true
     toc-depth: 3
     toc-title: "En esta página"
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
 # Las libretas NO se ejecutan al renderizar: el libro publica las salidas
 # que quedaron guardadas en el .ipynb al trabajarlo en su propio entorno uv.

@@ -12,35 +12,31 @@ salidas, sus figuras y, cuando toca, sus errores instructivos.
 
 - El [temario](temario.qmd) reproduce el programa oficial de la actividad académica.
 - Las [reglas del curso](reglas.qmd) resumen los principios de trabajo, reproducibilidad y evaluación.
-- Cada **parte** corresponde a una sesión: abre con una introducción a los temas y continúa con las
-  libretas de esa clase.
-- Las **tareas** aparecen al final de la parte que las genera.
-- El apéndice de [instalación](apendices/instalacion.qmd) explica cómo poner a funcionar el entorno
-  en tu propia computadora.
+- Cada **parte** corresponde a una unidad del temario: abre con los temas de la unidad y continúa
+  con las libretas de las clases en las que se trabajó.
+- El apéndice de [instalación](apendices/instalacion.qmd) explica cómo poner a funcionar tu propio
+  entorno de trabajo.
 
 ## Cómo trabajar con el material
 
-Todo el curso vive en un repositorio público: <https://github.com/ier-python/python-2027-1>
+Este sitio está pensado para **leerse y consultarse**, no para ejecutarse: las libretas se publican
+tal como quedaron al final de cada clase, con sus salidas y figuras ya incluidas, así que no
+necesitas instalar nada para estudiarlas.
 
-Cada clase es una carpeta autocontenida, con su propio entorno de dependencias gestionado con
-[uv](https://docs.astral.sh/uv/). Para reproducir una sesión basta con clonar el repositorio, entrar
-a la carpeta de esa clase y sincronizar el entorno:
+Dos herramientas te ayudan a moverte:
 
-```bash
-git clone https://github.com/ier-python/python-2027-1.git
-cd python-2027-1/clases/clase-01-introduccion
-uv sync
-uv run jupyter notebook
-```
-
-Eso instala exactamente las versiones con las que se produjeron los resultados que ves publicados
-—ni una más ni una menos— y abre Jupyter Notebook con ese entorno.
+- El **buscador** (arriba del índice lateral) encuentra cualquier función, método o tema en todo el
+  libro. ¿No recuerdas en qué clase vimos `split`, `resample` o las f-strings? Búscalo aquí mismo.
+- El botón de **copiar** que aparece al pasar el cursor sobre cada bloque de código te lleva el
+  código a tu propia libreta, para que lo pruebes en tu entorno.
 
 ::: {.callout-note}
 ## Reproducibilidad
 
-Cada clase versiona su archivo `uv.lock`, que fija las versiones exactas de todos los paquetes.
-Es lo que permite que una libreta de la primera semana siga corriendo igual al final del semestre.
+Cada clase se trabaja en el aula dentro de su propio entorno de [uv](https://docs.astral.sh/uv/), y
+el libro publica las salidas tal como se ejecutaron ahí. Si copias el código a tu propio entorno
+—creado siguiendo el [apéndice de instalación](apendices/instalacion.qmd)— deberías obtener los
+mismos resultados.
 :::
 
 ## Sobre la narrativa computacional

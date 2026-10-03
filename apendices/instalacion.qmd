@@ -5,7 +5,7 @@ El curso usa tres herramientas. Ninguna requiere permisos de administrador.
 | Herramienta | Para qué |
 |:---|:---|
 | [uv](https://docs.astral.sh/uv/) | Instalar Python y gestionar el entorno de cada clase |
-| [Git](https://git-scm.com/) | Clonar y seguir el repositorio del curso |
+| [Git](https://git-scm.com/) | Versionar tu trabajo (y, opcional, clonar este repositorio) |
 | [Quarto](https://quarto.org/) | Sólo si quieres construir este libro localmente |
 
 No hace falta instalar Python por separado: `uv` se encarga de descargar la versión que cada clase
@@ -41,27 +41,29 @@ En macOS, `git --version` ofrece instalarlo si falta. En Windows, descárgalo de
 [git-scm.com](https://git-scm.com/downloads). En Linux, viene en el gestor de paquetes
 (`apt install git`, `dnf install git`).
 
-## 3. Clonar el repositorio del curso
+## 3. Crear tu carpeta del curso
+
+Este sitio se consulta, no se ejecuta: las libretas ya están publicadas con sus salidas. Tu trabajo
+vive en una carpeta tuya, con una subcarpeta por clase:
 
 ```bash
-git clone https://github.com/ier-python/python-2027-1.git
-cd python-2027-1
+mkdir curso_python
+cd curso_python
 ```
 
-## 4. Trabajar en una clase
+## 4. Crear el entorno de una clase
 
-Cada clase es una carpeta independiente con su propio entorno. Entra a la que te interese y
-sincroniza:
+Cada clase es una carpeta independiente con su propio entorno. Al empezar una clase nueva, créala
+con `uv` y agrégale Jupyter:
 
 ```bash
-cd clases/clase-01-introduccion
-uv sync
+uv init 001_hola_mundo
+cd 001_hola_mundo
+uv add --dev notebook ipykernel
 ```
 
-`uv sync` lee `uv.lock` e instala las versiones exactas con las que se produjeron los resultados
-publicados. Crea un entorno virtual en `.venv/` dentro de esa misma carpeta.
-
-Para abrir las libretas:
+Conforme la clase lo pida, agrega sus dependencias (`uv add pandas`, por ejemplo). Para abrir las
+libretas:
 
 ```bash
 uv run jupyter notebook
@@ -90,9 +92,11 @@ Cada clase tiene su propio `.venv/`. Si abres la libreta de la clase 5 con el in
 ## 6. Construir el libro localmente (opcional)
 
 Sólo si quieres generar este sitio en tu computadora. Instala
-[Quarto](https://quarto.org/docs/get-started/) y, desde la raíz del repositorio:
+[Quarto](https://quarto.org/docs/get-started/), clona el repositorio y, desde su raíz:
 
 ```bash
+git clone https://github.com/ier-python/python-2027-1.git
+cd python-2027-1
 quarto preview
 ```
 
@@ -114,10 +118,9 @@ import sys; print(sys.executable)
 
 La ruta debe apuntar al `.venv` de la carpeta de esa clase.
 
-**`uv sync` falla por la versión de Python.**
+**`uv` falla por la versión de Python.**
 Deja que uv la instale por su cuenta:
 
 ```bash
 uv python install
-uv sync
 ```

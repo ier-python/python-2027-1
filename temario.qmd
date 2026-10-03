@@ -46,7 +46,7 @@ Esta tabla se regenera automáticamente desde los encabezados de las unidades
 <!-- indice:inicio -->
 | Tema | |
 |:---|:---|
-| | **Unidad 1 · Introducción a los proyectos de ciencia de datos con Python** |
+| | [**Unidad 1 · Introducción a los proyectos de ciencia de datos con Python**]{#unidad-1} |
 | 1.1 | Qué es un proyecto de ciencia de datos |
 | 1.2 | Instalación y espacio de trabajo |
 | 1.3 | Entornos virtuales y la primera libreta |
@@ -55,45 +55,45 @@ Esta tabla se regenera automáticamente desde los encabezados de las unidades
 | 1.6 | Nombres |
 | 1.7 | Narrativa computacional |
 | 1.8 | Reglas del curso y repositorios |
-| | **Unidad 2 · Sintaxis, herramientas de control y métodos de Python** |
+| | [**Unidad 2 · Sintaxis, herramientas de control y métodos de Python**]{#unidad-2} |
 | 2.1 | Sintaxis, tipos de variables, iterables |
 | 2.2 | Estructuras de control |
 | 2.3 | Cadenas en Python |
 | 2.4 | f-strings |
 | 2.5 | Funciones |
-| | **Unidad 3 · Importación y limpieza de datos** |
+| | [**Unidad 3 · Importación y limpieza de datos**]{#unidad-3} |
 | 3.1 | Módulos e `import` |
 | 3.2 | Pair wise data |
 | 3.3 | Series temporales |
 | 3.4 | Data cleaning |
 | 3.5 | Importación de múltiples archivos |
-| | **Unidad 4 · Introducción a la visualización** |
+| | [**Unidad 4 · Introducción a la visualización**]{#unidad-4} |
 | 4.1 | El paisaje de las bibliotecas de visualización |
 | 4.2 | Anatomía de una figura |
 | 4.3 | OOP en matplotlib |
 | 4.4 | Esquemas complejos con specgrid |
 | 4.5 | Formatos para figura |
 | 4.6 | [La misma figura, en plotly]{.sacrificable} |
-| | **Unidad 5 · NumPy** |
+| | [**Unidad 5 · NumPy**]{#unidad-5} |
 | 5.1 | Qué es NumPy |
 | 5.2 | Arrays, size, shape |
 | 5.3 | Estadística de arreglos |
 | 5.4 | Slicing y fancy indexing |
 | 5.5 | [Creación de mallas]{.sacrificable} |
 | 5.6 | [Importar, guardar y el puente con pandas]{.sacrificable} |
-| | **Unidad 6 · Prácticas para el cómputo científico** |
+| | [**Unidad 6 · Prácticas para el cómputo científico**]{#unidad-6} |
 | 6.1 | Git: el repositorio, ahora de verdad |
 | 6.2 | Paquetes |
 | 6.3 | [Profiling]{.sacrificable} |
 | 6.4 | [Numba (y Cython, la anécdota)]{.sacrificable} |
 | 6.5 | Pruebas unitarias en datos |
-| | **Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos** |
+| | [**Unidad 7 · Conceptos avanzados de manipulación de datos y visualización de datos**]{#unidad-7} |
 | 7.1 | Datos faltantes |
 | 7.2 | Cambio de frecuencia |
 | 7.3 | Agrupación de datos |
 | 7.4 | Visualizaciones avanzadas: heatmaps, boxplots, histogramas, violin plots |
 | 7.5 | Dashboards con Quarto |
-| | **Unidad 8 · Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis** |
+| | [**Unidad 8 · Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis**]{#unidad-8} |
 | 8.1 | Qué es vibe coding |
 | 8.2 | Analiza: el asistente dentro del proyecto |
 | 8.3 | Documenta e itera |

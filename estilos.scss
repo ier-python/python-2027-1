@@ -1,23 +1,55 @@
 /*-- scss:defaults --*/
 
-// Paleta sobria, con acento institucional UNAM
-$azul-unam:  #12395b;
-$oro-unam:   #a6883f;
+// Paleta sobria, con acento institucional UNAM.
+// Los !default permiten que estilos-oscuro.scss (que se carga con mayor
+// precedencia en el tema dark) redefina lo que necesite.
+$azul-unam:  #12395b !default;
+$oro-unam:   #a6883f !default;
+$azul-medio: #1d5a8f !default;   // hover y encabezados secundarios
+$azul-suave: #eef3f8 !default;   // fondos sutiles (encabezados de tabla)
+$gris-borde: #e3e8ee !default;
 
-$primary:    $azul-unam;
-$link-color: $azul-unam;
+$primary:    $azul-unam !default;
+$link-color: $azul-unam !default;
 
-$font-size-root: 17px;
-$body-color: #23282d;
+$font-size-root: 17px !default;
+$body-color: #23282d !default;
 
 // Bloques de código con más aire y menos contraste agresivo
-$code-block-bg: #f7f8fa;
-$code-color:    #a3364a;
+$code-block-bg: #f7f8fa !default;
+$code-color:    #a3364a !default;
+
+$font-family-monospace: "JetBrains Mono", ui-monospace, SFMono-Regular,
+  Menlo, Consolas, monospace !default;
 
 /*-- scss:rules --*/
 
 h1, h2, h3, h4 {
   letter-spacing: -0.01em;
+}
+
+h1, .quarto-title h1 {
+  color: $azul-unam;
+}
+
+h2 {
+  color: $azul-medio;
+  border-bottom: 1px solid $gris-borde;
+  padding-bottom: 0.2em;
+}
+
+a:hover {
+  color: $azul-medio;
+}
+
+// ── Código ──────────────────────────────────────────────────────────
+div.sourceCode {
+  border: 1px solid $gris-borde;
+  border-radius: 6px;
+}
+
+code {
+  font-size: 0.925em;
 }
 
 // Las salidas de las libretas pueden ser anchas: que hagan scroll
@@ -31,16 +63,39 @@ h1, h2, h3, h4 {
 // Tablas de pandas legibles y contenidas
 .cell-output table {
   font-size: 0.85em;
+
+  thead th {
+    background-color: $azul-suave;
+    border-bottom: 2px solid $azul-unam;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: rgba($azul-unam, 0.035);
+  }
 }
 
-// Acento sutil en los títulos de parte del índice lateral
-.sidebar-item-section > .sidebar-item .sidebar-item-text {
+// ── Sidebar ─────────────────────────────────────────────────────────
+// Títulos de part (unidades) como etiquetas de sección
+.sidebar-item-section > .sidebar-item-container .sidebar-item-text {
   font-weight: 600;
 }
 
-// Callouts un poco menos estridentes
+div.sidebar-item-container .active,
+div.sidebar-item-container .show > .nav-link {
+  color: $azul-unam;
+  font-weight: 600;
+  border-left: 3px solid $oro-unam;
+  padding-left: 0.4em;
+  margin-left: -0.55em;
+}
+
+// ── Callouts un poco menos estridentes ──────────────────────────────
 div.callout {
   border-left-width: 4px;
+}
+
+div.callout-tip.callout {
+  border-left-color: $oro-unam;
 }
 
 // Temas candidatos a sacrificio en el índice temático, para ajustar
@@ -59,4 +114,8 @@ a.descarga {
   border-radius: 4px;
   text-decoration: none;
   font-weight: 500;
+
+  &:hover {
+    background-color: rgba($oro-unam, 0.12);
+  }
 }
