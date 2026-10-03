@@ -7,6 +7,12 @@
 $body-bg:    #10161d;
 $body-color: #d7dee6;
 
+// El sidebar de Quarto hereda $light de cosmo (#f8f9fa) aunque el tema sea
+// oscuro; hay que fijarlo explícitamente. Los colores de texto del sidebar
+// se derivan por contraste a partir de este fondo.
+$sidebar-bg: #0c1218;
+$sidebar-border: true;
+
 $primary:    #7fb3dc;
 $link-color: #8ec1e8;
 
