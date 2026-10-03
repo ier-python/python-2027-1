@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>27&nbsp; Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis – Proyectos de ciencia de datos con Python</title>
+<title>uso_funciones_importando – Proyectos de ciencia de datos con Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,29 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../apendices/instalacion.html" rel="next">
-<link href="../unidades/unidad-07.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d32db7fcdfa174c45d7ebcd38c1a41c8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../clases/009_importar_datos/notebooks/001_ETL.html" rel="next">
+<link href="../../../clases/008_funciones/notebooks/004_uso_funciones_en_libreta.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-d32db7fcdfa174c45d7ebcd38c1a41c8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -83,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad-08.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../clases/008_funciones/notebooks/005_uso_funciones_importando.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">005_uso_funciones_importando.html</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -98,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Proyectos de ciencia de datos con Python</a> 
+      <a href="../../../">Proyectos de ciencia de datos con Python</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ier-python/python-2027-1" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
 </div>
@@ -113,187 +148,187 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../temario.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../temario.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Temario del curso</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reglas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../reglas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reglas y acuerdos del curso</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instala Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Recomendaciones para aprender a usar la libreta de Jupyter.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">001_intro_variables.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/003_variables_operaciones/001_variables_operaciones.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/003_variables_operaciones/001_variables_operaciones.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">001_variables_operaciones.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/003_variables_operaciones/002_strings.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/003_variables_operaciones/002_strings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">002_strings.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">print en Python</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">002_manipulacion_cadenas.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">001_manipulacion_cadenas.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/006_cadenas_listas/001_cadenas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/006_cadenas_listas/001_cadenas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">001_cadenas.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/007_listas_estructuras/notebooks/001_listas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/007_listas_estructuras/notebooks/001_listas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">001_listas.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/007_listas_estructuras/notebooks/002_estructuras_control.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/007_listas_estructuras/notebooks/002_estructuras_control.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estructuras de control</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/008_funciones/notebooks/001_funciones.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/008_funciones/notebooks/001_funciones.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">paso 1</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/008_funciones/notebooks/002_uso_funciones.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/008_funciones/notebooks/002_uso_funciones.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">002_uso_funciones.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/008_funciones/notebooks/003_funciones_variables_default.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/008_funciones/notebooks/003_funciones_variables_default.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">003_funciones_variables_default.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/008_funciones/notebooks/004_uso_funciones_en_libreta.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/008_funciones/notebooks/004_uso_funciones_en_libreta.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">004_uso_funciones_en_libreta.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/008_funciones/notebooks/005_uso_funciones_importando.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/008_funciones/notebooks/005_uso_funciones_importando.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">005_uso_funciones_importando.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/009_importar_datos/notebooks/001_ETL.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/009_importar_datos/notebooks/001_ETL.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">001_ETL.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/009_importar_datos/notebooks/002_EDA.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/009_importar_datos/notebooks/002_EDA.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trabajo en clase</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/009_importar_datos/notebooks/003_ETL_dhi.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/009_importar_datos/notebooks/003_ETL_dhi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">003_ETL_dhi.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../clases/010_importar_formatos/notebooks/001_ETL_v1.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../clases/010_importar_formatos/notebooks/001_ETL_v1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">001_ETL_v1.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad-08.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
   </div>
 </li>
@@ -308,7 +343,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../apendices/instalacion.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../apendices/instalacion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instalación del entorno</span></a>
   </div>
 </li>
@@ -319,117 +354,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">En esta página</h2>
-   
-  <ul>
-  <li><a href="#qué-es-vibe-coding" id="toc-qué-es-vibe-coding" class="nav-link active" data-scroll-target="#qué-es-vibe-coding"><span class="header-section-number">27.1</span> Qué es vibe coding</a></li>
-  <li><a href="#analiza-el-asistente-dentro-del-proyecto" id="toc-analiza-el-asistente-dentro-del-proyecto" class="nav-link" data-scroll-target="#analiza-el-asistente-dentro-del-proyecto"><span class="header-section-number">27.2</span> Analiza: el asistente dentro del proyecto</a></li>
-  <li><a href="#documenta-e-itera" id="toc-documenta-e-itera" class="nav-link" data-scroll-target="#documenta-e-itera"><span class="header-section-number">27.3</span> Documenta e itera</a></li>
-  <li><a href="#escribe-tu-tesis-con-quarto" id="toc-escribe-tu-tesis-con-quarto" class="nav-link" data-scroll-target="#escribe-tu-tesis-con-quarto"><span class="header-section-number">27.4</span> Escribe tu tesis con Quarto</a></li>
-  <li><a href="#ejercicios-sugeridos" id="toc-ejercicios-sugeridos" class="nav-link" data-scroll-target="#ejercicios-sugeridos">Ejercicios sugeridos</a></li>
-  <li><a href="#al-terminar-la-unidad" id="toc-al-terminar-la-unidad" class="nav-link" data-scroll-target="#al-terminar-la-unidad">Al terminar la unidad</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/unidades/unidad-08.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></h1>
+
+
+
+<div id="b2388f9d-84e5-4144-b05d-5ebded22a990" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> funciones.saludos <span class="im">import</span> hola_mundo,hola_mundo_2</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Propuesta de desarrollo, pendiente de revisión. Unidad adicional al programa oficial: el cierre del curso, donde todas las unidades anteriores se juntan en una sola práctica.</p>
+<div id="618d02d7-eb40-40eb-a04f-1a4a1293dafe" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hola_mundo(<span class="st">"2020 de marzo"</span>,<span class="st">"Memo"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hola 2020 de marzo
+Memo</code></pre>
 </div>
 </div>
-</div>
-<blockquote class="blockquote">
-<p><strong>Objetivo.</strong> Que cada estudiante use asistentes de IA como acelerador sin ceder el criterio: analizar datos conversando con Claude, verificar lo generado con las herramientas del curso — reproducibilidad, pruebas, figuras honestas —, iterar con historia en git, y montar su tesis como proyecto de Quarto donde el texto, el análisis y las figuras viven y se regeneran juntos.</p>
-</blockquote>
-<p><strong>Adicional al programa oficial</strong></p>
-<section id="qué-es-vibe-coding" class="level2" data-number="27.1">
-<h2 data-number="27.1" class="anchored" data-anchor-id="qué-es-vibe-coding"><span class="header-section-number">27.1</span> Qué es vibe coding</h2>
-<ol type="1">
-<li>Programar conversando: describir la intención, leer lo propuesto, decidir — el código se negocia, no se dicta.</li>
-<li>Por qué esta unidad va al final: el criterio se entrenó quince semanas; sin él, el asistente maneja y tú vas de pasajero.</li>
-<li>El panorama: Claude en el chat, Claude Code en la terminal, asistentes dentro del editor — la misma conversación en tres lugares.</li>
-</ol>
-</section>
-<section id="analiza-el-asistente-dentro-del-proyecto" class="level2" data-number="27.2">
-<h2 data-number="27.2" class="anchored" data-anchor-id="analiza-el-asistente-dentro-del-proyecto"><span class="header-section-number">27.2</span> Analiza: el asistente dentro del proyecto</h2>
-<ol type="1">
-<li>El contexto lo es todo: el proyecto bien formado de la Unidad 1 — estructura, nombres, entorno declarado — es exactamente lo que un asistente necesita leer para ayudar de verdad.</li>
-<li>Pedir bien: la pregunta con sus datos, sus unidades y el resultado esperado; el mismo rigor que un docstring.</li>
-<li>Verificar siempre: lo generado corre desde cero, pasa las pruebas de la Unidad 6, y la figura dice lo que dicen los datos.</li>
-<li>La regla nueva del curso: ningún código que no puedas explicar línea por línea — quien firma eres tú, no el asistente.</li>
-</ol>
-</section>
-<section id="documenta-e-itera" class="level2" data-number="27.3">
-<h2 data-number="27.3" class="anchored" data-anchor-id="documenta-e-itera"><span class="header-section-number">27.3</span> Documenta e itera</h2>
-<ol type="1">
-<li>La libreta sigue siendo el documento: lo que el asistente aporta se integra a la narrativa computacional, no se pega como vino.</li>
-<li>Los errores como conversación: el traceback se entrega completo, la explicación se lee con escepticismo, la corrección se verifica.</li>
-<li>Iterar con historia: cada vuelta con el asistente termina en commit — git registra qué cambió, y el <code>diff</code> cuenta qué hizo realmente la “ayuda”.</li>
-</ol>
-</section>
-<section id="escribe-tu-tesis-con-quarto" class="level2" data-number="27.4">
-<h2 data-number="27.4" class="anchored" data-anchor-id="escribe-tu-tesis-con-quarto"><span class="header-section-number">27.4</span> Escribe tu tesis con Quarto</h2>
-<ol type="1">
-<li>La tesis como proyecto de Quarto: capítulos <code>.qmd</code>, el <code>format: book</code> — el dashboard de la Unidad 7 tiene un hermano mayor.</li>
-<li>Figuras vivas: las figuras del proyecto entran solas y se regeneran si cambian los datos — nadie vuelve a pegar una imagen desactualizada.</li>
-<li>Citas y referencias: BibTeX, referencias cruzadas, números de figura y de tabla que se cuidan solos.</li>
-<li>Congelar capítulos: <code>freeze: auto</code> — el capítulo con cómputo pesado no se re-ejecuta en cada render, solo cuando cambia; si los datos cambiaron, se descongela tocando el capítulo o borrando <code>_freeze/</code>. La tesis entera renderiza en segundos.</li>
-<li><code>quarto render</code> a PDF: el LaTeX de la Unidad 4 paga completo — la tesis sale tipografiada.</li>
-<li>El cierre del curso: la tesis reproducible — quien la lea puede clonarla, reconstruir el entorno y regenerar cada número y cada figura.</li>
-</ol>
-</section>
-<section id="ejercicios-sugeridos" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="ejercicios-sugeridos">Ejercicios sugeridos</h2>
-<ol type="1">
-<li>Pedirle al asistente una función que ya escribiste en el curso, comparar ambas versiones, y quedarte con lo mejor de cada una — explicando por qué.</li>
-<li>Analizar un dataset nunca visto conversando con Claude, aplicando en cada paso las reglas del curso: diagnóstico antes de cirugía, decisiones declaradas, figura honesta.</li>
-<li>Recibir del asistente una solución con un error sutil (sembrado por el profesor) y cazarlo con las pruebas de la Unidad 6 — la moraleja se escribe en Markdown.</li>
-<li>Entregar un traceback completo al asistente, verificar su corrección propuesta, y documentar qué entendió bien y qué no.</li>
-<li>Iterar una figura con el asistente hasta calidad de tesis: un commit por vuelta, y el <code>git log</code> como bitácora de la conversación.</li>
-<li>Montar el esqueleto de la tesis en Quarto: capítulos, bibliografía en BibTeX, y una figura viva que se regenera desde <code>data/processed</code>.</li>
-<li>Escribir un capítulo de avance real de la tesis propia, con sus citas y sus referencias cruzadas, y renderizarlo a PDF.</li>
-<li>El examen final silencioso: intercambiar tesis por parejas, clonar la del compañero, reconstruir el entorno y regenerar el PDF completo — si compila con sus figuras, el curso cumplió.</li>
-</ol>
-</section>
-<section id="al-terminar-la-unidad" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="al-terminar-la-unidad">Al terminar la unidad</h2>
-<ul>
-<li>Conversar con un asistente de IA describiendo intención, contexto y resultado esperado — y leer críticamente lo que proponga.</li>
-<li>Verificar código generado con las armas del curso: corre desde cero, pasa las pruebas, la figura es honesta.</li>
-<li>Iterar con historia: cada colaboración con el asistente registrada en commits que narran.</li>
-<li>Montar una tesis en Quarto con figuras vivas, citas en BibTeX y referencias cruzadas, y renderizarla a PDF.</li>
-<li>Entregar el paquete completo — proyecto y tesis reproducibles — y explicar por qué eso vale más que cualquier archivo suelto.</li>
-</ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -834,13 +779,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/unidad-07.html" class="pagination-link" aria-label="Conceptos avanzados de manipulación de datos y visualización de datos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span>
+      <a href="../../../clases/008_funciones/notebooks/004_uso_funciones_en_libreta.html" class="pagination-link" aria-label="004_uso_funciones_en_libreta.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">004_uso_funciones_en_libreta.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../apendices/instalacion.html" class="pagination-link" aria-label="Instalación del entorno">
-        <span class="nav-page-text">Instalación del entorno</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../clases/009_importar_datos/notebooks/001_ETL.html" class="pagination-link" aria-label="001_ETL.html">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">001_ETL.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -852,7 +797,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/unidades/unidad-08.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/008_funciones/notebooks/005_uso_funciones_importando.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Hecho con <a href="https://quarto.org">Quarto</a></p>
 </div>
