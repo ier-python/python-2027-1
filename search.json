@@ -640,6 +640,26 @@
     ]
   },
   {
+    "objectID": "clases/010_importar_formatos/notebooks/005_importa_v6.html",
+    "href": "clases/010_importar_formatos/notebooks/005_importa_v6.html",
+    "title": "Importar un CSV sucio: nombres, fechas con AM/PM y tipos",
+    "section": "",
+    "text": "Librerías\nÚltimo archivo del recorrido: v6_sucio_tipos.csv junta varios problemas a la vez. Los nombres de columna traen espacios y mayúsculas, la fecha viene en formato de 12 horas con AM/PM, los faltantes están marcados con palabras y hay columnas numéricas que llegan como texto. Todo se resuelve en una sola celda, paso por paso.\nimport pandas as pd",
+    "crumbs": [
+      "Importar un CSV sucio: nombres, fechas con AM/PM y tipos"
+    ]
+  },
+  {
+    "objectID": "clases/010_importar_formatos/notebooks/005_importa_v6.html#leer-renombrar-fechar-y-convertir-tipos",
+    "href": "clases/010_importar_formatos/notebooks/005_importa_v6.html#leer-renombrar-fechar-y-convertir-tipos",
+    "title": "Importar un CSV sucio: nombres, fechas con AM/PM y tipos",
+    "section": "Leer, renombrar, fechar y convertir tipos",
+    "text": "Leer, renombrar, fechar y convertir tipos\nLa celda hace cinco cosas en orden:\n\nDiccionario de nombres. nombres traduce los encabezados sucios a nombres limpios. Fíjate en las llaves: \" dhi\" con espacio al inicio y 'GHI ' con espacio al final. Así vienen en el archivo, y si la llave no coincide carácter por carácter, rename no hace nada con esa columna.\nLeer con centinelas de texto. Igual que en v4_centinelas.csv, na_values convierte en NaN las marcas \"error\", \" \" y \"sensor off\".\nRenombrar. rename(columns=nombres, inplace=True) cambia solo las cuatro columnas del diccionario; las demás conservan su nombre original.\nConstruir el índice de tiempo. La columna tiempo trae horas como 01:05:00 PM. En vez de dejar que pandas adivine, format=\"%Y-%m-%d %I:%M:%S %p\" describe exactamente el patrón: %I es la hora en reloj de 12 y %p el AM/PM. Luego set_index la vuelve índice.\nConvertir tipos. ghi llegó como texto porque usa coma decimal: primero str.replace(\",\",\".\") y después astype(float). p solo necesita astype(float), porque lo que la volvía texto eran los centinelas que ya quitamos en el paso 2.\n\ninfo() muestra hasta dónde llegamos: índice DatetimeIndex completo, dhi, ghi y p ya en float64, y la presión con los faltantes que esperábamos. Pero quedan tres columnas como texto (HUMEDAD  REL, Temp Bulbo Seco y vel.viento) y seis nombres sin limpiar. Ahí se quedó la clase: el mismo tratamiento de los pasos 1 y 5, aplicado a esas columnas, termina la limpieza.\n\nf = \"../data/001_raw/v6_sucio_tipos.csv\"\nnombres = {\n    \"Fecha Hora\":\"tiempo\",\n    \" dhi\":\"dhi\",\n    'GHI ':\"ghi\",\n    'Presion Atm':\"p\"\n}\nesolmet = pd.read_csv(f,na_values=[\"error\",\" \",\"sensor off\"])\nesolmet.rename(columns=nombres,inplace=True)\nesolmet.tiempo = pd.to_datetime(esolmet.tiempo,format=\"%Y-%m-%d %I:%M:%S %p\")\nesolmet.set_index(\"tiempo\",inplace=True)\nesolmet.ghi = esolmet.ghi.str.replace(\",\",\".\").astype(float)\nesolmet.p = esolmet.p.astype(float)\n\nesolmet.info()\n\n&lt;class 'pandas.DataFrame'&gt;\nDatetimeIndex: 172433 entries, 2026-04-08 00:00:00 to 2026-08-05 18:04:00\nData columns (total 10 columns):\n #   Column             Non-Null Count   Dtype  \n---  ------             --------------   -----  \n 0   dhi                172433 non-null  float64\n 1   DNI                172433 non-null  float64\n 2   ghi                172431 non-null  float64\n 3   p                  142961 non-null  float64\n 4   Lluvia acum        172433 non-null  float64\n 5   HUMEDAD  REL       171894 non-null  str    \n 6    Temp Bulbo Seco   172433 non-null  str    \n 7   UV                 172433 non-null  float64\n 8   Dir Viento         172433 non-null  float64\n 9   vel.viento         172433 non-null  str    \ndtypes: float64(7), str(3)\nmemory usage: 18.3 MB",
+    "crumbs": [
+      "Importar un CSV sucio: nombres, fechas con AM/PM y tipos"
+    ]
+  },
+  {
     "objectID": "unidades/unidad-02.html",
     "href": "unidades/unidad-02.html",
     "title": "21  Sintaxis, herramientas de control y métodos de Python",
