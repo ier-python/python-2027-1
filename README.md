@@ -49,8 +49,8 @@ compartido, y se perdería el aislamiento entre sesiones. Nunca ejecutes `uv ini
 ## Organización del libro
 
 En `_quarto.yml` cada **unidad** del temario es un capítulo numerado (1–8) y las libretas de clase
-cuelgan del `part` de su unidad con `{.unnumbered}` en su primera celda markdown. Así los números de
-capítulo del libro coinciden con la tabla del temario (temas N.M):
+cuelgan del `part` de su unidad con `{.unnumbered}` en el título de su primera celda (ver
+Convenciones). Así los números de capítulo del libro coinciden con la tabla del temario (temas N.M):
 
 ```yaml
 - part: "Unidad 3 · Importar y limpiar datos"
@@ -64,7 +64,7 @@ capítulo del libro coinciden con la tabla del temario (temas N.M):
 1. **Guarda las libretas ejecutadas.** *Restart Kernel and Run All Cells* antes de guardar, para que
    las salidas publicadas sean coherentes de arriba a abajo.
 2. Copia la carpeta de la clase desde `curso_python/` a `clases/NNN_tema/`.
-3. Agrega a cada libreta su primera celda markdown: `# Título {.unnumbered}` + una línea de objetivo.
+3. Agrega a cada libreta su celda Raw de título y su celda markdown de entrada (ver Convenciones).
 4. Registra las libretas en `_quarto.yml`, dentro del `part` de su unidad.
 5. Revisa y publica:
 
@@ -85,9 +85,28 @@ instalar `nbstripout`** — borraría las salidas y dejaría el libro vacío.
 **Un entorno por clase.** En la carpeta de trabajo, cada clase tiene su `.venv/` y su `uv.lock`. La
 interfaz del curso es **Jupyter Notebook, no JupyterLab** (`uv run jupyter notebook`).
 
-**Cada libreta empieza con `# Título {.unnumbered}`** en una celda markdown. Quarto lo usa como
-título de la página; sin él aparece el nombre del archivo, y sin `{.unnumbered}` la libreta consume
-un número de capítulo y descuadra la numeración de las unidades.
+**Cada libreta empieza con una celda Raw que declara el título en YAML:**
+
+```yaml
+---
+title: "# Datos faltantes con `missingno` {.unnumbered}"
+---
+```
+
+El `#` dentro de la cadena no es opcional: Quarto sólo reconoce `{.unnumbered}` en el título de una
+libreta si lo lee con sintaxis de encabezado. Si el título va en una celda markdown
+(`# Título {.unnumbered}`), Quarto conserva el texto pero descarta el atributo, la libreta consume un
+número de capítulo y descuadra la numeración de las unidades. Sin título aparece el nombre del archivo.
+
+**La segunda celda es markdown y abre con `Clase NNN · NNN_tema ·`**, seguido de dos a cuatro líneas
+que dicen qué hace la libreta y qué lugar ocupa en la secuencia. Si la libreta lee archivos que no
+viajan en el repo, sigue un `::: {.callout-important title="Datos"}` que dice cuáles son y dónde
+colocarlos.
+
+**Una celda markdown antes de cada celda de código**, con encabezado `## ` por paso o por archivo y un
+párrafo que dice qué hace la celda, por qué, y qué hay que mirar en la salida. Las celdas que sólo
+confirman algo (`head()`) llevan una línea. Cuando aparece un paquete nuevo, el markdown dice que se
+instala con `uv add paquete`.
 
 **La documentación vive en celdas markdown, el código no se toca.** Las celdas de código y sus
 salidas quedan tal como se ejecutaron en clase (errores intencionales incluidos: son parte de la
@@ -95,6 +114,21 @@ narrativa); la explicación se agrega alrededor, en celdas markdown nuevas.
 
 **Figuras embebidas.** Con matplotlib inline las imágenes quedan dentro del `.ipynb` y viajan solas
 al sitio. Si usas `savefig()`, asegúrate de que la figura también se muestre en la celda.
+
+**Toda figura publicada lleva opciones `#|` al inicio de su celda**, antes del código y sin tocarlo:
+
+```python
+#| label: fig-v1-faltantes
+#| fig-cap: "Matriz de datos faltantes de `v1_filas_faltantes.csv`. Los huecos blancos son `NaN`; `p_atm` es la variable con más faltantes."
+#| fig-alt: "Matriz de missingno con diez columnas; la columna p_atm tiene un bloque blanco grande al inicio."
+msno.matrix(esolmet)
+```
+
+`label` empieza con `fig-`, es único en todo el libro y permite citar la figura como
+`@fig-v1-faltantes`; `fig-cap` dice qué muestra la figura y cuál es el hallazgo; `fig-alt` la describe
+para quien no la ve. Como el libro no ejecuta las libretas, las opciones surten efecto sin volver a
+correr la celda y las líneas `#|` no aparecen en el código publicado. La comprobación es el HTML en
+`_book/`: título sin número y pie de figura con `Figura N:`.
 
 **Salidas contenidas.** Un DataFrame de miles de filas impreso son megabytes de HTML dentro del
 `.ipynb`, en cada commit. `df.head(20)` basta.

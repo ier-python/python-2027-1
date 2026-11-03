@@ -25,8 +25,9 @@ book:
 
   # ── Numeración: cada unidad es un capítulo numerado (1–8) y coincide con
   #    la tabla del temario (temas N.M). Las libretas de clase cuelgan del
-  #    part de su unidad y declaran {.unnumbered} en su primera celda
-  #    markdown, así que no consumen número de capítulo.
+  #    part de su unidad y declaran su título en la primera celda, de tipo
+  #    Raw, como `title: "# Título {.unnumbered}"`, así que no consumen
+  #    número de capítulo (ver README, "Convenciones").
   chapters:
     - index.qmd
     - temario.qmd
@@ -63,10 +64,24 @@ book:
         - clases/009_importar_datos/notebooks/002_EDA.ipynb
         - clases/009_importar_datos/notebooks/003_ETL_dhi.ipynb
         - clases/010_importar_formatos/notebooks/001_ETL_v1.ipynb
+        - clases/010_importar_formatos/notebooks/002_importar_mas_archivos.ipynb
+        - clases/010_importar_formatos/notebooks/003_carga_parquet.ipynb
+        - clases/010_importar_formatos/notebooks/004_carga_mas_archivos.ipynb
+        - clases/010_importar_formatos/notebooks/005_importa_v6.ipynb
+        - clases/010_importar_formatos/notebooks/006_encoding.ipynb
 
-    # Unidades aún sin clases: capítulos 4–8. Cuando una unidad tenga
+    - part: "Unidad 4 · Introducción a la visualización"
+      chapters:
+        - unidades/unidad-04.qmd
+        - clases/010_importar_formatos/notebooks/007_intro_matplotlib.ipynb
+        - clases/011_matplotlib2/notebooks/001_EDA.ipynb
+        - clases/011_matplotlib2/notebooks/002_operaciones_pandas.ipynb
+        - clases/011_matplotlib2/notebooks/003_AnioPromedio.ipynb
+        - clases/011_matplotlib2/notebooks/003_HeatMap.ipynb
+        - clases/011_matplotlib2/notebooks/004_BarrasDisconfort.ipynb
+
+    # Unidades aún sin clases: capítulos 5–8. Cuando una unidad tenga
     # libretas, se convierte en part como las de arriba.
-    - unidades/unidad-04.qmd
     - unidades/unidad-05.qmd
     - unidades/unidad-06.qmd
     - unidades/unidad-07.qmd

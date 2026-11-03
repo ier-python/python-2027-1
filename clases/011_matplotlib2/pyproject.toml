@@ -1,0 +1,13 @@
+[project]
+name = "011-matplotlib2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.2",
+    "notebook>=7.6.3",
+    "pandas>=3.1.0",
+    "pyarrow>=26.0.0",
+]
