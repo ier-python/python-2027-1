@@ -1556,12 +1556,46 @@
     ]
   },
   {
+    "objectID": "clases/010_importar_formatos/notebooks/006_encoding.html",
+    "href": "clases/010_importar_formatos/notebooks/006_encoding.html",
+    "title": "Encoding: leer un CSV en cp1252 y la anatomía de una figura",
+    "section": "",
+    "text": "Librerías\nClase 010 · 010_importar_formatos · Último archivo del recorrido de importación: un CSV exportado desde Windows cuyo encabezado trae acentos, ° y ², y que pandas no puede leer hasta que le dices con qué encoding fue escrito. La segunda mitad cambia de tema y abre la unidad de visualización: la anatomía de una figura de la documentación de matplotlib, que pone nombre a cada pieza que vas a usar en las libretas siguientes.\nAdemás de pandas y matplotlib (se instalan en el proyecto con uv add pandas matplotlib), importamos numpy y tres piezas internas de matplotlib —Circle, withStroke y los localizadores de marcas— que sólo usa la figura de la anatomía al final. plt es el alias universal de matplotlib.pyplot.\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nfrom matplotlib.patches import Circle\nfrom matplotlib.patheffects import withStroke\nfrom matplotlib.ticker import AutoMinorLocator, MultipleLocator",
+    "crumbs": [
+      "Unidad 3 · Importar y limpiar datos",
+      "Encoding: leer un CSV en `cp1252` y la anatomía de una figura"
+    ]
+  },
+  {
+    "objectID": "clases/010_importar_formatos/notebooks/006_encoding.html#leer-el-csv-con-encodingcp1252",
+    "href": "clases/010_importar_formatos/notebooks/006_encoding.html#leer-el-csv-con-encodingcp1252",
+    "title": "Encoding: leer un CSV en cp1252 y la anatomía de una figura",
+    "section": "Leer el CSV con encoding=\"cp1252\"",
+    "text": "Leer el CSV con encoding=\"cp1252\"\nSi lees este archivo con pd.read_csv(f) a secas obtienes un UnicodeDecodeError: pandas supone UTF-8 y el archivo fue guardado con la codificación de Windows en español, cp1252 (también llamada Windows-1252). El parámetro encoding le dice cómo interpretar cada byte; skiprows=2 salta las dos líneas de metadatos del principio y, como siempre, la columna 0 es el índice de fechas.\nRenombramos sólo las tres irradiancias a dhi, dni y ghi; el resto conserva su nombre largo. Mira la salida de info(): los acentos, el ° y el ² ya se leen bien, hay 172 433 registros de abril a agosto de 2026 y la presión atmosférica es la columna con más huecos.\n\nf = \"../data/001_raw/v7_encoding.csv\"\nesolmet = pd.read_csv(f,encoding=\"cp1252\",skiprows=2,index_col=0,parse_dates=True)\nnombres = {\n    \"Irradiancia difusa (W/m²)\":\"dhi\",\n    \"Irradiancia directa (W/m²)\":\"dni\",\n    \"Irradiancia global (W/m²)\":\"ghi\"\n}\nesolmet.rename(columns=nombres,inplace=True)\nesolmet.info()\n\n&lt;class 'pandas.DataFrame'&gt;\nDatetimeIndex: 172433 entries, 2026-04-08 00:00:00 to 2026-08-05 18:04:00\nData columns (total 10 columns):\n #   Column                        Non-Null Count   Dtype  \n---  ------                        --------------   -----  \n 0   dhi                           172433 non-null  float64\n 1   dni                           172433 non-null  float64\n 2   ghi                           172431 non-null  float64\n 3   Presión atmosférica (hPa)     143686 non-null  float64\n 4   Precipitación acumulada (mm)  172433 non-null  float64\n 5   Humedad relativa (%)          171894 non-null  float64\n 6   Temperatura (°C)              172433 non-null  float64\n 7   Índice UV                     172433 non-null  float64\n 8   Dirección viento (°)          172433 non-null  float64\n 9   Velocidad viento (m/s)        172433 non-null  float64\ndtypes: float64(10)\nmemory usage: 14.5 MB",
+    "crumbs": [
+      "Unidad 3 · Importar y limpiar datos",
+      "Encoding: leer un CSV en `cp1252` y la anatomía de una figura"
+    ]
+  },
+  {
+    "objectID": "clases/010_importar_formatos/notebooks/006_encoding.html#anatomía-de-una-figura",
+    "href": "clases/010_importar_formatos/notebooks/006_encoding.html#anatomía-de-una-figura",
+    "title": "Encoding: leer un CSV en cp1252 y la anatomía de una figura",
+    "section": "Anatomía de una figura",
+    "text": "Anatomía de una figura\nEsta celda viene de la galería de matplotlib y no hace falta entenderla línea por línea: su valor es la figura que produce. Cada círculo señala una pieza y, debajo, el método que la controla. Las dos jerarquías que importan:\n\nFigure (plt.figure) es el lienzo completo; puede contener uno o varios Axes.\nAxes (fig.subplots) es un sistema de ejes con su título, sus etiquetas, su rejilla, su leyenda y sus líneas. Casi todo lo que dibujas se hace con métodos de ax: ax.plot, ax.set_xlabel, ax.grid, ax.legend.\n\nCada axis (eje) tiene marcas mayores y menores (set_major_locator, set_minor_locator) y formateadores que deciden qué texto llevan. Las spines son los cuatro bordes del área de dibujo. Guarda esta figura como referencia: es el vocabulario de la unidad 4.\n\nroyal_blue = [0, 20/256, 82/256]\n\n\n# make the figure\n\nnp.random.seed(19680801)\n\nX = np.linspace(0.5, 3.5, 100)\nY1 = 3+np.cos(X)\nY2 = 1+np.cos(1+X/0.75)/2\nY3 = np.random.uniform(Y1, Y2, len(X))\n\nfig = plt.figure(figsize=(7.5, 7.5))\nax = fig.add_axes((0.2, 0.17, 0.68, 0.7), aspect=1)\n\nax.xaxis.set_major_locator(MultipleLocator(1.000))\nax.xaxis.set_minor_locator(AutoMinorLocator(4))\nax.yaxis.set_major_locator(MultipleLocator(1.000))\nax.yaxis.set_minor_locator(AutoMinorLocator(4))\nax.xaxis.set_minor_formatter(\"{x:.2f}\")\n\nax.set_xlim(0, 4)\nax.set_ylim(0, 4)\n\nax.tick_params(which='major', width=1.0, length=10, labelsize=14)\nax.tick_params(which='minor', width=1.0, length=5, labelsize=10,\n               labelcolor='0.25')\n\nax.grid(linestyle=\"--\", linewidth=0.5, color='.25', zorder=-10)\n\nax.plot(X, Y1, c='C0', lw=2.5, label=\"Blue signal\", zorder=10)\nax.plot(X, Y2, c='C1', lw=2.5, label=\"Orange signal\")\nax.plot(X[::3], Y3[::3], linewidth=0, markersize=9,\n        marker='s', markerfacecolor='none', markeredgecolor='C4',\n        markeredgewidth=2.5)\n\nax.set_title(\"Anatomy of a figure\", fontsize=20, verticalalignment='bottom')\nax.set_xlabel(\"x Axis label\", fontsize=14)\nax.set_ylabel(\"y Axis label\", fontsize=14)\nax.legend(loc=\"upper right\", fontsize=14)\n\n\n# Annotate the figure\n\ndef annotate(x, y, text, code):\n    # Circle marker\n    c = Circle((x, y), radius=0.15, clip_on=False, zorder=10, linewidth=2.5,\n               edgecolor=royal_blue + [0.6], facecolor='none',\n               path_effects=[withStroke(linewidth=7, foreground='white')])\n    ax.add_artist(c)\n\n    # use path_effects as a background for the texts\n    # draw the path_effects and the colored text separately so that the\n    # path_effects cannot clip other texts\n    for path_effects in [[withStroke(linewidth=7, foreground='white')], []]:\n        color = 'white' if path_effects else royal_blue\n        ax.text(x, y-0.2, text, zorder=100,\n                ha='center', va='top', weight='bold', color=color,\n                style='italic', fontfamily='monospace',\n                path_effects=path_effects)\n\n        color = 'white' if path_effects else 'black'\n        ax.text(x, y-0.33, code, zorder=100,\n                ha='center', va='top', weight='normal', color=color,\n                fontfamily='monospace', fontsize='medium',\n                path_effects=path_effects)\n\n\nannotate(3.5, -0.13, \"Minor tick label\", \"ax.xaxis.set_minor_formatter\")\nannotate(-0.03, 1.0, \"Major tick\", \"ax.yaxis.set_major_locator\")\nannotate(0.00, 3.75, \"Minor tick\", \"ax.yaxis.set_minor_locator\")\nannotate(-0.15, 3.00, \"Major tick label\", \"ax.yaxis.set_major_formatter\")\nannotate(1.68, -0.39, \"xlabel\", \"ax.set_xlabel\")\nannotate(-0.38, 1.67, \"ylabel\", \"ax.set_ylabel\")\nannotate(1.52, 4.15, \"Title\", \"ax.set_title\")\nannotate(1.75, 2.80, \"Line\", \"ax.plot\")\nannotate(2.25, 1.54, \"Markers\", \"ax.scatter\")\nannotate(3.00, 3.00, \"Grid\", \"ax.grid\")\nannotate(3.60, 3.58, \"Legend\", \"ax.legend\")\nannotate(2.5, 0.55, \"Axes\", \"fig.subplots\")\nannotate(4, 4.5, \"Figure\", \"plt.figure\")\nannotate(0.65, 0.01, \"x Axis\", \"ax.xaxis\")\nannotate(0, 0.36, \"y Axis\", \"ax.yaxis\")\nannotate(4.0, 0.7, \"Spine\", \"ax.spines\")\n\n# frame around figure\nfig.patch.set(linewidth=4, edgecolor='0.5')\nplt.show()\n\n\n\n\n\n\n\nFigura 1: Anatomía de una figura de matplotlib, tomada de la galería oficial. Cada círculo señala un componente —título, ejes, marcas mayores y menores, etiquetas, rejilla, leyenda, líneas, marcadores, spines— y debajo aparece el método de ax o de fig que lo controla.\n\n\n\n\n\nCelda vacía que quedó al final de la clase.",
+    "crumbs": [
+      "Unidad 3 · Importar y limpiar datos",
+      "Encoding: leer un CSV en `cp1252` y la anatomía de una figura"
+    ]
+  },
+  {
     "objectID": "unidades/unidad-04.html",
     "href": "unidades/unidad-04.html",
     "title": "4  Introducción a la visualización",
     "section": "",
     "text": "4.1 El paisaje de las bibliotecas de visualización\n8 h en el programa oficial · Unidad 4 del temario",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
@@ -1572,6 +1606,7 @@
     "section": "",
     "text": "El ecosistema de graficadores de Python: matplotlib, seaborn, plotly, altair, bokeh y más — muchos nombres, un mapa para no perderse.\nEl mapa son capas: df.plot() y seaborn le hablan a matplotlib por ti — por eso nunca lo importamos en la Unidad 3.\nLos paradigmas distintos: plotly (interactivo), altair (declarativo) — saber que existen y cuándo buscarlos.\nPor qué el curso se enfoca en matplotlib: es el fondo común de casi todo, y el control fino que una tesis exige.\nLa revelación: df.plot() devuelve un Axes de matplotlib — personalizar la figura de pandas es empezar a usar matplotlib.",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
@@ -1582,6 +1617,7 @@
     "section": "4.2 Anatomía de una figura",
     "text": "4.2 Anatomía de una figura\n\nFigure, Axes, Axis: el lienzo, la gráfica y los ejes — cada elemento con su nombre.\nLos elementos con los que se habla: título, etiquetas de ejes, leyenda, ticks, rejilla, colores y estilos de línea.\nLa figura que se explica sola: ejes con unidades, título que dice el hallazgo, leyenda cuando hay más de una serie, fechas legibles — las reglas de nombres de la Unidad 1, ahora en tinta.",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
@@ -1592,6 +1628,7 @@
     "section": "4.3 OOP en matplotlib",
     "text": "4.3 OOP en matplotlib\n\nLas dos APIs: plt.plot() (la máquina de estados de los tutoriales y de ChatGPT) frente a fig, ax = plt.subplots() (la de objetos, el estándar del curso) — nombrarlas para no mezclarlas.\nEl patrón del curso: fig, ax = plt.subplots(); el Axes como el objeto al que se le pide todo — objeto.método(), otra vez.\nLos tipos básicos y su pregunta: línea (ax.plot, serie temporal), dispersión (ax.scatter, pair wise data), barras (ax.bar, categorías), histograma (ax.hist, distribución).\nCuándo una figura miente: el eje recortado, los bins mal elegidos, la línea que une puntos que no son continuos.\nVarias series en un mismo Axes: la leyenda se vuelve obligatoria.\nLa ventana de tiempo configurable: ax.set_xlim(fecha, fecha + pd.Timedelta(\"1D\")) — la serie larga se grafica una vez y la ventana decide qué se mira.\nSeries densas: miles de puntos minutales piden alpha para que la nube respire y markevery para no sembrar marcadores.",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
@@ -1602,6 +1639,7 @@
     "section": "4.4 Esquemas complejos con specgrid",
     "text": "4.4 Esquemas complejos con specgrid\n\nVarios Axes en una Figure con el mismo plt.subplots(nrows, ncols) de siempre; sharex para series que comparten el tiempo, sharey para paneles que se comparan en la misma escala.\nGridSpec: paneles de tamaños distintos — la serie principal con su histograma marginal.\nDos unidades en el mismo panel: twinx — irradiancia y temperatura sobre el mismo tiempo.\nComposición con criterio: cuándo superponer, cuándo separar paneles, cuándo hacer dos figuras.",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
@@ -1612,6 +1650,7 @@
     "section": "4.5 Formatos para figura",
     "text": "4.5 Formatos para figura\n\nfigures/ se une al proyecto: las figuras se regeneran desde la libreta, nunca se editan a mano; nombres que dicen qué muestran.\nsavefig: PNG (píxeles y dpi) frente a PDF/SVG (vectores) — cuál para la tesis, cuál para la presentación, cuál para la web.\nLa figura pensada para LaTeX: el tamaño en pulgadas se decide desde matplotlib para el \\textwidth del documento, con la tipografía al tamaño final — la figura no se escala después, se produce a la medida.\nMatemáticas en las etiquetas: mathtext para $W/m^2$ en cualquier máquina; usetex cuando la tesis exige la tipografía de LaTeX.",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
@@ -1622,6 +1661,7 @@
     "section": "4.6 La misma figura, en plotly",
     "text": "4.6 La misma figura, en plotly\n\nRehacer la figura final de la unidad en plotly: zoom, hover, exploración sin costo.\nEl precio: cada punto viaja dentro del archivo — HTML y libretas que engordan con datos de alta frecuencia; y nada de mathtext ni PDF a la medida para la tesis.\nEl criterio que cierra la unidad: explorar con plotly, publicar con matplotlib.",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
@@ -1632,6 +1672,7 @@
     "section": "Ejercicios sugeridos",
     "text": "Ejercicios sugeridos\n\nCapturar el Axes que devuelve df.plot() y personalizarlo: título, unidades en los ejes, leyenda.\nLa misma figura dos veces: con plt.plot() a secas y con fig, ax = plt.subplots(); explicar cuál sobrevive cuando la libreta tiene diez figuras.\nCuatro preguntas sobre un mismo dataset, cuatro figuras — línea, dispersión, barras, histograma — y defender cada elección en una línea de Markdown.\nRecibir una figura sin etiquetas ni unidades y arreglarla hasta que se entienda sin leer el código que la produjo.\nConstruir una figura que miente — eje recortado, bins tramposos — y luego corregirla; documentar qué cambió.\nGraficar un mes de datos minutales una sola vez, y recorrer tres días distintos moviendo la ventana con set_xlim y pd.Timedelta; alpha y markevery para que la nube se deje leer.\nPanel de series apiladas con sharex: tres variables del mismo día compartiendo el eje del tiempo.\nCon GridSpec, la serie temporal principal acompañada de su histograma marginal.\nDos variables con unidades distintas en el mismo panel usando twinx, sin que la leyenda se pierda.\nExportar una figura en PDF a la medida del \\textwidth, con unidades en mathtext, e insertarla en un documento LaTeX sin escalarla.\nGuardar la misma figura en PNG a varios dpi y en PDF; hacer zoom hasta que cada PNG se pixele y el PDF no.\nRehacer la figura final en plotly con un año de datos minutales, y comparar el tamaño en disco y de la libreta contra la versión matplotlib.\nBorrar la carpeta figures/ completa y regenerarla ejecutando las libretas de arriba abajo.",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
     ]
   },
@@ -1642,7 +1683,547 @@
     "section": "Al terminar la unidad",
     "text": "Al terminar la unidad\n\nExplicar qué biblioteca de visualización es capa de cuál, y por qué el curso publica con matplotlib.\nElegir el tipo de figura según la pregunta — y detectar cuándo una figura miente.\nConstruir figuras con fig, ax = plt.subplots() y distinguir las dos APIs al leer código ajeno.\nProducir figuras que se explican solas: unidades, título con hallazgo, leyenda.\nComponer paneles con subplots, GridSpec y twinx, eligiendo la composición con criterio.\nExportar una figura lista para la tesis — PDF a la medida, tipografía y matemáticas correctas — que se regenera desde la libreta.\nDecidir entre matplotlib y plotly con argumentos: explorar frente a publicar, y el costo en disco de la interactividad.",
     "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducción a la visualización</span>"
+    ]
+  },
+  {
+    "objectID": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html",
+    "href": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html",
+    "title": "Introducción a matplotlib: la primera figura con fig, ax",
+    "section": "",
+    "text": "Librerías\nClase 010 · 010_importar_formatos · Primera figura hecha con la interfaz orientada a objetos de matplotlib: fig, ax = plt.subplots(), un día de irradiancia con scatter y la última semana del archivo con plot. Aparecen las decisiones que repetirás en cada figura del curso: tamaño, ventana de tiempo, etiquetas con unidades, rejilla, leyenda y cómo guardarla en disco. La clase 011 continúa desde aquí.\nparse, de dateutil, convierte una cadena como \"2026-04-15\" en una fecha con la que se puede hacer aritmética. python-dateutil llega al proyecto como dependencia de pandas, así que no hay que instalarlo aparte.\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom dateutil.parser import parse",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Introducción a matplotlib: la primera figura con `fig, ax`"
+    ]
+  },
+  {
+    "objectID": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html#leer-el-csv",
+    "href": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html#leer-el-csv",
+    "title": "Introducción a matplotlib: la primera figura con fig, ax",
+    "section": "Leer el CSV",
+    "text": "Leer el CSV\nLa misma lectura de la libreta anterior: encoding=\"cp1252\", dos filas de encabezado saltadas, el índice en fechas y las tres irradiancias renombradas. info() confirma los 172 433 registros.\n\nf = \"../data/001_raw/v7_encoding.csv\"\nesolmet = pd.read_csv(f,encoding=\"cp1252\",skiprows=2,index_col=0,parse_dates=True)\nnombres = {\n    \"Irradiancia difusa (W/m²)\":\"dhi\",\n    \"Irradiancia directa (W/m²)\":\"dni\",\n    \"Irradiancia global (W/m²)\":\"ghi\"\n}\nesolmet.rename(columns=nombres,inplace=True)\nesolmet.info()\n\n&lt;class 'pandas.DataFrame'&gt;\nDatetimeIndex: 172433 entries, 2026-04-08 00:00:00 to 2026-08-05 18:04:00\nData columns (total 10 columns):\n #   Column                        Non-Null Count   Dtype  \n---  ------                        --------------   -----  \n 0   dhi                           172433 non-null  float64\n 1   dni                           172433 non-null  float64\n 2   ghi                           172431 non-null  float64\n 3   Presión atmosférica (hPa)     143686 non-null  float64\n 4   Precipitación acumulada (mm)  172433 non-null  float64\n 5   Humedad relativa (%)          171894 non-null  float64\n 6   Temperatura (°C)              172433 non-null  float64\n 7   Índice UV                     172433 non-null  float64\n 8   Dirección viento (°)          172433 non-null  float64\n 9   Velocidad viento (m/s)        172433 non-null  float64\ndtypes: float64(10)\nmemory usage: 14.5 MB",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Introducción a matplotlib: la primera figura con `fig, ax`"
+    ]
+  },
+  {
+    "objectID": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html#un-día-de-irradiancia-con-scatter",
+    "href": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html#un-día-de-irradiancia-con-scatter",
+    "title": "Introducción a matplotlib: la primera figura con fig, ax",
+    "section": "Un día de irradiancia con scatter",
+    "text": "Un día de irradiancia con scatter\nplt.subplots(figsize=(12, 3)) crea la figura y un solo Axes y los devuelve juntos; el tamaño está en pulgadas, ancho por alto. La ventana de tiempo se define con fechas: f1 es el 15 de abril y f2 es un día después (pd.Timedelta(\"1D\")).\nax.scatter dibuja un punto por registro para ghi y dhi. Fíjate en que no filtramos el DataFrame: set_xlim(f1, f2) sólo recorta la vista, los puntos de los demás días siguen ahí fuera del cuadro. Las etiquetas llevan unidades y $^2$ usa la notación matemática de matplotlib para el superíndice. tight_layout() ajusta los márgenes para que nada se corte.\nsavefig guarda la figura dos veces: PNG a 300 dpi para pantalla y PDF, que es vectorial y se escala sin perder calidad en una tesis. Con el backend inline de Jupyter la figura también se muestra en la celda. Mira la forma: ghi sube como campana hasta unos 1000 W/m² al mediodía y dhi se queda cerca de 200; después de las 14 h las nubes rompen la curva.\n\nfig, ax = plt.subplots(figsize=(12,3))\n\nf1 = parse(\"2026-04-15\")\nf2 = f1 + pd.Timedelta(\"1D\")\n\nax.scatter(esolmet.index,esolmet.ghi,label=\"ghi\")\nax.scatter(esolmet.index,esolmet.dhi,label=\"dhi\")\n\nax.set_xlim(f1,f2)\nax.set_ylabel(\"Irradiation [W/m$^2$]\")\nax.set_xlabel(\"Date time [MM-DD HH]\")\nax.grid()\nax.set_ylim(0,1200)\nax.legend()\nfig.tight_layout()\nfig.savefig(\"../img/irradiation.png\",dpi=300)\nfig.savefig(\"../img/irradiation.pdf\")\n\n\n\n\n\n\n\nFigura 1: Irradiancia global (ghi) y difusa (dhi) del 15 de abril de 2026 con ax.scatter. La global alcanza unos 1000 W/m² al mediodía; a partir de las 14 h las nubes rompen la campana.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Introducción a matplotlib: la primera figura con `fig, ax`"
+    ]
+  },
+  {
+    "objectID": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html#la-última-semana-con-plot",
+    "href": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html#la-última-semana-con-plot",
+    "title": "Introducción a matplotlib: la primera figura con fig, ax",
+    "section": "La última semana con plot",
+    "text": "La última semana con plot\nAhora la ventana se calcula desde el final de los datos: esolmet.index.max() menos siete días. ax.plot(esolmet.ghi, \"r-\") dibuja una línea continua roja —el segundo argumento es una format string: color r, estilo -— y dhi toma el color por omisión.\nLa celda imprime una tupla de dos números antes de la figura: es lo que devuelve ax.set_xlim, los límites en la representación interna de fechas de matplotlib (días desde una fecha de referencia). Para silenciarlo, termina la línea con ; o pon set_xlim antes de otra instrucción. En la figura se ven siete campanas y los días nublados (30 de julio y 3 de agosto) con la irradiancia directa recortada.\n\ndias = pd.Timedelta(\"7D\")\n\nfig, ax = plt.subplots(figsize=(12,3))\n\nf1 = esolmet.index.max() - dias\nf2 = f1  + dias\n\nax.plot(esolmet.ghi,\"r-\",label=\"ghi\")\nax.plot(esolmet.dhi,label=\"dhi\")\nax.set_xlim(f1,f2)\n\n\n\n\n\n\n\nFigura 2: Última semana del archivo (30 de julio a 5 de agosto de 2026) con ax.plot: ghi en rojo y dhi en azul. Dos de los siete días muestran la irradiancia recortada por nubes.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Introducción a matplotlib: la primera figura con `fig, ax`"
+    ]
+  },
+  {
+    "objectID": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html#hasta-cuándo-llegan-los-datos",
+    "href": "clases/010_importar_formatos/notebooks/007_intro_matplotlib.html#hasta-cuándo-llegan-los-datos",
+    "title": "Introducción a matplotlib: la primera figura con fig, ax",
+    "section": "¿Hasta cuándo llegan los datos?",
+    "text": "¿Hasta cuándo llegan los datos?\nEl último registro del archivo, que es el extremo derecho de la figura anterior.\n\nesolmet.index.max()\n\nTimestamp('2026-08-05 18:04:00')",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Introducción a matplotlib: la primera figura con `fig, ax`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "",
+    "text": "Librerías\nClase 011 · 011_matplotlib2 · Seis años de ESOLMET (agosto de 2020 a agosto de 2026) en un solo Parquet. Exploración visual: varios paneles con plt.subplots(2, 1), qué hace sharex, cómo graficar varias columnas de una vez y cómo elegir columnas por nombre con un ciclo. Termina guardando un mes en data/002_intermediate/ para la libreta siguiente.\npandas, matplotlib y parse para escribir fechas como texto. El proyecto de esta clase se creó con uv init y las dependencias con uv add pandas matplotlib pyarrow.\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom dateutil.parser import parse",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#leer-el-parquet",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#leer-el-parquet",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Leer el Parquet",
+    "text": "Leer el Parquet\nParquet guarda los tipos y el índice de fechas, así que read_parquet no necesita index_col ni parse_dates. El info() quedó comentado: en clase se usó para ver las columnas y después se silenció para no imprimirlo cada vez.\n\nf = \"../data/001_raw/ClimaLab_2020-08-05_2026-08-05.parquet\"\nesolmet = pd.read_parquet(f)\n# esolmet.info()\n\nOtra inspección que quedó comentada; descoméntala para ver el DatetimeIndex.\n\n# esolmet.index",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#dos-paneles-con-sharextrue",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#dos-paneles-con-sharextrue",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Dos paneles con sharex=True",
+    "text": "Dos paneles con sharex=True\nplt.subplots(2, 1) crea dos Axes apilados y los devuelve en un arreglo: ax[0] es el de arriba y ax[1] el de abajo. Con sharex=True los dos comparten el eje horizontal, por eso basta ax[0].set_xlim(f1, f2) para que ambos muestren la misma semana de marzo de 2024.\nArriba la temperatura de bulbo seco (tdb, con la etiqueta tbd tal como se escribió en clase) oscila entre 20 y 35 °C cada día; abajo dhi y dni dibujan campanas que se recortan los días nublados. La tupla impresa antes de la figura es el valor que devuelve set_xlim.\n\nfig, ax = plt.subplots(2,1,figsize=(12,3),sharex=True)\nf1 = parse(\"2024-03-10\")\nf2 = f1 + pd.Timedelta(\"7D\")\n\nax[0].plot(esolmet.tdb,label=\"tbd\")\nax[1].plot(esolmet.dhi,label=\"dhi\")\nax[1].plot(esolmet.dni,label=\"dni\")\n# ax[1].plot(esolmet.ghi,label=\"ghi\")\n\nax[0].legend()\nax[0].set_xlim(f1,f2)\n\n\n\n\n\n\n\nFigura 1: Una semana de marzo de 2024 en dos paneles con sharex=True: temperatura de bulbo seco arriba e irradiancias difusa y directa abajo. Un solo set_xlim recorta los dos paneles.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#una-malla-de-23-axfila-columna",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#una-malla-de-23-axfila-columna",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Una malla de 2×3: ax[fila, columna]",
+    "text": "Una malla de 2×3: ax[fila, columna]\nCon dos filas y tres columnas ax es un arreglo bidimensional y cada panel se indexa como ax[1, 2]. Sólo ese panel recibe datos; los otros cinco quedan vacíos pero comparten ejes (sharex y sharey), por eso todos muestran de 2021 a 2026 y de 20 a 40 °C. La salida [&lt;matplotlib.lines.Line2D ...&gt;] es lo que devuelve plot.\n\nfig, ax = plt.subplots(2,3,figsize=(12,2),sharex=True,sharey=True)\n\nax[1,2].plot(esolmet.tdb)\n\n\n\n\n\n\n\nFigura 2: Malla de 2×3 Axes con un solo panel dibujado, ax[1, 2]. Los seis comparten ejes, por eso todos muestran el mismo rango aunque estén vacíos.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#desempacar-los-ejes-ax1-ax2",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#desempacar-los-ejes-ax1-ax2",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Desempacar los ejes: (ax1, ax2)",
+    "text": "Desempacar los ejes: (ax1, ax2)\nAlternativa al arreglo: desempacar los dos Axes en nombres propios. Sin set_xlim se ven los seis años completos y aparecen los huecos de la estación: las líneas rectas de 2021 y 2022 unen el último dato antes de un apagón con el primero después, y a finales de 2022 la estación no midió durante meses.\n\nfig, (ax1,ax2) = plt.subplots(2,1,figsize=(12,2),sharex=True)\n\nax1.plot(esolmet.tdb)\n\nax2.plot(esolmet.dhi)\n\n\n\n\n\n\n\nFigura 3: Seis años de temperatura (arriba) e irradiancia difusa (abajo). Las líneas rectas de 2021 y 2022 y el vacío de finales de 2022 son periodos sin medición.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#varias-columnas-en-una-llamada",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#varias-columnas-en-una-llamada",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Varias columnas en una llamada",
+    "text": "Varias columnas en una llamada\nSi plot recibe un DataFrame dibuja una línea por columna; label acepta entonces una lista con un nombre por línea. loc=\"upper center\" coloca la leyenda arriba al centro.\n\nIs = [\"dhi\",\"dni\"]\n\nfig, ax = plt.subplots(figsize=(12,3))\n\nax.plot(esolmet[Is],label=Is)\nax.legend(loc=\"upper center\")\n\n\n\n\n\n\n\nFigura 4: Irradiancia difusa y directa de los seis años dibujadas con una sola llamada a plot sobre un DataFrame de dos columnas.\n\n\n\n\n\nLas diez columnas del DataFrame.\n\nesolmet.columns\n\nIndex(['dhi', 'dni', 'ghi', 'p_atm', 'rain_acc', 'rh', 'tdb', 'uv', 'wd',\n       'ws'],\n      dtype='str', name='variable')",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#elegir-columnas-por-nombre-con-un-ciclo",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#elegir-columnas-por-nombre-con-un-ciclo",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Elegir columnas por nombre con un ciclo",
+    "text": "Elegir columnas por nombre con un ciclo\nRecorremos los nombres y nos quedamos con los que contienen una h. Entran dhi y ghi, que era la intención, pero también rh, la humedad relativa: filtrar por un trozo del nombre es frágil y hay que revisar lo que devuelve.\n\ncolumnas = []\nfor columna in esolmet.columns:\n    if \"h\" in columna:\n        print(columna)\n        columnas.append(columna)\n\ncolumnas\n\ndhi\nghi\nrh\n\n\n['dhi', 'ghi', 'rh']",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#energía-acumulada-sumar-minutos",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#energía-acumulada-sumar-minutos",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Energía acumulada: sumar minutos",
+    "text": "Energía acumulada: sumar minutos\nSumar irradiancia (W/m²) registrada cada minuto y multiplicar por 1/60 da energía en Wh/m². El factor supone un dato por minuto; si la frecuencia fuera otra, cambia.\n\nesolmet.dhi.sum()*1/60\n\nnp.float64(3790392.254333333)",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#lo-mismo-con-una-comprensión-de-lista",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#lo-mismo-con-una-comprensión-de-lista",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Lo mismo con una comprensión de lista",
+    "text": "Lo mismo con una comprensión de lista\nLa suma de cada columna con h en una sola expresión: tres números, uno por columna.\n\n[esolmet[columna].sum()*1/60 for columna in esolmet.columns if \"h\" in columna]\n\n[np.float64(3790392.254333333),\n np.float64(10985542.360000001),\n np.float64(2476654.1621500007)]",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#una-línea-por-columna-con-un-ciclo",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#una-línea-por-columna-con-un-ciclo",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Una línea por columna con un ciclo",
+    "text": "Una línea por columna con un ciclo\nLa comprensión de lista guarda las columnas y el ciclo las dibuja una por una sobre el mismo Axes. La figura enseña un problema: rh está en porcentaje y queda aplastada como una línea verde al fondo junto a las irradiancias en W/m². Variables con unidades distintas no comparten eje; para eso están los paneles o twinx.\n\ncolumnas = [columna for columna in esolmet.columns if \"h\" in columna]\n\nfig, ax = plt.subplots(figsize=(12,3))\n\nfor columna in columnas:\n    ax.plot(esolmet[columna],label=columna)\n\nax.legend(loc=\"center\")\n\n\n\n\n\n\n\nFigura 5: Las columnas cuyo nombre contiene una h dibujadas con un ciclo: dhi, ghi y rh. La humedad relativa, en porcentaje, queda aplastada junto a las irradiancias en W/m².",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#between_time-sin-argumentos",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#between_time-sin-argumentos",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "between_time sin argumentos",
+    "text": "between_time sin argumentos\nLa celda quedó sin ejecutar. between_time filtra las filas por hora del día, por ejemplo esolmet.between_time(\"06:00\", \"18:00\") para quedarse con las horas de sol; sin argumentos falla.\n\nesolmet.between_time()",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/001_EDA.html#guardar-un-mes-para-la-siguiente-libreta",
+    "href": "clases/011_matplotlib2/notebooks/001_EDA.html#guardar-un-mes-para-la-siguiente-libreta",
+    "title": "EDA con matplotlib: paneles, sharex y ciclos sobre columnas",
+    "section": "Guardar un mes para la siguiente libreta",
+    "text": "Guardar un mes para la siguiente libreta\nloc con dos fechas como texto rebana el índice del 10 de marzo al 10 de abril de 2021, y to_parquet lo escribe en data/002_intermediate/. La celda no imprime nada: su resultado es el archivo.\n\nesolmet.loc[\"2021-03-10\":\"2021-04-10\"].to_parquet(\"../data/002_intermediate/esolmet_1mes_3marzo.parquet\")",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "EDA con matplotlib: paneles, `sharex` y ciclos sobre columnas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html",
+    "href": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html",
+    "title": "Operaciones con series temporales: plot de pandas y resample",
+    "section": "",
+    "text": "Librerías\nClase 011 · 011_matplotlib2 · Con el mes que guardó la libreta anterior: DataFrame.plot con subplots=True para ver todas las variables de un vistazo, y resample para pasar de registros cada diez minutos a promedios por hora, por día y por año. Es la operación que usarás en la libreta siguiente para construir el año promedio.\npandas y matplotlib.\nimport pandas as pd\nimport matplotlib.pyplot as plt",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Operaciones con series temporales: `plot` de pandas y `resample`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html#todas-las-variables-de-un-vistazo-con-plotsubplotstrue",
+    "href": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html#todas-las-variables-de-un-vistazo-con-plotsubplotstrue",
+    "title": "Operaciones con series temporales: plot de pandas y resample",
+    "section": "Todas las variables de un vistazo con plot(subplots=True)",
+    "text": "Todas las variables de un vistazo con plot(subplots=True)\npandas envuelve a matplotlib: esolmet.plot(subplots=True) crea un panel por columna con el índice de fechas en el eje horizontal. El ; al final evita que Jupyter imprima la lista de Axes. Es la figura más rápida para detectar problemas: p_atm tiene un hueco que la línea cruza en diagonal, rain_acc es casi todo ceros con lluvias puntuales, wd está vacía casi todo el mes y el índice salta del 24 al 26 de marzo.\n\nf = \"../data/002_intermediate/esolmet_1mes_3marzo.parquet\"\nesolmet = pd.read_parquet(f)\nesolmet.plot(subplots=True);\n\n\n\n\n\n\n\nFigura 1: Las diez variables de un mes de ESOLMET con DataFrame.plot(subplots=True), un panel por columna. Se ven el hueco en la presión atmosférica, la dirección de viento casi vacía y el salto de fechas al final.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Operaciones con series temporales: `plot` de pandas y `resample`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html#cambiar-de-frecuencia-con-resample",
+    "href": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html#cambiar-de-frecuencia-con-resample",
+    "title": "Operaciones con series temporales: plot de pandas y resample",
+    "section": "Cambiar de frecuencia con resample",
+    "text": "Cambiar de frecuencia con resample\nresample(\"1h\").mean() agrupa los registros de cada hora y los promedia; resample(\"1D\") hace lo mismo por día. Dibujamos las tres sobre el mismo Axes: la serie original en azul, el promedio horario en naranja (casi encima, porque suaviza poco) y el promedio diario como puntos verdes (\"go\": color g, marcador o). Cada punto diario se dibuja a la medianoche, que es el borde izquierdo de su intervalo.\n\nfig, ax = plt.subplots(figsize=(12,3))\n\nax.plot(esolmet.tdb,label=\"tdb\")\nax.plot(esolmet.tdb.resample(\"1h\").mean(),label=\"1h_mean\")\nax.plot(esolmet.tdb.resample(\"1D\").mean(),\"go\",label=\"Diario_men\")\n\nax.legend()\nax.grid()\n\n\n\n\n\n\n\nFigura 2: Temperatura cada diez minutos (azul), promedio horario (naranja) y promedio diario (puntos verdes) del 10 al 26 de marzo de 2021. El promedio diario borra el ciclo día-noche y deja un valor cerca de 25 °C.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Operaciones con series temporales: `plot` de pandas y `resample`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html#la-serie-original",
+    "href": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html#la-serie-original",
+    "title": "Operaciones con series temporales: plot de pandas y resample",
+    "section": "La serie original",
+    "text": "La serie original\nRegistros cada diez minutos, 2103 en total, y el salto del 24 al 26 de marzo que ya se veía en la figura.\n\nesolmet.tdb\n\ndate\n2021-03-10 00:00:00    22.62\n2021-03-10 00:10:00    22.61\n2021-03-10 00:20:00    22.79\n2021-03-10 00:30:00    22.48\n2021-03-10 00:40:00    21.48\n                       ...  \n2021-03-24 13:40:00    30.87\n2021-03-24 13:50:00    31.41\n2021-03-26 12:20:00    30.30\n2021-03-26 12:30:00    30.39\n2021-03-26 12:40:00    31.31\nName: tdb, Length: 2103, dtype: float64",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Operaciones con series temporales: `plot` de pandas y `resample`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html#promedio-anual-con-ye",
+    "href": "clases/011_matplotlib2/notebooks/002_operaciones_pandas.html#promedio-anual-con-ye",
+    "title": "Operaciones con series temporales: plot de pandas y resample",
+    "section": "Promedio anual con \"YE\"",
+    "text": "Promedio anual con \"YE\"\n\"YE\" significa year end: un valor por año, fechado el 31 de diciembre. Como sólo hay un mes de 2021 la respuesta es un número, 25.5 °C. En versiones de pandas anteriores a la 2.2 el alias era \"Y\".\n\nesolmet.tdb.resample(\"YE\").mean()\n\ndate\n2021-12-31    25.521165\nFreq: YE-DEC, Name: tdb, dtype: float64",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Operaciones con series temporales: `plot` de pandas y `resample`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html",
+    "href": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html",
+    "title": "El año promedio: resample, groupby y strftime",
+    "section": "",
+    "text": "Librerías\nClase 011 · 011_matplotlib2 · Construye un año típico a partir de seis años de datos: promedia cada hora, agrupa cada hora del calendario a lo largo de los años y guarda el resultado en data/003_results/. Las dos libretas siguientes —el heatmap y las barras de confort— parten de este archivo.\npandas y matplotlib.\nimport pandas as pd\nimport matplotlib.pyplot as plt",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "El año promedio: `resample`, `groupby` y `strftime`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#promedios-horarios",
+    "href": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#promedios-horarios",
+    "title": "El año promedio: resample, groupby y strftime",
+    "section": "Promedios horarios",
+    "text": "Promedios horarios\nresample(\"h\").mean() pasa de un registro por minuto a uno por hora: 52 603 filas, que son los seis años de agosto de 2020 a agosto de 2026. Las irradiancias valen cero de noche y p_atm y rain_acc conservan sus huecos como NaN.\n\nf = \"../data/001_raw/ClimaLab_2020-08-05_2026-08-05.parquet\"\nesolmet = pd.read_parquet(f)\nesolmet_h = esolmet.resample(\"h\").mean()\nesolmet_h\n\n\n\n\n\n\n\nvariable\ndhi\ndni\nghi\np_atm\nrain_acc\nrh\ntdb\nuv\nwd\nws\n\n\ndate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2020-08-05 00:00:00\n0.000000\n0.000000\n0.000000\n879.389517\n1.9\n95.533333\n19.861667\n0.000000\nNaN\n1.384667\n\n\n2020-08-05 01:00:00\n0.000000\n0.000000\n0.000000\n878.581350\n2.6\n98.366667\n19.628333\n0.000000\nNaN\n0.272167\n\n\n2020-08-05 02:00:00\n0.000000\n0.000000\n0.000000\n877.807200\n1.5\n99.316667\n19.488333\n0.000000\nNaN\n0.119667\n\n\n2020-08-05 03:00:00\n0.000000\n0.000000\n0.000000\n877.222583\n6.3\n98.966667\n19.496667\n0.000000\nNaN\n0.678667\n\n\n2020-08-05 04:00:00\n0.000000\n0.000000\n0.000000\n877.298800\n0.2\n98.616667\n18.918333\n0.000000\nNaN\n0.310667\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n2026-08-05 14:00:00\n143.051667\n789.648333\n950.050000\n862.822372\n0.0\n39.900667\n31.088667\n0.157783\n162.277983\n2.139533\n\n\n2026-08-05 15:00:00\n184.996667\n381.619333\n572.038333\n861.456998\n0.0\n36.776167\n31.611000\n0.083183\n160.288000\n1.725567\n\n\n2026-08-05 16:00:00\n202.130000\n492.186833\n587.088333\n860.324998\n0.0\n34.428500\n32.827833\n0.051867\n150.622417\n1.049950\n\n\n2026-08-05 17:00:00\n170.718333\n312.453383\n360.510000\n859.866250\n0.0\n34.028000\n33.241667\n0.018033\n179.665833\n0.989067\n\n\n2026-08-05 18:00:00\n71.954000\n76.504000\n114.720000\n860.140860\n0.0\n37.270000\n31.610000\n0.006000\n122.422000\n1.197400\n\n\n\n\n52603 rows × 10 columns",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "El año promedio: `resample`, `groupby` y `strftime`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#comprobar-que-el-índice-quedó-en-horas-enteras",
+    "href": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#comprobar-que-el-índice-quedó-en-horas-enteras",
+    "title": "El año promedio: resample, groupby y strftime",
+    "section": "Comprobar que el índice quedó en horas enteras",
+    "text": "Comprobar que el índice quedó en horas enteras\nTodos los minutos del índice son cero: cada fila es una hora en punto.\n\nesolmet_h.index.minute\n\nIndex([0, 0, 0, 0, 0, 0, 0, 0, 0, 0,\n       ...\n       0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n      dtype='int32', name='date', length=52603)",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "El año promedio: `resample`, `groupby` y `strftime`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#agrupar-por-mes-día-y-hora",
+    "href": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#agrupar-por-mes-día-y-hora",
+    "title": "El año promedio: resample, groupby y strftime",
+    "section": "Agrupar por mes, día y hora",
+    "text": "Agrupar por mes, día y hora\ngroupby acepta una lista de llaves; aquí son tres atributos del índice: mes, día y hora. El promedio junta, por ejemplo, todas las 15 h de cada 1 de enero de los seis años. Salen 8784 filas = 366 días × 24 horas (el 29 de febrero existe porque 2024 fue bisiesto). El resultado tiene un índice de tres niveles, incómodo para graficar: lo rehacemos abajo.\n\ngrupo = [esolmet_h.index.month,esolmet_h.index.day,esolmet_h.index.hour]\nesolmet_h.groupby(by=grupo).mean()\n\n\n\n\n\n\n\n\n\nvariable\ndhi\ndni\nghi\np_atm\nrain_acc\nrh\ntdb\nuv\nwd\nws\n\n\ndate\ndate\ndate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n1\n0\n0.0\n0.0\n0.0\n873.931783\n0.000000\n53.409167\n17.836633\n0.000000\n295.680175\n1.413860\n\n\n1\n0.0\n0.0\n0.0\n873.847656\n0.006667\n56.673389\n16.722500\n0.000000\n313.849133\n1.788290\n\n\n2\n0.0\n0.0\n0.0\n873.520090\n0.000000\n58.403583\n16.212367\n0.000004\n305.239542\n1.901670\n\n\n3\n0.0\n0.0\n0.0\n873.576894\n0.000000\n60.288917\n15.727033\n0.000004\n309.496996\n1.816437\n\n\n4\n0.0\n0.0\n0.0\n873.767469\n0.000000\n62.737944\n15.100200\n0.000013\n274.154650\n1.948827\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n12\n31\n19\n0.0\n0.0\n0.0\n862.110272\n0.000333\n44.320222\n21.350900\n0.055713\n209.548804\n2.418727\n\n\n20\n0.0\n0.0\n0.0\n862.007002\n0.000000\n48.934444\n20.198333\n0.062567\n181.244776\n1.550003\n\n\n21\n0.0\n0.0\n0.0\n862.532007\n1.537333\n49.993694\n19.806367\n0.059379\n262.768659\n1.402153\n\n\n22\n0.0\n0.0\n0.0\n860.360770\n0.502667\n50.749028\n19.289267\n0.003012\n299.731850\n1.723550\n\n\n23\n0.0\n0.0\n0.0\n873.848805\n0.000000\n52.060556\n18.466733\n0.000000\n281.520742\n1.543513\n\n\n\n\n8784 rows × 10 columns",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "El año promedio: `resample`, `groupby` y `strftime`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#la-misma-llave-como-texto-con-strftime",
+    "href": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#la-misma-llave-como-texto-con-strftime",
+    "title": "El año promedio: resample, groupby y strftime",
+    "section": "La misma llave como texto con strftime",
+    "text": "La misma llave como texto con strftime\nstrftime(\"%m-%d %H\") convierte cada fecha en una cadena mes-día hora que ignora el año. Dos registros de años distintos con la misma hora del calendario tienen la misma cadena, y eso es exactamente la llave que necesitamos.\n\nesolmet_h.index.strftime(\"%m-%d %H\")\n\nIndex(['08-05 00', '08-05 01', '08-05 02', '08-05 03', '08-05 04', '08-05 05',\n       '08-05 06', '08-05 07', '08-05 08', '08-05 09',\n       ...\n       '08-05 09', '08-05 10', '08-05 11', '08-05 12', '08-05 13', '08-05 14',\n       '08-05 15', '08-05 16', '08-05 17', '08-05 18'],\n      dtype='str', name='date', length=52603)",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "El año promedio: `resample`, `groupby` y `strftime`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#el-año-promedio-con-índice-de-fechas",
+    "href": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#el-año-promedio-con-índice-de-fechas",
+    "title": "El año promedio: resample, groupby y strftime",
+    "section": "El año promedio con índice de fechas",
+    "text": "El año promedio con índice de fechas\nAgrupamos por esa cadena y promediamos. Para volver a tener fechas, anteponemos \"2024-\" a cada llave —2024 porque es bisiesto y así cabe el 29 de febrero— y pd.to_datetime con format las convierte en un DatetimeIndex. La celda no imprime nada.\n\npromedio = esolmet_h.groupby(by=esolmet_h.index.strftime(\"%m-%d %H:%M\")).mean()\npromedio.index = \"2024-\" + promedio.index \npromedio.index = pd.to_datetime(promedio.index,format=\"%Y-%m-%d %H:%M\")",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "El año promedio: `resample`, `groupby` y `strftime`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#comprobar",
+    "href": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#comprobar",
+    "title": "El año promedio: resample, groupby y strftime",
+    "section": "Comprobar",
+    "text": "Comprobar\n8784 entradas del 1 de enero al 31 de diciembre de 2024 a las 23 h, sin faltantes.\n\npromedio.info()\n\n&lt;class 'pandas.DataFrame'&gt;\nDatetimeIndex: 8784 entries, 2024-01-01 00:00:00 to 2024-12-31 23:00:00\nData columns (total 10 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   dhi       8784 non-null   float64\n 1   dni       8784 non-null   float64\n 2   ghi       8784 non-null   float64\n 3   p_atm     8784 non-null   float64\n 4   rain_acc  8784 non-null   float64\n 5   rh        8784 non-null   float64\n 6   tdb       8784 non-null   float64\n 7   uv        8784 non-null   float64\n 8   wd        8784 non-null   float64\n 9   ws        8784 non-null   float64\ndtypes: float64(10)\nmemory usage: 754.9 KB\n\n\nEl año promedio completo.\n\npromedio\n\n\n\n\n\n\n\nvariable\ndhi\ndni\nghi\np_atm\nrain_acc\nrh\ntdb\nuv\nwd\nws\n\n\ndate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2024-01-01 00:00:00\n0.0\n0.0\n0.0\n873.931783\n0.000000\n53.409167\n17.836633\n0.000000\n295.680175\n1.413860\n\n\n2024-01-01 01:00:00\n0.0\n0.0\n0.0\n873.847656\n0.006667\n56.673389\n16.722500\n0.000000\n313.849133\n1.788290\n\n\n2024-01-01 02:00:00\n0.0\n0.0\n0.0\n873.520090\n0.000000\n58.403583\n16.212367\n0.000004\n305.239542\n1.901670\n\n\n2024-01-01 03:00:00\n0.0\n0.0\n0.0\n873.576894\n0.000000\n60.288917\n15.727033\n0.000004\n309.496996\n1.816437\n\n\n2024-01-01 04:00:00\n0.0\n0.0\n0.0\n873.767469\n0.000000\n62.737944\n15.100200\n0.000013\n274.154650\n1.948827\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n2024-12-31 19:00:00\n0.0\n0.0\n0.0\n862.110272\n0.000333\n44.320222\n21.350900\n0.055713\n209.548804\n2.418727\n\n\n2024-12-31 20:00:00\n0.0\n0.0\n0.0\n862.007002\n0.000000\n48.934444\n20.198333\n0.062567\n181.244776\n1.550003\n\n\n2024-12-31 21:00:00\n0.0\n0.0\n0.0\n862.532007\n1.537333\n49.993694\n19.806367\n0.059379\n262.768659\n1.402153\n\n\n2024-12-31 22:00:00\n0.0\n0.0\n0.0\n860.360770\n0.502667\n50.749028\n19.289267\n0.003012\n299.731850\n1.723550\n\n\n2024-12-31 23:00:00\n0.0\n0.0\n0.0\n873.848805\n0.000000\n52.060556\n18.466733\n0.000000\n281.520742\n1.543513\n\n\n\n\n8784 rows × 10 columns",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "El año promedio: `resample`, `groupby` y `strftime`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#guardar-en-data003_results",
+    "href": "clases/011_matplotlib2/notebooks/003_AnioPromedio.html#guardar-en-data003_results",
+    "title": "El año promedio: resample, groupby y strftime",
+    "section": "Guardar en data/003_results/",
+    "text": "Guardar en data/003_results/\n003_results/ es la carpeta para productos: lo que ya no es intermedio sino resultado que otras libretas consumen. La celda no imprime nada; el resultado es el archivo.\n\npromedio.to_parquet(\"../data/003_results/anio_promedio-2020-2026.parquet\")\n\nCelda vacía que quedó al final de la clase.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "El año promedio: `resample`, `groupby` y `strftime`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_HeatMap.html",
+    "href": "clases/011_matplotlib2/notebooks/003_HeatMap.html",
+    "title": "Heatmap del año promedio con pivot e imshow",
+    "section": "",
+    "text": "Librerías\nClase 011 · 011_matplotlib2 · El año promedio de la libreta anterior reacomodado como una matriz de 24 horas × 366 días con pivot, y dibujado con imshow: un mapa de calor que muestra de un vistazo a qué horas y en qué meses hace más calor.\npandas y matplotlib.\nimport pandas as pd\nimport matplotlib.pyplot as plt",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Heatmap del año promedio con `pivot` e `imshow`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_HeatMap.html#leer-el-año-promedio",
+    "href": "clases/011_matplotlib2/notebooks/003_HeatMap.html#leer-el-año-promedio",
+    "title": "Heatmap del año promedio con pivot e imshow",
+    "section": "Leer el año promedio",
+    "text": "Leer el año promedio\n8784 filas horarias de 2024, diez variables, sin faltantes.\n\nf = \"../data/003_results/anio_promedio-2020-2026.parquet\"\nesolmet = pd.read_parquet(f)\nesolmet.info()\n\n&lt;class 'pandas.DataFrame'&gt;\nDatetimeIndex: 8784 entries, 2024-01-01 00:00:00 to 2024-12-31 23:00:00\nData columns (total 10 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   dhi       8784 non-null   float64\n 1   dni       8784 non-null   float64\n 2   ghi       8784 non-null   float64\n 3   p_atm     8784 non-null   float64\n 4   rain_acc  8784 non-null   float64\n 5   rh        8784 non-null   float64\n 6   tdb       8784 non-null   float64\n 7   uv        8784 non-null   float64\n 8   wd        8784 non-null   float64\n 9   ws        8784 non-null   float64\ndtypes: float64(10)\nmemory usage: 754.9 KB",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Heatmap del año promedio con `pivot` e `imshow`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_HeatMap.html#quedarse-con-la-temperatura-como-dataframe",
+    "href": "clases/011_matplotlib2/notebooks/003_HeatMap.html#quedarse-con-la-temperatura-como-dataframe",
+    "title": "Heatmap del año promedio con pivot e imshow",
+    "section": "Quedarse con la temperatura como DataFrame",
+    "text": "Quedarse con la temperatura como DataFrame\nesolmet.tdb es una Series; pd.DataFrame(...) la convierte en un DataFrame de una columna porque pivot trabaja sobre DataFrames y porque le vamos a agregar columnas.\n\ntdb = pd.DataFrame(esolmet.tdb)\ntdb\n\n\n\n\n\n\n\n\ntdb\n\n\ndate\n\n\n\n\n\n2024-01-01 00:00:00\n17.836633\n\n\n2024-01-01 01:00:00\n16.722500\n\n\n2024-01-01 02:00:00\n16.212367\n\n\n2024-01-01 03:00:00\n15.727033\n\n\n2024-01-01 04:00:00\n15.100200\n\n\n...\n...\n\n\n2024-12-31 19:00:00\n21.350900\n\n\n2024-12-31 20:00:00\n20.198333\n\n\n2024-12-31 21:00:00\n19.806367\n\n\n2024-12-31 22:00:00\n19.289267\n\n\n2024-12-31 23:00:00\n18.466733\n\n\n\n\n8784 rows × 1 columns\n\n\n\nLa única columna, tdb.\n\ntdb.columns\n\nIndex(['tdb'], dtype='str')\n\n\nEl mismo DataFrame, para tenerlo a la vista antes de transformarlo.\n\ntdb\n\n\n\n\n\n\n\n\ntdb\n\n\ndate\n\n\n\n\n\n2024-01-01 00:00:00\n17.836633\n\n\n2024-01-01 01:00:00\n16.722500\n\n\n2024-01-01 02:00:00\n16.212367\n\n\n2024-01-01 03:00:00\n15.727033\n\n\n2024-01-01 04:00:00\n15.100200\n\n\n...\n...\n\n\n2024-12-31 19:00:00\n21.350900\n\n\n2024-12-31 20:00:00\n20.198333\n\n\n2024-12-31 21:00:00\n19.806367\n\n\n2024-12-31 22:00:00\n19.289267\n\n\n2024-12-31 23:00:00\n18.466733\n\n\n\n\n8784 rows × 1 columns",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Heatmap del año promedio con `pivot` e `imshow`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_HeatMap.html#dos-columnas-auxiliares-y-pivot",
+    "href": "clases/011_matplotlib2/notebooks/003_HeatMap.html#dos-columnas-auxiliares-y-pivot",
+    "title": "Heatmap del año promedio con pivot e imshow",
+    "section": "Dos columnas auxiliares y pivot",
+    "text": "Dos columnas auxiliares y pivot\nSacamos del índice la hora (index.hour) y la fecha sin año (strftime(\"%m-%d\")) como dos columnas nuevas. pd.pivot reacomoda la tabla: index=\"hora\" pone una fila por hora, columns=\"mes-dia\" una columna por día del año y values=\"tdb\" llena cada celda con la temperatura. De una columna larga de 8784 valores pasamos a una matriz de 24 × 366. Las líneas comentadas son las inspecciones que se hicieron en clase.\n\ntdb[\"hora\"] = tdb.index.hour\ntdb[\"mes-dia\"] = tdb.index.strftime(\"%m-%d\")\n# tdb\ntdb_matriz = pd.pivot(tdb,index='hora', columns='mes-dia',values=\"tdb\")\n# tdb_matriz",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Heatmap del año promedio con `pivot` e `imshow`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_HeatMap.html#rango-de-la-variable-para-la-escala-de-color",
+    "href": "clases/011_matplotlib2/notebooks/003_HeatMap.html#rango-de-la-variable-para-la-escala-de-color",
+    "title": "Heatmap del año promedio con pivot e imshow",
+    "section": "Rango de la variable para la escala de color",
+    "text": "Rango de la variable para la escala de color\nNecesitamos el mínimo y el máximo de la temperatura para fijar la escala del heatmap: 14.1 y 36.2 °C. max() y min() responden por cada columna, por eso también aparecen hora y mes-dia.\n\ntdb.max(),tdb.min()\n\n(tdb        36.194333\n hora              23\n mes-dia        12-31\n dtype: object,\n tdb        14.069333\n hora               0\n mes-dia        01-01\n dtype: object)",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Heatmap del año promedio con `pivot` e `imshow`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_HeatMap.html#dibujar-con-imshow",
+    "href": "clases/011_matplotlib2/notebooks/003_HeatMap.html#dibujar-con-imshow",
+    "title": "Heatmap del año promedio con pivot e imshow",
+    "section": "Dibujar con imshow",
+    "text": "Dibujar con imshow\nimshow pinta una matriz como imagen: cada celda es un pixel coloreado según su valor. cmap=\"jet\" es el mapa de color, vmin y vmax fijan la escala a 14 y 36 °C y aspect=5 estira las celdas a lo ancho para que 366 columnas quepan junto a 24 filas. fig.colorbar(mapa) agrega la barra de referencia.\nLectura: las filas son horas (0 arriba, 23 abajo) y las columnas días del año. La franja roja entre las filas 12 y 18 son las tardes, y es más intensa entre los días 100 y 150 (abril y mayo), el periodo más caliente del año en Temixco. Las noches, arriba y abajo, son azules todo el año. Queda pendiente poner horas y meses en los ejes en lugar de los índices de la matriz.\n\nfig, ax = plt.subplots(figsize=(12,3))\n\nmapa = ax.imshow(tdb_matriz,cmap=\"jet\",aspect=5,vmax=36,vmin=14)\n\nfig.colorbar(mapa)\n\n\n\n\n\n\n\n\nFigura 1: Heatmap de la temperatura de bulbo seco del año promedio: filas de 0 a 23 horas, columnas de 0 a 365 días, escala de 14 a 36 °C con el mapa jet. La franja roja de las tardes es más intensa en abril y mayo.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Heatmap del año promedio con `pivot` e `imshow`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/003_HeatMap.html#dimensiones-de-la-matriz",
+    "href": "clases/011_matplotlib2/notebooks/003_HeatMap.html#dimensiones-de-la-matriz",
+    "title": "Heatmap del año promedio con pivot e imshow",
+    "section": "Dimensiones de la matriz",
+    "text": "Dimensiones de la matriz\n24 filas (horas) por 366 columnas (días).\n\nlen(tdb_matriz),len(tdb_matriz.columns)\n\n(24, 366)\n\n\nCelda vacía que quedó al final de la clase.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Heatmap del año promedio con `pivot` e `imshow`"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "",
+    "text": "Librerías\nClase 011 · 011_matplotlib2 · Clasifica cada hora del año promedio en frío (menos de 18 °C), confort (18 a 23 °C) y calor (más de 23 °C) con pd.cut, cuenta la fracción de cada categoría con crosstab y la dibuja como barra apilada. Después comprueba el resultado por otro camino: máscaras booleanas y una gráfica de puntos por color.\npandas y matplotlib.\nimport pandas as pd\nimport matplotlib.pyplot as plt",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#leer-el-año-promedio",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#leer-el-año-promedio",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "Leer el año promedio",
+    "text": "Leer el año promedio\nEl mismo archivo del heatmap; info() quedó comentado.\n\nf = \"../data/003_results/anio_promedio-2020-2026.parquet\"\nesolmet = pd.read_parquet(f)\n# esolmet.info()",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#los-límites-de-las-categorías",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#los-límites-de-las-categorías",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "Los límites de las categorías",
+    "text": "Los límites de las categorías\nniveles son los cuatro bordes de tres intervalos: de menos infinito a 18, de 18 a 23 y de 23 a infinito. etiquetas les pone nombre. Declararlos en variables deja a la vista la decisión de dónde empieza el confort.\n\nniveles = [-float(\"inf\"), 18, 23, float(\"inf\")]\netiquetas = [\"frio\",\"confort\",\"calor\"]\nniveles,etiquetas\n\n([-inf, 18, 23, inf], ['frio', 'confort', 'calor'])\n\n\nLas dos últimas horas del año, para ver con qué columnas trabajamos.\n\nesolmet.tail(2)\n\n\n\n\n\n\n\nvariable\ndhi\ndni\nghi\np_atm\nrain_acc\nrh\ntdb\nuv\nwd\nws\n\n\ndate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2024-12-31 22:00:00\n0.0\n0.0\n0.0\n860.360770\n0.502667\n50.749028\n19.289267\n0.003012\n299.731850\n1.723550\n\n\n2024-12-31 23:00:00\n0.0\n0.0\n0.0\n873.848805\n0.000000\n52.060556\n18.466733\n0.000000\n281.520742\n1.543513",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#clasificar-con-pd.cut",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#clasificar-con-pd.cut",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "Clasificar con pd.cut",
+    "text": "Clasificar con pd.cut\ncut asigna a cada temperatura el intervalo en que cae y devuelve una Series de tipo category con el mismo índice de fechas: cada hora del año tiene ahora una etiqueta. El borde derecho de cada intervalo es inclusivo por omisión: 18.0 es frio y 23.0 es confort.\n\ncategorias = pd.cut(esolmet.tdb,bins=niveles,labels=etiquetas)\ncategorias.info()\n\n&lt;class 'pandas.Series'&gt;\nDatetimeIndex: 8784 entries, 2024-01-01 00:00:00 to 2024-12-31 23:00:00\nSeries name: tdb\nNon-Null Count  Dtype   \n--------------  -----   \n8784 non-null   category\ndtypes: category(1)\nmemory usage: 77.2 KB",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#el-índice-como-periodo-anual",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#el-índice-como-periodo-anual",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "El índice como periodo anual",
+    "text": "El índice como periodo anual\nto_period(\"Y\") reduce cada fecha a su año. Aquí todas dan 2024 porque el año promedio vive en un solo año ficticio; con datos de varios años esta llave separaría un renglón por año.\n\ncategorias.index.to_period(\"Y\")\n\nPeriodIndex(['2024', '2024', '2024', '2024', '2024', '2024', '2024', '2024',\n             '2024', '2024',\n             ...\n             '2024', '2024', '2024', '2024', '2024', '2024', '2024', '2024',\n             '2024', '2024'],\n            dtype='period[Y-DEC]', name='date', length=8784)",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#contar-con-crosstabnormalizeindex",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#contar-con-crosstabnormalizeindex",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "Contar con crosstab(normalize=\"index\")",
+    "text": "Contar con crosstab(normalize=\"index\")\ncrosstab cruza dos variables categóricas: periodos en los renglones, categorías de confort en las columnas, y cuenta cuántas horas caen en cada cruce. Con normalize=\"index\" cada renglón se divide entre su total y queda como fracción.\n\npct = pd.crosstab(\n    categorias.index.to_period(\"Y\"),\n    categorias,\n    normalize=\"index\"\n)",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#el-resultado",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#el-resultado",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "El resultado",
+    "text": "El resultado\n7 % de las horas son frías, 39 % de confort y 54 % de calor. Las tres suman 1.\n\npct\n\n\n\n\n\n\n\ntdb\nfrio\nconfort\ncalor\n\n\nrow_0\n\n\n\n\n\n\n\n2024\n0.071038\n0.38684\n0.542122",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#un-detalle-del-índice-de-periodos",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#un-detalle-del-índice-de-periodos",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "Un detalle del índice de periodos",
+    "text": "Un detalle del índice de periodos\npct.index.month responde 12: un periodo anual se identifica con su último mes. No se usa más adelante; fue una exploración.\n\npct.index.month\n\nIndex([12], dtype='int64', name='row_0')",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#barra-apilada-con-plotkindbar-stackedtrue",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#barra-apilada-con-plotkindbar-stackedtrue",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "Barra apilada con plot(kind=\"bar\", stacked=True)",
+    "text": "Barra apilada con plot(kind=\"bar\", stacked=True)\npandas dibuja sobre el Axes que le pasamos con ax=axs; stacked=True apila las tres fracciones en una sola barra que llega a 1 y alpha=0.5 hace los colores translúcidos. La etiqueta row_0 del eje horizontal es el nombre por omisión que crosstab dio al índice; queda pendiente cambiarla con axs.set_xlabel.\n\nfig, axs = plt.subplots(figsize=(12,3))\n\npct.plot(kind=\"bar\",stacked=True,ax=axs,color=[\"blue\",\"green\",\"red\"],alpha=0.5)\n\n\n\n\n\n\n\nFigura 1: Fracción de horas del año promedio en frío, confort y calor como barra apilada: 7 %, 39 % y 54 %. La etiqueta row_0 del eje horizontal es el nombre por omisión del índice de crosstab.\n\n\n\n\n\nOtra vez la tabla, para compararla con la barra.\n\npct\n\n\n\n\n\n\n\ntdb\nfrio\nconfort\ncalor\n\n\nrow_0\n\n\n\n\n\n\n\n2024\n0.071038\n0.38684\n0.542122\n\n\n\n\n\n\n\nEl primer instante del índice, que usamos como extremo izquierdo de las líneas.\n\nesolmet.index[0]\n\nTimestamp('2024-01-01 00:00:00')",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#la-serie-con-las-dos-líneas-de-confort",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#la-serie-con-las-dos-líneas-de-confort",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "La serie con las dos líneas de confort",
+    "text": "La serie con las dos líneas de confort\nax.hlines(y, xmin, xmax) dibuja una línea horizontal; las dos marcan 18 y 23 °C. Los extremos se obtienen de dos formas equivalentes: index[0] y index[-1], o index.min() y index.max(). Con la serie encima se ve de dónde sale el 54 % de calor: de marzo a junio casi todas las horas están por encima de 23 °C.\n\nfig, ax = plt.subplots(figsize=(12,3))\n\nax.plot(esolmet.tdb)\nax.hlines(18,esolmet.index[0],esolmet.index[-1],color=\"k\")\nax.hlines(23,esolmet.index.min(),esolmet.index.max(),color=\"k\")\nax.grid()\n\n\n\n\n\n\n\nFigura 2: Temperatura horaria del año promedio con las líneas de 18 y 23 °C. De marzo a junio casi todas las horas quedan por encima de la línea de confort.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#comprobar-con-máscaras-booleanas",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#comprobar-con-máscaras-booleanas",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "Comprobar con máscaras booleanas",
+    "text": "Comprobar con máscaras booleanas\nTres comparaciones producen tres máscaras; esolmet[frio_mask] se queda con las horas frías, y así con las otras dos. Dibujar cada subconjunto como puntos de un color reproduce las categorías de cut sin usarlo: la figura debe coincidir con la barra apilada.\n\nfrio_mask = esolmet.tdb &lt; 18\nconfort_mask = (esolmet.tdb &gt;= 18) & (esolmet.tdb &lt;=23)\ncalor_mask = esolmet.tdb &gt; 23\n\nfig, ax = plt.subplots(figsize=(12,3))\n\nax.plot(esolmet[frio_mask].tdb,\"b.\",label=\"frio\")\nax.plot(esolmet[confort_mask].tdb,\"g.\",label=\"confort\")\nax.plot(esolmet[calor_mask].tdb,\"r.\",label=\"calor\")\n\nax.legend()\n\n\n\n\n\n\n\nFigura 3: Las mismas horas pintadas por categoría con máscaras booleanas: azul frío, verde confort, rojo calor. La imagen reproduce las fracciones de la barra apilada.\n\n\n\n\n\nTotal de horas del año promedio.\n\nlen(esolmet)\n\n8784",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
+    ]
+  },
+  {
+    "objectID": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#la-fracción-de-frío-a-mano",
+    "href": "clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html#la-fracción-de-frío-a-mano",
+    "title": "Horas de frío, confort y calor: cut, crosstab y barras apiladas",
+    "section": "La fracción de frío a mano",
+    "text": "La fracción de frío a mano\nHoras frías entre horas totales: 0.071, el mismo número que dio crosstab.\n\nlen(esolmet[frio_mask])/len(esolmet)\n\n0.07103825136612021\n\n\nLa tabla de crosstab, para confirmar la coincidencia.\n\npct\n\n\n\n\n\n\n\ntdb\nfrio\nconfort\ncalor\n\n\nrow_0\n\n\n\n\n\n\n\n2024\n0.071038\n0.38684\n0.542122\n\n\n\n\n\n\n\nCelda vacía que quedó al final de la clase.",
+    "crumbs": [
+      "Unidad 4 · Introducción a la visualización",
+      "Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas"
     ]
   },
   {
