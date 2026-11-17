@@ -1,0 +1,10 @@
+[project]
+name = "014-funciones"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.2",
+    "notebook>=7.6.5",
+    "pandas>=3.1.1",
+]

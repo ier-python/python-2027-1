@@ -69,6 +69,9 @@ book:
         - clases/010_importar_formatos/notebooks/004_carga_mas_archivos.ipynb
         - clases/010_importar_formatos/notebooks/005_importa_v6.ipynb
         - clases/010_importar_formatos/notebooks/006_encoding.ipynb
+        - clases/012_concatenar/notebooks/001_ETL.ipynb
+        - clases/012_concatenar/notebooks/002_ETL_limpio.ipynb
+        - clases/014_funciones/notebooks/001_Importar.ipynb
 
     - part: "Unidad 4 · Introducción a la visualización"
       chapters:
@@ -79,11 +82,21 @@ book:
         - clases/011_matplotlib2/notebooks/003_AnioPromedio.ipynb
         - clases/011_matplotlib2/notebooks/003_HeatMap.ipynb
         - clases/011_matplotlib2/notebooks/004_BarrasDisconfort.ipynb
+        - clases/015_OurWorldData/notebooks/001_EDA.ipynb
 
-    # Unidades aún sin clases: capítulos 5–8. Cuando una unidad tenga
+    - part: "Unidad 5 · NumPy"
+      chapters:
+        - unidades/unidad-05.qmd
+        - clases/013_numpy/notebooks/001_intro_NumPy.ipynb
+        - clases/013_numpy/notebooks/002_itera_numpy.ipynb
+
+    - part: "Unidad 6 · Prácticas para el cómputo científico"
+      chapters:
+        - unidades/unidad-06.qmd
+        - clases/014_funciones/notebooks/002_uso_import.ipynb
+
+    # Unidades aún sin clases: capítulos 7–8. Cuando una unidad tenga
     # libretas, se convierte en part como las de arriba.
-    - unidades/unidad-05.qmd
-    - unidades/unidad-06.qmd
     - unidades/unidad-07.qmd
     - unidades/unidad-08.qmd
 
