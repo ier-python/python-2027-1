@@ -1,0 +1,3178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>EDA de Our World in Data: energía por país con pandas y seaborn – Proyectos de ciencia de datos con Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../unidades/unidad-05.html" rel="next">
+<link href="../../../clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-319d10544dcc35a2879dd40516c1b119.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-84c87de819c63258b6ddb03c50deda64.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-319d10544dcc35a2879dd40516c1b119.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-2ca8c7584c309d902e0e22a78de252c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-2dd33263289978b95fd88aae3ce01c43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-2ca8c7584c309d902e0e22a78de252c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../unidades/unidad-04.html">Unidad 4 · Introducción a la visualización</a></li><li class="breadcrumb-item"><a href="../../../clases/015_OurWorldData/notebooks/001_EDA.html">EDA de Our World in Data: energía por país con pandas y seaborn</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">Proyectos de ciencia de datos con Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ier-python/python-2027-1" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentación</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../temario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temario del curso</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../reglas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reglas y acuerdos del curso</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unidad 1 · Introducción</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a los proyectos de ciencia de datos con Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/001_hola_mundo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instala Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/001_hola_mundo/notebooks/001_HolaMundo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Primeros pasos con Jupyter</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unidad 2 · Sintaxis y métodos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sintaxis, herramientas de control y métodos de Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/002_variables/001_intro_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables y tipos básicos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/003_variables_operaciones/001_variables_operaciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables y operaciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/003_variables_operaciones/002_strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índices, rebanadas y el primer <code>for</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/004_print_cadenas/001_print.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>print</code> y f-strings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/004_print_cadenas/002_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Práctica: manipulación de cadenas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/005_manipulacion_cadenas/001_manipulacion_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de cadenas: <code>split</code>, <code>strip</code> y <code>replace</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/006_cadenas_listas/001_cadenas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cadenas a fondo: <code>split</code>, <code>join</code> y tipos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/007_listas_estructuras/notebooks/001_listas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Listas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/007_listas_estructuras/notebooks/002_estructuras_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Estructuras de control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/001_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funciones: de la receta al código</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/002_uso_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uso de funciones y variables globales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/003_funciones_variables_default.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Argumentos con valor por defecto</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/004_uso_funciones_en_libreta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Práctica: funciones definidas en la libreta</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/008_funciones/notebooks/005_uso_funciones_importando.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importar funciones desde un módulo</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unidad 3 · Importar y limpiar datos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importación y limpieza de datos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/009_importar_datos/notebooks/001_ETL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ETL: importar datos de ESOLMET</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/009_importar_datos/notebooks/002_EDA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EDA: explorar y derivar columnas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/009_importar_datos/notebooks/003_ETL_dhi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ETL compacto y primeras gráficas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/010_importar_formatos/notebooks/001_ETL_v1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datos faltantes con <code>missingno</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/010_importar_formatos/notebooks/002_importar_mas_archivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importar más archivos: guardar en Parquet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/010_importar_formatos/notebooks/003_carga_parquet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cargar un archivo Parquet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/010_importar_formatos/notebooks/004_carga_mas_archivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cargar más archivos: NaN, Excel, centinelas y formato mexicano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/010_importar_formatos/notebooks/005_importa_v6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Importar un CSV sucio: nombres, fechas con AM/PM y tipos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/010_importar_formatos/notebooks/006_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encoding: leer un CSV en <code>cp1252</code> y la anatomía de una figura</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/012_concatenar/notebooks/001_ETL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concatenar archivos: un sensor por archivo y <code>glob</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/012_concatenar/notebooks/002_ETL_limpio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concatenar en limpio: diez archivos, una línea y un vistazo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/014_funciones/notebooks/001_Importar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Una función para importar: <code>import_esolmet</code> con <code>glob</code> y <code>concat</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 4 · Introducción a la visualización</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducción a la visualización</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/010_importar_formatos/notebooks/007_intro_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción a matplotlib: la primera figura con <code>fig, ax</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/011_matplotlib2/notebooks/001_EDA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EDA con matplotlib: paneles, <code>sharex</code> y ciclos sobre columnas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/011_matplotlib2/notebooks/002_operaciones_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operaciones con series temporales: <code>plot</code> de pandas y <code>resample</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/011_matplotlib2/notebooks/003_AnioPromedio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">El año promedio: <code>resample</code>, <code>groupby</code> y <code>strftime</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/011_matplotlib2/notebooks/003_HeatMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Heatmap del año promedio con <code>pivot</code> e <code>imshow</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Horas de frío, confort y calor: <code>cut</code>, <code>crosstab</code> y barras apiladas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/015_OurWorldData/notebooks/001_EDA.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">EDA de Our World in Data: energía por país con pandas y seaborn</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unidad 5 · NumPy</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/013_numpy/notebooks/001_intro_NumPy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción a NumPy: arreglos, <code>shape</code>, <code>reshape</code> y mallas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/013_numpy/notebooks/002_itera_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Iterar con NumPy: matrices, DataFrames y Numba</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unidad 6 · Prácticas para el cómputo científico</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Prácticas para el cómputo científico</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../clases/014_funciones/notebooks/002_uso_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Usar la función desde un módulo: <code>from tools.importar import *</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conceptos avanzados de manipulación de datos y visualización de datos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../unidades/unidad-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vibe coding con Quarto y Claude: analiza, documenta, itera y escribe tu tesis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../apendices/instalacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación del entorno</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#librerías" id="toc-librerías" class="nav-link active" data-scroll-target="#librerías">Librerías</a></li>
+  <li><a href="#leer-el-archivo" id="toc-leer-el-archivo" class="nav-link" data-scroll-target="#leer-el-archivo">Leer el archivo</a></li>
+  <li><a href="#info" id="toc-info" class="nav-link" data-scroll-target="#info"><code>info()</code></a></li>
+  <li><a href="#las-columnas-una-por-línea" id="toc-las-columnas-una-por-línea" class="nav-link" data-scroll-target="#las-columnas-una-por-línea">Las columnas, una por línea</a></li>
+  <li><a href="#los-países" id="toc-los-países" class="nav-link" data-scroll-target="#los-países">Los países</a></li>
+  <li><a href="#qué-filas-no-son-países" id="toc-qué-filas-no-son-países" class="nav-link" data-scroll-target="#qué-filas-no-son-países">Qué filas no son países</a></li>
+  <li><a href="#filtrar-varios-países-con-isin" id="toc-filtrar-varios-países-con-isin" class="nav-link" data-scroll-target="#filtrar-varios-países-con-isin">Filtrar varios países con <code>isin</code></a></li>
+  <li><a href="#primera-figura-con-seaborn.relplot" id="toc-primera-figura-con-seaborn.relplot" class="nav-link" data-scroll-target="#primera-figura-con-seaborn.relplot">Primera figura con <code>seaborn.relplot</code></a></li>
+  <li><a href="#un-panel-por-país-con-col" id="toc-un-panel-por-país-con-col" class="nav-link" data-scroll-target="#un-panel-por-país-con-col">Un panel por país con <code>col</code></a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/015_OurWorldData/notebooks/001_EDA.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../unidades/unidad-04.html">Unidad 4 · Introducción a la visualización</a></li><li class="breadcrumb-item"><a href="../../../clases/015_OurWorldData/notebooks/001_EDA.html">EDA de Our World in Data: energía por país con pandas y seaborn</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">EDA de Our World in Data: energía por país con pandas y seaborn</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Clase 015 · <code>015_OurWorldData</code> · Un conjunto de datos público y grande: el <em>Energy dataset</em> de Our World in Data, 23 377 filas (una por país y año) y 130 columnas. Exploración antes de graficar: columnas, países, qué filas son agregados y no países, filtros con <code>isin</code>, y la primera figura con <code>seaborn.relplot</code>, con <code>hue</code>, <code>size</code> y <code>col</code> para separar países. <code>seaborn</code> se instala con <code>uv add seaborn</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Datos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Datos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>owid-energy-data.csv</code> no viaja en el repositorio; descárgalo del repositorio <a href="https://github.com/owid/energy-data"><code>owid/energy-data</code></a> de GitHub y colócalo en <code>clases/015_OurWorldData/data/001_raw/</code>.</p>
+</div>
+</div>
+<section id="librerías" class="level2">
+<h2 class="anchored" data-anchor-id="librerías">Librerías</h2>
+<p><code>pandas</code>, <code>numpy</code> y <code>seaborn</code> con su alias <code>sns</code>. seaborn dibuja sobre matplotlib, así que no hace falta importarlo en esta libreta.</p>
+<div id="25f645fd-65c7-4b89-bbed-ed5af19e7353" class="cell" data-execution_count="42">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="leer-el-archivo" class="level2">
+<h2 class="anchored" data-anchor-id="leer-el-archivo">Leer el archivo</h2>
+<p>Sin <code>index_col</code> ni <code>parse_dates</code>: no es una serie temporal con la fecha como índice, sino una tabla con una fila por país y año. <code>head(2)</code> ya muestra que la primera entidad es <code>ASEAN (Ember)</code>, un agregado regional y no un país, y que muchas columnas vienen en <code>NaN</code>.</p>
+<div id="21fe77c1-cbd8-43e9-a5a4-2a1e74b1b520" class="cell" data-scrolled="true" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">"../data/001_raw/owid-energy-data.csv"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>owid <span class="op">=</span> pd.read_csv(f)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>owid.head(<span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">iso_code</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_change_pct</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_change_twh</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_per_capita</th>
+<th data-quarto-table-cell-role="th">biofuel_consumption</th>
+<th data-quarto-table-cell-role="th">biofuel_elec_per_capita</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">solar_share_elec</th>
+<th data-quarto-table-cell-role="th">solar_share_energy</th>
+<th data-quarto-table-cell-role="th">wind_cons_change_pct</th>
+<th data-quarto-table-cell-role="th">wind_cons_change_twh</th>
+<th data-quarto-table-cell-role="th">wind_consumption</th>
+<th data-quarto-table-cell-role="th">wind_elec_per_capita</th>
+<th data-quarto-table-cell-role="th">wind_electricity</th>
+<th data-quarto-table-cell-role="th">wind_energy_per_capita</th>
+<th data-quarto-table-cell-role="th">wind_share_elec</th>
+<th data-quarto-table-cell-role="th">wind_share_energy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>ASEAN (Ember)</td>
+<td>2000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>ASEAN (Ember)</td>
+<td>2001</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>2 rows × 130 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="info" class="level2">
+<h2 class="anchored" data-anchor-id="info"><code>info()</code></h2>
+<p>23 377 filas y 130 columnas: 127 flotantes, una entera (<code>year</code>) y dos de texto (<code>country</code>, <code>iso_code</code>). Con tantas columnas <code>info()</code> ya no las lista una por una.</p>
+<div id="8badf580-20c4-4170-b13d-5e18e6c906cd" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>owid.info()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 23377 entries, 0 to 23376
+Columns: 130 entries, country to wind_share_energy
+dtypes: float64(127), int64(1), str(2)
+memory usage: 23.2 MB</code></pre>
+</div>
+</div>
+</section>
+<section id="las-columnas-una-por-línea" class="level2">
+<h2 class="anchored" data-anchor-id="las-columnas-una-por-línea">Las columnas, una por línea</h2>
+<p>Un ciclo sobre <code>owid.columns</code> imprime los 130 nombres. Siguen un patrón, <code>fuente_medida</code>: <code>coal_consumption</code>, <code>solar_share_elec</code>, <code>wind_elec_per_capita</code>… Leer la lista completa una vez es la forma de saber qué preguntas se le pueden hacer al archivo.</p>
+<div id="dea6e642-ea52-4603-b399-eba191d1fa79" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> owid.columns:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(column)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>country
+year
+iso_code
+population
+gdp
+biofuel_cons_change_pct
+biofuel_cons_change_twh
+biofuel_cons_per_capita
+biofuel_consumption
+biofuel_elec_per_capita
+biofuel_electricity
+biofuel_share_elec
+biofuel_share_energy
+carbon_intensity_elec
+coal_cons_change_pct
+coal_cons_change_twh
+coal_cons_per_capita
+coal_consumption
+coal_elec_per_capita
+coal_electricity
+coal_prod_change_pct
+coal_prod_change_twh
+coal_prod_per_capita
+coal_production
+coal_share_elec
+coal_share_energy
+electricity_demand
+electricity_demand_per_capita
+electricity_generation
+electricity_share_energy
+energy_cons_change_pct
+energy_cons_change_twh
+energy_per_capita
+energy_per_gdp
+fossil_cons_change_pct
+fossil_cons_change_twh
+fossil_elec_per_capita
+fossil_electricity
+fossil_energy_per_capita
+fossil_fuel_consumption
+fossil_share_elec
+fossil_share_energy
+gas_cons_change_pct
+gas_cons_change_twh
+gas_consumption
+gas_elec_per_capita
+gas_electricity
+gas_energy_per_capita
+gas_prod_change_pct
+gas_prod_change_twh
+gas_prod_per_capita
+gas_production
+gas_share_elec
+gas_share_energy
+greenhouse_gas_emissions
+hydro_cons_change_pct
+hydro_cons_change_twh
+hydro_consumption
+hydro_elec_per_capita
+hydro_electricity
+hydro_energy_per_capita
+hydro_share_elec
+hydro_share_energy
+low_carbon_cons_change_pct
+low_carbon_cons_change_twh
+low_carbon_consumption
+low_carbon_elec_per_capita
+low_carbon_electricity
+low_carbon_energy_per_capita
+low_carbon_share_elec
+low_carbon_share_energy
+net_elec_imports
+net_elec_imports_share_demand
+nuclear_cons_change_pct
+nuclear_cons_change_twh
+nuclear_consumption
+nuclear_elec_per_capita
+nuclear_electricity
+nuclear_energy_per_capita
+nuclear_share_elec
+nuclear_share_energy
+oil_cons_change_pct
+oil_cons_change_twh
+oil_consumption
+oil_elec_per_capita
+oil_electricity
+oil_energy_per_capita
+oil_prod_change_pct
+oil_prod_change_twh
+oil_prod_per_capita
+oil_production
+oil_share_elec
+oil_share_energy
+other_renewable_consumption
+other_renewable_electricity
+other_renewable_exc_biofuel_electricity
+other_renewables_cons_change_pct
+other_renewables_cons_change_twh
+other_renewables_elec_per_capita
+other_renewables_elec_per_capita_exc_biofuel
+other_renewables_energy_per_capita
+other_renewables_share_elec
+other_renewables_share_elec_exc_biofuel
+other_renewables_share_energy
+per_capita_electricity
+primary_energy_consumption
+renewables_cons_change_pct
+renewables_cons_change_twh
+renewables_consumption
+renewables_elec_per_capita
+renewables_electricity
+renewables_energy_per_capita
+renewables_share_elec
+renewables_share_energy
+solar_cons_change_pct
+solar_cons_change_twh
+solar_consumption
+solar_elec_per_capita
+solar_electricity
+solar_energy_per_capita
+solar_share_elec
+solar_share_energy
+wind_cons_change_pct
+wind_cons_change_twh
+wind_consumption
+wind_elec_per_capita
+wind_electricity
+wind_energy_per_capita
+wind_share_elec
+wind_share_energy</code></pre>
+</div>
+</div>
+</section>
+<section id="los-países" class="level2">
+<h2 class="anchored" data-anchor-id="los-países">Los países</h2>
+<p><code>country.unique()</code> da los valores distintos de la columna. Entre los países aparecen regiones y agregados con la fuente entre paréntesis: <code>Africa (EI)</code>, <code>Asia (Ember)</code>, <code>World</code>.</p>
+<div id="002e6e16-1579-488d-aabf-4014188cec26" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> country <span class="kw">in</span> owid.country.unique():</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(country)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ASEAN (Ember)
+Afghanistan
+Africa
+Africa (EI)
+Africa (EIA)
+Africa (Ember)
+Africa (Shift)
+Albania
+Algeria
+American Samoa
+Angola
+Antarctica
+Antigua and Barbuda
+Argentina
+Armenia
+Aruba
+Asia
+Asia (Ember)
+Asia Pacific (EI)
+Asia and Oceania (EIA)
+Asia and Oceania (Shift)
+Australia
+Australia and New Zealand (EIA)
+Austria
+Azerbaijan
+Bahamas
+Bahrain
+Bangladesh
+Barbados
+Belarus
+Belgium
+Belize
+Benin
+Bermuda
+Bhutan
+Bolivia
+Bosnia and Herzegovina
+Botswana
+Brazil
+British Virgin Islands
+Brunei
+Bulgaria
+Burkina Faso
+Burundi
+CIS (EI)
+Cambodia
+Cameroon
+Canada
+Cape Verde
+Cayman Islands
+Central African Republic
+Central America (EI)
+Central and South America (EIA)
+Central and South America (Shift)
+Chad
+Chile
+China
+Colombia
+Comoros
+Congo
+Cook Islands
+Costa Rica
+Cote d'Ivoire
+Croatia
+Cuba
+Curacao
+Cyprus
+Czechia
+Czechoslovakia
+Democratic Republic of Congo
+Denmark
+Djibouti
+Dominica
+Dominican Republic
+EU (Ember)
+EU28 (Shift)
+East Germany
+East Timor
+Eastern Africa (EI)
+Eastern Europe and Eurasia (EIA)
+Ecuador
+Egypt
+El Salvador
+Equatorial Guinea
+Eritrea
+Estonia
+Eswatini
+Ethiopia
+Eurasia (EIA)
+Eurasia (Shift)
+Europe
+Europe (EI)
+Europe (EIA)
+Europe (Ember)
+Europe (Shift)
+European Union (27)
+Falkland Islands
+Faroe Islands
+Fiji
+Finland
+France
+French Guiana
+French Polynesia
+G20 (Ember)
+G7 (Ember)
+Gabon
+Gambia
+Georgia
+Germany
+Ghana
+Gibraltar
+Greece
+Greenland
+Grenada
+Guadeloupe
+Guam
+Guatemala
+Guinea
+Guinea-Bissau
+Guyana
+Haiti
+High-income countries
+Honduras
+Hong Kong
+Hungary
+Iceland
+India
+Indonesia
+Iran
+Iraq
+Ireland
+Israel
+Italy
+Jamaica
+Japan
+Jordan
+Kazakhstan
+Kenya
+Kiribati
+Kosovo
+Kuwait
+Kyrgyzstan
+Laos
+Latin America and Caribbean (Ember)
+Latvia
+Lebanon
+Lesotho
+Liberia
+Libya
+Lithuania
+Low-income countries
+Lower-middle-income countries
+Luxembourg
+Macao
+Madagascar
+Malawi
+Malaysia
+Maldives
+Mali
+Malta
+Martinique
+Mauritania
+Mauritius
+Mexico
+Micronesia (country)
+Middle Africa (EI)
+Middle East (EI)
+Middle East (EIA)
+Middle East (Ember)
+Middle East (Shift)
+Moldova
+Mongolia
+Montenegro
+Montserrat
+Morocco
+Mozambique
+Myanmar
+Namibia
+Nauru
+Nepal
+Netherlands
+Netherlands Antilles
+New Caledonia
+New Zealand
+Nicaragua
+Niger
+Nigeria
+Niue
+Non-OECD (EI)
+Non-OECD (EIA)
+Non-OPEC (EI)
+Non-OPEC (EIA)
+North America
+North America (EI)
+North America (Ember)
+North America (Shift)
+North Korea
+North Macedonia
+Northern Mariana Islands
+Norway
+OECD (EI)
+OECD (EIA)
+OECD (Ember)
+OECD (Shift)
+OPEC (EI)
+OPEC (EIA)
+OPEC (Shift)
+Oceania
+Oceania (Ember)
+Oman
+Other Africa (EI)
+Other Americas (EIA)
+Other Asia Pacific (EI)
+Other Asia-Pacific (EIA)
+Other CIS (EI)
+Other Caribbean (EI)
+Other Eastern Africa (EI)
+Other Europe (EI)
+Other Middle Africa (EI)
+Other Middle East (EI)
+Other North America (EI)
+Other Northern Africa (EI)
+Other South America (EI)
+Other South and Central America (EI)
+Other Southern Africa (EI)
+Other Western Africa (EI)
+Pakistan
+Palestine
+Panama
+Papua New Guinea
+Paraguay
+Persian Gulf (EIA)
+Persian Gulf (Shift)
+Peru
+Philippines
+Poland
+Portugal
+Puerto Rico
+Qatar
+Rest of World (EI)
+Reunion
+Romania
+Russia
+Rwanda
+Saint Helena
+Saint Kitts and Nevis
+Saint Lucia
+Saint Pierre and Miquelon
+Saint Vincent and the Grenadines
+Samoa
+Sao Tome and Principe
+Saudi Arabia
+Senegal
+Serbia
+Serbia and Montenegro
+Seychelles
+Sierra Leone
+Singapore
+Slovakia
+Slovenia
+Solomon Islands
+Somalia
+South Africa
+South America
+South Korea
+South Sudan
+South and Central America (EI)
+Spain
+Sri Lanka
+Sudan
+Suriname
+Sweden
+Switzerland
+Syria
+Taiwan
+Tajikistan
+Tanzania
+Thailand
+Togo
+Tonga
+Trinidad and Tobago
+Tunisia
+Turkey
+Turkmenistan
+Turks and Caicos Islands
+Tuvalu
+U.S. Pacific Islands (EIA)
+U.S. Territories (EIA)
+USSR
+Uganda
+Ukraine
+United Arab Emirates
+United Kingdom
+United States
+United States Pacific Islands (Shift)
+United States Territories (Shift)
+United States Virgin Islands
+Upper-middle-income countries
+Uruguay
+Uzbekistan
+Vanuatu
+Venezuela
+Vietnam
+Wake Island (EIA)
+Wake Island (Shift)
+West Germany
+Western Africa (EI)
+Western Europe (EIA)
+Western Sahara
+World
+Yemen
+Yugoslavia
+Zambia
+Zimbabwe</code></pre>
+</div>
+</div>
+<p><code>iso_code</code> tiene 221 valores distintos y el primero es <code>nan</code>: hay filas sin código ISO.</p>
+<div id="20722488-1795-408a-ad19-46c6d25380a5" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>owid.iso_code.unique()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>&lt;StringArray&gt;
+[  nan, 'AFG', 'ALB', 'DZA', 'ASM', 'AGO', 'ATA', 'ATG', 'ARG', 'ARM',
+ ...
+ 'VIR', 'URY', 'UZB', 'VUT', 'VEN', 'VNM', 'ESH', 'YEM', 'ZMB', 'ZWE']
+Length: 221, dtype: str</code></pre>
+</div>
+</div>
+<p><code>head(4)</code> para volver a mirar la tabla con eso en mente: las filas de <code>ASEAN (Ember)</code> no tienen <code>iso_code</code>.</p>
+<div id="0053b691-6b6f-4275-bb6a-d7eeaf00d452" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>owid.head(<span class="dv">4</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">iso_code</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_change_pct</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_change_twh</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_per_capita</th>
+<th data-quarto-table-cell-role="th">biofuel_consumption</th>
+<th data-quarto-table-cell-role="th">biofuel_elec_per_capita</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">solar_share_elec</th>
+<th data-quarto-table-cell-role="th">solar_share_energy</th>
+<th data-quarto-table-cell-role="th">wind_cons_change_pct</th>
+<th data-quarto-table-cell-role="th">wind_cons_change_twh</th>
+<th data-quarto-table-cell-role="th">wind_consumption</th>
+<th data-quarto-table-cell-role="th">wind_elec_per_capita</th>
+<th data-quarto-table-cell-role="th">wind_electricity</th>
+<th data-quarto-table-cell-role="th">wind_energy_per_capita</th>
+<th data-quarto-table-cell-role="th">wind_share_elec</th>
+<th data-quarto-table-cell-role="th">wind_share_energy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>ASEAN (Ember)</td>
+<td>2000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>ASEAN (Ember)</td>
+<td>2001</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>ASEAN (Ember)</td>
+<td>2002</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>ASEAN (Ember)</td>
+<td>2003</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>4 rows × 130 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-filas-no-son-países" class="level2">
+<h2 class="anchored" data-anchor-id="qué-filas-no-son-países">Qué filas no son países</h2>
+<p>Filtro booleano con <code>isna()</code>: las entidades sin código ISO son justamente los agregados (continentes, regiones, <code>World</code>, grupos de ingreso). Son 94. Es el criterio para separar países de regiones en este archivo.</p>
+<div id="e002ec65-0019-4c90-a885-d45aa00e50dd" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>owid[owid.iso_code.isna()].country.unique()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>&lt;StringArray&gt;
+[                        'ASEAN (Ember)',
+                                'Africa',
+                           'Africa (EI)',
+                          'Africa (EIA)',
+                        'Africa (Ember)',
+                        'Africa (Shift)',
+                                  'Asia',
+                          'Asia (Ember)',
+                     'Asia Pacific (EI)',
+                'Asia and Oceania (EIA)',
+              'Asia and Oceania (Shift)',
+       'Australia and New Zealand (EIA)',
+                              'CIS (EI)',
+                  'Central America (EI)',
+       'Central and South America (EIA)',
+     'Central and South America (Shift)',
+                        'Czechoslovakia',
+                            'EU (Ember)',
+                          'EU28 (Shift)',
+                          'East Germany',
+                   'Eastern Africa (EI)',
+      'Eastern Europe and Eurasia (EIA)',
+                         'Eurasia (EIA)',
+                       'Eurasia (Shift)',
+                                'Europe',
+                           'Europe (EI)',
+                          'Europe (EIA)',
+                        'Europe (Ember)',
+                        'Europe (Shift)',
+                   'European Union (27)',
+                           'G20 (Ember)',
+                            'G7 (Ember)',
+                 'High-income countries',
+                                'Kosovo',
+   'Latin America and Caribbean (Ember)',
+                  'Low-income countries',
+         'Lower-middle-income countries',
+                    'Middle Africa (EI)',
+                      'Middle East (EI)',
+                     'Middle East (EIA)',
+                   'Middle East (Ember)',
+                   'Middle East (Shift)',
+                         'Non-OECD (EI)',
+                        'Non-OECD (EIA)',
+                         'Non-OPEC (EI)',
+                        'Non-OPEC (EIA)',
+                         'North America',
+                    'North America (EI)',
+                 'North America (Ember)',
+                 'North America (Shift)',
+                             'OECD (EI)',
+                            'OECD (EIA)',
+                          'OECD (Ember)',
+                          'OECD (Shift)',
+                             'OPEC (EI)',
+                            'OPEC (EIA)',
+                          'OPEC (Shift)',
+                               'Oceania',
+                       'Oceania (Ember)',
+                     'Other Africa (EI)',
+                  'Other Americas (EIA)',
+               'Other Asia Pacific (EI)',
+              'Other Asia-Pacific (EIA)',
+                        'Other CIS (EI)',
+                  'Other Caribbean (EI)',
+             'Other Eastern Africa (EI)',
+                     'Other Europe (EI)',
+              'Other Middle Africa (EI)',
+                'Other Middle East (EI)',
+              'Other North America (EI)',
+            'Other Northern Africa (EI)',
+              'Other South America (EI)',
+  'Other South and Central America (EI)',
+            'Other Southern Africa (EI)',
+             'Other Western Africa (EI)',
+                    'Persian Gulf (EIA)',
+                  'Persian Gulf (Shift)',
+                    'Rest of World (EI)',
+                 'Serbia and Montenegro',
+                         'South America',
+        'South and Central America (EI)',
+            'U.S. Pacific Islands (EIA)',
+                'U.S. Territories (EIA)',
+                                  'USSR',
+ 'United States Pacific Islands (Shift)',
+     'United States Territories (Shift)',
+         'Upper-middle-income countries',
+                     'Wake Island (EIA)',
+                   'Wake Island (Shift)',
+                          'West Germany',
+                   'Western Africa (EI)',
+                  'Western Europe (EIA)',
+                                 'World',
+                            'Yugoslavia']
+Length: 94, dtype: str</code></pre>
+</div>
+</div>
+<p>Guardamos la lista completa de entidades en <code>paises</code>: 314, países y agregados juntos.</p>
+<div id="580f49f4-3407-493b-b307-7074d5715262" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>paises <span class="op">=</span> owid.country.unique()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>paises</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>&lt;StringArray&gt;
+[       'ASEAN (Ember)',          'Afghanistan',               'Africa',
+          'Africa (EI)',         'Africa (EIA)',       'Africa (Ember)',
+       'Africa (Shift)',              'Albania',              'Algeria',
+       'American Samoa',
+ ...
+  'Wake Island (Shift)',         'West Germany',  'Western Africa (EI)',
+ 'Western Europe (EIA)',       'Western Sahara',                'World',
+                'Yemen',           'Yugoslavia',               'Zambia',
+             'Zimbabwe']
+Length: 314, dtype: str</code></pre>
+</div>
+</div>
+</section>
+<section id="filtrar-varios-países-con-isin" class="level2">
+<h2 class="anchored" data-anchor-id="filtrar-varios-países-con-isin">Filtrar varios países con <code>isin</code></h2>
+<p><code>isin</code> recibe una lista y devuelve <code>True</code> en las filas cuyo <code>country</code> está en ella. Con México, Zambia y Estados Unidos quedan 377 filas. Se reutiliza el nombre <code>paises</code>, que ahora es un DataFrame y no una lista de nombres.</p>
+<div id="bb832c0f-0ed7-4745-ab4e-2f2a7a53c38e" class="cell" data-execution_count="41">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lista_paises <span class="op">=</span> [<span class="st">"Mexico"</span>,<span class="st">"Zambia"</span>,<span class="st">"United States"</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>paises <span class="op">=</span> owid[owid.country.isin(lista_paises)]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>paises</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">iso_code</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_change_pct</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_change_twh</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_per_capita</th>
+<th data-quarto-table-cell-role="th">biofuel_consumption</th>
+<th data-quarto-table-cell-role="th">biofuel_elec_per_capita</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">solar_share_elec</th>
+<th data-quarto-table-cell-role="th">solar_share_energy</th>
+<th data-quarto-table-cell-role="th">wind_cons_change_pct</th>
+<th data-quarto-table-cell-role="th">wind_cons_change_twh</th>
+<th data-quarto-table-cell-role="th">wind_consumption</th>
+<th data-quarto-table-cell-role="th">wind_elec_per_capita</th>
+<th data-quarto-table-cell-role="th">wind_electricity</th>
+<th data-quarto-table-cell-role="th">wind_energy_per_capita</th>
+<th data-quarto-table-cell-role="th">wind_share_elec</th>
+<th data-quarto-table-cell-role="th">wind_share_energy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12323</th>
+<td>Mexico</td>
+<td>1900</td>
+<td>MEX</td>
+<td>13261087.0</td>
+<td>2.479195e+10</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">12324</th>
+<td>Mexico</td>
+<td>1901</td>
+<td>MEX</td>
+<td>13411660.0</td>
+<td>2.691854e+10</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12325</th>
+<td>Mexico</td>
+<td>1902</td>
+<td>MEX</td>
+<td>13550290.0</td>
+<td>2.497158e+10</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">12326</th>
+<td>Mexico</td>
+<td>1903</td>
+<td>MEX</td>
+<td>13676676.0</td>
+<td>2.780079e+10</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12327</th>
+<td>Mexico</td>
+<td>1904</td>
+<td>MEX</td>
+<td>13804239.0</td>
+<td>2.830234e+10</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">23247</th>
+<td>Zambia</td>
+<td>2020</td>
+<td>ZMB</td>
+<td>19059394.0</td>
+<td>6.328162e+10</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>4.197</td>
+<td>...</td>
+<td>0.985</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">23248</th>
+<td>Zambia</td>
+<td>2021</td>
+<td>ZMB</td>
+<td>19603610.0</td>
+<td>6.619194e+10</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>4.081</td>
+<td>...</td>
+<td>0.847</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">23249</th>
+<td>Zambia</td>
+<td>2022</td>
+<td>ZMB</td>
+<td>20152935.0</td>
+<td>6.846960e+10</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>3.970</td>
+<td>...</td>
+<td>0.719</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">23250</th>
+<td>Zambia</td>
+<td>2023</td>
+<td>ZMB</td>
+<td>20723967.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>3.860</td>
+<td>...</td>
+<td>0.771</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">23251</th>
+<td>Zambia</td>
+<td>2024</td>
+<td>ZMB</td>
+<td>21314962.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>3.753</td>
+<td>...</td>
+<td>0.862</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>377 rows × 130 columns</p>
+</div>
+</div>
+</div>
+<p>El mismo tipo de filtro con una comparación simple, por código ISO: Estados Unidos tiene 126 filas, de 1900 a 2025.</p>
+<div id="d0ac1786-f28a-4694-9488-eeb835cfe049" class="cell" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>owid[owid.iso_code<span class="op">==</span><span class="st">"USA"</span>]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">iso_code</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_change_pct</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_change_twh</th>
+<th data-quarto-table-cell-role="th">biofuel_cons_per_capita</th>
+<th data-quarto-table-cell-role="th">biofuel_consumption</th>
+<th data-quarto-table-cell-role="th">biofuel_elec_per_capita</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">solar_share_elec</th>
+<th data-quarto-table-cell-role="th">solar_share_energy</th>
+<th data-quarto-table-cell-role="th">wind_cons_change_pct</th>
+<th data-quarto-table-cell-role="th">wind_cons_change_twh</th>
+<th data-quarto-table-cell-role="th">wind_consumption</th>
+<th data-quarto-table-cell-role="th">wind_elec_per_capita</th>
+<th data-quarto-table-cell-role="th">wind_electricity</th>
+<th data-quarto-table-cell-role="th">wind_energy_per_capita</th>
+<th data-quarto-table-cell-role="th">wind_share_elec</th>
+<th data-quarto-table-cell-role="th">wind_share_energy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">21873</th>
+<td>United States</td>
+<td>1900</td>
+<td>USA</td>
+<td>74829905.0</td>
+<td>6.139981e+11</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">21874</th>
+<td>United States</td>
+<td>1901</td>
+<td>USA</td>
+<td>76245912.0</td>
+<td>6.831061e+11</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">21875</th>
+<td>United States</td>
+<td>1902</td>
+<td>USA</td>
+<td>77698268.0</td>
+<td>6.901269e+11</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">21876</th>
+<td>United States</td>
+<td>1903</td>
+<td>USA</td>
+<td>79187838.0</td>
+<td>7.237663e+11</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">21877</th>
+<td>United States</td>
+<td>1904</td>
+<td>USA</td>
+<td>80705948.0</td>
+<td>7.146218e+11</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">21994</th>
+<td>United States</td>
+<td>2021</td>
+<td>USA</td>
+<td>340161438.0</td>
+<td>1.909938e+13</td>
+<td>9.917</td>
+<td>37.518</td>
+<td>1222.477</td>
+<td>415.839</td>
+<td>159.483</td>
+<td>...</td>
+<td>3.958</td>
+<td>1.585</td>
+<td>11.913</td>
+<td>98.085</td>
+<td>940.928</td>
+<td>1111.825</td>
+<td>378.20</td>
+<td>2766.123</td>
+<td>9.105</td>
+<td>3.647</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">21995</th>
+<td>United States</td>
+<td>2022</td>
+<td>USA</td>
+<td>341534041.0</td>
+<td>1.949317e+13</td>
+<td>5.231</td>
+<td>21.754</td>
+<td>1281.259</td>
+<td>437.593</td>
+<td>151.815</td>
+<td>...</td>
+<td>4.784</td>
+<td>1.932</td>
+<td>14.834</td>
+<td>136.920</td>
+<td>1077.848</td>
+<td>1271.615</td>
+<td>434.30</td>
+<td>3155.903</td>
+<td>10.131</td>
+<td>4.091</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">21996</th>
+<td>United States</td>
+<td>2023</td>
+<td>USA</td>
+<td>343477330.0</td>
+<td>NaN</td>
+<td>13.148</td>
+<td>57.535</td>
+<td>1441.518</td>
+<td>495.129</td>
+<td>137.418</td>
+<td>...</td>
+<td>5.617</td>
+<td>2.261</td>
+<td>-3.029</td>
+<td>-40.299</td>
+<td>1037.550</td>
+<td>1226.107</td>
+<td>421.14</td>
+<td>3020.722</td>
+<td>9.900</td>
+<td>3.985</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">21997</th>
+<td>United States</td>
+<td>2024</td>
+<td>USA</td>
+<td>345426566.0</td>
+<td>NaN</td>
+<td>5.759</td>
+<td>28.514</td>
+<td>1515.929</td>
+<td>523.642</td>
+<td>134.385</td>
+<td>...</td>
+<td>6.918</td>
+<td>2.835</td>
+<td>7.673</td>
+<td>79.608</td>
+<td>1117.157</td>
+<td>1308.238</td>
+<td>451.90</td>
+<td>3234.138</td>
+<td>10.291</td>
+<td>4.240</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">21998</th>
+<td>United States</td>
+<td>2025</td>
+<td>USA</td>
+<td>347275809.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>133.007</td>
+<td>...</td>
+<td>8.603</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1337.237</td>
+<td>464.39</td>
+<td>NaN</td>
+<td>10.275</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>126 rows × 130 columns</p>
+</div>
+</div>
+</div>
+<p>Los códigos ISO uno por línea, para buscar uno rápido con la vista.</p>
+<div id="38725552-a396-449d-b053-ef56190ff65c" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pais <span class="kw">in</span> owid.iso_code.unique():</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pais)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>nan
+AFG
+ALB
+DZA
+ASM
+AGO
+ATA
+ATG
+ARG
+ARM
+ABW
+AUS
+AUT
+AZE
+BHS
+BHR
+BGD
+BRB
+BLR
+BEL
+BLZ
+BEN
+BMU
+BTN
+BOL
+BIH
+BWA
+BRA
+VGB
+BRN
+BGR
+BFA
+BDI
+KHM
+CMR
+CAN
+CPV
+CYM
+CAF
+TCD
+CHL
+CHN
+COL
+COM
+COG
+COK
+CRI
+CIV
+HRV
+CUB
+CUW
+CYP
+CZE
+COD
+DNK
+DJI
+DMA
+DOM
+TLS
+ECU
+EGY
+SLV
+GNQ
+ERI
+EST
+SWZ
+ETH
+FLK
+FRO
+FJI
+FIN
+FRA
+GUF
+PYF
+GAB
+GMB
+GEO
+DEU
+GHA
+GIB
+GRC
+GRL
+GRD
+GLP
+GUM
+GTM
+GIN
+GNB
+GUY
+HTI
+HND
+HKG
+HUN
+ISL
+IND
+IDN
+IRN
+IRQ
+IRL
+ISR
+ITA
+JAM
+JPN
+JOR
+KAZ
+KEN
+KIR
+KWT
+KGZ
+LAO
+LVA
+LBN
+LSO
+LBR
+LBY
+LTU
+LUX
+MAC
+MDG
+MWI
+MYS
+MDV
+MLI
+MLT
+MTQ
+MRT
+MUS
+MEX
+FSM
+MDA
+MNG
+MNE
+MSR
+MAR
+MOZ
+MMR
+NAM
+NRU
+NPL
+NLD
+ANT
+NCL
+NZL
+NIC
+NER
+NGA
+NIU
+PRK
+MKD
+MNP
+NOR
+OMN
+PAK
+PSE
+PAN
+PNG
+PRY
+PER
+PHL
+POL
+PRT
+PRI
+QAT
+REU
+ROU
+RUS
+RWA
+SHN
+KNA
+LCA
+SPM
+VCT
+WSM
+STP
+SAU
+SEN
+SRB
+SYC
+SLE
+SGP
+SVK
+SVN
+SLB
+SOM
+ZAF
+KOR
+SSD
+ESP
+LKA
+SDN
+SUR
+SWE
+CHE
+SYR
+TWN
+TJK
+TZA
+THA
+TGO
+TON
+TTO
+TUN
+TUR
+TKM
+TCA
+TUV
+UGA
+UKR
+ARE
+GBR
+USA
+VIR
+URY
+UZB
+VUT
+VEN
+VNM
+ESH
+YEM
+ZMB
+ZWE</code></pre>
+</div>
+</div>
+<p><code>paises.columns</code> muestra las 130 columnas resumidas, con <code>...</code> en medio.</p>
+<div id="45de77ea-4133-4035-b2e8-96785df32c07" class="cell" data-execution_count="43">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>paises.columns</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>Index(['country', 'year', 'iso_code', 'population', 'gdp',
+       'biofuel_cons_change_pct', 'biofuel_cons_change_twh',
+       'biofuel_cons_per_capita', 'biofuel_consumption',
+       'biofuel_elec_per_capita',
+       ...
+       'solar_share_elec', 'solar_share_energy', 'wind_cons_change_pct',
+       'wind_cons_change_twh', 'wind_consumption', 'wind_elec_per_capita',
+       'wind_electricity', 'wind_energy_per_capita', 'wind_share_elec',
+       'wind_share_energy'],
+      dtype='str', length=130)</code></pre>
+</div>
+</div>
+</section>
+<section id="primera-figura-con-seaborn.relplot" class="level2">
+<h2 class="anchored" data-anchor-id="primera-figura-con-seaborn.relplot">Primera figura con <code>seaborn.relplot</code></h2>
+<p><code>relplot</code> dibuja relaciones entre dos variables; recibe el DataFrame en <code>data</code> y los nombres de las columnas en <code>x</code> y <code>y</code>. <code>hue="country"</code> colorea por país y agrega la leyenda. Las líneas comentadas en <code>lista_paises</code> dejan sólo a México. La población pasa de unos 13 millones en 1900 a 130 en 2025, con el quiebre de crecimiento después de 1940.</p>
+<div id="cell-fig-owid-poblacion-mexico" class="cell" data-execution_count="47">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lista_paises <span class="op">=</span> [</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mexico"</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "Zambia",</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "United States"</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>paises <span class="op">=</span> owid[owid.country.isin(lista_paises)]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>sns.relplot(</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>paises,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"year"</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"population"</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    hue<span class="op">=</span><span class="st">"country"</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-owid-poblacion-mexico" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Puntos azules que suben de 13 millones a 130 millones; casi planos hasta 1940 y después en una recta ascendente.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-owid-poblacion-mexico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="001_EDA_files/figure-html/fig-owid-poblacion-mexico-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1: Población de México de 1900 a 2025 según Our World in Data, con seaborn.relplot. El crecimiento se acelera a partir de los años cuarenta."><img src="001_EDA_files/figure-html/fig-owid-poblacion-mexico-output-1.png" class="img-fluid figure-img" alt="Puntos azules que suben de 13 millones a 130 millones; casi planos hasta 1940 y después en una recta ascendente."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-owid-poblacion-mexico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Población de México de 1900 a 2025 según Our World in Data, con <code>seaborn.relplot</code>. El crecimiento se acelera a partir de los años cuarenta.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>paises.columns</code> otra vez, buscando qué otra variable graficar.</p>
+<div id="9b7ecea3-bf70-4bc6-a20a-104645b47b4c" class="cell" data-execution_count="49">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>paises.columns</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<pre><code>Index(['country', 'year', 'iso_code', 'population', 'gdp',
+       'biofuel_cons_change_pct', 'biofuel_cons_change_twh',
+       'biofuel_cons_per_capita', 'biofuel_consumption',
+       'biofuel_elec_per_capita',
+       ...
+       'solar_share_elec', 'solar_share_energy', 'wind_cons_change_pct',
+       'wind_cons_change_twh', 'wind_consumption', 'wind_elec_per_capita',
+       'wind_electricity', 'wind_energy_per_capita', 'wind_share_elec',
+       'wind_share_energy'],
+      dtype='str', length=130)</code></pre>
+</div>
+</div>
+<p>Y la lista completa de columnas, una por línea, para elegir.</p>
+<div id="aae5c32f-8f58-4faa-a80b-3685128b1eac" class="cell" data-execution_count="56">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> columna <span class="kw">in</span> owid.columns:</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(columna)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>country
+year
+iso_code
+population
+gdp
+biofuel_cons_change_pct
+biofuel_cons_change_twh
+biofuel_cons_per_capita
+biofuel_consumption
+biofuel_elec_per_capita
+biofuel_electricity
+biofuel_share_elec
+biofuel_share_energy
+carbon_intensity_elec
+coal_cons_change_pct
+coal_cons_change_twh
+coal_cons_per_capita
+coal_consumption
+coal_elec_per_capita
+coal_electricity
+coal_prod_change_pct
+coal_prod_change_twh
+coal_prod_per_capita
+coal_production
+coal_share_elec
+coal_share_energy
+electricity_demand
+electricity_demand_per_capita
+electricity_generation
+electricity_share_energy
+energy_cons_change_pct
+energy_cons_change_twh
+energy_per_capita
+energy_per_gdp
+fossil_cons_change_pct
+fossil_cons_change_twh
+fossil_elec_per_capita
+fossil_electricity
+fossil_energy_per_capita
+fossil_fuel_consumption
+fossil_share_elec
+fossil_share_energy
+gas_cons_change_pct
+gas_cons_change_twh
+gas_consumption
+gas_elec_per_capita
+gas_electricity
+gas_energy_per_capita
+gas_prod_change_pct
+gas_prod_change_twh
+gas_prod_per_capita
+gas_production
+gas_share_elec
+gas_share_energy
+greenhouse_gas_emissions
+hydro_cons_change_pct
+hydro_cons_change_twh
+hydro_consumption
+hydro_elec_per_capita
+hydro_electricity
+hydro_energy_per_capita
+hydro_share_elec
+hydro_share_energy
+low_carbon_cons_change_pct
+low_carbon_cons_change_twh
+low_carbon_consumption
+low_carbon_elec_per_capita
+low_carbon_electricity
+low_carbon_energy_per_capita
+low_carbon_share_elec
+low_carbon_share_energy
+net_elec_imports
+net_elec_imports_share_demand
+nuclear_cons_change_pct
+nuclear_cons_change_twh
+nuclear_consumption
+nuclear_elec_per_capita
+nuclear_electricity
+nuclear_energy_per_capita
+nuclear_share_elec
+nuclear_share_energy
+oil_cons_change_pct
+oil_cons_change_twh
+oil_consumption
+oil_elec_per_capita
+oil_electricity
+oil_energy_per_capita
+oil_prod_change_pct
+oil_prod_change_twh
+oil_prod_per_capita
+oil_production
+oil_share_elec
+oil_share_energy
+other_renewable_consumption
+other_renewable_electricity
+other_renewable_exc_biofuel_electricity
+other_renewables_cons_change_pct
+other_renewables_cons_change_twh
+other_renewables_elec_per_capita
+other_renewables_elec_per_capita_exc_biofuel
+other_renewables_energy_per_capita
+other_renewables_share_elec
+other_renewables_share_elec_exc_biofuel
+other_renewables_share_energy
+per_capita_electricity
+primary_energy_consumption
+renewables_cons_change_pct
+renewables_cons_change_twh
+renewables_consumption
+renewables_elec_per_capita
+renewables_electricity
+renewables_energy_per_capita
+renewables_share_elec
+renewables_share_energy
+solar_cons_change_pct
+solar_cons_change_twh
+solar_consumption
+solar_elec_per_capita
+solar_electricity
+solar_energy_per_capita
+solar_share_elec
+solar_share_energy
+wind_cons_change_pct
+wind_cons_change_twh
+wind_consumption
+wind_elec_per_capita
+wind_electricity
+wind_energy_per_capita
+wind_share_elec
+wind_share_energy</code></pre>
+</div>
+</div>
+</section>
+<section id="un-panel-por-país-con-col" class="level2">
+<h2 class="anchored" data-anchor-id="un-panel-por-país-con-col">Un panel por país con <code>col</code></h2>
+<p>Los tres países de vuelta en la lista. <code>col="country"</code> hace un panel por país en vez de superponerlos; <code>size="gdp"</code> escala el tamaño del punto con el PIB, lo que explica los puntos grandes de Estados Unidos al final. <code>x=owid.year*1</code> es una curiosidad de la clase: en vez del nombre de la columna se pasa la columna completa de <code>owid</code> multiplicada por 1; seaborn la alinea con <code>paises</code> por el índice y funciona, aunque <code>x="year"</code> es lo claro. Los tres paneles comparten el eje vertical, por eso Zambia se ve aplastada contra el cero.</p>
+<div id="cell-fig-owid-poblacion-tres-paises" class="cell" data-execution_count="63">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lista_paises <span class="op">=</span> [</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mexico"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Zambia"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"United States"</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>paises <span class="op">=</span> owid[owid.country.isin(lista_paises)]</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>sns.relplot(</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>paises,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>owid.year<span class="op">*</span><span class="dv">1</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"population"</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># hue="country",</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span><span class="st">"gdp"</span>,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># aspect=3.5,</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    col<span class="op">=</span><span class="st">"country"</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-owid-poblacion-tres-paises" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tres paneles con puntos azules; Estados Unidos llega a 340 millones con puntos grandes al final, México a 130 millones y Zambia apenas se despega del eje desde 1950.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-owid-poblacion-tres-paises-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="001_EDA_files/figure-html/fig-owid-poblacion-tres-paises-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figura&nbsp;2: Población de México, Estados Unidos y Zambia de 1900 a 2025, un panel por país con col=&quot;country&quot;; el tamaño del punto es el PIB. Con el eje vertical compartido, Zambia queda aplastada contra el cero."><img src="001_EDA_files/figure-html/fig-owid-poblacion-tres-paises-output-1.png" class="img-fluid figure-img" alt="Tres paneles con puntos azules; Estados Unidos llega a 340 millones con puntos grandes al final, México a 130 millones y Zambia apenas se despega del eje desde 1950."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-owid-poblacion-tres-paises-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Población de México, Estados Unidos y Zambia de 1900 a 2025, un panel por país con <code>col="country"</code>; el tamaño del punto es el PIB. Con el eje vertical compartido, Zambia queda aplastada contra el cero.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../clases/011_matplotlib2/notebooks/004_BarrasDisconfort.html" class="pagination-link" aria-label="Horas de frío, confort y calor: `cut`, `crosstab` y barras apiladas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Horas de frío, confort y calor: <code>cut</code>, <code>crosstab</code> y barras apiladas</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../unidades/unidad-05.html" class="pagination-link" aria-label="NumPy">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NumPy</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Instituto de Energías Renovables · UNAM</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ier-python/python-2027-1/blob/main/clases/015_OurWorldData/notebooks/001_EDA.ipynb" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li><li><a href="https://github.com/ier-python/python-2027-1/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Hecho con <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
